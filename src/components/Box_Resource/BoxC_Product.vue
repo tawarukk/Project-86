@@ -70,7 +70,7 @@ export default {
         time_product: '',
         img_portrait_product: 'Original.png',
         type_product: '',
-        available_content: "1",
+        available_content: "0",
         },
         isFlipped: false,
         rule: require('@/assets/images/Card/Thermal-EX.png'),
@@ -127,7 +127,7 @@ methods: {
             time_product: '',
             img_portrait_product: 'Original.png',
             type_product: '',
-            available_content: "1",
+            available_content: "0",
         };
         Swal.fire("อัพโหลดเรียบร้อย",'success');
         this.$router.push('/Product_T');

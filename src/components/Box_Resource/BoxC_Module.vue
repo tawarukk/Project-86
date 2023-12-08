@@ -96,7 +96,7 @@ export default {
         img_cart_mod: 'Original.png',
         operator_mod: '',
         operator_mod_id: '',
-        available_member: "1",
+        available_member: "0",
         },
         isUsernameUnique: true,
         isEmailUnique: true,
@@ -164,7 +164,7 @@ methods: {
                 img_cart_mod: 'Original.png',
                 operator_mod: '',
                 operator_mod_id: '',
-                available_member: 'available'
+                available_member: '0'
         };
         Swal.fire("อัพโหลดเรียบร้อย",'success');
     } catch (error) {

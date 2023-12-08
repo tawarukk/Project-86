@@ -85,7 +85,7 @@ export default {
         order_efficiency: 0,
         condition_skill: '',
         effect_skill: '',
-        available_content: "1",
+        available_content: "0",
         },
         isFlipped: false,
         rule: require('@/assets/images/Card/Thermal-EX.png'),
@@ -122,7 +122,7 @@ methods: {
             order_efficiency: 0,
             condition_skill: '',
             effect_skill: '',
-            available_content: "1",
+            available_content: "0",
         };
         Swal.fire("อัพโหลดเรียบร้อย",'success');
         this.$router.push('/Skill_T');

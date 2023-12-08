@@ -88,7 +88,7 @@ if (!file) {
     return;
 }
 
-  if (file.size > 500 * 1024) {
+if (file.size > 500 * 1024) {
     res.status(400).json({ error: 'ขนาดไฟล์ต้องไม่เกิน 500 KB' });
     return;
 }
