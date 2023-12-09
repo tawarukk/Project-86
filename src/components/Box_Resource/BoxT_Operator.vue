@@ -1,15 +1,20 @@
-    <template>
-        <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-            <div class="page-content" style="background-color: #1f2122;">
-                <div style="font-size: 19px; font-weight: bold; display: flex; justify-content: center; align-items: center;"><h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-yt">T</span>able <span class="color-yt">O</span>perator <span class="color-yt">D</span>ata </h1> </div>
-                <div class="addData mb-2 mt-2" type="button" @click="createPage()" style="display: flex; justify-content: center; align-items: center;"> เพิ่มข้อมูล Operator</div>
-                
-                <div class="row">
-                <div class="col-md12">
-                    <table class="table table-striped">
-                        <thead class="border">
+<template>
+    <div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+        <div class="page-content" style="background-color: #1f2122;">
+            <div style="font-size: 19px; font-weight: bold; display: flex; justify-content: center; align-items: center;"><h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-yt">T</span>able <span class="color-yt">O</span>perator <span class="color-yt">D</span>ata </h1> </div>
+            <div class="addData mb-3 mt-3" type="button" @click="createPage()" style="display: flex; justify-content: center; align-items: center;"> เพิ่มข้อมูล Operator</div>
+
+            <div class="search-container mb-3" style="display: flex; justify-content: flex-end;">
+                <input type="text" v-model="searchKeyword" placeholder="ค้นหา Operator" @input="onInputDelete">
+                <button @click="onInputDelete">ค้นหา</button>
+            </div>
+
+            <div class="row">
+            <div class="col-md12">
+                <table class="table table-striped">
+                    <thead class="border">
                         <tr>
                             <th>Name</th>
                             <th>skill_i</th>
@@ -65,31 +70,33 @@
                             </button>
                             </td>
                         </tr>
-                        </tbody>
-                    </table>
-                </div>
-                </div>
+                    </tbody>
+                </table>
             </div>
-    
             </div>
+        </div>    
         </div>
-        </div>
-    </template>
+    </div>
+    </div>
+</template>
     
-    <script>
-        import '../../assets/css/templatemo-cyborg-gaming.css'; 
-        import '../../assets/css/owl.css'; 
-        import axios from'axios';
-        import Swal from 'sweetalert2';
+<script>
+    import '../../assets/css/templatemo-cyborg-gaming.css'; 
+    import '../../assets/css/owl.css'; 
+    import axios from'axios';
+    import Swal from 'sweetalert2';
 
     export default {
         name: 'TableOperatorBox',
         data(){
         return{
-            Operator: []
+            Operator: [],
+            searchKeyword: '' ,
+            originalOperators: [],
         }
         },
         created(){
+        this.fetchOperators();
         let apiURL='http://localhost:4000/api_operator';
         axios.get(apiURL).then(res =>{
             this.Operator = res.data
@@ -97,29 +104,34 @@
             console.log(error)
         })
         },
+        
+        watch: {
+        searchKeyword(newKeyword) {
+        this.searchOperator(newKeyword);
+        },
+    },
 
-        methods: {
+    methods: {
         deleteOperator(id) {
-                
-                let apiURL = `http://localhost:4000/api_operator/delete-operator/${id}`;
-                let indexOfArrayItem = this.Operator.findIndex(i => i._id === id);
-    
-                if (window.confirm("Do you really want to delete?")) {
-                    axios.delete(apiURL).then(() => {
-                        this.Operator.splice(indexOfArrayItem, 1);
-                        Swal.fire("Deleted!", "Operator deleted successfully.", "success");
-                    }).catch(error => {
-                        console.log(error)
-                        Swal.fire("Error!", "An error occurred while deleting the Operator.", "error");
+            let apiURL = `http://localhost:4000/api_operator/delete-operator/${id}`;
+            let indexOfArrayItem = this.Operator.findIndex(i => i._id === id);
+
+            if (window.confirm("Do you really want to delete?")) {
+                axios.delete(apiURL).then(() => {
+                    this.Operator.splice(indexOfArrayItem, 1);
+                    Swal.fire("Deleted!", "Operator deleted successfully.", "success");
+                }).catch(error => {
+                    console.log(error)
+                    Swal.fire("Error!", "An error occurred while deleting the Operator.", "error");
                     })
                 } else {
                     Swal.fire("Cancel!", "An error occurred while deleting the Operator.", "cancel");
                 }
-            },
-            createPage(){
-                this.$router.push('/Operator_C');
-            },
-            copyToClipboard(text) {
+        },
+        createPage(){
+            this.$router.push('/Operator_C');
+        },
+        copyToClipboard(text) {
             const textarea = document.createElement('textarea');
             textarea.value = text;
             document.body.appendChild(textarea);
@@ -128,8 +140,46 @@
             document.body.removeChild(textarea);
             window.alert('ข้อความถูกคัดลอกไปยังคลิปบอร์ด');
         },
+        searchOperator(keyword) {
+        let filteredOperators = this.originalOperators;
+
+        if (keyword !== '') {
+        const lowerKeyword = keyword.toLowerCase();
+        filteredOperators = this.originalOperators.filter((operator) => {
+            return (
+            operator.name_oper.toLowerCase().includes(lowerKeyword) ||
+            operator.skill_i.toLowerCase().includes(lowerKeyword) ||
+            operator.skill_ii.toLowerCase().includes(lowerKeyword) ||
+            operator.img_cart_oper.toLowerCase().includes(lowerKeyword) ||
+            operator.img_portrait_oper.toLowerCase().includes(lowerKeyword) ||
+            ((operator.available_content === 1) && (lowerKeyword === 'available')) ||
+            ((operator.available_content !== 1) && (lowerKeyword === 'unavailable'))
+            );
+        });
+        }
+        this.Operator = filteredOperators;
+        },
+        fetchOperators() {
+        // ฟังก์ชั่นดึงข้อมูล Operator ทั้งหมดจาก API
+        let apiURL = 'http://localhost:4000/api_operator';
+        axios.get(apiURL)
+            .then(res => {
+                this.Operator = res.data;
+                this.originalOperators = [...res.data];
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        },
+        onInputDelete() {
+        if (this.searchKeyword === '') {
+            this.Operator = this.originalOperators;
+        } else {
+            this.searchOperator(this.searchKeyword);
         }
         }
+        }
+    }
     </script>
     
     <style scoped>
