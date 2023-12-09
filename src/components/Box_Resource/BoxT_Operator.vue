@@ -17,30 +17,45 @@
                             <th>Cart</th>
                             <th>Portrait</th>
                             <th>Available_content</th>
-                            <th>IMG</th>
                             <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="operators in Operator" :key="operators._id">
                             <td @click="copyToClipboard(operators._id)">
+                                <span type="button" class="btn" title="คัดลอก ID ของ Operator ">
                                 <div v-if="operators.position == 'TradingPost'" style="color: #4b9ce8;">{{ operators.name_oper }} </div>
                                 <div v-else-if="operators.position == 'Factory'" style="color: #e8bd4b;">{{ operators.name_oper }} </div>
                                 <div v-else style="color: #FF9999;">{{ operators.name_oper }} </div>
+                                </span>
                             </td>
                             <td>{{ operators.skill_i }}</td>
                             <td>{{ operators.skill_ii }}</td>
-                            <td v-if="operators.img_cart_oper == ''"><span style="color: #e8bd4b;">ยังไม่ได้เพิ่มรูปภาพ</span></td>
-                            <td v-else>{{ operators.img_cart_oper }}</td>
-                            <td v-if="operators.img_portrait_oper  == ''"><span style="color: #e8bd4b;">ยังไม่ได้เพิ่มรูปภาพ</span></td>
-                            <td v-else>{{ operators.img_portrait_oper  }}</td>
-                            <td v-if="operators.available_content == 1">available</td>
-                            <td v-else>unavailable</td>
-                            <td>
-                                <router-link :to="{name: 'img_operator', params: {id: operators._id}}" class="btn button-mid">
-                                IMG
+                            <td v-if="operators.img_cart_oper == ''">
+                            <router-link :to="{name: 'img_operator', params: {id: operators._id , IMG: 'Cart' }}"
+                            title="อัพโหลดรูปภาพ">
+                                <span style="color: #FF9999;"> Add Crat </span>
+                            </router-link></td>
+                            <td v-else>
+                                <router-link :to="{name: 'img_operator', params: {id: operators._id , IMG: 'Cart' }}" 
+                                title="แก้ไขรูปภาพ">
+                                <span style="color: #e8bd4b;">{{ operators.img_cart_oper }}</span>
                             </router-link>
                             </td>
+                            <td v-if="operators.img_portrait_oper  == ''">
+                            <router-link :to="{name: 'img_operator', params: {id: operators._id , IMG: 'Portrait'}} "
+                            title="อัพโหลดรูปภาพ">
+                                <span style="color: #FF9999;"> Add Portrait </span>
+                            </router-link>
+                            </td>
+                            <td v-else>
+                                <router-link :to="{name: 'img_operator', params: {id: operators._id , IMG: 'Portrait' }}"
+                                title="แก้ไขรูปภาพ">
+                                <span style="color: #e8bd4b;">{{ operators.img_portrait_oper  }}</span>
+                            </router-link>
+                            </td>
+                            <td v-if="operators.available_content == 1">available</td>
+                            <td v-else>unavailable</td>
                             <td>
                             <router-link :to="{name: 'edit_operator', params: {id: operators._id}}" class="btn button">
                                 Edit
@@ -135,7 +150,6 @@
     }
     
     .btn { /* กำหนดระยะห่างระหว่างปุ่ม */
-        width: 50px;
         margin-bottom: 10px;
     }
     .button{

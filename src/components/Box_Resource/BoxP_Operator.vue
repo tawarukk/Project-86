@@ -2,16 +2,17 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
+            <div v-if="IMG=='Cart'">
             <div class="page-content" style="background-color: #1f2122;">
                 <div class="cards-container col-6" style="background-color: #27292a; width: auto; height: auto;">
                 <form @submit.prevent="uploadCart_img" style="font-size: 19px; font-weight: bold; display: flex; flex-direction: column; justify-content: center; align-items: center;">
                         <div class=""> <h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-yt">U</span>pload <span class="color-yt">P</span>icture <span class="color-yt">C</span>ard </h1> </div>
                         <div class="form-group">
-                            <label for="img_cart_oper" style="color: #A0A0A0;">img_cart_oper :</label> <span style="font-size: 15px; color: #666;">(โปรดระบุเป็น ชื่อ operator ตามด้วย .png เช่น Amiya.png)</span>
-                            <input type="text" class="form-control mt-1" id="img_cart_oper" v-model="Operator.img_cart_oper">
+                            <label for="img_cart_oper" style="color: #A0A0A0;">ขณะนี้กำลังอัพโหลด Cart :</label> <span style="font-size: 15px; color: #666;"></span>
+                            <input type="text" class="form-control mt-1" id="img_cart_oper" v-model="Operator.img_cart_oper" readonly>
                         </div>
                         <div class="form-group mt-1">
-                            <label for="img_cart_oper" style="color: #A0A0A0;">Upload Image Portrait :</label> <span style="font-size: 15px; color: #666;">กรุณาตั้งชื่อไฟล์ โดยที่ตัวอักษรแรกเป็นตัวพิมพ์ใหญ่</span>
+                            <label for="img_cart_oper" style="color: #A0A0A0;">Upload Image Cart :</label> <span style="font-size: 15px; color: #666;">กรุณาตั้งชื่อไฟล์ โดยที่ตัวอักษรแรกเป็นตัวพิมพ์ใหญ่</span>
                             <input type="file" class="form-control" id="img_cart_oper" name="img_cart_oper" ref="Card" required>
                         </div>
                         <button type="submit" class="btn mt-2 mb-2" style="background-color: #e8bd4b; width: 300px; color: #27292a; ">อัพโหลดข้อมูล</button>
@@ -19,13 +20,15 @@
                     </form>
                 </div>
             </div>
+            </div>
 
+            <div v-else>
             <div class="page-content" style="background-color: #1f2122;">
                 <div class="cards-container col-6" style="background-color: #27292a; width: auto; height: auto;">
                 <form @submit.prevent="uploadPortrait_img" style="font-size: 19px; font-weight: bold; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                        <div class=""> <h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-yt">U</span>pload <span class="color-yt">P</span>icture <span class="color-yt">P</span>ortrait </h1> </div>
+                        <div class="mb-3"> <h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-yt">U</span>pload <span class="color-yt">P</span>icture <span class="color-yt">P</span>ortrait </h1> </div>
                         <div class="form-group">
-                            <label for="img_portrait_oper" style="color: #A0A0A0;">img_portrait_oper :</label> <span style="font-size: 15px; color: #666;">(โปรดระบุเป็น ชื่อ operator ตามด้วย .png เช่น amiya.png)</span>
+                            <label for="img_portrait_oper" style="color: #A0A0A0;">ขณะนี้กำลังอัพโหลดรูปของ Portrait :</label> <span style="font-size: 15px; color: #666;"></span>
                             <input type="text" class="form-control mt-1" id="img_portrait_oper" v-model="Operator.img_portrait_oper">
                         </div>
                         <div class="form-group mt-1">
@@ -37,9 +40,10 @@
                     </form>
                 </div>
             </div>
+            </div>
 
         </div>
-      </div>
+    </div>
     </div>
 </template>
 
@@ -54,12 +58,19 @@ export default{
     data() {
         return {
             Operator: {},
+            Name_File: '',
+            IMG: ''
         }
     },
     created() {
         let apiURL = `http://localhost:4000/api_operator/edit-operator/${this.$route.params.id}`;
         axios.get(apiURL).then((res) => {
             this.Operator = res.data
+            // console.log(this.Operator.name_oper);
+            this.Name_File = (this.Operator.name_oper || '').trim() + '.png';
+            this.IMG = this.$route.params.IMG;
+            if(this.IMG == 'Cart') {this.Operator.img_cart_oper = this.Name_File;}
+            else{this.Operator.img_portrait_oper =  this.Name_File;}
         })
     },
     methods: {
@@ -69,12 +80,8 @@ export default{
             Swal.fire("ขนาดไฟล์ต้องไม่เกิน 500 KB");
             return;
         }
-         if (fileInput.files[0].name !== this.Operator.img_cart_oper) {
-         Swal.fire("ข้อมูลที่เพิ่ม ไม่ตรงกับชื่อไฟล์ที่อัพโหลด");
-         return;
-         }
         const formData = new FormData();
-        formData.append('img_cart_oper', fileInput.files[0]);
+        formData.append('img_cart_oper', fileInput.files[0],this.Name_File);
 
     try {
         const response = await axios.post('/api_operator/create-card-img', formData, {
@@ -94,6 +101,7 @@ export default{
             }).catch(error => {
                 console.log(error)
             })
+
     Swal.fire({
         title: 'อัพโหลดข้อมูลเสร็จสิ้น',
         text: 'คุณต้องการอยู่หน้านี้ต่อหรือกลับหน้าหลัก?',
@@ -106,22 +114,19 @@ export default{
                 // ผู้ใช้เลือกอยู่หน้านี้ต่อ
             } else if (result.dismiss === Swal.DismissReason.cancel) {
                 // ผู้ใช้เลือกกลับหน้าหลัก
-                this.$router.push('/Operator_T'); // เปลี่ยนหน้าไปหน้าหลัก
+                this.$router.push('/Operator_T');
             }
         });
     },
+
     async uploadPortrait_img() {
         const fileInput = this.$refs.file;
         if (fileInput.files[0].size > 500 * 1024) {
             Swal.fire("ขนาดไฟล์ต้องไม่เกิน 500 KB");
             return;
         }
-         if (fileInput.files[0].name !== this.Operator.img_portrait_oper) {
-         Swal.fire("ข้อมูลที่เพิ่ม ไม่ตรงกับชื่อไฟล์ที่อัพโหลด");
-         return;
-         }
         const formData = new FormData();
-        formData.append('img_portrait_oper', fileInput.files[0]);
+        formData.append('img_portrait_oper', fileInput.files[0],this.Name_File);
 
     try {
         const response = await axios.post('/api_operator/create-portrait-img', formData, {
@@ -141,6 +146,7 @@ export default{
             }).catch(error => {
                 console.log(error)
             })
+
     Swal.fire({
         title: 'อัพโหลดข้อมูลเสร็จสิ้น',
         text: 'คุณต้องการอยู่หน้านี้ต่อหรือกลับหน้าหลัก?',
@@ -153,7 +159,7 @@ export default{
                 // ผู้ใช้เลือกอยู่หน้านี้ต่อ
             } else if (result.dismiss === Swal.DismissReason.cancel) {
                 // ผู้ใช้เลือกกลับหน้าหลัก
-                this.$router.push('/Operator_T'); // เปลี่ยนหน้าไปหน้าหลัก
+                this.$router.push('/Operator_T'); 
             }
         });
 },

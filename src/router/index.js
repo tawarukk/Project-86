@@ -128,7 +128,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/ResourceView/Skill_CreateView.vue')
   },
   {
-    path: "/Operator_P/:id",
+    path: "/Operator_P/:id/:IMG",
     name: "img_operator",
     component: () => import(/* webpackChunkName: "about" */ '../views/ResourceView/Operator_IMGView.vue'),
   },
