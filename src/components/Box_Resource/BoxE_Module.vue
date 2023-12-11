@@ -33,10 +33,6 @@
                                     <label for="operator_mod_id" style="color: #A0A0A0;">ID Operator :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
                                     <input type="text" class="form-control mt-1" id="operator_mod_id" v-model="Module.operator_mod_id">
                                 </div>
-                                <div class="form-group mt-1">
-                                    <label for="img_cart_mod" style="color: #A0A0A0;">Name File : <span style="font-size: 15px; color: #e8bd4b;"> (*จำเป็นต้องระบุ)</span><br><span style="font-size: 12px; color: #666;">(โปรดระบุเป็น ชื่อ Module ตามด้วย .png เช่น SOY_X.png)</span></label> 
-                                    <input type="text" class="form-control mt-1" id="img_cart_mod" v-model="Module.img_cart_mod" required>
-                                </div>
                                 <div class="mt-2" style="color: #A0A0A0;">Status Module <span style="font-size: 15px; color: #e8bd4b;">(*จำเป็นต้องระบุ)</span> </div> 
                                 <div class="form-group mt-1" style="width: 350px;">
                                     <label for="maxhp_mod" style="color: #A0A0A0;">Max HP :</label>

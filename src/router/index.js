@@ -133,6 +133,16 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/ResourceView/Operator_IMGView.vue'),
   },
   {
+    path: "/Module_P/:id",
+    name: "img_module",
+    component: () => import(/* webpackChunkName: "about" */ '../views/ResourceView/Module_IMGView.vue'),
+  },
+  {
+    path: "/Product_P/:id",
+    name: "img_product",
+    component: () => import(/* webpackChunkName: "about" */ '../views/ResourceView/Product_IMGView.vue'),
+  },
+  {
     path: "/Operator_E/:id",
     name: "edit_operator",
     component: () => import(/* webpackChunkName: "about" */ '../views/ResourceView/Operator_EditView.vue'),

@@ -6,6 +6,10 @@
             <div style="font-size: 19px; font-weight: bold; display: flex; justify-content: center; align-items: center;"><h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-be">T</span>able <span class="color-be">P</span>roduct <span class="color-be">D</span>ata </h1> </div>
             <div class="addData mb-2" type="button" @click="createPage()" style="display: flex; justify-content: center; align-items: center;"> เพิ่มข้อมูล Product</div>
             
+            <div class=" mb-3" style="display: flex; justify-content: flex-end;">
+                <input type="text" class="form-control" v-model="searchKeyword" placeholder="ค้นหา Product" @input="onInputDelete">
+            </div>
+
             <div class="row">
               <div class="col-md12">
                 <table class="table table-striped">
@@ -13,20 +17,32 @@
                       <tr>
                           <th>ID</th>
                           <th>name_product</th>
-                          <th>available_content</th>
                           <th>time_product</th>
                           <th>type_product</th>
+                          <th>img</th>
+                          <th>available_content</th>
                           <th>Action</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr v-for="products in Product" :key="products._id">
-                        <td>{{ products._id }}</td>
+                    <tbody> 
+                      <tr v-for="products,index in Product" :key="products._id">
+                        <td>{{ index + 1 }}</td>
                         <td>{{ products.name_product }}</td>
-                        <td v-if="products.available_content == 1">available</td>
-                        <td v-else>unavailable</td>
                         <td>{{ products.time_product }}</td>
                         <td>{{ products.type_product }}</td>
+                        <td v-if="products.img_portrait_product == ''">
+                            <router-link :to="{name: 'img_product', params: {id: products._id}}"
+                            title="อัพโหลดรูปภาพ">
+                                <span style="color: #FF9999;"> อัพโหลดรูปภาพ </span>
+                        </router-link></td>
+                        <td v-else>
+                                <router-link :to="{name: 'img_product', params: {id: products._id}}" 
+                                title="แก้ไขรูปภาพ">
+                                <span style="color: #e8bd4b;">{{ products.img_portrait_product }}</span>
+                            </router-link>
+                        </td>
+                        <td v-if="products.available_content == 1">available</td>
+                        <td v-else>unavailable</td>
                         <td>
                           <router-link :to="{name: 'edit_product', params: {id: products._id}}" class="btn button">
                             Edit
@@ -57,16 +73,24 @@
     name: 'TableProductBox',
     data(){
       return{
-        Product: []
+        Product: [],
+        searchKeyword: '' ,
+        originalProduct: [],
       }
     },
     created(){
+      this.fetchProduct();
       let apiURL='http://localhost:4000/api_product';
       axios.get(apiURL).then(res =>{
         this.Product = res.data
       }).catch(error =>{
         console.log(error)
       })
+    },
+    watch: {
+        searchKeyword(newKeyword) {
+        this.searchProduct(newKeyword);
+        },
     },
 
     methods: {
@@ -89,7 +113,39 @@
           },
           createPage(){
             this.$router.push('/Product_C');
-          }
+          },
+          searchProduct(keyword) {
+          let filteredProduct = this.originalProduct;
+
+        if (keyword !== '') {
+        const lowerKeyword = keyword.toLowerCase();
+        filteredProduct = this.originalProduct.filter((product) => {
+            return (
+              product.name_product.toLowerCase().includes(lowerKeyword) ||
+              product.type_product.toLowerCase().includes(lowerKeyword)
+            );
+        });
+        }
+        this.Product = filteredProduct;
+        },
+        fetchProduct() {
+        let apiURL = 'http://localhost:4000/api_product';
+        axios.get(apiURL)
+            .then(res => {
+                this.Product = res.data;
+                this.originalProduct = [...res.data];
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        },
+        onInputDelete() {
+        if (this.searchKeyword === '') {
+            this.Product = this.originalProduct = [...this.originalProduct];
+        } else {
+            this.searchProduct(this.searchKeyword);
+        }
+        }
       }
     }
   </script>
@@ -111,6 +167,10 @@
     text-align: left;
   }
   
+  input {
+    background-color: #666;
+    border: #27292a;
+  }
   .btn {
     margin-right: 10px; /* กำหนดระยะห่างระหว่างปุ่ม */
   }
@@ -133,7 +193,6 @@
     font-size: 20px; 
     font-weight: bold;
 }
-
 .color-pk {
     color: #FF9999;
 }

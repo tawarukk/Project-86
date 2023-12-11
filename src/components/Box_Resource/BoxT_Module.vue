@@ -6,12 +6,16 @@
             <div style="font-size: 19px; font-weight: bold; display: flex; justify-content: center; align-items: center;"><h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-yt">T</span>able <span class="color-yt">M</span>odule <span class="color-yt">D</span>ata </h1> </div>
             <div class="addData mb-2" type="button" @click="createPage()" style="display: flex; justify-content: center; align-items: center;"> เพิ่มข้อมูล Module</div>
             
+            <div class=" mb-3" style="display: flex; justify-content: flex-end;">
+                <input type="text" class="form-control" v-model="searchKeyword" placeholder="ค้นหา Module" @input="onInputDelete">
+            </div>
+
             <div class="row">
               <div class="col-md12">
                 <table class="table table-striped">
                     <thead class="border">
                       <tr>
-                          <th>ID</th>
+                          <th>No.</th>
                           <th>Name</th>
                           <th>IMG</th>
                           <th>Operator</th>
@@ -21,12 +25,23 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="modules in Module" :key="modules._id">
-                        <td>{{ modules._id }}</td>
+                      <tr v-for="modules, index in Module" :key="modules._id">
+                        <td>{{ index + 1 }}</td>
                         <td>{{ modules.name_mod }}</td>
-                        <td>{{ modules.img_cart_mod }}</td>
+                        <td v-if="modules.img_cart_mod == ''">
+                            <router-link :to="{name: 'img_module', params: {id: modules._id}}"
+                            title="อัพโหลดรูปภาพ">
+                                <span style="color: #FF9999;"> อัพโหลดรูปภาพ </span>
+                        </router-link></td>
+                        <td v-else>
+                                <router-link :to="{name: 'img_module', params: {id: modules._id}}" 
+                                title="แก้ไขรูปภาพ">
+                                <span style="color: #e8bd4b;">{{ modules.img_cart_mod }}</span>
+                            </router-link>
+                        </td>
                         <td>{{ modules.operator_mod }}</td>
-                        <td>{{ modules.operator_mod_id }}</td>
+                        <td v-if="modules.operator_mod_id !== ''">ข้อมูล Oprator ถูกเพิ่มแล้ว</td>
+                        <td v-else>{{ modules.operator_mod_id }}</td>
                         <td v-if="modules.available_content == 1">available</td>
                         <td v-else>unavailable</td>
                         <td>
@@ -59,16 +74,25 @@
     name: 'TableModuleBox',
     data(){
       return{
-        Module: []
+        Module: [],
+        searchKeyword: '' ,
+        originalModule: [],
       }
     },
     created(){
+      this.fetchModule();
       let apiURL='http://localhost:4000/api_module';
       axios.get(apiURL).then(res =>{
         this.Module = res.data
       }).catch(error =>{
         console.log(error)
       })
+      
+    },
+    watch: {
+        searchKeyword(newKeyword) {
+        this.searchModule(newKeyword);
+        },
     },
 
     methods: {
@@ -91,7 +115,39 @@
           },
           createPage(){
             this.$router.push('/Module_C');
-          }
+          },
+          searchModule(keyword) {
+          let filteredModule = this.originalModule;
+
+        if (keyword !== '') {
+        const lowerKeyword = keyword.toLowerCase();
+        filteredModule = this.originalModule.filter((module) => {
+            return (
+              module.name_mod.toLowerCase().includes(lowerKeyword) ||
+              module.operator_mod.toLowerCase().includes(lowerKeyword)
+            );
+        });
+        }
+        this.Module = filteredModule;
+        },
+        fetchModule() {
+        let apiURL = 'http://localhost:4000/api_module';
+        axios.get(apiURL)
+            .then(res => {
+                this.Module = res.data;
+                this.originalModule = [...res.data];
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        },
+        onInputDelete() {
+        if (this.searchKeyword === '') {
+            this.Module = this.originalModule = [...this.originalModule];
+        } else {
+            this.searchModule(this.searchKeyword);
+        }
+        }
       }
     }
   </script>
@@ -104,6 +160,11 @@
     border: 1px solid #ddd;
     border-radius: 10px; 
     overflow: hidden; 
+  }
+
+  input {
+    background-color: #666;
+    border: #27292a;
   }
   
   /* กำหนดเส้นแบ่งระหว่างเซลล์ */

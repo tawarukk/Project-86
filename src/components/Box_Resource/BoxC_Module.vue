@@ -33,14 +33,6 @@
                                     <label for="operator_mod_id" style="color: #A0A0A0;">ID Operator :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
                                     <input type="text" class="form-control mt-1" id="operator_mod_id" v-model="ModuleData.operator_mod_id">
                                 </div>
-                                <div class="form-group mt-1">
-                                    <label for="img_cart_mod" style="color: #A0A0A0;">Name File : <span style="font-size: 15px; color: #e8bd4b;"> (*จำเป็นต้องระบุ)</span><br><span style="font-size: 12px; color: #666;">(โปรดระบุเป็น ชื่อ Module ตามด้วย .png เช่น SOY_X.png)</span></label> 
-                                    <input type="text" class="form-control mt-1" id="img_cart_mod" v-model="ModuleData.img_cart_mod" required>
-                                </div>
-                                <div class="form-group mt-1">
-                                    <label for="img_cart_mod" style="color: #A0A0A0;">Upload Image Module :</label>
-                                    <input type="file" class="form-control" id="img_cart_mod" name="img_cart_mod" ref="file" required>
-                                </div>
                                 <div class="mt-2" style="color: #A0A0A0;">Status Module <span style="font-size: 15px; color: #e8bd4b;">(*จำเป็นต้องระบุ)</span> </div> 
                                 <div class="form-group mt-1" style="width: 350px;">
                                     <label for="maxhp_mod" style="color: #A0A0A0;">Max HP :</label>
@@ -93,7 +85,7 @@ export default {
         deploy_cost_mod: 0,
         block_count_mod: 0,
         bonut_atkspd_mod: 0,
-        img_cart_mod: 'Original.png',
+        img_cart_mod: '',
         operator_mod: '',
         operator_mod_id: '',
         available_member: "0",
@@ -119,29 +111,6 @@ methods: {
         this.isFlipped = !this.isFlipped;
     },
     async uploadModule() {
-        const fileInput = this.$refs.file;
-        if (fileInput.files[0].size > 500 * 1024) {
-            Swal.fire("ขนาดไฟล์ต้องไม่เกิน 500 KB");
-            return;
-        }
-        if (fileInput.files[0].name !== this.ModuleData.img_cart_mod) {
-        Swal.fire("ชื่อไฟล์ไม่ตรงกับ ModuleData.img_cart_mod");
-        return;
-        }
-        const formData = new FormData();
-        formData.append('img_cart_mod', fileInput.files[0]);
-
-    try {
-        const response = await axios.post('/api_module/create-module-img', formData, {
-        headers: {
-            'Content-Type': 'multipart/form-data',
-        },
-        });
-        console.log(response.data);
-    } catch (error) {
-        console.error(error);
-        console.log("มีข้อผิดพลาดในการอัพโหลดไฟล์");
-    }
 
     try {   
         const apiURL = '/api_module/create-module';
@@ -161,7 +130,7 @@ methods: {
                 deploy_cost_mod: 0,
                 block_count_mod: 0,
                 bonut_atkspd_mod: 0,
-                img_cart_mod: 'Original.png',
+                img_cart_mod: '',
                 operator_mod: '',
                 operator_mod_id: '',
                 available_member: '0'

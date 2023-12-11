@@ -1,25 +1,26 @@
 <template>
-    <div class="Module_E">
+    <div class="Module_IMGView">
         <NavBarMain/>
-        <EditModuleBox/>
+        <PicModuleBox/>
     </div>
 </template>
 
 <script>
 import NavBarMain from "@/components/Box_SubComponent/NavSup.vue"
-import EditModuleBox from "@/components/Box_Resource/BoxE_Module.vue"
+import PicModuleBox from "@/components/Box_Resource/BoxP_Module.vue"
+
 
 export default {
-    name: 'Module_EView',
+    name: 'Module_IMGView',
     components: {
         NavBarMain,
-        EditModuleBox
+        PicModuleBox,
         }
 }
 </script>
 
 <style scoped>
-.Module_E {
+.Module_IMGView {
   width: 100%;
     min-height: 100vh;
     background: linear-gradient(

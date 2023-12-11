@@ -35,14 +35,6 @@
                                         <option value="Chips">Chips</option>
                                     </select>
                                 </div>
-                                <div class="form-group mt-1">
-                                    <label for="img_portrait_product" style="color: #A0A0A0;">Name File :<span style="font-size: 15px; color: #4b9ce8;"> (*จำเป็นต้องระบุ)</span><br><span style="font-size: 12px; color: #666;">(โปรดระบุเป็น ชื่อ Module ตามด้วย .png เช่น SOY_X.png)</span></label> 
-                                    <input type="text" class="form-control mt-1" id="img_portrait_product" v-model="ProductData.img_portrait_product" required>
-                                </div>
-                                <div class="form-group mt-1">
-                                    <label for="img_portrait_product" style="color: #A0A0A0;">Upload Image Product :</label>
-                                    <input type="file" class="form-control" id="img_portrait_product" name="img_portrait_product" ref="file" required>
-                                </div>
                                 <button type="submit" class="btn mt-2 mb-2" style="background-color: #4b9ce8; width: 300px; color: #27292a; ">อัพโหลดข้อมูล</button>
                                 <button class="btn mt-2 mb-2" @click="tablepage()" style="background-color: #666; width: 300px; color: #27292a; ">ยกเลิกการอัพโหลดข้อมูล</button>
                             </form>
@@ -68,7 +60,7 @@ export default {
         ProductData: {
         name_product: '',
         time_product: '',
-        img_portrait_product: 'Original.png',
+        img_portrait_product: '',
         type_product: '',
         available_content: "0",
         },
@@ -91,30 +83,6 @@ methods: {
         this.isFlipped = !this.isFlipped;
     },
     async uploadProduct() {
-        const fileInput = this.$refs.file;
-        if (fileInput.files[0].size > 500 * 1024) {
-            Swal.fire("ขนาดไฟล์ต้องไม่เกิน 500 KB");
-            return;
-        }
-        if (fileInput.files[0].name !== this.ProductData.img_portrait_product) {
-        Swal.fire("ชื่อไฟล์ที่กรอกไม่ตรงกับ ไฟล์ที่อัพโหลด");
-        return;
-        }
-        const formData = new FormData();
-        formData.append('img_portrait_product', fileInput.files[0]);
-
-    try {
-        const response = await axios.post('/api_product/create-product-img', formData, {
-        headers: {
-            'Content-Type': 'multipart/form-data',
-        },
-        });
-        console.log(response.data);
-    } catch (error) {
-        console.error(error);
-        console.log("มีข้อผิดพลาดในการอัพโหลดไฟล์");
-    }
-
     try {   
         const apiURL = '/api_product/create-product';
         const response = await axios.post(apiURL, this.ProductData);
@@ -125,12 +93,11 @@ methods: {
         this.ProductData = {
             name_product: '',
             time_product: '',
-            img_portrait_product: 'Original.png',
+            img_portrait_product: '',
             type_product: '',
             available_content: "0",
         };
         Swal.fire("อัพโหลดเรียบร้อย",'success');
-        this.$router.push('/Product_T');
     } catch (error) {
         console.error(error);
         Swal.fire("เกิดข้อผิดพลาดในการอัพโหลด", "กรุณาลองใหม่อีกครั้ง", "error");

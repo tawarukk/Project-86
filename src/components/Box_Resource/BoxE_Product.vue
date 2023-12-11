@@ -35,10 +35,6 @@
                                         <option value="Chips">Chips</option>
                                     </select>
                                 </div>
-                                <div class="form-group mt-1">
-                                    <label for="img_portrait_product" style="color: #A0A0A0;">Name File : <span style="font-size: 15px; color: #4b9ce8;"> (*จำเป็นต้องระบุ)</span><br><span style="font-size: 12px; color: #666;">(โปรดระบุเป็น ชื่อ Module ตามด้วย .png เช่น SOY_X.png)</span></label> 
-                                    <input type="text" class="form-control mt-1" id="img_portrait_product" v-model="Product.img_portrait_product" required>
-                                </div>
                                 <button type="submit" class="btn mt-2 mb-2" style="background-color: #4b9ce8; width: 300px; color: #27292a; ">อัพโหลดข้อมูล</button>
                                 <button class="btn mt-2 mb-2" @click="tablepage()" style="background-color: #666; width: 300px; color: #27292a; ">ยกเลิกการแก้ไขข้อมูล</button>
                             </form>

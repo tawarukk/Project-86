@@ -6,9 +6,8 @@
             <div style="font-size: 19px; font-weight: bold; display: flex; justify-content: center; align-items: center;"><h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-yt">T</span>able <span class="color-yt">O</span>perator <span class="color-yt">D</span>ata </h1> </div>
             <div class="addData mb-3 mt-3" type="button" @click="createPage()" style="display: flex; justify-content: center; align-items: center;"> เพิ่มข้อมูล Operator</div>
 
-            <div class="search-container mb-3" style="display: flex; justify-content: flex-end;">
-                <input type="text" v-model="searchKeyword" placeholder="ค้นหา Operator" @input="onInputDelete">
-                <button @click="onInputDelete">ค้นหา</button>
+            <div class=" mb-3" style="display: flex; justify-content: flex-end;">
+                <input type="text" class="form-control" v-model="searchKeyword" placeholder="ค้นหา Operator" @input="onInputDelete">
             </div>
 
             <div class="row">
@@ -16,6 +15,7 @@
                 <table class="table table-striped">
                     <thead class="border">
                         <tr>
+                            <th>No.</th>
                             <th>Name</th>
                             <th>skill_i</th>
                             <th>skill_ii</th>
@@ -26,7 +26,8 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="operators in Operator" :key="operators._id">
+                        <tr v-for="operators, index  in Operator" :key="operators._id">
+                            <td>{{ index + 1 }}</td>
                             <td @click="copyToClipboard(operators._id)">
                                 <span type="button" class="btn" title="คัดลอก ID ของ Operator ">
                                 <div v-if="operators.position == 'TradingPost'" style="color: #4b9ce8;">{{ operators.name_oper }} </div>
@@ -109,7 +110,7 @@
         searchKeyword(newKeyword) {
         this.searchOperator(newKeyword);
         },
-    },
+        },
 
     methods: {
         deleteOperator(id) {
@@ -149,11 +150,7 @@
             return (
             operator.name_oper.toLowerCase().includes(lowerKeyword) ||
             operator.skill_i.toLowerCase().includes(lowerKeyword) ||
-            operator.skill_ii.toLowerCase().includes(lowerKeyword) ||
-            operator.img_cart_oper.toLowerCase().includes(lowerKeyword) ||
-            operator.img_portrait_oper.toLowerCase().includes(lowerKeyword) ||
-            ((operator.available_content === 1) && (lowerKeyword === 'available')) ||
-            ((operator.available_content !== 1) && (lowerKeyword === 'unavailable'))
+            operator.skill_ii.toLowerCase().includes(lowerKeyword)
             );
         });
         }
@@ -199,6 +196,10 @@
         text-align: left;
     }
     
+    input {
+    background-color: #666;
+    border: #27292a;
+    }
     .btn { /* กำหนดระยะห่างระหว่างปุ่ม */
         margin-bottom: 10px;
     }

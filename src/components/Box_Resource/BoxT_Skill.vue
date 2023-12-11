@@ -6,12 +6,16 @@
                 <div style="font-size: 19px; font-weight: bold; display: flex; justify-content: center; align-items: center;"><h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-pk">T</span>able <span class="color-pk">S</span>kill <span class="color-pk">D</span>ata </h1> </div>
                 <div class="addData mb-2" type="button" @click="createPage()" style="display: flex; justify-content: center; align-items: center;"> เพิ่มข้อมูล Skill</div>
                 
+                <div class="mb-3" style="display: flex; justify-content: flex-end;">
+                <input type="text" class="form-control" v-model="searchKeyword" placeholder="ค้นหา Skill" @input="onInputDelete">
+                </div>
+
                 <div class="row">
                 <div class="col-md12">
                     <table class="table table-striped">
                         <thead class="border">
                         <tr>
-                            <th>ID</th>
+                            <th>No.</th>
                             <th>name_skill</th>
                             <th>position_skill</th>
                             <th>condition_skill</th>
@@ -20,8 +24,8 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="skills in Skill" :key="skills._id">
-                            <td>{{ skills._id }}</td>
+                        <tr v-for="skills, index in Skill" :key="skills._id">
+                            <td>{{ index + 1 }}</td>
                             <td>{{ skills.name_skill }}</td>
                             <td v-if="skills.position_skill == 'TradingPost'"> <span style="color: #4b9ce8;">{{skills.position_skill}} </span></td>
                             <td v-else-if="skills.position_skill == 'All'"> <span style="color: #FF9999;">{{skills.position_skill}} </span></td>
@@ -59,16 +63,24 @@
         name: 'TableSkillBox',
         data(){
         return{
-            Skill: []
+            Skill: [],
+            searchKeyword: '' ,
+            originalSkill: [],
         }
         },
         created(){
+        this.fetchSkill();
         let apiURL='http://localhost:4000/api_skill';
         axios.get(apiURL).then(res =>{
             this.Skill= res.data
         }).catch(error =>{
             console.log(error)
         })
+        },
+        watch: {
+        searchKeyword(newKeyword) {
+        this.searchSkill(newKeyword);
+        },
         },
 
         methods: {
@@ -91,7 +103,40 @@
             },
             createPage(){
                 this.$router.push('/Skill_C');
+            },
+            searchSkill(keyword) {
+            let filteredSkill = this.originalSkill;
+
+            if (keyword !== '') {
+            const lowerKeyword = keyword.toLowerCase();
+            filteredSkill = this.originalSkill.filter((skill) => {
+                return (
+                skill.name_skill.toLowerCase().includes(lowerKeyword) ||
+                skill.position_skill.toLowerCase().includes(lowerKeyword) ||
+                skill.condition_skill.toLowerCase().includes(lowerKeyword)
+                );
+            });
             }
+            this.Skill = filteredSkill;
+        },
+        fetchSkill() {
+        let apiURL = 'http://localhost:4000/api_skill';
+        axios.get(apiURL)
+            .then(res => {
+                this.Skill = res.data;
+                this.originalSkill = [...res.data];
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        },
+        onInputDelete() {
+        if (this.searchKeyword === '') {
+            this.Skill = this.originalSkill = [...this.originalSkill];
+        } else {
+            this.searchSkill(this.searchKeyword);
+        }
+        }
         }
         }
     </script>
@@ -111,6 +156,11 @@
         border: 1px solid black;
         padding: 8px;
         text-align: left;
+    }
+
+    input {
+    background-color: #666;
+    border: #27292a;
     }
     
     .btn {
