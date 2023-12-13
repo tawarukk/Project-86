@@ -27,6 +27,7 @@ const moduleAPI = require('./routes/module.route');
 const skillAPI = require('./routes/skill.route');
 const productAPI = require('./routes/product.route');
 const memberAPI = require('./routes/member.route');
+const creatorAPI = require('./routes/creator.route')
 const sessionAPI = require('./routes/session.route');
 
 const app = express();
@@ -52,6 +53,7 @@ app.use('/api_skill',skillAPI);
 app.use('/api_product',productAPI);
 app.use('/api_member',memberAPI);
 app.use('/api_session',sessionAPI);
+app.use('/api_creator',creatorAPI);
 
 app.get('/favicon.ico', (req, res) => {
     res.status(204); // สถานะ No Content

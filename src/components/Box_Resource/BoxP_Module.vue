@@ -38,7 +38,7 @@ export default{
         }
     },
     created() {
-        let apiURL = `http://localhost:4000/api_/edit-module/${this.$route.params.id}`;
+        let apiURL = `http://localhost:4000/api_module/edit-module/${this.$route.params.id}`;
         axios.get(apiURL).then((res) => {
             this.Module = res.data
             //console.log(this.Module.name_mod);

@@ -1,7 +1,6 @@
 const express = require('express');
 const moduleRoute = express.Router();
 // const formidable = require('formidable');
-
 let moduleModel = require('../models/module');
 
 moduleRoute.route('/').get((req, res, next) => {
