@@ -156,7 +156,12 @@ const routes = [
     path: '/Operator_C',
     name: 'Operator_C',
     component: () => import(/* webpackChunkName: "about" */ '../views/ResourceView/Operator_CreateView.vue')
-  }
+  },
+  {
+    path: '/Creator_C',
+    name: 'Creator_C',
+    component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/Creator_CreateView.vue')
+  },
 
 ]
 
