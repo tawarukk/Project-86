@@ -18,7 +18,12 @@
                     <label v-if="index == 0" for="type_content" style="color: #A0A0A0; display: block; margin-bottom: 5px;">Type of Content :</label>
                     <div class="mt-1" style="display: flex; align-items: center;">
                     <!-- <span style="font-size: 15px; color: #666;">{{ index + 1 }}</span> -->
-                    <input type="text" class="form-control" v-model="CreatorData.type_con[index]" style="flex: 1;">
+                    <select type="text" class="form-control" v-model="CreatorData.type_con[index]" style="flex: 1; background-color: #666; border-color: #27292a;">
+                        <option value="PreciousMetals">PreciousMetals</option>
+                        <option value="OriginiumMaterials">OriginiumMaterials</option>
+                        <option value="BattleRecord">BattleRecord</option>
+                        <option value="Chips">Chips</option>
+                    </select>
                     <button v-if="index !== 0" class="btn" @click="removeType(index)" style="background-color: #666; color: #27292a; margin-left: 5px;">Cancel</button>
                     </div>
                 </div>
@@ -99,12 +104,12 @@
                 </div>
                 
                 <div class="form-group mt-1">
-                    <label for="survey_con" style="color: #A0A0A0;">Survey Link :</label> <span style="font-size: 15px; color: #666;">(optional)</span>
-                    <select class="form-control mt-1" id="survey_con" v-model="CreatorData.survey_con" style="background-color: #666">
+                    <label for="survey_con" style="color: #A0A0A0;">Survey Status :</label> <span style="font-size: 15px; color: #666;">(optional)</span>
+                    <select class="form-control mt-1" id="survey_con" v-model="CreatorData.survey_con" style="background-color: #666; border-color: #27292a;">
                     <option value="0">ยังไม่ได้ตรวจสอบ/การตรวจสอบยังไม่เสร็จ</option>
                     <option value="1">ตรวจสอบแล้ว</option>
                     </select>
-                    </div>
+                </div>
                     <button type="submit" class="btn mt-2 mb-2" style="background-color: #e8bd4b; width: 300px; color: #27292a; ">Add Data</button>
                     <button class="btn mt-2 mb-2" @click="tablepage()" style="background-color: #666; width: 300px; color: #27292a; ">Cancel Adding Data</button>
                 </form>
@@ -163,15 +168,6 @@ created() {
 methods: {
     flipCard() {
         this.isFlipped = !this.isFlipped;
-    },
-    addSocialMedia() {
-        this.CreatorData.socialMedia.push({
-            platform: '',
-            link: '',
-        });
-    },
-    removeSocialMedia(index) {
-        this.CreatorData.socialMedia.splice(index, 1);
     },
     addType() {
         this.CreatorData.type_con.push('');
@@ -233,6 +229,7 @@ methods: {
     padding: 5px;
     border-radius: 5px;
     font-size: medium;
+    align-content: center;
 }
 
 .form-group{

@@ -7,7 +7,8 @@ import 'bootstrap/dist/js/bootstrap.js'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import '@popperjs/core';
 import router from './router';
-// import store from './store/index'
 
-
-createApp(App).use(router).mount('#app')
+const app = createApp(App);
+app.use(router);
+app.mount('#app');
+// createApp(App).use(router).use(Vuesax).mount('#app')
