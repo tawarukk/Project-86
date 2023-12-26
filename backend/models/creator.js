@@ -11,10 +11,18 @@ const creatorSchema = new Schema({
     img_card_con: {
         type: String
     },
-    socialMedia: [{
-        platform: String,
-        link: String
-    }],
+    socialMedia: {
+        Facebook: String,
+        F_link: String,
+        Youtube: String,
+        Y_link: String,
+        Twitter: String,
+        T_link: String,
+        Raddit: String,
+        R_link: String,
+        Anoter: String,
+        A_link: String,
+    },
     survey_con:{
         type: String
     },

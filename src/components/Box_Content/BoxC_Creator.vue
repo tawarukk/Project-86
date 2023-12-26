@@ -1,56 +1,119 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
-                <div class="page-content" style="background-color: #1f2122;">
-                    <div class="row" style="justify-content: center; align-items: center">
-                        <div class="cards-container col-6" style="background-color: #27292a; width: auto;height: auto;">
-                            <form @submit.prevent="uploadCreator" style="font-size: 19px; font-weight: bold; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                            <div class=""> <h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-yt">C</span>reate <span class="color-yt">M</span>odule</h1> </div>
-                                <div class="form-group">
-                                    <label for="name_mod" style="color: #A0A0A0;">Name Creator :</label> <span style="font-size: 15px; color: #e8bd4b;">(*จำเป็นต้องระบุ)</span>
-                                    <input type="text" class="form-control mt-1" id="name_mod" v-model="CreatorData.name_mod" required>
-                                </div>
-                                <div class="form-group mt-1">
-                                    <label for="effect_mod" style="color: #A0A0A0;">Effect Creator :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
-                                    <input type="text" class="form-control mt-1" id="effect_mod" v-model="CreatorData.name_con">
-                                </div>
-                                <div class="form-group mt-1">
-                                    <label for="operator_mod" style="color: #A0A0A0;">Name Operator :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
-                                    <input type="text" class="form-control mt-1" id="operator_mod" v-model="CreatorData.name_con">
-                                </div>
-                                <div class="form-group mt-1">
-                                    <label for="operator_mod_id" style="color: #A0A0A0;">ID Operator :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
-                                    <input type="text" class="form-control mt-1" id="operator_mod_id" v-model="CreatorData.name_con">
-                                </div>
-                                <div class="mt-2" style="color: #A0A0A0;">Status Creator <span style="font-size: 15px; color: #e8bd4b;">(*จำเป็นต้องระบุ)</span> </div> 
-                                <div class="form-group mt-1" style="width: 350px;">
-                                    <label for="maxhp_mod" style="color: #A0A0A0;">Max HP :</label>
-                                    <input type="number" class="form-control mt-1" id="maxhp_mod" v-model="CreatorData.name_con" required>
-                                    <label for="attack_mod" style="color: #A0A0A0;">Attack :</label> 
-                                    <input type="number" class="form-control mt-1" id="attack_mod" v-model="CreatorData.name_con" required>
-                                    <label for="defent_mod" style="color: #A0A0A0;">Defent :</label> 
-                                    <input type="number" class="form-control mt-1" id="defent_mod" v-model="CreatorData.name_con" required>
-                                    <label for="resis_mod" style="color: #A0A0A0;">Resistant :</label> 
-                                    <input type="number" class="form-control mt-1" id="resis_mod" v-model="CreatorData.name_con" required>
-                                    <label for="redeploy_mod" style="color: #A0A0A0;">Redeploy :</label> 
-                                    <input type="number" class="form-control mt-1" id="redeploy_mod" v-model="CreatorData.name_con" required>
-                                    <label for="deploy_cost_mod" style="color: #A0A0A0;">Deploy Cost :</label>  
-                                    <input type="number" class="form-control mt-1" id="deploy_cost_mod" v-model="CreatorData.name_con" required>
-                                    <label for="block_count_mod" style="color: #A0A0A0;">Block Count :</label>  
-                                    <input type="number" class="form-control mt-1" id="block_count_mod" v-model="CreatorData.name_con" required> 
-                                    <label for="bonut_atkspd_mod" style="color: #A0A0A0;">Bonut Atkspd :</label> 
-                                    <input type="number" class="form-control mt-1" id="bonut_atkspd_mod" v-model="CreatorData.name_con" required>
-                                </div>
-                                <button type="submit" class="btn mt-2 mb-2" style="background-color: #e8bd4b; width: 300px; color: #27292a; ">เพิ่มข้อมูลข้อมูล</button>
-                                <button class="btn mt-2 mb-2" @click="tablepage()" style="background-color: #666; width: 300px; color: #27292a; ">ยกเลิกการเพิ่มข้อมูล</button>
-                            </form>
-                            </div>
-                        </div>
-                    <div class="mt-3" style="color: #A0A0A0; font-size: 19px; font-weight: bold; text-align: right;">ต้องการแสดงข้อมูล Creator ใช่หรือไม่ ? <span class="color-yt" type="button" @click="tablepage()"> แสดงข้อมูล </span></div>
+        <div class="col-lg-12">
+            <div class="page-content" style="background-color: #1f2122;">
+            <div class="row" style="justify-content: center; align-items: center">
+                <div class="cards-container col-6" style="background-color: #27292a; width: auto;height: auto; border-radius: 10px;">
+                <form @submit.prevent="uploadCreator" style="font-size: 19px; font-weight: bold; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <div> <h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-yt">C</span>reate <span class="color-yt">M</span>odule</h1> </div>
+
+                <div class="form-group">
+                    <label for="name_con" style="color: #A0A0A0;">Name Creator :</label> <span style="font-size: 15px; color: #e8bd4b;">(*required)</span>
+                    <input type="text" class="form-control mt-1" id="name_con" v-model="CreatorData.name_con" required>
                 </div>
+
+                <div v-for="(type, index) in CreatorData.type_con" :key="index">
+                <div class="form-group">
+                    <label v-if="index == 0" for="type_content" style="color: #A0A0A0; display: block; margin-bottom: 5px;">Type of Content :</label>
+                    <div class="mt-1" style="display: flex; align-items: center;">
+                    <!-- <span style="font-size: 15px; color: #666;">{{ index + 1 }}</span> -->
+                    <input type="text" class="form-control" v-model="CreatorData.type_con[index]" style="flex: 1;">
+                    <button v-if="index !== 0" class="btn" @click="removeType(index)" style="background-color: #666; color: #27292a; margin-left: 5px;">Cancel</button>
+                    </div>
+                </div>
+                </div>
+                <button type="button" @click="addType" class="btn mt-1 mb-1" style="background-color: #e8bd4b; width: 300px; color: #27292a;">Add Type</button>
+
+                <div class="form-group">
+                    <div class="mt-1" style="display: flex; align-items: center;">
+                    <div class="form-group" style="width: 230px;">
+                        <label for="Facebook" style="color: #A0A0A0;">Platform :</label>
+                        <div type="text" class="socialMedia mt-1" style="background-color:#3b5998;"> Facebook </div>
+                    </div>
+                    <div class="form-group" style="margin-left: 5px">
+                        <label for="Facebook" style="color: #A0A0A0;">Social Platform :</label>
+                        <input type="text" class="form-control mt-1"  id="Facebook" v-model="CreatorData.socialMedia.Facebook" style="background-color: #666">
+                    </div>
+                    <div class="form-group" style="margin-left: 5px;">
+                        <label for="F_link" style="color: #A0A0A0;">Platform Link :</label> 
+                        <input type="text" class="form-control mt-1"  id="F_link" v-model="CreatorData.socialMedia.F_link">   
+                    </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="mt-1" style="display: flex; align-items: center;">
+                        <div class="form-group" style="width: 230px;">
+                            <div type="text" class="socialMedia mt-1" style="background-color:#FF0000;"> Youtube </div>
+                        </div>
+                        <div class="form-group" style="margin-left: 5px;">
+                            <input type="text" class="form-control mt-1" id="Youtube" v-model="CreatorData.socialMedia.Youtube" style="background-color: #666">
+                        </div>
+                        <div class="form-group" style="margin-left: 5px;">
+                            <input type="text" class="form-control mt-1" id="Y_link" v-model="CreatorData.socialMedia.Y_link">   
+                        </div>
+                    </div>
+                </div>    
+
+                <div class="form-group">
+                    <div class="mt-1" style="display: flex; align-items: center;">
+                        <div class="form-group" style="width: 230px;">
+                            <div type="text" class="socialMedia mt-1" style="background-color:#1DA1F2;"> Twitter </div>
+                        </div>
+                        <div class="form-group" style="margin-left: 5px;">
+                            <input type="text" class="form-control mt-1" id="Twitter" v-model="CreatorData.socialMedia.Twitter" style="background-color: #666">
+                        </div>
+                        <div class="form-group" style="margin-left: 5px;">
+                            <input type="text" class="form-control mt-1" id="T_link" v-model="CreatorData.socialMedia.T_link">   
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="form-group">
+                    <div class="mt-1" style="display: flex; align-items: center;">
+                        <div class="form-group" style="width: 230px;">
+                            <div type="text" class="socialMedia mt-1" style="background-color:#FF5700;"> Raddit </div>
+                        </div>
+                        <div class="form-group" style="margin-left: 5px;">
+                            <input type="text" class="form-control mt-1" id="Raddit" v-model="CreatorData.socialMedia.Raddit" style="background-color: #666">
+                        </div>
+                        <div class="form-group" style="margin-left: 5px;">
+                            <input type="text" class="form-control mt-1" id="R_link" v-model="CreatorData.socialMedia.R_link">   
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="mt-1" style="display: flex; align-items: center;">
+                        <div class="form-group" style="width: 230px;">
+                            <div type="text" class="socialMedia mt-1" style="background-color:#e8bd4b;"> Anoter </div>
+                        </div>
+                        <div class="form-group" style="margin-left: 5px;">
+                            <input type="text" class="form-control mt-1" id="Anoter" v-model="CreatorData.socialMedia.Anoter" style="background-color: #666">
+                        </div>
+                        <div class="form-group" style="margin-left: 5px;">
+                            <input type="text" class="form-control mt-1" id="A_link" v-model="CreatorData.socialMedia.A_link">   
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group mt-1">
+                    <label for="survey_con" style="color: #A0A0A0;">Survey Link :</label> <span style="font-size: 15px; color: #666;">(optional)</span>
+                    <select class="form-control mt-1" id="survey_con" v-model="CreatorData.survey_con" style="background-color: #666">
+                    <option value="0">ยังไม่ได้ตรวจสอบ/การตรวจสอบยังไม่เสร็จ</option>
+                    <option value="1">ตรวจสอบแล้ว</option>
+                    </select>
+                    </div>
+                    <button type="submit" class="btn mt-2 mb-2" style="background-color: #e8bd4b; width: 300px; color: #27292a; ">Add Data</button>
+                    <button class="btn mt-2 mb-2" @click="tablepage()" style="background-color: #666; width: 300px; color: #27292a; ">Cancel Adding Data</button>
+                </form>
             </div>
-        </div>    
+            </div>
+            <div class="mt-3" style="color: #A0A0A0; font-size: 19px; font-weight: bold; text-align: right;">Do you want to display Creator data? <span class="color-yt" type="button" @click="tablepage()"> Display Data </span></div>
+        </div>
+        </div>
+    </div>
     </div>
 </template>
 
@@ -66,14 +129,22 @@ export default {
     return {
         CreatorData: {
         name_con: '',
-        type_con: '',
+        type_con: [''],
         img_card_con:'',
-        socialMedia: [{
-        platform: '',
-        link: '',
-        }],
+        socialMedia: {
+        Facebook: '',
+        F_link: '',
+        Youtube: '',
+        Y_link: '',
+        Twitter: '',
+        T_link: '',
+        Raddit: '',
+        R_link: '',
+        Anoter: '',
+        A_link: '',
+        },
         survey_con:'',
-        available_member: "0",
+        available_con: "0",
         },
         isFlipped: false,
         rule: require('@/assets/images/Card/Thermal-EX.png'),
@@ -93,6 +164,25 @@ methods: {
     flipCard() {
         this.isFlipped = !this.isFlipped;
     },
+    addSocialMedia() {
+        this.CreatorData.socialMedia.push({
+            platform: '',
+            link: '',
+        });
+    },
+    removeSocialMedia(index) {
+        this.CreatorData.socialMedia.splice(index, 1);
+    },
+    addType() {
+        this.CreatorData.type_con.push('');
+    },
+    removeType(index) {
+        this.CreatorData.type_con.splice(index, 1);
+    },
+    uploadCreatortest(){
+        const newCreator = this.CreatorData;
+        console.log(newCreator);
+    },
     async uploadCreator() {
 
     try {   
@@ -104,12 +194,20 @@ methods: {
 
         this.CreatorData = {
             name_con: '',
-            type_con: '',
+            type_con: [],
             img_card_con:'',
-            socialMedia: [{
-            platform: '',
-            link: '',
-            }],
+            socialMedia: {
+            Facebook: '',
+            F_link: '',
+            Youtube: '',
+            Y_link: '',
+            Twitter: '',
+            T_link: '',
+            Raddit: '',
+            R_link: '',
+            Anoter: '',
+            A_link: '',
+            },
             survey_con:'',
             available_member: "0"
         };
@@ -129,46 +227,16 @@ methods: {
 
 <style scoped>
 
-.cards-container {
-  perspective: 1000px;
-  width: 350px;
-  height: 514px;
-  border-radius: 20px;
-}
-
-.cards {
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.5s;
-}
-
-.cards.flipped {
-  transform: rotateY(180deg);
-}
-
-.cards .cards-front,
-.cards .cards-back {
-  width: 100%;
-  height: 100%;
-  border-radius: 20px;
-  position: absolute;
-  backface-visibility: hidden;
-}
-
-.cards .cards-front {
-    background-color: #fff;
-  color: #1f2122;
-}
-
-.cards .cards-back {
-  background-color: #27292a;
-  color: #fff;
-  transform: rotateY(180deg);
+.socialMedia{
+    width: 105px;
+    color:white;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: medium;
 }
 
 .form-group{
-    width: 600px;
+    width: 900px;
 }
 
 input {
