@@ -23,4 +23,28 @@ creatorRoute.route('/create-creator').post((req, res, next) => {
         });
 });
 
+creatorRoute.put('/update-creator/:id', async (req, res, next) => {
+    try {
+        const existingCreator = await creatorModel.findById(req.params.id);
+
+        if (existingCreator) {
+            // เพิ่มค่า recommend_count ขึ้น 1
+            existingCreator.recommend_count += 1;
+
+            // บันทึกการเปลี่ยนแปลง
+            const updatedCreator = await existingCreator.save();
+
+            res.json(updatedCreator);
+            console.log('Successfully updated');
+        } else {
+            // ไม่พบผู้สร้าง
+            res.status(404).json({ message: 'Creator not found' });
+        }
+    } catch (error) {
+        next(error);
+    }
+});
+
+
+
 module.exports = creatorRoute;

@@ -162,6 +162,11 @@ const routes = [
     name: 'Creator_C',
     component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/Creator_CreateView.vue')
   },
+  {
+    path: '/Creator_R',
+    name: 'Creator_R',
+    component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/Creator_Recommend.vue')
+  },
 
 ]
 

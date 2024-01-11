@@ -19,10 +19,10 @@
                     <div class="mt-1" style="display: flex; align-items: center;">
                     <!-- <span style="font-size: 15px; color: #666;">{{ index + 1 }}</span> -->
                     <select type="text" class="form-control" v-model="CreatorData.type_con[index]" style="flex: 1; background-color: #666; border-color: #27292a;">
-                        <option value="PreciousMetals">PreciousMetals</option>
-                        <option value="OriginiumMaterials">OriginiumMaterials</option>
-                        <option value="BattleRecord">BattleRecord</option>
-                        <option value="Chips">Chips</option>
+                        <option value="Gameplay">Gameplay</option>
+                        <option value="Story">Story</option>
+                        <option value="Live">Live</option>
+                        <option value="Anoter">Anoter</option>
                     </select>
                     <button v-if="index !== 0" class="btn" @click="removeType(index)" style="background-color: #666; color: #27292a; margin-left: 5px;">Cancel</button>
                     </div>
@@ -106,7 +106,7 @@
                 <div class="form-group mt-1">
                     <label for="survey_con" style="color: #A0A0A0;">Survey Status :</label> <span style="font-size: 15px; color: #666;">(optional)</span>
                     <select class="form-control mt-1" id="survey_con" v-model="CreatorData.survey_con" style="background-color: #666; border-color: #27292a;">
-                    <option value="0">ยังไม่ได้ตรวจสอบ/การตรวจสอบยังไม่เสร็จ</option>
+                    <option value="0">ยังไม่ได้ตรวจสอบ/รับทราบแต่ยังไม่ได้ตรวจสอบ</option>
                     <option value="1">ตรวจสอบแล้ว</option>
                     </select>
                 </div>
@@ -149,6 +149,7 @@ export default {
         A_link: '',
         },
         survey_con:'',
+        recommend_count:0,
         available_con: "0",
         },
         isFlipped: false,
@@ -205,6 +206,7 @@ methods: {
             A_link: '',
             },
             survey_con:'',
+            recommend_count:0,
             available_member: "0"
         };
         Swal.fire("อัพโหลดเรียบร้อย",'success');
@@ -248,4 +250,6 @@ input {
 .color-yt {
     color: #e8bd4b;
 }
+
+
 </style>

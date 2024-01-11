@@ -1,88 +1,499 @@
 <template>
     <div class="container">
-        <div class="page-content">
-            <div class="row mb-3">
-                <div class="card-character"></div>
-                <div class="card-character"></div>
-                <div class="col-sm card-character"></div>
-                <div class="col-sm card-character"></div>
-                <div class="col-sm card-character"></div>
+
+    <div class="page-content">
+        <div class="row">
+            <div class="cards-container col-6" style="width: 20rem; height: auto; padding: 15px;">
+                <div v-if="selectCreator">
+                <div class="card" style="width: 18rem; padding: 0px;">
+                    <img :src="getImagePath(selectCreator.img_card_con)" class="card-img-top" alt="...">
+                    <div class="card-body">
+                    <h5 class="card-title" style="color: aliceblue;">{{ selectCreator.name_con }}</h5>
+                    <p style="color: aliceblue;">
+                        Update : {{ selectCreator.createdAt.slice(0, 10) }}
+                    </p>
+                    <div>
+                        <span style="text-align: left; color: aliceblue; display: inline-block; vertical-align: middle;">
+                        Platform :
+                        </span>
+                        <div style="text-align: right; display: inline-block; vertical-align: middle;">
+                        <el-tooltip
+                            class="box-item"
+                            effect="dark"
+                            :content="'Platform: ' + selectCreator.socialMedia.Facebook"
+                            placement="bottom"
+                        >
+                            <a v-if="selectCreator.socialMedia.Facebook !== ''" :href="selectCreator.socialMedia.F_link" class="btn" style="color: #3b5998;"><i class="fa-brands fa-facebook"></i></a>
+                        </el-tooltip>
+                        <el-tooltip
+                            v-if="selectCreator.socialMedia.Youtube !== ''"
+                            class="box-item"
+                            effect="dark"
+                            :content="'Platform: ' + selectCreator.socialMedia.Youtube"
+                            placement="bottom"
+                        >
+                            <a :href="selectCreator.socialMedia.Y_link" class="btn" style="color: #FF0000;"><i class="fa-brands fa-square-youtube"></i></a>
+                        </el-tooltip>
+                        <el-tooltip
+                            v-if="selectCreator.socialMedia.Twitter !== ''"
+                            class="box-item"
+                            effect="dark"
+                            :content="'Platform: ' + selectCreator.socialMedia.Twitter"
+                            placement="bottom"
+                        >
+                            <a :href="selectCreator.socialMedia.T_link" class="btn" style="color: #1DA1F2;"><i class="fa-brands fa-square-twitter"></i></a>
+                        </el-tooltip>
+                        <el-tooltip
+                            v-if="selectCreator.socialMedia.Raddit !== ''"
+                            class="box-item"
+                            effect="dark"
+                            :content="'Platform: ' + selectCreator.socialMedia.Raddit"
+                            placement="bottom"
+                        >
+                            <a :href="selectCreator.socialMedia.R_link" class="btn" style="color: #FF5700;"><i class="fa-brands fa-square-reddit"></i></a>
+                        </el-tooltip>
+                        <el-tooltip
+                            v-if="selectCreator.socialMedia.Anoter !== ''"
+                            class="box-item"
+                            effect="dark"
+                            :content="'Platform: ' + selectCreator.socialMedia.Anoter"
+                            placement="bottom"
+                        >
+                            <a :href="selectCreator.socialMedia.A_link" class="btn" style="color: #e8bd4b;"><i class="fa-solid fa-circle-info"></i></a>
+                        </el-tooltip>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+                <div v-else>
+                <div class="card" style="width: 18rem;">
+                <img :src="getImagePath(undefined)" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: aliceblue;">Box of Rhost</h5>
+                    <p style="color: aliceblue;">
+                        Update : 2024-1-12 02:03 
+                    </p>
+                    <span style="text-align: left; color: aliceblue; display: inline-block; vertical-align: middle;">
+                        Platform :
+                    </span>
+                    <div style="text-align: right; display: inline-block; vertical-align: middle;">
+                        <el-tooltip
+                            class="box-item"
+                            effect="dark"
+                            :content="'Platform: GGEZGang'"
+                            placement="bottom"
+                        >
+                            <a href="https://www.facebook.com/Gang404" class="btn" style="color: #3b5998;"><i class="fa-brands fa-facebook"></i></a>
+                        </el-tooltip>
+                    </div>    
+                    <p style="color: aliceblue;">
+                        Description : 
+                    </p>
+                </div>
+                </div>
             </div>
-            <div class="row mb-3">
-                <div class="card-status-header"></div>
-                <div class="card-module"></div>
-                <div class="card-module"></div>
-                <div class="card-module"></div>
-                <div class="card-module"></div>
+                <a class="Random" type="button" style="" @click="randomCreator()">"Random"</a>
+                <router-link :to="{name: 'Creator_R'}" class="Random" type="button" style="margin-left: 10px; width: 180px;">
+                    Creator_R
+                </router-link>
             </div>
-            <div class="row mb-3">
-                <div class="card-status-header"></div>
-                <div class="col-sm card-status"></div>
-                <div class="col-sm card-status"></div>
-                <div class="col-sm card-status"></div>
-                <div class="col-sm card-status"></div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-sm card-status-header"></div>
-                <div class="col-sm card-status"></div>
-                <div class="col-sm card-status"></div>
-                <div class="col-sm card-status"></div>
-                <div class="col-sm card-status"></div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-sm card-status-header"></div>
-                <div class="col-sm card-status"></div>
-                <div class="col-sm card-status"></div>
-                <div class="col-sm card-status"></div>
-                <div class="col-sm card-status"></div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-sm card-status-header"></div>
-                <div class="col-sm card-status"></div>
-                <div class="col-sm card-status"></div>
-                <div class="col-sm card-status"></div>
-                <div class="col-sm card-status"></div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-sm card-status-header"></div>
-                <div class="col-sm card-status"></div>
-                <div class="col-sm card-status"></div>
-                <div class="col-sm card-status"></div>
-                <div class="col-sm card-status"></div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-sm card-status-header"></div>
-                <div class="col-sm card-status"></div>
-                <div class="col-sm card-status"></div>
-                <div class="col-sm card-status"></div>
-                <div class="col-sm card-status"></div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-sm card-status-header"></div>
-                <div class="col-sm card-status"></div>
-                <div class=" card-status"></div>
-                <div class="col-sm card-status"></div>
-                <div class="col-sm card-status"></div>
-            </div>
-            <div class="row mb-3">
-                <div class="col-sm module-skill"></div>
-                <div class="col-sm module-skill"></div>
-                <div class="col-sm module-skill"></div>
-                <div class="col-sm module-skill"></div>
-                <div class="col-sm module-skill"></div>
+            <div class="container" style="width: 930px;">
+                <div class="cards-container" style="width: 900px; height: 370px; overflow-y: auto;">
+                    <table class="table table-striped">
+                    <thead class="border">
+                        <tr>
+                            <th>Name</th>
+                            <th>type</th>
+                            <th>ถูกแนะนำ(ครั้ง)</th>
+                            <th>สถานะการตรวจสอบ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="creator in Creator" :key="creator._id">
+                            <el-tooltip
+                class="box-item"
+                effect="dark"
+                :content="'Select: ' + creator.name_con "
+                placement="bottom"
+            >
+            <td @click="SelectCreator(creator._id)">{{ creator.name_con }}</td>
+                    </el-tooltip>        
+                            <td>{{ creator.type_con }}</td>
+                            <td>{{ creator.recommend_count }}</td>
+                            <td v-if="creator.survey_con == '0' ">ยังไม่ได้รับการตรวจสอบ</td>
+                            <td v-else>ตรวจสอบแล้ว</td>
+                        </tr>
+                    </tbody>        
+                    </table>
+                </div>
+                <div class="cards-container" style="width: 900px; height: 60px;">
+                    <div class=" mb-3" style="display: flex; justify-content: flex-end;">
+                <input type="text" class="form-control" v-model="searchKeyword" placeholder="ค้นหา Creator" @input="onInputDelete">
+                </div>
+                </div>
             </div>
         </div>
     </div>
-</template>
 
+    <div class="row">
+    <div class="page-content" style="padding: 10px; text-align: center; width: 1050px; margin: 10px;">
+    <div class="row">
+        <div class="type" type="button" style="margin-left: 30px;" @click="filterByType('Gameplay')">
+            Gameplay
+        </div>
+        <div class="type" type="button" @click="filterByType('Story')">
+            Story
+        </div>
+        <div class="type" type="button" @click="filterByType('Live')">
+            Live
+        </div>
+        <div class="type" type="button" @click="filterByType('Anoter')">
+            Anoter
+        </div>
+        <div class="type" type="button" @click="sortByDate" :class="{ 'active': sortOrder === 'asc' }">
+        Date
+        <i v-if="sortOrder === 'asc'" class="fa-solid fa-chevron-down"></i>
+        <i v-if="sortOrder === 'desc'" class="fa-solid fa-chevron-up"></i>
+        </div>
+    </div>
+    </div>
+    <div class="page-content" style="padding: 10px; text-align: center; width: 220px; margin: 10px;">
+        <div class="type" type="button"  @click="filterByType()">
+            Reset
+        </div>
+    </div>
+    </div>
+
+    <!-- Third Section with Pagination -->
+    <div class="page-content" style="padding: 10px; margin-top: 0px;">
+    <div class="cards-container" style="width: auto; height: auto; padding: 20px;">
+    <div class="heading-section" style="margin-bottom: 5px;">
+        <h4>Content Creator : <span v-if="currentType !== ''"> {{ currentType }}</span> <span v-else> ALL</span> </h4> 
+    </div>
+
+    <div class="row">
+        <div v-for="(cardItem, index) in filteredItems" :key="index" class="card" style="width: 18rem; padding: 0px; margin: 10px;">
+        <img :src="getImagePath(cardItem.img_card_con)" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title" style="color: aliceblue;">{{ cardItem.name_con }}</h5>
+            <p style="color: aliceblue;" >
+                Update : {{ cardItem.createdAt.slice(0, 10) }}
+            </p>
+        <div>
+        <span style="text-align: left; color: aliceblue; display: inline-block; vertical-align: middle;">
+            Platform :
+        </span>
+        <div style="text-align: right; display: inline-block; vertical-align: middle;">
+            <el-tooltip
+                class="box-item"
+                effect="dark"
+                :content="'Platform: ' + cardItem.socialMedia.Facebook"
+                placement="bottom"
+            >
+            <a v-if="cardItem.socialMedia.Facebook !== ''" :href="cardItem.socialMedia.F_link"  class="btn" style="color: #3b5998;"><i class="fa-brands fa-facebook"></i></a>
+            </el-tooltip>
+            <el-tooltip
+            v-if="cardItem.socialMedia.Youtube !== ''"
+            class="box-item"
+            effect="dark"
+            :content="'Platform: ' + cardItem.socialMedia.Youtube"
+            placement="bottom"
+            >
+            <a :href="cardItem.socialMedia.Y_link" class="btn" style="color: #FF0000;"><i class="fa-brands fa-square-youtube"></i></a>
+            </el-tooltip>
+
+            <el-tooltip
+            v-if="cardItem.socialMedia.Twitter !== ''"
+            class="box-item"
+            effect="dark"
+            :content="'Platform: ' + cardItem.socialMedia.Twitter"
+            placement="bottom"
+            >
+            <a :href="cardItem.socialMedia.T_link"  class="btn" style="color: #1DA1F2;"><i class="fa-brands fa-square-twitter"></i></a>
+            </el-tooltip>
+
+            <el-tooltip
+            v-if="cardItem.socialMedia.Raddit !== ''"
+            class="box-item"
+            effect="dark"
+            :content="'Platform: ' + cardItem.socialMedia.Raddit"
+            placement="bottom"
+            >
+            <a :href="cardItem.socialMedia.R_link"  class="btn" style="color: #FF5700;"><i class="fa-brands fa-square-reddit"></i></a>
+            </el-tooltip>
+
+            <el-tooltip
+            v-if="cardItem.socialMedia.Anoter !== ''"
+            class="box-item"
+            effect="dark"
+            :content="'Platform: ' + cardItem.socialMedia.Anoter"
+            placement="bottom"
+            >
+            <a :href="cardItem.socialMedia.A_link"  class="btn" style="color: #e8bd4b;"><i class="fa-solid fa-circle-info"></i></a>
+            </el-tooltip>
+    </div>
+</div>
+
+        </div>
+    </div>
+    </div>
+    </div>
+    <!-- Pagination -->
+    <div class="mt-2">
+        <ul class="pagination">
+        <li class="page-item" :class="{ 'disabled': currentPage === 1 }">
+            <a class="page-link" type="button" @click="currentPage -= 1">Previous</a>
+        </li>
+
+        <li class="page-item" v-for="page in Math.ceil(Creator.length / itemsPerPage)" :key="page" :class="{ 'active': page === currentPage }">
+            <a class="page-link" type="button" @click="currentPage = page">{{ page }}</a>
+        </li>
+
+        <li class="page-item" :class="{ 'disabled': currentPage === Math.ceil(Creator.length / itemsPerPage) }">
+            <a class="page-link" type="button" @click="currentPage += 1">Next</a>
+        </li>
+        </ul>
+    </div>
+    </div>
+</div>
+</template>
 
 <script>
 import '../assets/css/templatemo-cyborg-gaming.css'; 
 import '../assets/css/owl.css'; 
+import axios from 'axios';
 
-export default{
+export default {
     name: 'BoxCreator',
-    components: {
+    created() {
+            this.fetchCreator();
+            axios.get('http://localhost:4000/api_creator')
+                .then(response => {
+                    this.Creator = response.data;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
+    watch: {
+        searchKeyword(newKeyword) {
+        this.searchCreator(newKeyword);
         }
+    },
+    data() {
+    return {
+        items: [
+        ], // ข้อมูลทั้งหมด
+        itemsPerPage: 4, // จำนวนรายการต่อหน้า
+        currentPage: 1, // หน้าปัจจุบัน
+        Creator: [] ,
+        currentType: '',
+        sortOrder: 'asc',
+        searchKeyword: '' ,
+        originalCreator: [],
+        selectCreator: null,
+    };
+    },
+    methods: {
+    filterByType(type) {
+        this.currentType = type;
+        this.currentPage = 1;
+    },
+    sortByDate() {
+    // เรียงลำดับข้อมูลตามวันที่
+    this.Creator.sort((a, b) => {
+        const dateA = new Date(a.createdAt);
+        const dateB = new Date(b.createdAt);
+
+    if (this.sortOrder === 'asc') {
+        return dateA - dateB;
+    } else {
+        return dateB - dateA;
+    }
+    });
+
+    this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+
+    this.currentPage = 1;
+    },
+    getImagePath(imageFileName) {
+            if (imageFileName==undefined){
+                return require('@/assets/images/Creator/undefined.jpg');
+            }
+            return require(`@/assets/images/Creator/${imageFileName}`);
+    },
+    onInputDelete() {
+        if (this.searchKeyword === '') {
+            this.Creator = this.originalCreator;
+        } else {
+            this.searchCreator(this.searchKeyword);
+        }
+        },
+    searchCreator(keyword) {
+        let filteredCreator = this.originalCreator;
+
+        if (keyword !== '') {
+        const lowerKeyword = keyword.toLowerCase();
+        filteredCreator = this.originalCreator.filter((creator) => {
+            return (
+                creator.name_con.toLowerCase().includes(lowerKeyword) 
+            );
+        });
+        }
+        this.Creator = filteredCreator;
+        },
+    fetchCreator() {
+        let apiURL = 'http://localhost:4000/api_creator';
+        axios.get(apiURL)
+            .then(res => {
+                this.Creator = res.data;
+                this.originalCreator = [...res.data];
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        },
+    randomCreator() {
+    // สุ่มตำแหน่ง (index) จาก this.Creator
+    const randomIndex = Math.floor(Math.random() * this.Creator.length);
+    
+    // เก็บ Creator ที่สุ่มได้ไว้ใน this.selectCreator
+    this.selectCreator = this.Creator[randomIndex];
+    },
+    SelectCreator(id) {
+      const foundCreators = this.Creator.filter(creator => creator._id === id);
+
+      if (foundCreators.length > 0) {
+        this.selectCreator = foundCreators[0];
+      } else {
+        console.log('ไม่พบ Creator ที่ค้นหา');
+      }
+    },
+    },
+    computed: {
+        paginatedItems() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+
+    const filteredItems = this.currentType
+    ? this.Creator.filter(item => item.type_con.includes(this.currentType))
+    : this.Creator;
+
+    return filteredItems.slice(startIndex, endIndex);
+    },
+    filteredItems() {
+            // ตรวจสอบเงื่อนไขแล้วคืนค่า array ที่ถูกกรอง
+            return this.paginatedItems.filter(cardItem => cardItem.available_con !== '1');
+        },
+    },
 }
 </script>
+
+
+<style scoped>
+.cards-container {
+    background-color: #1f2122;
+    margin: 5px;
+    padding: 10px;
+    width: 350px;
+    height: 514px;
+    border-radius: 20px;
+}
+
+.pic {
+    background-color: #1f2122;
+    color: #27292a;
+    border-radius: 20px;
+}
+
+.type {
+    background-color: #1f2122;
+    color: #fff;
+    width: 180px;
+    margin: 5px;
+    margin-right: 20px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.type:hover{
+    background-color: #e8bd4b;
+    color: #1f2122;
+}
+.card {
+    background-color: #27292a;
+}
+
+.Random {
+    background-color: #27292a;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+  .pagination {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .page-item {
+    margin: 0 2px;
+  }
+
+  .page-link {
+    display: block;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    color: #333; /* สีตั้งต้นของปุ่ม */
+    background-color: #fff; /* สีตั้งต้นของพื้นหลังปุ่ม */
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+
+  .page-item.disabled .page-link {
+    color: #aaa; /* สีของปุ่มเมื่อถูกปิดใช้งาน */
+    background-color: #eee; /* สีพื้นหลังเมื่อถูกปิดใช้งาน */
+    cursor: not-allowed;
+  }
+
+  .page-item.active .page-link {
+    color: #fff; /* สีของปุ่มที่ถูกเลือก */
+    background-color: #e8bd4b; /* สีพื้นหลังของปุ่มที่ถูกเลือก */
+    border-color: #eea236;
+  }
+
+  table {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #ddd;
+        border-radius: 10px; 
+        overflow: hidden; 
+    }
+    
+    /* กำหนดเส้นแบ่งระหว่างเซลล์ */
+    table, th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .active {
+    background-color: #e8bd4b;
+    color: #1f2122;
+    }
+
+    .active:hover {
+    background-color: #1f2122;
+    color: #e8bd4b;
+    }
+
+    st {
+    color: #e8bd4b;
+}
+</style>
+

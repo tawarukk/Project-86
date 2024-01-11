@@ -23,6 +23,9 @@ const creatorSchema = new Schema({
         Anoter: String,
         A_link: String,
     },
+    recommend_count:{
+        type: Number
+    },
     survey_con:{
         type: String
     },
