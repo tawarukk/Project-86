@@ -5,7 +5,7 @@
             <div class="page-content" style="background-color: #1f2122;">
             <div class="row" style="justify-content: center; align-items: center">
                 <div class="cards-container col-6" style="background-color: #27292a; width: auto;height: auto; border-radius: 10px;">
-                <form @submit.prevent="uploadCreator" style="font-size: 19px; font-weight: bold; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <form @submit.prevent="EditCreator" style="font-size: 19px; font-weight: bold; display: flex; flex-direction: column; justify-content: center; align-items: center;">
                 <div> <h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-yt">C</span>reate <span class="color-yt">C</span>reator</h1> </div>
 
                 <div class="form-group">
@@ -121,7 +121,6 @@
     </div>
     </div>
 </template>
-
 <script>
     import '../../assets/css/templatemo-cyborg-gaming.css'; 
     import '../../assets/css/owl.css'; 
@@ -129,13 +128,11 @@
     import Swal from 'sweetalert2'; 
 
 export default {
-    name: 'AddCreatorBox',
+    name: 'EditCreatorBox',
     data() {
     return {
         CreatorData: {
-        name_con: '',
         type_con: [''],
-        img_card_con:'',
         socialMedia: {
         Facebook: '',
         F_link: '',
@@ -147,25 +144,17 @@ export default {
         R_link: '',
         Anoter: '',
         A_link: '',
-        },
-        survey_con:'',
-        recommend_count:0,
-        available_con: "0",
+        }
         },
         isFlipped: false,
-        rule: require('@/assets/images/Card/Thermal-EX.png'),
-        ruleback: require('@/assets/images/Card/back.png'),
     };
 },
-created() {
-            axios.get('http://localhost:4000/api_member')
-                .then(response => {
-                    this.operators = response.data;
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        },
+    created() {
+        let apiURL = `http://localhost:4000/api_creator/edit-creator/${this.$route.params.id}`;
+        axios.get(apiURL).then((res) => {
+            this.CreatorData = res.data
+        })
+    },
 methods: {
     addType() {
         this.CreatorData.type_con.push('');
@@ -173,62 +162,38 @@ methods: {
     removeType(index) {
         this.CreatorData.type_con.splice(index, 1);
     },
-    uploadCreatortest(){
-        const newCreator = this.CreatorData;
-        console.log(newCreator);
-    },
-    async uploadCreator() {
-
-    try {   
-        const apiURL = '/api_creator/create-creator';
-        const response = await axios.post(apiURL, this.CreatorData);
-
-        const newCreator = response.data;
-        console.log(newCreator);
-
-        this.CreatorData = {
-            name_con: '',
-            type_con: [],
-            img_card_con:'',
-            socialMedia: {
-            Facebook: '',
-            F_link: '',
-            Youtube: '',
-            Y_link: '',
-            Twitter: '',
-            T_link: '',
-            Raddit: '',
-            R_link: '',
-            Anoter: '',
-            A_link: '',
-            },
-            survey_con:'',
-            recommend_count:0,
-            available_member: "0"
-        };
-        Swal.fire({
-        title: 'อัพโหลดข้อมูลเสร็จสิ้น',
-        text: 'คุณต้องการอยู่หน้านี้ต่อหรือกลับหน้าหลัก?',
-        icon: 'success',
-        showCancelButton: true,
-        confirmButtonText: 'อยู่หน้านี้ต่อ',
-        cancelButtonText: 'กลับหน้าหลัก',
-        }).then((result) => {
-            if (result.value) {
-                // ผู้ใช้เลือกอยู่หน้านี้ต่อ
-            } else if (result.dismiss === Swal.DismissReason.cancel) {
-                // ผู้ใช้เลือกกลับหน้าหลัก
-                this.$router.push('/Creator_T');
-            }
-        });
-    } catch (error) {
-        console.error(error);
-        Swal.fire("เกิดข้อผิดพลาดในการอัพโหลด", "กรุณาลองใหม่อีกครั้ง", "error");
-    }
-    },
+    EditCreator() {
+            let apiURL = `http://localhost:4000/api_creator/update-creator/${this.$route.params.id}`;
+            axios.put(apiURL, this.CreatorData).then((res) => {
+                console.log(res);
+                Swal.fire({
+                    title: 'อัพโหลดข้อมูลเสร็จสิ้น',
+                    text: 'คุณต้องการอยู่หน้านี้ต่อหรือกลับหน้าหลัก?',
+                    icon: 'success',
+                    showCancelButton: true,
+                    confirmButtonText: 'อยู่หน้านี้ต่อ',
+                    cancelButtonText: 'กลับหน้าหลัก',
+                    }).then((result) => {
+                        if (result.value) {
+                            // ผู้ใช้เลือกอยู่หน้านี้ต่อ
+                        } else if (result.dismiss === Swal.DismissReason.cancel) {
+                            // ผู้ใช้เลือกกลับหน้าหลัก
+                            this.$router.push('/Creator_T');
+                        }
+                    });
+            }).catch(error => {
+                console.log(error)
+                Swal.fire("เกิดข้อผิดพลาดในการอัพเดท", "กรุณาลองใหม่อีกครั้ง", "error");
+             })
+            
+            console.log(" --> " + this.CreatorData.type_con);
+        },
     tablepage(){
     this.$router.push('/Creator_T');
-}
+},
+logSelectedType(index) {
+        console.log(`Selected type at index ${index}:`, this.Creator.type_con[index]);
+    },
 },
 };
 </script>

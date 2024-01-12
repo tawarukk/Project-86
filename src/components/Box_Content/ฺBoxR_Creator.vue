@@ -98,7 +98,7 @@ export default {
         async updateCreator(creatorId) {
             console.log("sadsasd : "+creatorId)
             try {
-                const apiURL = `/api_creator/update-creator/${creatorId}`;
+                const apiURL = `/api_creator/update-creator-rec/${creatorId}`;
                 await axios.put(apiURL);
 
                 // เพิ่มค่า recommend_count ในตัวแปร local

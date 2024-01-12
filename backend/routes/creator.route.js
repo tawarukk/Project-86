@@ -23,7 +23,7 @@ creatorRoute.route('/create-creator').post((req, res, next) => {
         });
 });
 
-creatorRoute.put('/update-creator/:id', async (req, res, next) => {
+creatorRoute.put('/update-creator-rec/:id', async (req, res, next) => {
     try {
         const existingCreator = await creatorModel.findById(req.params.id);
 
@@ -45,6 +45,49 @@ creatorRoute.put('/update-creator/:id', async (req, res, next) => {
     }
 });
 
+creatorRoute.route('/delete-creator/:id').delete(async (req, res, next) => {
+    try {
+        const deletedcreator = await creatorModel.findOneAndDelete({ _id: req.params.id }).exec();
 
+        if (!deletedcreator) {
+            res.status(404).json({
+                msg: "creator not found"
+            });
+            return;
+        }
+
+        res.status(200).json({
+            msg: "creator deleted successfully"
+        });
+    } catch (error) {
+        next(error);
+    }
+});
+
+creatorRoute.get('/edit-creator/:id', async (req, res, next) => {
+    try {
+        const creator = await creatorModel.findById(req.params.id);
+        res.json(creator);
+    } catch (error) {
+        next(error);
+    }
+});
+
+creatorRoute.put('/update-creator/:id', async (req, res, next) => {
+    try {
+        const updatedcreator = await creatorModel.findByIdAndUpdate(
+            req.params.id,
+            {
+                $set: req.body 
+            },
+            { new: true } // Return the updated document
+        );
+
+        res.json(updatedcreator);
+        console.log('Successfully updated');
+    } catch (error) {
+        next(error);
+    }
+});
 
 module.exports = creatorRoute;

@@ -167,7 +167,21 @@ const routes = [
     name: 'Creator_R',
     component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/Creator_Recommend.vue')
   },
-
+  {
+    path: '/Creator_T',
+    name: 'Creator_T',
+    component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/Creator_TableView.vue')
+  },
+  {
+    path: "/Creator_P/:id",
+    name: "img_creator",
+    component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/Creator_IMGView.vue'),
+  },
+  {
+    path: "/Creator_E/:id",
+    name: "edit_creator",
+    component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/Creator_EditView.vue'),
+  }
 ]
 
 
