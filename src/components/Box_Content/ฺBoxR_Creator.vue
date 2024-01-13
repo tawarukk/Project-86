@@ -44,6 +44,18 @@ export default {
                 survey_con: "0",
                 recommend_count: 0,
                 available_con: "0",
+                socialMedia: {
+                Facebook: '',
+                F_link: '',
+                Youtube: '',
+                Y_link: '',
+                Twitter: '',
+                T_link: '',
+                Raddit: '',
+                R_link: '',
+                Anoter: '',
+                A_link: '',
+                },
             },
             isFlipped: false,
             rule: require('@/assets/images/Card/Thermal-EX.png'),
@@ -88,6 +100,18 @@ export default {
                     name_con: '',
                     survey_con: "0",
                     available_con: "0",
+                    socialMedia: {
+                    Facebook: '',
+                    F_link: '',
+                    Youtube: '',
+                    Y_link: '',
+                    Twitter: '',
+                    T_link: '',
+                    Raddit: '',
+                    R_link: '',
+                    Anoter: '',
+                    A_link: '',
+                    },
                 };
                 Swal.fire("รับทราบ อัพโหลด", "ทางผู้ดูแลจะทำการตรวจสอบโดยเร็ว", 'success');
             } catch (error) {

@@ -184,9 +184,7 @@ methods: {
             }).catch(error => {
                 console.log(error)
                 Swal.fire("เกิดข้อผิดพลาดในการอัพเดท", "กรุณาลองใหม่อีกครั้ง", "error");
-             })
-            
-            console.log(" --> " + this.CreatorData.type_con);
+            })
         },
     tablepage(){
     this.$router.push('/Creator_T');

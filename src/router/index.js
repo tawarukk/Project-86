@@ -185,8 +185,33 @@ const routes = [
   {
     path: "/NewsTopic_C",
     name: "NewsTopic_C",
-    component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/News_CreateTopic.vue'),
-  }
+    component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/News_CreateTopicView.vue'),
+  },
+  {
+    path: "/NewsTopic_T",
+    name: "NewsTopic_T",
+    component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/News_TableTopicView.vue'),
+  },
+  {
+    path: "/NewsParagraphs_T/:id",
+    name: "NewsParagraphs_T",
+    component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/News_TableParagraphsView.vue'),
+  },
+  {
+    path: "/NewsParagraphs_C/:id",
+    name: "NewsParagraphs_C",
+    component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/News_CreateParagraphsView.vue'),
+  },
+  {
+    path: "/NewsTopic_E/:id",
+    name: "edit_NewsTopic",
+    component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/News_EditTopicView.vue'),
+  },
+  {
+    path: "/NewsParagraphs_E/:id/:ParagraphsID",
+    name: "edit_NewsParagraphs",
+    component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/News_EditParagraphsView.vue'),
+  },
 ]
 
 

@@ -20,6 +20,9 @@ let newsSchema = new Schema({
         },
         content: {
             type: String
+        },
+        status:{
+            type: String
         }
     }],
     available_con: {

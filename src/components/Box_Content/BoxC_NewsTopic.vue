@@ -5,7 +5,7 @@
             <div class="page-content" style="background-color: #1f2122;">
                 <div class="cards-container col-6" style="background-color: #27292a; width: auto; height: auto;">
                 <form @submit.prevent="CreateTopic" style="font-size: 19px; font-weight: bold; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                        <div class=""> <h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-yt">U</span>pload <span class="color-yt">P</span>icture <span class="color-yt">C</span>reator </h1> </div>
+                        <div class="mb-2"> <h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-yt">N</span>ews <span class="color-yt">T</span>opic </h1> </div>
                         <div class="form-group">
                             <label for="topic" style="color: #A0A0A0;">Topic :</label> <span style="font-size: 15px; color: #666;"></span>
                             <input type="text" class="form-control mt-1" id="topic" v-model="newsData.topic">
@@ -26,7 +26,7 @@
 <script>
 import '../../assets/css/templatemo-cyborg-gaming.css'; 
 import '../../assets/css/owl.css'; 
-// import axios from 'axios';
+import axios from 'axios';
 import Swal from 'sweetalert2'; 
 
 export default{
@@ -37,30 +37,65 @@ export default{
             topic: '',
             description: '',
             img_card_news: '',
-            paragraphs: [],
+            paragraphs: [
+                {
+                    heading: '',
+                    image: '',
+                    content: '',
+                    status: '1',
+                }
+            ],
             available_con: '0',
         }
         }
     },
     methods: {
-    async CreateTopic() {
+        async CreateTopic() {
+try {   
+    const apiURL = '/api_news/create-news';
+    const response = await axios.post(apiURL, this.newsData);
 
-    Swal.fire({
-        title: 'อัพโหลดข้อมูลเสร็จสิ้น',
-        text: 'คุณต้องการอยู่หน้านี้ต่อหรือกลับหน้าหลัก?',
-        icon: 'success',
-        showCancelButton: true,
-        confirmButtonText: 'อยู่หน้านี้ต่อ',
-        cancelButtonText: 'กลับหน้าหลัก',
-        }).then((result) => {
-            if (result.value) {
-                // ผู้ใช้เลือกอยู่หน้านี้ต่อ
-            } else if (result.dismiss === Swal.DismissReason.cancel) {
-                // ผู้ใช้เลือกกลับหน้าหลัก
-                this.$router.push('/Creator_T');
-            }
-        });
-    }
+    const newsData = response.data;
+    console.log(newsData);
+
+            this.newsData = {
+            topic: '',
+            description: '',
+            img_card_news: '',
+            paragraphs: [
+            {
+                    heading: '',
+                    image: '',
+                    content: '',
+                    status: '1',
+                }
+            ],
+            available_con: '0',
+            };
+
+            Swal.fire({
+            title: 'อัพโหลดข้อมูลเสร็จสิ้น',
+            text: 'คุณต้องการอยู่หน้านี้ต่อหรือกลับหน้าหลัก?',
+            icon: 'success',
+            showCancelButton: true,
+            confirmButtonText: 'อยู่หน้านี้ต่อ',
+            cancelButtonText: 'กลับหน้าหลัก',
+            }).then((result) => {
+                if (result.value) {
+                    // ผู้ใช้เลือกอยู่หน้านี้ต่อ
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    // ผู้ใช้เลือกกลับหน้าหลัก
+                    this.$router.push('/NewsTopic_T');
+                }
+            });
+        } catch (error) {
+            console.error(error);
+            Swal.fire("เกิดข้อผิดพลาดในการอัพโหลด", "กรุณาลองใหม่อีกครั้ง", "error");
+        }
+        },
+        tablepage(){
+        this.$router.push('/NewsTopic_T');
+        }
 }
 };
 </script>
