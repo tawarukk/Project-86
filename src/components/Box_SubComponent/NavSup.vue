@@ -17,24 +17,24 @@
                         <li class="dropdown">
                             <a href="javascript:void(0);" style="color: #FF9999;">Content</a>
                             <div class="dropdown-content">
-                                <a class="mt-2" href="/Profile">HomePage</a>
-                                <a class="mt-2" href="/Login">News</a>
-                                <a class="mt-2" href="/Registor">Creator</a>
+                                <a class="drop mt-2" href="/Profile">HomePage</a>
+                                <a class="drop mt-2" href="/NewsTopic_C"><span style="color: #4b9ce8;">News</span></a>
+                                <a class="drop mt-2" href="/Creatoe_T"><span style="color: #e8bd4b;">Creator</span></a>
                             </div>
                         </li>
                         <li class="dropdown">
                             <a href="javascript:void(0);" style="color: #4b9ce8;" >Management</a>
                             <div class="dropdown-content">
-                                <a class="mt-2" href="/Module_T"><span style="color: #e8bd4b;">Module</span></a>
-                                <a class="mt-2" href="/Skill_T"><span style="color: #FF9999;">Skill</span></a>
-                                <a class="mt-2" href="/Product_T"><span style="color: #4b9ce8;">Product</span></a>
+                                <a class="drop mt-2" href="/Module_T"><span style="color: #e8bd4b;">Module</span></a>
+                                <a class="drop mt-2" href="/Skill_T"><span style="color: #FF9999;">Skill</span></a>
+                                <a class="drop mt-2" href="/Product_T"><span style="color: #4b9ce8;">Product</span></a>
                             </div>
                         </li>
                         <li class="dropdown">
                             <a href="javascript:void(0);" class="dropbtn"><span style="color:#e8bd4b;">{{userName}}</span> <img src="../../assets/images/profile-header.jpg" alt=""></a>
                             <div class="dropdown-content">
-                                <a class="mt-2" href="/Profile">Profile</a>
-                                <a class="mt-2" type="button" @click="logout()">logout</a>
+                                <a class="drop-last mt-2" href="/Profile">Profile</a>
+                                <a class="drop-last mt-2" type="button" @click="logout()">logout</a>
                                 <a v-if = "userRole == 'superadmin'" class="mt-2" href="/">Admin Management</a>
                             </div>
                         </li>
@@ -100,26 +100,49 @@
 </script>
 
 <style scoped>
-/* ซ่อน dropdown content เริ่มต้น */
+
+nav.main-nav ul.nav:last-child {
+    border-bottom: 1px solid white; 
+}
 .dropdown-content {
     display: none;
     position: absolute;
     min-width: 111px;
     z-index: 1;
+    background-color: #27292a;
+    border-radius: 5px;
+    padding: 5px;
+    border: 2px solid white; 
+    margin-top: 5px;
 }
-
-/* สไลด์เมื่อ hover บน dropdown หรือ click ที่ปุ่ม dropdown */
 .dropdown:hover .dropdown-content {
     display: block;
 }
 
-.color-pk {
-    color: #FF9999;
+.header-area .main-nav .nav li a {
+    display: block;
+    text-transform: capitalize;
+    transition: all 0.3s ease 0s;
+    padding: 10px;
+    border-radius: 5px;
+    letter-spacing: .3px;
 }
-.color-yt {
-    color: #e8bd4b;
+
+
+.drop{
+    border-bottom: 1px solid white; 
+    border-radius: 5px;
 }
-.color-be {
-    color: #4b9ce8;
+.drop:hover{
+    background-color: whitesmoke;
 }
+
+.drop-last{
+    width: 120px;
+}
+
+.dropdown-content a {
+    text-align: center;
+}
+
 </style>

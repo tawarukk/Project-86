@@ -181,6 +181,11 @@ const routes = [
     path: "/Creator_E/:id",
     name: "edit_creator",
     component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/Creator_EditView.vue'),
+  },
+  {
+    path: "/NewsTopic_C",
+    name: "NewsTopic_C",
+    component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/News_CreateTopic.vue'),
   }
 ]
 

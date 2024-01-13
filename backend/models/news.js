@@ -2,7 +2,13 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let newsSchema = new Schema({
-    title: {
+    topic: {
+        type: String
+    },
+    description: {
+        type: String
+    },
+    img_card_news: {
         type: String
     },
     paragraphs: [{
@@ -16,6 +22,9 @@ let newsSchema = new Schema({
             type: String
         }
     }],
+    available_con: {
+        type: String
+    },
     uploadedAt: {
         type: Date,
         default: Date.now
