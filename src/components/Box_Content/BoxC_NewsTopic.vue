@@ -14,6 +14,16 @@
                             <label for="description" style="color: #A0A0A0;">Description :</label> <span style="font-size: 15px; color: #666;"></span>
                             <input type="text" class="form-control mt-1" id="description" v-model="newsData.description">
                         </div>
+                        <div class="form-group">
+                            <label for="type" style="color: #A0A0A0;">Type content :</label>
+                            <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
+                            <select class="form-select mt-1" id="type_product" v-model="newsData.type" style="background-color: #666">
+                                <option value="News">News</option>
+                                <option value="Announce">Announce</option>
+                                <option value="Information">Information</option>
+                                <option value="Anoter">Anoter</option>
+                            </select>
+                        </div>
                         <button type="submit" class="btn mt-2 mb-2" style="background-color: #e8bd4b; width: 300px; color: #27292a; ">อัพโหลดข้อมูล</button>
                     </form>
                 </div>
@@ -37,6 +47,7 @@ export default{
             topic: '',
             description: '',
             img_card_news: '',
+            type:'',
             paragraphs: [
                 {
                     heading: '',
@@ -62,6 +73,7 @@ try {
             topic: '',
             description: '',
             img_card_news: '',
+            type:'',
             paragraphs: [
             {
                     heading: '',

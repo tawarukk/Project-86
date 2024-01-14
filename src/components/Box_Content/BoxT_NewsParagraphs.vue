@@ -15,9 +15,9 @@
                 <table class="table table-striped">
                     <thead class="border">
                         <tr>
+                            <th>image</th>
                             <th>No.</th>
                             <th>heading</th>
-                            <th>image</th>
                             <th>content</th>
                             <th>Available_content</th>
                             <th>Action</th>
@@ -25,33 +25,32 @@
                         </thead>
                         <tbody>
                             <tr v-for="paragraph, index in ParagraphsData.paragraphs" :key="paragraph._id">
-                                <td>{{ index + 1 }}</td>
-                                <td>{{ paragraph.heading }}</td>
-                                <td v-if="paragraph.image == '' || paragraph.image == null">
-                                    <router-link :to="{name: 'img_creator', params: {id: paragraph._id }}" title="อัพโหลดรูปภาพ">
+                                <td v-if="paragraph.image == '' || paragraph.image == null" style="width: 300px;">
+                                    <router-link :to="{name: 'img_Paragraphs', params: {...$route.params, id: ParagraphsData._id, ParagraphsID: paragraph._id }}" title="อัพโหลดรูปภาพ">
                                         <span style="color: #FF9999;"> Add Crat </span>
                                     </router-link>
                                 </td>
-                                <td v-else>
-                                    <router-link :to="{name: 'img_creator', params: {id: paragraph._id }} " title="แก้ไขรูปภาพ">
-                                        <span style="color: #e8bd4b;">{{ paragraph.image }}</span>
+                                <td v-else style="width: 300px;">
+                                    <router-link :to="{name: 'img_Paragraphs', params: {...$route.params, id: ParagraphsData._id, ParagraphsID: paragraph._id }} " title="แก้ไขรูปภาพ">
+                                        <div class="card" style="width: 300px; margin: 0px;">
+                                        <img :src="getImagePath(paragraph.image)" class="card-img-top" alt="...">
+                                        </div>
                                     </router-link>
                                 </td>
+                                <td>{{ index + 1 }}</td>
+                                <td>{{ paragraph.heading }}</td>
                                 <td>{{ paragraph.content }}</td>
                                 <td v-if="paragraph.status == 1">available</td>
                                 <td v-else>unavailable</td>
                                 <td>
                                     <router-link :to="{ name: 'edit_NewsParagraphs', params: { ...$route.params, id: ParagraphsData._id, ParagraphsID: paragraph._id }}" class="btn button">
-    Edit
-</router-link>
-
+                                        Edit
+                                    </router-link>
                                     <button @click.prevent="deleteparagraphs(paragraph._id)" class="btn button-black">
                                         Del
                                     </button>
                                 </td>
                             </tr>
-
-                                
                     </tbody>
                 </table>
             </div>
@@ -145,6 +144,12 @@ export default {
                 .catch(error => {
                     console.log(error);
                 });
+        },
+        getImagePath(imageFileName) {
+            if (imageFileName==undefined){
+                return require('@/assets/images/Paragraphs/undefined.jpg');
+            }
+            return require(`@/assets/images/Paragraphs/${imageFileName}`);
         },
     },
 };

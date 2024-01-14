@@ -11,6 +11,9 @@ let newsSchema = new Schema({
     img_card_news: {
         type: String
     },
+    type: {
+        type: String
+    },
     paragraphs: [{
         heading: {
             type: String

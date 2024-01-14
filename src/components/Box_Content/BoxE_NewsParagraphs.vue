@@ -40,7 +40,6 @@
         return {
             NewsParagraphs: {
             paragraphs: [
-                
             ]
             }
         };
@@ -87,8 +86,6 @@
             console.log(error);
         });
 },
-
-    
       tablepage(){
         this.$router.push({ 
           name: 'NewsParagraphs_T', 

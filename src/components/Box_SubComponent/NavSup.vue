@@ -18,8 +18,8 @@
                             <a href="javascript:void(0);" style="color: #FF9999;">Content</a>
                             <div class="dropdown-content">
                                 <a class="drop mt-2" href="/Profile">HomePage</a>
-                                <a class="drop mt-2" href="/NewsTopic_C"><span style="color: #4b9ce8;">News</span></a>
-                                <a class="drop mt-2" href="/Creatoe_T"><span style="color: #e8bd4b;">Creator</span></a>
+                                <a class="drop mt-2" href="/NewsTopic_T"><span style="color: #4b9ce8;">News</span></a>
+                                <a class="drop mt-2" href="/Creator_T"><span style="color: #e8bd4b;">Creator</span></a>
                             </div>
                         </li>
                         <li class="dropdown">

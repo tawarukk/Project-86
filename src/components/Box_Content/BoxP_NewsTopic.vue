@@ -4,11 +4,11 @@
         <div class="col-lg-12">
             <div class="page-content" style="background-color: #1f2122;">
                 <div class="cards-container col-6" style="background-color: #27292a; width: auto; height: auto;">
-                <form @submit.prevent="uploadCreator_img" style="font-size: 19px; font-weight: bold; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <form @submit.prevent="uploadTopic_img" style="font-size: 19px; font-weight: bold; display: flex; flex-direction: column; justify-content: center; align-items: center;">
                         <div class=""> <h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-yt">U</span>pload <span class="color-yt">P</span>icture <span class="color-yt">C</span>reator </h1> </div>
                         <div class="form-group">
                             <label for="img_card_con" style="color: #A0A0A0;">ขณะนี้กำลังอัพโหลด Image Creator :</label> <span style="font-size: 15px; color: #666;"></span>
-                            <input type="text" class="form-control mt-1" id="img_card_con" v-model="Creator.img_card_con" readonly>
+                            <input type="text" class="form-control mt-1" id="img_card_con" v-model="Topic.topic" readonly>
                         </div>
                         <div class="form-group mt-1">
                             <label for="img_card_con" style="color: #A0A0A0;">Upload Image Creator :</label> <span style="font-size: 15px; color: #666;">อัพโหลดแยกกรณีแก้ไขรูปภาพ</span>
@@ -30,23 +30,23 @@ import axios from 'axios';
 import Swal from 'sweetalert2'; 
 
 export default{
-    name: 'PicCreatorBox',
+    name: 'PicNewsTopicBox',
     data() {
         return {
-            Creator: {},
+            Topic: {},
             Name_File: '',
         }
     },
     created() {
-        let apiURL = `http://localhost:4000/api_creator/edit-creator/${this.$route.params.id}`;
+        let apiURL = `http://localhost:4000/api_news/edit-news/${this.$route.params.id}`;
         axios.get(apiURL).then((res) => {
-            this.Creator = res.data
-            this.Name_File = (this.Creator.name_con || '').trim() + '.jpg';
-            this.Creator.img_card_con = this.Name_File
+            this.Topic = res.data
+            this.Name_File = (this.Topic._id || '').substring(0, 10).trim() + '.jpg';
+            this.Topic.img_card_news = this.Name_File
         })
     },
     methods: {
-    async uploadCreator_img() {
+    async uploadTopic_img() {
         const fileInput = this.$refs.file;
         if (fileInput.files[0].size > 3000 * 1024) {
             Swal.fire("ขนาดไฟล์ต้องไม่เกิน 3000 KB");
@@ -56,7 +56,7 @@ export default{
         formData.append('img_card_con', fileInput.files[0],this.Name_File);
 
     try {
-        const response = await axios.post('/api_creator/create-creator-img', formData, {
+        const response = await axios.post('/api_news/create-news-img', formData, {
         headers: {
             'Content-Type': 'multipart/form-data',
         },
@@ -68,8 +68,8 @@ export default{
         console.log("มีข้อผิดพลาดในการอัพโหลดไฟล์");
     }
 
-    let apiURL = `http://localhost:4000/api_creator/update-creator/${this.$route.params.id}`;
-            axios.put(apiURL, this.Creator).then((res) => {
+    let apiURL = `http://localhost:4000/api_news/update-news/${this.$route.params.id}`;
+            axios.put(apiURL, this.Topic).then((res) => {
                 console.log(res);
             }).catch(error => {
                 console.log(error)
@@ -87,7 +87,7 @@ export default{
                 // ผู้ใช้เลือกอยู่หน้านี้ต่อ
             } else if (result.dismiss === Swal.DismissReason.cancel) {
                 // ผู้ใช้เลือกกลับหน้าหลัก
-                this.$router.push('/Creator_T');
+                this.$router.push('/NewsTopic_T');
             }
         });
     }

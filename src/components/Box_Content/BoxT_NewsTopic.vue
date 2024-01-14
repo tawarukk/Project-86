@@ -25,15 +25,17 @@
                         </thead>
                         <tbody>
                         <tr v-for="news, index  in NewsData" :key="news._id">
-                            <td v-if="news.img_card_news == '' || news.img_card_news == null">
-                            <router-link :to="{name: 'img_creator', params: {id: news._id }}"
+                            <td v-if="news.img_card_news == '' || news.img_card_news == null" style="width: 300px;">
+                            <router-link :to="{name: 'img_topic', params: {id: news._id }}"
                             title="อัพโหลดรูปภาพ">
                                 <span style="color: #FF9999;"> Add Crat </span>
                             </router-link></td>
-                            <td v-else>
-                                <router-link :to="{name: 'img_creator', params: {id: news._id }} " 
-                                title="แก้ไขรูปภาพ">
-                                <span style="color: #e8bd4b;">{{ news.img_card_news }}</span>
+                            <td v-else style="width: 300px;">
+                                <router-link :to="{name: 'img_topic', params: {id: news._id }} " 
+                                title="แก้ไขรูปภาพ"> 
+                                <div class="card" style="width: 300px; margin: 0px;">
+                                <img :src="getImagePath(news.img_card_news)" class="card-img-top" alt="...">
+                                </div>
                             </router-link>
                             </td>
                             <td>{{ index + 1 }}</td>
@@ -144,7 +146,13 @@
         } else {
             this.searchCreator(this.searchKeyword);
         }
-        }
+        },
+        getImagePath(imageFileName) {
+            if (imageFileName==undefined){
+                return require('@/assets/images/Topic/undefined.jpg');
+            }
+            return require(`@/assets/images/Topic/${imageFileName}`);
+        },
         }
     }
     </script>

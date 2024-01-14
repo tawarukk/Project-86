@@ -29,15 +29,17 @@
                             <td>{{ index + 1 }}</td>
                             <td>{{ creators.name_con }}</td>
                             <td>{{ creators.recommend_count }} </td>
-                            <td v-if="creators.img_card_con == '' || creators.img_card_con == null">
+                            <td v-if="creators.img_card_con == '' || creators.img_card_con == null" style="width: 150px;">
                             <router-link :to="{name: 'img_creator', params: {id: creators._id }}"
                             title="อัพโหลดรูปภาพ">
                                 <span style="color: #FF9999;"> Add Crat </span>
                             </router-link></td>
-                            <td v-else>
+                            <td v-else style="width: 150px;">
                                 <router-link :to="{name: 'img_creator', params: {id: creators._id }} " 
                                 title="แก้ไขรูปภาพ">
-                                <span style="color: #e8bd4b;">{{ creators.img_card_con }}</span>
+                                <div class="card" style="width: 150px; margin: 0px;">
+                                <img :src="getImagePath(creators.img_card_con)" class="card-img-top" alt="...">
+                                </div>
                             </router-link>
                             </td>
                             <td v-if="creators.survey_con == 1">available</td>
@@ -153,7 +155,13 @@
         } else {
             this.searchCreator(this.searchKeyword);
         }
-        }
+        },
+        getImagePath(imageFileName) {
+            if (imageFileName==undefined){
+                return require('@/assets/images/Creator/undefined.jpg');
+            }
+            return require(`@/assets/images/Creator/${imageFileName}`);
+        },
         }
     }
     </script>

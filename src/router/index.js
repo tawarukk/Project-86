@@ -212,6 +212,16 @@ const routes = [
     name: "edit_NewsParagraphs",
     component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/News_EditParagraphsView.vue'),
   },
+  {
+    path: "/NewsTopic_P/:id",
+    name: "img_topic",
+    component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/News_IMGTopicView.vue'),
+  },
+  {
+    path: "/NewsParagraphs_P/:id/:ParagraphsID",
+    name: "img_Paragraphs",
+    component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/News_IMGParagraohsView.vue'),
+  },
 ]
 
 
