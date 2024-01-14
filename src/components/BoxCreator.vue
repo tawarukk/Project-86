@@ -111,7 +111,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="creator in Creator" :key="creator._id">
+            <tr v-for="creator in Creator" :key="creator._id">
                             <el-tooltip
                 class="box-item"
                 effect="dark"

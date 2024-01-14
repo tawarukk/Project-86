@@ -222,6 +222,11 @@ const routes = [
     name: "img_Paragraphs",
     component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/News_IMGParagraohsView.vue'),
   },
+  {
+    path: "/NewsPage/:id",
+    name: "NewsRead",
+    component: () => import(/* webpackChunkName: "about" */ '../views/NewsReadView.vue'),
+  },
 ]
 
 
