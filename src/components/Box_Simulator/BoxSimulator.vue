@@ -5,7 +5,7 @@
         <div class="page-content">
 
           <div class="row">
-            <router-link class="col bg yellow mb-3 mt-0" type="button" to="/Simulator/Factory/:operators/:box/:product">Treading Post[ <i class="fa-solid fa-flag"></i> ]</router-link>
+              <router-link class="col bg yellow mb-3 mt-0" type="button" to="/Simulator/Factory/:operators/:box/:product">Treading Post[ <i class="fa-solid fa-flag"></i> ]</router-link>
 
               <router-link class="col bg blue-c mb-3 mt-0" type="button" to="/Simulator/Trading/:operators/:box/:product">Treading Post</router-link>
             
@@ -333,16 +333,18 @@ export default {
       ProductID: null,
 
       //Save Shear
-      operator_i_a: null,
+      SaveShearI: {},
+        operator_i_a: null,
+        operator_i_b: null,
+        operator_i_c: null,
+        product_i: null,
+      
       operator_i_aa: null,
-      operator_i_b: null,
       operator_i_bb: null,
-      operator_i_c: null,
       operator_i_cc: null,
-      product_i: null,
       product_ii: null,
 
-      //Save Shear
+      //End Save Shear
       comment_1: '', 
       comment_2: '', 
       remainingChars_1: 300,
@@ -478,22 +480,22 @@ export default {
         this.remainingChars_2 = 0;
       }
     }
-  },
+    },
 
-  testInput(comment) {
-    if(comment == 'comment_1'){alert(this.comment_1);}
-    else if(comment == 'comment_2'){alert(this.comment_2);}
-  },
+    testInput(comment) {
+      if(comment == 'comment_1'){alert(this.comment_1);}
+      else if(comment == 'comment_2'){alert(this.comment_2);}
+    },
 
     goToSelectOperator(position,box) {
        // ไปยังหน้า SelectOperator
     this.$router.push({ name: 'Selec_OS', params: {position: position , box: box } });
-        },
+    },
 
     goToSelectProduct(box) {
        // ไปยังหน้า SelectOperator
       this.$router.push({ name: 'Selec_P', params: { box: box } });
-        },
+    },
 
     getImagePath(imageFileName) {
             if (imageFileName !== null) {
@@ -578,8 +580,6 @@ export default {
     const box = this.BoxId;
     
     if (skill,skill_ii, box) {
-    console.log('skill_i:', skill.name_skill);
-    console.log('skill_ii:', skill_ii.name_skill);
     if (box === 'box_11') {
         this.saveValues('NameSkill_i_a', this.NameSkill_i_a = skill.name_skill);
         this.saveValues('Morale_consumed_i_a', this.Morale_consumed_i_a = skill.morale_consumed);
@@ -592,8 +592,6 @@ export default {
         this.saveValues('Productivity_ii_a', this.Productivity_ii_a = skill_ii.productivity);
         this.saveValues('Condition_skill_ii_a', this.Condition_skill_ii_a = skill_ii.condition_skill);
         this.saveValues('Effect_skill_ii_a', this.Effect_skill_ii_a = skill_ii.effect_skill);
-
-        this.loadValuesFromStorage();
     }else if(box === 'box_12'){
         this.saveValues('NameSkill_i_b', this.NameSkill_i_b = skill.name_skill);
         this.saveValues('Morale_consumed_i_b', this.Morale_consumed_i_b = skill.morale_consumed);
@@ -606,8 +604,6 @@ export default {
         this.saveValues('Productivity_ii_b', this.Productivity_ii_b = skill_ii.productivity);
         this.saveValues('Condition_skill_ii_b', this.Condition_skill_ii_b = skill.condition_skill);
         this.saveValues('Effect_skill_ii_b', this.Effect_skill_ii_b = skill_ii.effect_skill);
-
-        this.loadValuesFromStorage();
     }else if(box === 'box_13'){
       this.saveValues('NameSkill_i_c', this.NameSkill_i_c = skill.name_skill);
       this.saveValues('Morale_consumed_i_c', this.Morale_consumed_i_c = skill.morale_consumed);
@@ -620,8 +616,6 @@ export default {
       this.saveValues('Productivity_ii_c', this.Productivity_ii_c = skill_ii.productivity);
       this.saveValues('Condition_skill_ii_c', this.Condition_skill_ii_c = skill.condition_skill);
       this.saveValues('Effect_skill_ii_c', this.Effect_skill_ii_c = skill_ii.effect_skill);
-
-      this.loadValuesFromStorage();
     }else if(box === 'box_21'){
       this.saveValues('NameSkill_i_aa', this.NameSkill_i_aa = skill.name_skill);
       this.saveValues('Morale_consumed_i_aa', this.Morale_consumed_i_aa = skill.morale_consumed);
@@ -634,8 +628,6 @@ export default {
       this.saveValues('Productivity_ii_aa', this.Productivity_ii_aa = skill_ii.productivity);
       this.saveValues('Condition_skill_ii_aa', this.Condition_skill_ii_aa = skill.condition_skill);
       this.saveValues('Effect_skill_ii_aa', this.Effect_skill_ii_aa = skill_ii.effect_skill);
-
-        this.loadValuesFromStorage();
     }else if(box === 'box_22'){
       this.saveValues('NameSkill_i_bb', this.NameSkill_i_bb = skill.name_skill);
       this.saveValues('Morale_consumed_i_bb', this.Morale_consumed_i_bb = skill.morale_consumed);
@@ -648,9 +640,6 @@ export default {
       this.saveValues('Productivity_ii_bb', this.Productivity_ii_bb = skill_ii.productivity);
       this.saveValues('Condition_skill_ii_bb', this.Condition_skill_ii_bb = skill.condition_skill);
       this.saveValues('Effect_skill_ii_bb', this.Effect_skill_ii_bb = skill_ii.effect_skill);
-
-
-      this.loadValuesFromStorage();
     }else if(box === 'box_23'){
       this.saveValues('NameSkill_i_cc', this.NameSkill_i_cc = skill.name_skill);
       this.saveValues('Morale_consumed_i_cc', this.Morale_consumed_i_cc = skill.morale_consumed);
@@ -663,9 +652,8 @@ export default {
       this.saveValues('Productivity_ii_cc', this.Productivity_ii_cc = skill_ii.productivity);
       this.saveValues('Condition_skill_ii_cc', this.Condition_skill_ii_cc = skill.condition_skill);
       this.saveValues('Effect_skill_ii_cc', this.Effect_skill_ii_cc = skill_ii.effect_skill);
-
-      this.loadValuesFromStorage();
     }
+    this.loadValuesFromStorage()
     }
     },
 
@@ -863,12 +851,17 @@ export default {
     const savedCard_product_ii = localStorage.getItem('Card_product_ii')
     this.Card_product_ii = JSON.parse(savedCard_product_ii);
 
+    this.SaveShearI = {
+    operator_i_a: this.operator_i_a,
+    operator_i_b: this.operator_i_b,
+    operator_i_c: this.operator_i_c
+    };
+    console.log(this.SaveShearI)
     this.CalRemaining_Time();
 
     },
 
     CalRemaining_Time(){
-
       if (this.Card_i_a !== null && this.Card_i_b !== null && this.Card_i_c !== null ) {
       this.Productivity_position_i = 0.03;
       this.Morale_positioni_i = 0.10;
@@ -898,8 +891,6 @@ export default {
     }
 
     if(this.Condition_skill_i_a != this.Product_type_i&&this.Condition_skill_i_a != "all"){this.Productivity_i_a = 0;}
-    console.log("Condision: "+ this.Condition_skill_i_a)
-    console.log("Product_type: "+ this.Product_type_i)
     if(this.Condition_skill_ii_a != this.Product_type_i&&this.Condition_skill_ii_a != "all" ){this.Productivity_ii_a = 0;}
     if(this.Condition_skill_i_b != this.Product_type_i&&this.Condition_skill_i_b != "all" ){this.Productivity_i_b = 0;}
     if(this.Condition_skill_ii_b != this.Product_type_i&&this.Condition_skill_ii_b != "all"){this.Productivity_ii_b = 0;}

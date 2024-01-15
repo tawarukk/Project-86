@@ -319,11 +319,11 @@ export default {
 
       //Save Shear
       operator_Trad_i_a: null,
-      operator_Trad_i_aa: null,
       operator_Trad_i_b: null,
-      operator_Trad_i_bb: null,
       operator_Trad_i_c: null,
-      operator_Trad_i_cc: null,
+      operator_Trad_i_d: null,
+      operator_Trad_i_e: null,
+      operator_Trad_i_f: null,
 
       product_Name_i: null,
       product_Name_ii: null,
@@ -471,24 +471,24 @@ export default {
           this.saveValues('product_Name_i', this.product_Name_i = "Originium");
           this.saveValues('Card_Trad_product_i', this.Card_Trad_product_i = "Originium");
           this.saveValues('product_Type_i', this.product_Type_i = "PreciousMetals");
-          console.log(this.product_Name_i)}
+          }
         else if(Produce == "Originium"){
           this.saveValues('product_Name_i', this.product_Name_i = "PureGold");
           this.saveValues('Card_Trad_product_i', this.Card_Trad_product_i = "PureGold");
           this.saveValues('product_Type_i', this.product_Type_i = "OriginiumMaterials");
-          console.log(this.product_Name_i)}
+          }
         }
       else if(box == 'box_2'){
         if(Produce == "PureGold"||Produce == null){
           this.saveValues('product_Name_ii', this.product_Name_ii = "Originium");
           this.saveValues('Card_Trad_product_ii', this.Card_Trad_product_ii = "Originium");
           this.saveValues('product_Type_ii', this.product_Type_ii = "PreciousMetals");
-          console.log(this.product_Name_ii)}
+          }
         else if(Produce == "Originium"){
           this.saveValues('product_Name_ii', this.product_Name_ii = "PureGold");
           this.saveValues('Card_Trad_product_ii', this.Card_Trad_product_ii = "PureGold");
           this.saveValues('product_Type_ii', this.product_Type_ii = "OriginiumMaterials");
-          console.log(this.product_Name_ii)}
+          }
       }
         this.loadValuesFromStorage();
         },
@@ -544,6 +544,8 @@ export default {
         this.saveValues('Card_Trad_i_f', this.Card_Trad_i_f = operator.img_portrait_oper);
         this.saveValues('operator_Trad_i_f', this.operator_Trad_i_f = operator._id);
       }
+
+      console.log(this.operator_Trad_i_a +  this.operator_Trad_i_b , this.operator_Trad_i_c)
     }
     },
 
@@ -572,8 +574,6 @@ export default {
     const box = this.BoxId;
     
     if (skill,skill_ii, box) {
-    console.log('skill_i:', skill.name_skill);
-    console.log('skill_ii:', skill_ii.name_skill);
     if (box === 'box_11') {
       this.saveValues('NameTradSkill_i_a', this.NameTradSkill_i_a = skill.name_skill);
       this.saveValues('Effect_Trad_skill_i_a', this.Effect_Trad_skill_i_a = skill.effect_skill);

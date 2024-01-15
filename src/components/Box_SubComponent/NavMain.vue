@@ -82,7 +82,7 @@
     // รับ token จาก local storage
     const token = localStorage.getItem('token');
     if (token) {
-        console.log(token);
+        //console.log(token);
       // ถอด (decode) token เพื่อแสดงชื่อผู้ใช้
         const decoded = jwt_decode(token);
         this.userid = decoded.id;

@@ -227,6 +227,11 @@ const routes = [
     name: "NewsRead",
     component: () => import(/* webpackChunkName: "about" */ '../views/NewsReadView.vue'),
   },
+  {
+    path: "/Testcomment",
+    name: "Testcomment",
+    component: () => import(/* webpackChunkName: "about" */ '../views/TestComment.vue'),
+  },
 ]
 
 

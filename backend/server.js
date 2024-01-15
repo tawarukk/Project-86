@@ -29,7 +29,10 @@ const productAPI = require('./routes/product.route');
 const memberAPI = require('./routes/member.route');
 const creatorAPI = require('./routes/creator.route');
 const newsAPI = require('./routes/news.route')
+const commentAPI = require('./routes/comment.route');
+
 const sessionAPI = require('./routes/session.route');
+
 
 const app = express();
 
@@ -56,6 +59,7 @@ app.use('/api_member',memberAPI);
 app.use('/api_session',sessionAPI);
 app.use('/api_creator',creatorAPI);
 app.use('/api_news',newsAPI);
+app.use('/api_comment',commentAPI)
 
 app.get('/favicon.ico', (req, res) => {
     res.status(204); // สถานะ No Content
@@ -66,7 +70,8 @@ const server = app.listen(port, () => {
     console.log('Connected to port ' + port);
 });
 
-app.use(function(err, req, res, next) {
+
+app.use(function(err, req, res) {
     console.error(err.message);
     if (!err.statusCode) err.statusCode = 500;
     res.status(err.statusCode).send(err.message);
@@ -252,7 +257,7 @@ app.post('/api_news/create-paragraphs-img', (req, res) => {
     });
 });
 
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
     console.error(err.stack);
     res.status(500).send('เกิดข้อผิดพลาด: ' + err.message);
 });

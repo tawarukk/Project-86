@@ -251,13 +251,6 @@ export default {
     background-color: #27292a;
 }
 
-.Random {
-    background-color: #27292a;
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 10px;
-}
-
   .pagination {
     list-style: none;
     display: flex;
