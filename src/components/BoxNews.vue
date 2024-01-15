@@ -1,18 +1,18 @@
 <template>
-    <div class="container">
-        <div class="page-content">
-            <el-carousel :interval="4000" type="card" height="200px">
-                <el-carousel-item v-for="cardItem in filteredItems" :key="cardItem">
-                <div class="carousel-item-container">
-                    <img :src="getImagePath(cardItem.img_card_news)" class="card-img-top" alt="...">
-                    <div class="carousel-item-caption">
-                    <h3  type="button" @click="NewsPage(cardItem._id)">{{ cardItem.topic }}</h3>
-                    <p>{{ cardItem.description }}</p>
-                    </div>
-                </div>
-                </el-carousel-item>
-            </el-carousel>
-        </div>
+<div class="container">
+    <div class="page-content">
+        <el-carousel :interval="4000" type="card" height="200px">
+            <el-carousel-item v-for="cardItem in News" :key="cardItem">
+            <div class="carousel-item-container">
+                <img :src="getImagePath(cardItem.img_card_news)" class="card-img-top" alt="...">
+            <div class="carousel-item-caption">
+                <h3  type="button" @click="NewsPage(cardItem._id)">{{ cardItem.topic }}</h3>
+                <p>{{ cardItem.description }}</p>
+            </div>
+            </div>
+            </el-carousel-item>
+        </el-carousel>
+    </div>
 
     <div class="row">
     <div class="page-content" style="padding: 10px; text-align: center; width: 1050px; margin: 10px;">
@@ -230,12 +230,6 @@ export default {
     padding: 10px;
     width: 350px;
     height: 514px;
-    border-radius: 20px;
-}
-
-.pic {
-    background-color: #1f2122;
-    color: #27292a;
     border-radius: 20px;
 }
 

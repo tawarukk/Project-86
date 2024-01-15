@@ -46,12 +46,12 @@
                             <td v-else>unavailable</td>
                             <td v-if="creators.available_con == 1">available</td>
                             <td v-else>unavailable</td>
-                            <td>
+                            <td class="action-column">
                             <router-link :to="{name: 'edit_creator', params: {id: creators._id}}" class="btn button">
-                                Edit
+                                แก้ไขข้อมูล
                             </router-link>
-                            <button @click.prevent="deleteCreator(creators._id)" class="btn button-black">
-                                Del
+                            <button @click.prevent="deleteCreator(creators._id)" class="btn button" style="background-color: #27292a; color: aliceblue;">
+                                ลบข้อมูล
                             </button>
                             </td>
                         </tr>
@@ -64,7 +64,7 @@
     </div>
     </div>
 </template>
-    
+        
 <script>
     import '../../assets/css/templatemo-cyborg-gaming.css'; 
     import '../../assets/css/owl.css'; 
@@ -191,19 +191,13 @@
         margin-bottom: 10px;
     }
     .button{
+    width: 150px;
     background: #e8bd4b;
-    margin-right: 10px;
-    padding: 8px;
+    margin: 5px;
     color:#1f2122;
     }
-    .button-black{
-        background: #1f2122;
-        color:#666;
-    }
-
-    .button-mid{
-        background: #FF9999;
-        color:#1f2122;
+    .action-column {
+        width: 150px; 
     }
 
     .addData{

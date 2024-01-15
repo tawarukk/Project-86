@@ -94,9 +94,9 @@
                 </div>
                 </div>
             </div>
-                <a class="Random" type="button" style="" @click="randomCreator()">"Random"</a>
-                <router-link :to="{name: 'Creator_R'}" class="Random" type="button" style="margin-left: 10px; width: 180px;">
-                    Creator_R
+                <div class="Random" type="button" style=";" @click="randomCreator()">Random Creator</div>
+                <router-link :to="{name: 'Creator_R'}">
+                    <div class="Random" type="button">Recommend Creator</div>
                 </router-link>
             </div>
             <div class="container" style="width: 930px;">
@@ -116,7 +116,7 @@
                 class="box-item"
                 effect="dark"
                 :content="'Select: ' + creator.name_con "
-                placement="bottom"
+                placement="left"
             >
             <td @click="SelectCreator(creator._id)">{{ creator.name_con }}</td>
                     </el-tooltip>        
@@ -431,6 +431,12 @@ export default {
     padding: 10px;
     margin-top: 10px;
     border-radius: 10px;
+    color: aliceblue
+}
+
+.Random:hover{
+    background-color: #e8bd4b;
+    color: #1f2122;
 }
 
   .pagination {

@@ -3,11 +3,11 @@
     <div class="row">
         <div class="col-lg-12">
         <div class="page-content" style="background-color: #1f2122;">
-            <div style="font-size: 19px; font-weight: bold; display: flex; justify-content: center; align-items: center;"><h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-yt">T</span>able <span class="color-yt">C</span>reator <span class="color-yt">D</span>ata </h1> </div>
-            <div class="addData mb-3 mt-3" type="button" @click="newsPage()" style="display: flex; justify-content: center; align-items: center;"> เพิ่มข้อมูล NewsTopic</div>
+            <div style="font-size: 19px; font-weight: bold; display: flex; justify-content: center; align-items: center;"><h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-be">T</span>able <span class="color-be">N</span>ews [<span class="color-be">T</span>opic] </h1> </div>
+            <div class="addData mb-3 mt-3" type="button" @click="newsPage()" style="display: flex; justify-content: center; align-items: center;"> เพิ่มข้อมูล News [Topic]</div>
 
             <div class=" mb-3" style="display: flex; justify-content: flex-end;">
-                <input type="text" class="form-control" v-model="searchKeyword" placeholder="ค้นหา NewsTopic" @input="onInputDelete">
+                <input type="text" class="form-control" v-model="searchKeyword" placeholder="ค้นหา News [Topic]" @input="onInputDelete">
             </div>
 
             <div class="row">
@@ -25,15 +25,15 @@
                         </thead>
                         <tbody>
                         <tr v-for="news, index  in NewsData" :key="news._id">
-                            <td v-if="news.img_card_news == '' || news.img_card_news == null" style="width: 300px;">
+                            <td v-if="news.img_card_news == '' || news.img_card_news == null" style="width: 250px;">
                             <router-link :to="{name: 'img_topic', params: {id: news._id }}"
                             title="อัพโหลดรูปภาพ">
                                 <span style="color: #FF9999;"> Add Crat </span>
                             </router-link></td>
-                            <td v-else style="width: 300px;">
+                            <td v-else style="width: 250px;">
                                 <router-link :to="{name: 'img_topic', params: {id: news._id }} " 
                                 title="แก้ไขรูปภาพ"> 
-                                <div class="card" style="width: 300px; margin: 0px;">
+                                <div class="card" style="width: 250px; margin: 0px;">
                                 <img :src="getImagePath(news.img_card_news)" class="card-img-top" alt="...">
                                 </div>
                             </router-link>
@@ -51,7 +51,7 @@
                                 จัดการย่อหน้า
                             </router-link>
                             <button @click.prevent="deleteNewsData(news._id)" class="btn button" style="background-color: #27292a; color: aliceblue;">
-                                Del
+                                ลบข้อมูล
                             </button>
                             </td>
                         </tr>
@@ -92,7 +92,7 @@
         
         watch: {
         searchKeyword(newKeyword) {
-        this.searchCreator(newKeyword);
+        this.searchNews(newKeyword);
         },
         },
 
@@ -104,30 +104,30 @@
             if (window.confirm("Do you really want to delete?")) {
                 axios.delete(apiURL).then(() => {
                     this.NewsData.splice(indexOfArrayItem, 1);
-                    Swal.fire("Deleted!", "News deleted successfully.", "success");
+                    Swal.fire("Deleted!", "[Topic] deleted successfully.", "success");
                 }).catch(error => {
                     console.log(error)
-                    Swal.fire("Error!", "An error occurred while deleting the News.", "error");
+                    Swal.fire("Error!", "An error occurred while deleting the News[Topic].", "error");
                     })
                 } else {
-                    Swal.fire("Cancel!", "An error occurred while deleting the News.", "cancel");
+                    Swal.fire("Cancel!", "An error occurred while deleting the News[Topic].", "cancel");
                 }
         },
         newsPage(){
             this.$router.push('/NewsTopic_C');
         },
-        searchCreator(keyword) {
-        let filteredCreator = this.originalCreator;
+        searchNews(keyword) {
+        let filteredNews = this.originalNewsData;
 
         if (keyword !== '') {
         const lowerKeyword = keyword.toLowerCase();
-        filteredCreator = this.originalCreator.filter((creator) => {
+        filteredNews = this.originalNewsData.filter((News) => {
             return (
-                creator.name_con.toLowerCase().includes(lowerKeyword)
+                News.topic.toLowerCase().includes(lowerKeyword)
             );
         });
         }
-        this.Creator = filteredCreator;
+        this.NewsData= filteredNews;
         },
         fetchNewsData() {
         let apiURL = 'http://localhost:4000/api_news';
@@ -142,9 +142,9 @@
         },
         onInputDelete() {
         if (this.searchKeyword === '') {
-            this.Creator = this.originalCreator;
+            this.NewsData = this.originalNewsData;
         } else {
-            this.searchCreator(this.searchKeyword);
+            this.searchNews(this.searchKeyword);
         }
         },
         getImagePath(imageFileName) {
@@ -196,10 +196,7 @@
     .action-column {
         width: 150px; /* Adjust the width as per your requirement */
     }
-    .color-pk {
-        color: #FF9999;
-    }
-    .color-yt {
-        color: #e8bd4b;
-    }
+    .color-be {
+    color: #4b9ce8;
+}
 </style>

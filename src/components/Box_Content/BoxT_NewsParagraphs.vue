@@ -3,11 +3,16 @@
     <div class="row">
         <div class="col-lg-12">
         <div class="page-content" style="background-color: #1f2122;">
-            <div style="font-size: 19px; font-weight: bold; display: flex; justify-content: center; align-items: center;"><h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-yt">T</span>able <span class="color-yt">C</span>reator <span class="color-yt">D</span>ata </h1> </div>
-            <div class="addData mb-3 mt-3" type="button" @click="createPage(this.ParagraphsData._id)" style="display: flex; justify-content: center; align-items: center;"> เพิ่มข้อมูล Creator</div>
-            <div class="addData mb-3 mt-3" type="button" @click="NewsPage()" style="display: flex; justify-content: center; align-items: center;"> กลับ News</div>
+            <div class="cards-container col-6" style="background-color: #27292a;">
+                    <el-breadcrumb separator="/">
+                        <el-breadcrumb-item :to="{ path: '/NewsTopic_T' }">TablePage</el-breadcrumb-item>
+                        <el-breadcrumb-item>Edit_News[Paragraphs] : {{ ParagraphsData.topic }}</el-breadcrumb-item>
+                    </el-breadcrumb>
+            </div>
+            <div style="font-size: 19px; font-weight: bold; display: flex; justify-content: center; align-items: center;"><h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-be">T</span>able <span class="color-be">N</span>ews [<span class="color-be">P</span>aragraphs ]</h1> </div>
+            <div class="addData mb-3 mt-3" type="button" @click="createPage(this.ParagraphsData._id)" style="display: flex; justify-content: center; align-items: center;"> เพิ่มข้อมูล News [Paragraphs]</div>
             <div class=" mb-3" style="display: flex; justify-content: flex-end;">
-                <input type="text" class="form-control" v-model="searchKeyword" placeholder="ค้นหา Creator" @input="onInputDelete">
+                <input type="text" class="form-control" v-model="searchKeyword" placeholder="ค้นหา News [Paragraphs]" @input="onInputDelete">
             </div>
 
             <div class="row">
@@ -42,12 +47,12 @@
                                 <td>{{ paragraph.content }}</td>
                                 <td v-if="paragraph.status == 1">available</td>
                                 <td v-else>unavailable</td>
-                                <td>
+                                <td class="action-column">
                                     <router-link :to="{ name: 'edit_NewsParagraphs', params: { ...$route.params, id: ParagraphsData._id, ParagraphsID: paragraph._id }}" class="btn button">
-                                        Edit
+                                        แก้ไขข้อมูล
                                     </router-link>
-                                    <button @click.prevent="deleteparagraphs(paragraph._id)" class="btn button-black">
-                                        Del
+                                    <button @click.prevent="deleteparagraphs(paragraph._id)" class="btn button" style="background-color: #27292a; color: aliceblue;">
+                                        ลบข้อมูล
                                     </button>
                                 </td>
                             </tr>
@@ -81,34 +86,32 @@ export default {
     },
     watch: {
         searchKeyword(newKeyword) {
-            this.searchParagraphs(newKeyword);
-        },
+        this.searchParagraphs(newKeyword);
+        }
     },
     methods: {
         deleteparagraphs(id) {
-    let apiURL = `http://localhost:4000/api_news/delete-paragraphs/${this.$route.params.id}/${id}`;
+        let apiURL = `http://localhost:4000/api_news/delete-paragraphs/${this.$route.params.id}/${id}`;
+            if (Array.isArray(this.ParagraphsData.paragraphs)) {
+                let indexOfArrayItem = this.ParagraphsData.paragraphs.findIndex(i => i._id === id);
 
-    // ตรวจสอบว่า this.ParagraphsData.paragraphs เป็นอาร์เรย์
-    if (Array.isArray(this.ParagraphsData.paragraphs)) {
-        let indexOfArrayItem = this.ParagraphsData.paragraphs.findIndex(i => i._id === id);
-
-        if (window.confirm("Do you really want to delete?")) {
-            axios.delete(apiURL)
-                .then(() => {
-                    this.ParagraphsData.paragraphs.splice(indexOfArrayItem, 1);
-                    Swal.fire("Deleted!", "Creator deleted successfully.", "success");
-                })
-                .catch(error => {
-                    console.log(error)
-                    Swal.fire("Error!", "An error occurred while deleting the Creator.", "error");
-                });
-        } else {
-            Swal.fire("Cancel!", "An error occurred while deleting the Creator.", "cancel");
-        }
-    } else {
-        console.error("Invalid data structure: this.ParagraphsData.paragraphs is not an array");
-    }
-},
+                if (window.confirm("Do you really want to delete?")) {
+                    axios.delete(apiURL)
+                        .then(() => {
+                            this.ParagraphsData.paragraphs.splice(indexOfArrayItem, 1);
+                            Swal.fire("Deleted!", "Paragraphs deleted successfully.", "success");
+                        })
+                        .catch(error => {
+                            console.log(error)
+                            Swal.fire("Error!", "An error occurred while deleting the Paragraphs.", "error");
+                        });
+                } else {
+                    Swal.fire("Cancel!", "An error occurred while deleting the Paragraphs.", "cancel");
+                }
+            } else {
+                console.error("Invalid data structure: this.ParagraphsData.paragraphs is not an array");
+            }
+        },
         createPage(News) {
             this.$router.push({
                 name: 'NewsParagraphs_C',
@@ -120,36 +123,52 @@ export default {
                 name: 'NewsTopic_T',
             });
         },
-        searchParagraphs(keyword) {
-            let filteredParagraphs = this.originalParagraphsData;
-
-            if (keyword !== '') {
-                const lowerKeyword = keyword.toLowerCase();
-                filteredParagraphs = this.originalParagraphsData.filter((paragraphs) => {
-                    return (
-                        paragraphs.heading.toLowerCase().includes(lowerKeyword) ||
-                        paragraphs.content.toLowerCase().includes(lowerKeyword)
-                    );
-                });
-            }
-            this.ParagraphsData = filteredParagraphs;
-        },
         fetchParagraphs() {
-            let apiURL = `http://localhost:4000/api_news/paragraphs/${this.$route.params.id}`;
-            axios.get(apiURL)
-                .then(res => {
-                    this.ParagraphsData = res.data;
-                    this.originalParagraphsData = [...res.data];
-                })
-                .catch(error => {
-                    console.log(error);
-                });
+        let apiURL = `http://localhost:4000/api_news/paragraphs/${this.$route.params.id}`;
+        axios.get(apiURL)
+            .then(res => {
+            if (res.data && res.data.paragraphs && Array.isArray(res.data.paragraphs)) {
+                this.ParagraphsData = res.data;
+                this.originalParagraphsData = { ...res.data };
+            } else {
+                console.error("Invalid data structure: res.data.paragraphs is not an array");
+            }
+            })
+            .catch(error => {
+            console.log(error);
+            });
         },
         getImagePath(imageFileName) {
             if (imageFileName==undefined){
                 return require('@/assets/images/Paragraphs/undefined.jpg');
             }
             return require(`@/assets/images/Paragraphs/${imageFileName}`);
+        },
+        searchParagraphs(keyword) {
+            if (!this.ParagraphsData || !this.ParagraphsData.paragraphs) {
+            console.error("Data is not available.");
+            return;
+            }
+
+            let filteredParagraphs = this.ParagraphsData.paragraphs;
+
+            if (keyword !== '') {
+            const lowerKeyword = keyword.toLowerCase();
+            filteredParagraphs = this.ParagraphsData.paragraphs.filter((paragraph) => {
+                return (
+                paragraph.heading.toLowerCase().includes(lowerKeyword) ||
+                paragraph.content.toLowerCase().includes(lowerKeyword)
+                );
+            });
+            }
+            this.ParagraphsData.paragraphs = filteredParagraphs;
+        },
+        onInputDelete() {
+        if (this.searchKeyword === '') {
+            this.fetchParagraphs();
+        } else {
+            this.searchParagraphs(this.searchKeyword);
+        }
         },
     },
 };
@@ -180,34 +199,29 @@ export default {
         margin-bottom: 10px;
     }
     .button{
+    width: 150px;
     background: #e8bd4b;
-    margin-right: 10px;
-    padding: 8px;
+    margin: 5px;
     color:#1f2122;
     }
-    .button-black{
-        background: #1f2122;
-        color:#666;
+    .cards-container {
+    background-color: #1f2122;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 20px;
+}
+    .action-column {
+        width: 150px; 
     }
-
-    .button-mid{
-        background: #FF9999;
-        color:#1f2122;
-    }
-
     .addData{
-        background-color: #e8bd4b;
+        background-color: #4b9ce8;
         color: #1f2122;
         border-radius: 10px;
         padding: 8px;
         font-size: 20px; 
         font-weight: bold;
     }
-
-    .color-pk {
-        color: #FF9999;
-    }
-    .color-yt {
-        color: #e8bd4b;
-    }
+    .color-be {
+    color: #4b9ce8;
+}
 </style>

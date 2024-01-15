@@ -3,12 +3,18 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="page-content" style="background-color: #1f2122;">
+                    <div class="cards-container col-6" style="background-color: #27292a;">
+                        <el-breadcrumb separator="/">
+                            <el-breadcrumb-item :to="{ path: '/creator' }">CreatorPage</el-breadcrumb-item>
+                            <el-breadcrumb-item>Recommend_Creator</el-breadcrumb-item>
+                        </el-breadcrumb>
+                    </div>
                     <div class="row" style="justify-content: center; align-items: center">
                         <div class="cards-container col-6" style="background-color: #27292a; width: auto;height: auto; border-radius: 10px;">
                             <form @submit.prevent="uploadCreator" style="font-size: 19px; font-weight: bold; display: flex; flex-direction: column; justify-content: center; align-items: center;">
                                 <div> 
                                     <h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;">
-                                        <span class="color-yt">C</span>reate <span class="color-yt">M</span>odule
+                                        <span class="color-yt">R</span>ecommend <span class="color-yt">C</span>reator
                                     </h1> 
                                 </div>
 
@@ -113,7 +119,7 @@ export default {
                     A_link: '',
                     },
                 };
-                Swal.fire("รับทราบ อัพโหลด", "ทางผู้ดูแลจะทำการตรวจสอบโดยเร็ว", 'success');
+                Swal.fire("รับทราบการ Recommend", "ทางผู้ดูแลจะทำการตรวจสอบโดยเร็ว", 'success');
             } catch (error) {
                 console.error(error);
                 Swal.fire("เกิดข้อผิดพลาดในการอัพโหลด", "กรุณาลองใหม่อีกครั้ง", "error");
@@ -128,7 +134,7 @@ export default {
                 // เพิ่มค่า recommend_count ในตัวแปร local
                 this.CreatorData.recommend_count += 1;
 
-                Swal.fire("รับทราบ อัพเดท", "ทางผู้ดูแลจะทำการตรวจสอบโดยเร็ว", 'success');
+                Swal.fire("รับทราบการ Recommend", "Creator ได้รับการเสนอแล้ว สามารถตรวจสอบได้ที่ จำนวนการแนะนำ(ครั้ง)", 'success');
             } catch (error) {
                 console.error(error);
                 Swal.fire("เกิดข้อผิดพลาดในการอัพเดท", "กรุณาลองใหม่อีกครั้ง", "error");
@@ -145,15 +151,6 @@ export default {
 
 <style scoped>
 
-.socialMedia{
-    width: 105px;
-    color:white;
-    padding: 5px;
-    border-radius: 5px;
-    font-size: medium;
-    align-content: center;
-}
-
 .form-group{
     width: 900px;
 }
@@ -163,9 +160,11 @@ input {
     border: #27292a;
     color: #A0A0A0;
 }
-
-.color-pk {
-    color: #FF9999;
+.cards-container {
+    background-color: #1f2122;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 20px;
 }
 .color-yt {
     color: #e8bd4b;

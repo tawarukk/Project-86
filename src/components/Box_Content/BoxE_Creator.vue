@@ -3,10 +3,16 @@
         <div class="row">
         <div class="col-lg-12">
             <div class="page-content" style="background-color: #1f2122;">
+                <div class="cards-container col-6" style="background-color: #27292a;">
+                    <el-breadcrumb separator="/">
+                        <el-breadcrumb-item :to="{ path: '/Creator_T' }">Tablepage</el-breadcrumb-item>
+                        <el-breadcrumb-item>Edit_Creator : {{ CreatorData.name_con }}</el-breadcrumb-item>
+                    </el-breadcrumb>
+                </div>
             <div class="row" style="justify-content: center; align-items: center">
                 <div class="cards-container col-6" style="background-color: #27292a; width: auto;height: auto; border-radius: 10px;">
                 <form @submit.prevent="EditCreator" style="font-size: 19px; font-weight: bold; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                <div> <h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-yt">C</span>reate <span class="color-yt">C</span>reator</h1> </div>
+                <div> <h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-yt">E</span>dit <span class="color-yt">C</span>reator</h1> </div>
 
                 <div class="form-group">
                     <label for="name_con" style="color: #A0A0A0;">Name Creator :</label> <span style="font-size: 15px; color: #e8bd4b;">(*required)</span>
@@ -24,11 +30,11 @@
                         <option value="Live">Live</option>
                         <option value="Anoter">Anoter</option>
                     </select>
-                    <button v-if="index !== 0" class="btn" @click="removeType(index)" style="background-color: #666; color: #27292a; margin-left: 5px;">Cancel</button>
+                    <button v-if="index !== 0" class="btn" @click="removeType(index)" style="background-color: #666; color: #27292a; margin-left: 5px;">ยกเลิก</button>
                     </div>
                 </div>
                 </div>
-                <button type="button" @click="addType" class="btn mt-1 mb-1" style="background-color: #e8bd4b; width: 300px; color: #27292a;">Add Type</button>
+                <button type="button" @click="addType" class="btn mt-1 mb-1" style="background-color: #e8bd4b; width: 300px; color: #27292a;">เพิ่มข้อมูล Type</button>
 
                 <div class="form-group">
                     <div class="mt-1" style="display: flex; align-items: center;">
@@ -110,12 +116,11 @@
                     <option value="1">ตรวจสอบแล้ว</option>
                     </select>
                 </div>
-                    <button type="submit" class="btn mt-2 mb-2" style="background-color: #e8bd4b; width: 300px; color: #27292a; ">Add Data</button>
-                    <button class="btn mt-2 mb-2" @click="tablepage()" style="background-color: #666; width: 300px; color: #27292a; ">Cancel Adding Data</button>
+                    <button type="submit" class="btn mt-2 mb-2" style="background-color: #e8bd4b; width: 300px; color: #27292a; ">อัพโหลดข้อมูล</button>
+                    <button class="btn mt-2 mb-2" @click="tablepage()" style="background-color: #666; width: 300px; color: #27292a; ">ยกเลิกการอัพโหลดข้อมูล</button>
                 </form>
             </div>
             </div>
-            <div class="mt-3" style="color: #A0A0A0; font-size: 19px; font-weight: bold; text-align: right;">Do you want to display Creator data? <span class="color-yt" type="button" @click="tablepage()"> Display Data </span></div>
         </div>
         </div>
     </div>
@@ -188,10 +193,7 @@ methods: {
         },
     tablepage(){
     this.$router.push('/Creator_T');
-},
-logSelectedType(index) {
-        console.log(`Selected type at index ${index}:`, this.Creator.type_con[index]);
-    },
+}
 },
 };
 </script>
@@ -218,8 +220,11 @@ input {
     color: #A0A0A0;
 }
 
-.color-pk {
-    color: #FF9999;
+.cards-container {
+    background-color: #1f2122;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 20px;
 }
 .color-yt {
     color: #e8bd4b;

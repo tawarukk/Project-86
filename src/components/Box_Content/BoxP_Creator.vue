@@ -3,6 +3,12 @@
       <div class="row">
         <div class="col-lg-12">
             <div class="page-content" style="background-color: #1f2122;">
+                <div class="cards-container col-6" style="background-color: #27292a;">
+                    <el-breadcrumb separator="/">
+                        <el-breadcrumb-item :to="{ path: '/Creator_T' }">Tablepage</el-breadcrumb-item>
+                        <el-breadcrumb-item>Edit_img_card_Creator : {{ Creator.name_con }}</el-breadcrumb-item>
+                    </el-breadcrumb>
+                </div>
                 <div class="cards-container col-6" style="background-color: #27292a; width: auto; height: auto;">
                 <form @submit.prevent="uploadCreator_img" style="font-size: 19px; font-weight: bold; display: flex; flex-direction: column; justify-content: center; align-items: center;">
                         <div class=""> <h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-yt">U</span>pload <span class="color-yt">P</span>icture <span class="color-yt">C</span>reator </h1> </div>
@@ -15,6 +21,7 @@
                             <input type="file" class="form-control" id="img_card_con" name="img_card_con" ref="file" required>
                         </div>
                         <button type="submit" class="btn mt-2 mb-2" style="background-color: #e8bd4b; width: 300px; color: #27292a; ">อัพโหลดข้อมูล</button>
+                        <button class="btn mt-2 mb-2" @click="tablepage()" style="background-color: #666; width: 300px; color: #27292a; ">ยกเลิกการอัพโหลดข้อมูล</button>
                     </form>
                 </div>
             </div>
@@ -90,27 +97,15 @@ export default{
                 this.$router.push('/Creator_T');
             }
         });
-    }
+    },
+    tablepage(){
+    this.$router.push('/Creator_T');
+}
 }
 };
 </script>
 
 <style scoped>
-
-.cards-container {
-  perspective: 1000px;
-  width: 350px;
-  height: 514px;
-  border-radius: 20px;
-}
-
-.cards {
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.5s;
-}
-
 
 .form-group{
     width: 600px;
@@ -122,8 +117,11 @@ input {
     color: #A0A0A0;
 }
 
-.color-pk {
-    color: #FF9999;
+.cards-container {
+    background-color: #1f2122;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 20px;
 }
 .color-yt {
     color: #e8bd4b;

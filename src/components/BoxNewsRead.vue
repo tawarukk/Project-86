@@ -2,6 +2,12 @@
   <div class="container">
     <div class="page-content" style="padding: 20px;">
       <div class="row">
+        <div class="cards-container col-6">
+          <el-breadcrumb separator="/">
+            <el-breadcrumb-item :to="{ path: '/' }">homepage</el-breadcrumb-item>
+            <el-breadcrumb-item>{{ NewsTopic.topic }}</el-breadcrumb-item>
+          </el-breadcrumb>
+        </div>
         <div class="cards-container col-6" style="display: flex; align-items: center;">
           <img :src="getImagePath(NewsTopic.img_card_news)" class="main-img" alt="...">
         </div>
@@ -19,14 +25,14 @@
     <div class="page-content">
       <template v-for="paragraph in NewsTopic.paragraphs" :key="paragraph._id">
         <div class="row">
-        <div class="cards-container col-6" style="display: flex; align-items: center;">
-          <img :src="getparagraphPath(paragraph.image)" class="main-img" alt="...">
+        <div class="cards-container col-4" style="display: flex; align-items: center;">
+          <img v-if="paragraph.image !=''" :src="getparagraphPath(paragraph.image)" class="sub-img" alt="...">
         </div>
-        <div class="cards-container" style="width: 600px;">
-          <div v-if="paragraph.heading != ''" class="cards-container topic" style="background-color: #27292a;">
+        <div class="cards-container" style="width: 800px;">
+          <div v-if="paragraph.heading != ''" class="cards-container heading" style="background-color: #27292a;">
             {{ paragraph.heading }}
           </div>
-          <div class="cards-container description" style="background-color: #27292a;">
+          <div class="cards-container content" style="background-color: #27292a;">
             {{ paragraph.content  }}
           </div>
         </div>
@@ -74,18 +80,35 @@ export default {
 
 <style scoped>
 .topic{
-  width: 570px; 
+  max-width: 570px; 
   color: aliceblue;
 }
 
 .description{
-  width: 570px; 
+  max-width: 570px; 
   height: 300px; 
+  color: aliceblue;
+}
+
+.heading{
+  max-width: 800px; 
+  color: aliceblue;
+}
+
+.content{
+  max-width: 800px; 
+  height: 170px; 
   color: aliceblue;
 }
 .main-img{
   background-size: cover;
   max-width: 700px;
+  border-radius: 20px;
+}
+
+.sub-img{
+  background-size: cover;
+  max-width: 400px;
   border-radius: 20px;
 }
 
@@ -95,4 +118,5 @@ export default {
     padding: 10px;
     border-radius: 20px;
 }
+
 </style>
