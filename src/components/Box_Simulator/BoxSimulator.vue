@@ -333,12 +333,12 @@ export default {
       ProductID: null,
 
       //Save Shear
-      SaveShearI: {},
+      SaveShearI_F: {},
         operator_i_a: null,
         operator_i_b: null,
         operator_i_c: null,
         product_i: null,
-      
+      SaveShearII_F: {},
       operator_i_aa: null,
       operator_i_bb: null,
       operator_i_cc: null,
@@ -483,8 +483,30 @@ export default {
     },
 
     testInput(comment) {
-      if(comment == 'comment_1'){alert(this.comment_1);}
-      else if(comment == 'comment_2'){alert(this.comment_2);}
+      if(comment == 'comment_1'){
+        this.SaveShearI_F = {
+        operator_a: this.operator_i_a,
+        operator_b: this.operator_i_b,
+        operator_c: this.operator_i_c,
+        product: this.product_i,
+        comment: this.comment_1,
+        position: 'Factory',
+        user_id: 'user_id'
+        };
+        console.log(this.SaveShearI_F)
+      }
+      else if(comment == 'comment_2'){
+        this.SaveShearII_F = {
+        operator_a: this.operator_i_aa,
+        operator_b: this.operator_i_ba,
+        operator_c: this.operator_i_cc,
+        product: this.product_ii,
+        comment: this.comment_2,
+        position: 'Factory',
+        user_id: 'user_id'
+        };
+        console.log(this.SaveShearI_F)
+      }
     },
 
     goToSelectOperator(position,box) {
@@ -546,7 +568,7 @@ export default {
       }
       if (box === 'box_23') {
         this.saveValues('Card_i_cc', this.Card_i_cc = operator.img_portrait_oper);
-        this.saveValues('operator_i_cc', this.operator_ii_cc = operator._id);
+        this.saveValues('operator_i_cc', this.operator_i_cc = operator._id);
       }
     }
     },
@@ -851,12 +873,6 @@ export default {
     const savedCard_product_ii = localStorage.getItem('Card_product_ii')
     this.Card_product_ii = JSON.parse(savedCard_product_ii);
 
-    this.SaveShearI = {
-    operator_i_a: this.operator_i_a,
-    operator_i_b: this.operator_i_b,
-    operator_i_c: this.operator_i_c
-    };
-    console.log(this.SaveShearI)
     this.CalRemaining_Time();
 
     },

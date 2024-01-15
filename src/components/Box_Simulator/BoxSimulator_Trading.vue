@@ -318,9 +318,12 @@ export default {
       ProductID: null,
 
       //Save Shear
+      SaveShearI_T: {},
       operator_Trad_i_a: null,
       operator_Trad_i_b: null,
       operator_Trad_i_c: null,
+
+      SaveShearII_T: {},
       operator_Trad_i_d: null,
       operator_Trad_i_e: null,
       operator_Trad_i_f: null,
@@ -456,8 +459,30 @@ export default {
   },
 
     testInput(comment) {
-    if(comment == 'comment_1'){alert(this.comment_Trad_1);}
-    else if(comment == 'comment_2'){alert(this.comment_Trad_2);}
+    if(comment == 'comment_1'){
+      this.SaveShearI_T = {
+        operator_a: this.operator_Trad_i_a,
+        operator_b: this.operator_Trad_i_b,
+        operator_c: this.operator_Trad_i_c,
+        product: this.product_Name_i,
+        comment: this.comment_Trad_1,
+        position: 'TradingPost',
+        user_id: 'user_id'
+        };
+        console.log(this.SaveShearI_T);
+    }
+    else if(comment == 'comment_2'){
+      alert(this.comment_Trad_2);
+      this.SaveShearII_T = {
+        operator_d: this.operator_Trad_i_d,
+        operator_e: this.operator_Trad_i_e,
+        operator_f: this.operator_Trad_i_f,
+        product: this.product_Name_ii,
+        comment: this.comment_Trad_2,
+        position: 'TradingPost',
+        user_id: 'user_id'
+        };
+    }
   },
 
     goToSelectOperator(position,box) {
@@ -466,16 +491,19 @@ export default {
         },
 
     SelectProduct(Produce,box) {
+      
       if(box == 'box_1'){
         if(Produce == "PureGold"||Produce == null){
           this.saveValues('product_Name_i', this.product_Name_i = "Originium");
           this.saveValues('Card_Trad_product_i', this.Card_Trad_product_i = "Originium");
           this.saveValues('product_Type_i', this.product_Type_i = "PreciousMetals");
+          // this.saveValues('product_Trad_i', this.product_Trad_i = '6513151e50115c24bac8258b');
           }
         else if(Produce == "Originium"){
           this.saveValues('product_Name_i', this.product_Name_i = "PureGold");
           this.saveValues('Card_Trad_product_i', this.Card_Trad_product_i = "PureGold");
           this.saveValues('product_Type_i', this.product_Type_i = "OriginiumMaterials");
+          // this.saveValues('product_Trad_i:',this.product_Trad_i = '6513171350115c24bac82592');
           }
         }
       else if(box == 'box_2'){
@@ -483,11 +511,13 @@ export default {
           this.saveValues('product_Name_ii', this.product_Name_ii = "Originium");
           this.saveValues('Card_Trad_product_ii', this.Card_Trad_product_ii = "Originium");
           this.saveValues('product_Type_ii', this.product_Type_ii = "PreciousMetals");
+          // this.saveValues('product_Trad_ii:', this.product_Trad_ii = '6513151e50115c24bac8258b');
           }
         else if(Produce == "Originium"){
           this.saveValues('product_Name_ii', this.product_Name_ii = "PureGold");
           this.saveValues('Card_Trad_product_ii', this.Card_Trad_product_ii = "PureGold");
           this.saveValues('product_Type_ii', this.product_Type_ii = "OriginiumMaterials");
+          // this.saveValues('product_Trad_ii:', this.product_Trad_ii = '6513171350115c24bac82592');
           }
       }
         this.loadValuesFromStorage();
@@ -554,7 +584,7 @@ export default {
     const box = this.BoxId;
 
     if (product, box) {
-    // console.log('img:', operator.img_portrait_oper);
+     console.log('img:', product.name_product);
       if (box === 'box_i') {
         // this.saveValues('Product_time_i', this.Product_time_i = product.time_product);
         // this.saveValues('Card_product_i', this.Card_product_i = product.img_portrait_product);
@@ -575,6 +605,7 @@ export default {
     
     if (skill,skill_ii, box) {
     if (box === 'box_11') {
+
       this.saveValues('NameTradSkill_i_a', this.NameTradSkill_i_a = skill.name_skill);
       this.saveValues('Effect_Trad_skill_i_a', this.Effect_Trad_skill_i_a = skill.effect_skill);
       this.saveValues('Morale_Trad_consumed_i_a', this.Morale_Trad_consumed_i_a = skill.morale_consumed);
@@ -692,6 +723,20 @@ export default {
       this.Card_Trad_i_d = JSON.parse(savedCard_Trad_i_d);
       this.Card_Trad_i_e = JSON.parse(savedCard_Trad_i_e);
       this.Card_Trad_i_f = JSON.parse(savedCard_Trad_i_f);
+
+      const savedoperator_Trad_i_a = localStorage.getItem('operator_Trad_i_a');
+      const savedoperator_Trad_i_b = localStorage.getItem('operator_Trad_i_b');
+      const savedoperator_Trad_i_c = localStorage.getItem('operator_Trad_i_c');
+      const savedoperator_Trad_i_d = localStorage.getItem('operator_Trad_i_d');
+      const savedoperator_Trad_i_e = localStorage.getItem('operator_Trad_i_e');
+      const savedoperator_Trad_i_f = localStorage.getItem('operator_Trad_i_f');
+
+      this.operator_Trad_i_a = JSON.parse(savedoperator_Trad_i_a);
+      this.operator_Trad_i_b = JSON.parse(savedoperator_Trad_i_b);
+      this.operator_Trad_i_c = JSON.parse(savedoperator_Trad_i_c);
+      this.operator_Trad_i_d = JSON.parse(savedoperator_Trad_i_d);
+      this.operator_Trad_i_e = JSON.parse(savedoperator_Trad_i_e);
+      this.operator_Trad_i_f = JSON.parse(savedoperator_Trad_i_f);
 
       const savedNameTradSkill_i_a = localStorage.getItem('NameTradSkill_i_a');
       const savedNameTradSkill_ii_a = localStorage.getItem('NameTradSkill_ii_a');
