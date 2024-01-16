@@ -30,6 +30,7 @@ const memberAPI = require('./routes/member.route');
 const creatorAPI = require('./routes/creator.route');
 const newsAPI = require('./routes/news.route')
 const commentAPI = require('./routes/comment.route');
+const profileAPI = require('./routes/profile.route');
 
 const sessionAPI = require('./routes/session.route');
 
@@ -59,7 +60,8 @@ app.use('/api_member',memberAPI);
 app.use('/api_session',sessionAPI);
 app.use('/api_creator',creatorAPI);
 app.use('/api_news',newsAPI);
-app.use('/api_comment',commentAPI)
+app.use('/api_comment',commentAPI);
+app.use('/api_profile',profileAPI);
 
 app.get('/favicon.ico', (req, res) => {
     res.status(204); // สถานะ No Content

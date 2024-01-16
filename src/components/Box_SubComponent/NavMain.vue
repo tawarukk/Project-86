@@ -1,4 +1,4 @@
-    <template>
+<template>
     <header class="header-area header-sticky">
     <div class="container">
         <div class="row">
@@ -22,8 +22,8 @@
                         <li><router-link to="/Module/:operators/:box/:modules/:mod"  >Module</router-link></li>
                         <li><router-link to="/Simulator/Factory/:operators/:box/:product">Simulator</router-link></li>
                         <li class="dropdown">
-                            <a href="javascript:void(0);" class="dropbtn"><span style="color:#e8bd4b;">{{ userName }}</span> <img src="../../assets/images/profile-header.jpg" alt=""></a>
-                            <div class="dropdown-content">
+                            <a href="javascript:void(0);" class="dropbtn"><span style="color:#e8bd4b;">{{ userName }} <span v-if="code != ''">#{{ code }}</span></span> <img :src="getImagePath_Profile(this.userIMG)" class="card-img-top" alt="..."></a>
+                            <div class="dropdown-content" href="/Profile">
                                 <a class="mt-2" href="/Profile">Profile</a>
                                 <a  v-if = "userName != 'profile'" class="mt-2" type="button" @click="logout()">logout</a>
                                 <a  v-if = "userName == 'profile'" class="mt-2" type="button" @click="login()">login</a>
@@ -38,7 +38,7 @@
         </div>
     </div>
     </header>
-    </template>
+</template>
 
 <script>
     import '../../assets/css/templatemo-cyborg-gaming.css'; 
@@ -54,13 +54,16 @@
     return {
       userid:'',
       userName:'profile', // สร้างตัวแปรเพื่อเก็บชื่อผู้ใช้
-      userRole:''
+      userRole:'',
+      userIMG:'',
+      code:''
+
     };
     },
     methods: {
         logout(){
             Swal.fire({
-            title: 'ต้องการทำลาย token ใช่หรือไม่',
+            title: 'ต้องการทำลาย token (ออกจากระบบ) ใช่หรือไม่',
             showDenyButton: true,
             denyButtonText: 'ยอมรับ',
             confirmButtonText: `ไม่ยอมรับ`,
@@ -76,6 +79,12 @@
         },
         login(){
             this.$router.push('/login');
+        },
+        getImagePath_Profile(imageFileName){
+            if (imageFileName==undefined || imageFileName==''){
+                return require('@/assets/images/Profile/undefined.jpg');
+            }
+            return require(`@/assets/images/Profile/${imageFileName}`);
         }
     },
     mounted() {
@@ -87,7 +96,9 @@
         const decoded = jwt_decode(token);
         this.userid = decoded.id;
         this.userName = decoded.name_member;
-        this.userRole = decoded.role;
+        this.userRole = decoded.role_member;
+        this.userIMG = decoded.img_member;
+        this.code = decoded.code_member
     }
     },
 };

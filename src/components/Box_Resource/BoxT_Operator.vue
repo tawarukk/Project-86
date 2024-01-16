@@ -42,10 +42,10 @@
                             title="อัพโหลดรูปภาพ">
                                 <span style="color: #FF9999;"> Add Crat </span>
                             </router-link></td>
-                            <td v-else>
+                            <td v-else style="width: 80px;">
                                 <router-link :to="{name: 'img_operator', params: {id: operators._id , IMG: 'Cart' }}" 
                                 title="แก้ไขรูปภาพ">
-                                <span style="color: #e8bd4b;">{{ operators.img_cart_oper }}</span>
+                                <img :src="getImagePath_Card(operators.img_cart_oper)" class="card-img-top" alt="...">
                             </router-link>
                             </td>
                             <td v-if="operators.img_portrait_oper  == ''">
@@ -54,10 +54,10 @@
                                 <span style="color: #FF9999;"> Add Portrait </span>
                             </router-link>
                             </td>
-                            <td v-else>
+                            <td v-else style="width: 100px;">
                                 <router-link :to="{name: 'img_operator', params: {id: operators._id , IMG: 'Portrait' }}"
                                 title="แก้ไขรูปภาพ">
-                                <span style="color: #e8bd4b;">{{ operators.img_portrait_oper  }}</span>
+                                <img :src="getImagePath_Port(operators.img_portrait_oper)" class="card-img-top" alt="...">
                             </router-link>
                             </td>
                             <td v-if="operators.available_content == 1">available</td>
@@ -174,7 +174,19 @@
         } else {
             this.searchOperator(this.searchKeyword);
         }
-        }
+        },
+        getImagePath_Port(imageFileName) {
+            if (imageFileName==undefined){
+                // return require('@/assets/images/portrait/undefined.jpg');
+            }
+            return require(`@/assets/images/portrait/${imageFileName}`);
+        },
+        getImagePath_Card(imageFileName) {
+            if (imageFileName==undefined){
+                // return require('@/assets/images/portrait/undefined.jpg');
+            }
+            return require(`@/assets/images/Card/${imageFileName}`);
+        },
         }
     }
     </script>

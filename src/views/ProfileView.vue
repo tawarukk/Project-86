@@ -2,7 +2,6 @@
     <div class="Profile">
         <NavBar/>
         <BoxProfile/>
-        <BoxBox/>
         <FooterMain/>
     </div>
 </template>
@@ -11,7 +10,6 @@
 import  NavBar  from '@/components/Box_SubComponent/NavMain'
 import  BoxProfile from'@/components/BoxProfile.vue'
 import  FooterMain from '@/components/Box_SubComponent/FooterMain'
-import  BoxBox from '@/components/BoxBox.vue'
 
 export default {
     name: 'ProfileView',
@@ -19,7 +17,6 @@ export default {
         NavBar,
         BoxProfile,
         FooterMain,
-        BoxBox
         }
 }
 </script>

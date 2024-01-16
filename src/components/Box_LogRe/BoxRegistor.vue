@@ -64,6 +64,7 @@ export default {
         code_member: '',
         password_member: '',
         confirmPassword: '',
+        img_member:'',
         tier_member: 'beginner',
         role_member: 'user',
         available_member: 'available',

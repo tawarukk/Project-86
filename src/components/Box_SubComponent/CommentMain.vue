@@ -18,6 +18,7 @@
 import '../../assets/css/templatemo-cyborg-gaming.css'; 
 import '../../assets/css/owl.css';
 import axios from 'axios';
+import Swal from 'sweetalert2'; 
 import jwt_decode from 'jwt-decode';
 
   export default {
@@ -47,6 +48,9 @@ import jwt_decode from 'jwt-decode';
             console.error('Error adding comment:', error);
             // ทำอย่างไรกับข้อผิดพลาด เช่น แสดงข้อความแจ้งเตือนหรือทำการบันทึกข้อผิดพลาดใน Console
             }
+        }
+        else{
+          Swal.fire("แก! ไม่มีสิทธิ์", "กรุณาล็อกอินก่อน Comment", "warning");
         }
         },
         },

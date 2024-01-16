@@ -13,7 +13,7 @@
         <div class="cards-container type">
           Report
         </div>
-        <div class="cards-container type" @click="resetSorting" type="button">
+        <div class="cards-container type" @click="created()" type="button">
           Reset
         </div>
       </div>

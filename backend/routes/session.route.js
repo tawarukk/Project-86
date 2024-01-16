@@ -22,7 +22,17 @@ sessionRoute.route('/login').post(async (req, res, next) => {
         if (!user) {
         return res.status(401).json({ success: false});
         }
-        const token = jwt.sign({ id: user._id, name_member: user.name_member, role:user.role_member }, 'your_secret_key', {
+        const token = jwt.sign({ 
+          id: user._id,
+          name_member: user.name_member,
+          email_member: user.email_member,
+          code_member: user.code_member,
+          img_member: user.img_member,
+          tier_member: user.tier_member,
+          role_member :user.role_member,
+          available_member: user.available_member,
+          uploadedAt: user.uploadedAt
+        }, 'your_secret_key', {
             expiresIn: '4h' 
         });
         return res.json({ success: true, message: 'เข้าสู่ระบบสำเร็จ', token });

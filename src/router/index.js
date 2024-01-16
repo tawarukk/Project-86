@@ -228,7 +228,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/NewsReadView.vue'),
   },
   {
-    path: "/Testcomment",
+    path: "/Testcomment/:id",
     name: "Testcomment",
     component: () => import(/* webpackChunkName: "about" */ '../views/TestComment.vue'),
   },
