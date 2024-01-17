@@ -73,7 +73,7 @@ const server = app.listen(port, () => {
 });
 
 
-app.use(function(err, req, res) {
+app.use(function(err, req, res,next) {
     console.error(err.message);
     if (!err.statusCode) err.statusCode = 500;
     res.status(err.statusCode).send(err.message);
@@ -259,7 +259,7 @@ app.post('/api_news/create-paragraphs-img', (req, res) => {
     });
 });
 
-app.use((err, req, res) => {
+app.use((err, req, res ,next) => {
     console.error(err.stack);
     res.status(500).send('เกิดข้อผิดพลาด: ' + err.message);
 });

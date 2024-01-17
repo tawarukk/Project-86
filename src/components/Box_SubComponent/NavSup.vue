@@ -12,12 +12,18 @@
                     </a>
                     <!-- //class="active" -->
                     <ul class="nav">
-                        <li><router-link to="/Management" style="color: #fff;">Home</router-link></li>
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" style="color: #fff;">HomePage</a>
+                            <div class="dropdown-content">
+                                <a class="drop mt-2" href="/HomePage"><span style="color: #e8bd4b;">HomePage</span></a>
+                                <a class="drop mt-2" href="/Manual"><span style="color: #4b9ce8;">Manual</span></a>
+                            </div>
+                        </li>
                         <li><router-link to="/Operator_T" style="color: #e8bd4b;">Operator</router-link></li>
                         <li class="dropdown">
                             <a href="javascript:void(0);" style="color: #FF9999;">Content</a>
                             <div class="dropdown-content">
-                                <a class="drop mt-2" href="/Profile">HomePage</a>
+                                <a class="drop mt-2" href="/Member"><span style="color: #FF9999;">Member</span></a>
                                 <a class="drop mt-2" href="/NewsTopic_T"><span style="color: #4b9ce8;">News</span></a>
                                 <a class="drop mt-2" href="/Creator_T"><span style="color: #e8bd4b;">Creator</span></a>
                             </div>
@@ -31,7 +37,7 @@
                             </div>
                         </li>
                         <li class="dropdown">
-                            <a href="javascript:void(0);" class="dropbtn"><span style="color:#e8bd4b;">{{userName}}</span> <img src="../../assets/images/profile-header.jpg" alt=""></a>
+                            <a href="javascript:void(0);" class="dropbtn"><span style="color:#e8bd4b;">{{ userName }} <span v-if="code != ''">#{{ code }}</span></span> <img :src="getImagePath_Profile(userIMG)" class="card-img-top" alt="..."></a>
                             <div class="dropdown-content">
                                 <a class="drop-last mt-2" href="/Profile">Profile</a>
                                 <a class="drop-last mt-2" type="button" @click="logout()">logout</a>
@@ -54,6 +60,7 @@
     import '../../assets/css/owl.css'; 
     import Swal from 'sweetalert2'; 
     import jwt_decode from 'jwt-decode';
+    import axios from 'axios';
     
     export default {
     name: 'NavBarAdmin',
@@ -62,20 +69,21 @@
     },
     data() {
     return {
-      userid:'',
-      userName: 'profile', // สร้างตัวแปรเพื่อเก็บชื่อผู้ใช้
-      userRole:''
+        userid:'',
+        userName:'profile',
+        userRole:'',
+        userIMG:'',
+        code:'',
     };
     },
     methods: {
         logout(){
             Swal.fire({
-            title: 'ต้องการทำลาย token ใช่หรือไม่',
+            title: 'ต้องการทำลาย token (ออกจากระบบ) ใช่หรือไม่',
             showDenyButton: true,
             denyButtonText: 'ยอมรับ',
             confirmButtonText: `ไม่ยอมรับ`,
             }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
                 //
             } else if (result.isDenied) {
@@ -83,17 +91,31 @@
                 this.$router.push('/login');
             }
             })
-        }
+        },
+        getImagePath_Profile(imageFileName){
+            if (imageFileName==undefined || imageFileName==''){
+                return require('@/assets/images/Profile/undefined.jpg');
+            }
+            return require(`@/assets/images/Profile/${imageFileName}`);
+        },
     },
     mounted() {
-    // รับ token จาก local storage
     const token = localStorage.getItem('token');
     if (token) {
-      // ถอด (decode) token เพื่อแสดงชื่อผู้ใช้
         const decoded = jwt_decode(token);
         this.userid = decoded.id;
-        this.userName = decoded.name_member;
-        this.userRole = decoded.role;
+        axios.get(`http://localhost:4000/api_member/${this.userid}`)
+            .then(response => {
+                if (response.data && typeof response.data === 'object') {
+                    this.userIMG = response.data.img_member;
+                    this.userName = response.data.name_member;
+                    this.usertier = response.data.tier_member;
+                    this.userRole = response.data.role_member;
+                }
+            })
+            .catch(error => {
+                console.error('เกิดข้อผิดพลาดในการดึงข้อมูลผู้ใช้:', error);
+            });
     }
     },
 };

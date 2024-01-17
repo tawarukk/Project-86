@@ -13,8 +13,7 @@
                     </template>
                 </div>
         
-          
-          <div class="row justify-content-center">
+            <div class="row justify-content-center">
                 <div class="col-6 card-status" type="button" @click="goToBox()">
                 ไม่เลือก :C
                 </div>

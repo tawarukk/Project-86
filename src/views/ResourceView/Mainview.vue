@@ -1,18 +1,23 @@
 <template>
     <div class="Management">
         <NavBarMain/>
+        <Profile/>
+        <WorkMain/>
     </div>
 </template>
 
 <script>
 import NavBarMain from "@/components/Box_SubComponent/NavSup.vue"
-
+import Profile from "@/components/BoxProfile.vue"
+import WorkMain from "@/components/Box_SubComponent/WorkMain.vue"
 
 
 export default {
     name: 'ManagementView',
     components: {
         NavBarMain,
+        Profile,
+        WorkMain
         }
 }
 </script>
@@ -27,8 +32,8 @@ export default {
       #E2E3DE 30%, 
       #e8bd4b 30.1%, 
       #e8bd4b 35%,
-      #27292a 35.1%, 
-      #27292a 100% 
+      #1f2122 35.1%, 
+      #1f2122 100% 
     );
 }
 

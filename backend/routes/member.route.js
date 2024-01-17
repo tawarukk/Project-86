@@ -12,6 +12,18 @@ memberRoute.route('/').get((req, res, next) => {
     });
 });
 
+memberRoute.route('/:id').get((req, res, next) => {
+  const memberId = req.params.id;
+
+  memberModel.findById(memberId)
+    .then(data => {
+      res.json(data);
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
 memberRoute.route('/create-member').post((req, res, next) => {
   memberModel.create(req.body)
     .then(data => {
@@ -30,7 +42,6 @@ memberRoute.get('/check-username/:username', (req, res, next) => {
     })
     .catch(error => {
       console.error(error);
-      res.status(500).json({ error: 'เกิดข้อผิดพลาดในการตรวจสอบชื่อผู้ใช้' });
     });
 });
 
@@ -42,8 +53,33 @@ memberRoute.get('/check-email/:email', (req, res, next) => {
     })
     .catch(error => {
       console.error(error);
-      res.status(500).json({ error: 'เกิดข้อผิดพลาดในการตรวจสอบอีเมล' });
     });
 });
+
+memberRoute.put('/update-profile-member/:id', async (req, res, next) => {
+  try {
+    // ค้นหาสมาชิกโดยใช้ ID
+    const existingMember = await memberModel.findById(req.params.id);
+
+    if (existingMember) {
+      // อัปเดตฟิลด์ img_member ด้วยค่าจาก request body
+      existingMember.img_member = req.body.profile_img;
+
+      // บันทึกสมาชิกที่ได้รับการอัปเดตลงในฐานข้อมูล
+      const updatedMember = await existingMember.save();
+
+      // ส่งข้อมูลสมาชิกที่อัปเดตเป็นตอบกลับ
+      res.json(updatedMember);
+    } else {
+      // ไม่พบสมาชิก
+      res.status(404).json({ message: 'ไม่พบสมาชิก' });
+    }
+  } catch (error) {
+    // จัดการข้อผิดพลาด
+    next(error);
+  }
+});
+
+
 
 module.exports = memberRoute;

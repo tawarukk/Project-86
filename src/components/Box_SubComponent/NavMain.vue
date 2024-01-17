@@ -17,12 +17,12 @@
                     <!-- //class="active" -->
                     <ul class="nav">
                         <li><router-link to="/">Home</router-link></li>
-                        <li><router-link to="/news"  >News</router-link></li>
+                        <li><router-link to="/news">News</router-link></li>
                         <li><router-link to="/creator">creator</router-link></li>
-                        <li><router-link to="/Module/:operators/:box/:modules/:mod"  >Module</router-link></li>
+                        <li><router-link to="/Module/:operators/:box/:modules/:mod">Module</router-link></li>
                         <li><router-link to="/Simulator/Factory/:operators/:box/:product">Simulator</router-link></li>
                         <li class="dropdown">
-                            <a href="javascript:void(0);" class="dropbtn"><span style="color:#e8bd4b;">{{ userName }} <span v-if="code != ''">#{{ code }}</span></span> <img :src="getImagePath_Profile(this.userIMG)" class="card-img-top" alt="..."></a>
+                            <a href="javascript:void(0);" class="dropbtn"><span style="color:#e8bd4b;">{{ userName }} <span v-if="code != ''">#{{ code }}</span></span> <img :src="getImagePath_Profile(userIMG)" class="card-img-top" alt="..."></a>
                             <div class="dropdown-content" href="/Profile">
                                 <a class="mt-2" href="/Profile">Profile</a>
                                 <a  v-if = "userName != 'profile'" class="mt-2" type="button" @click="logout()">logout</a>
@@ -45,6 +45,8 @@
     import '../../assets/css/owl.css'; 
     import Swal from 'sweetalert2'; 
     import jwt_decode from 'jwt-decode';
+    import axios from 'axios';
+
     export default {
     name: 'NavBar',
     props: {
@@ -53,12 +55,14 @@
     data() {
     return {
       userid:'',
-      userName:'profile', // สร้างตัวแปรเพื่อเก็บชื่อผู้ใช้
+      userName:'profile',
       userRole:'',
       userIMG:'',
-      code:''
-
+      code:'',
     };
+    },
+    created(){
+
     },
     methods: {
         logout(){
@@ -68,7 +72,6 @@
             denyButtonText: 'ยอมรับ',
             confirmButtonText: `ไม่ยอมรับ`,
             }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
                 //
             } else if (result.isDenied) {
@@ -85,26 +88,32 @@
                 return require('@/assets/images/Profile/undefined.jpg');
             }
             return require(`@/assets/images/Profile/${imageFileName}`);
-        }
+        },
     },
+    
     mounted() {
-    // รับ token จาก local storage
     const token = localStorage.getItem('token');
     if (token) {
-        //console.log(token);
-      // ถอด (decode) token เพื่อแสดงชื่อผู้ใช้
         const decoded = jwt_decode(token);
         this.userid = decoded.id;
-        this.userName = decoded.name_member;
-        this.userRole = decoded.role_member;
-        this.userIMG = decoded.img_member;
-        this.code = decoded.code_member
+        axios.get(`http://localhost:4000/api_member/${this.userid}`)
+            .then(response => {
+                if (response.data && typeof response.data === 'object') {
+                    this.userIMG = response.data.img_member;
+                    this.userName = response.data.name_member;
+                    this.usertier = response.data.tier_member;
+                    this.userRole = response.data.role_member;
+                }
+            })
+            .catch(error => {
+                console.error('เกิดข้อผิดพลาดในการดึงข้อมูลผู้ใช้:', error);
+            });
     }
     },
 };
 
 </script>
-
+ 
 <style scoped>
 /* ซ่อน dropdown content เริ่มต้น */
 .dropdown-content {
