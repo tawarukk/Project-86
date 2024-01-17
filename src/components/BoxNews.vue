@@ -191,10 +191,22 @@ export default {
     this.selectNews = this.News[randomIndex];
     },
     NewsPage(News){
+
+        let apiURL = `http://localhost:4000/api_news/update-view/${News}`;
+        axios.put(apiURL)
+        .then(response => {
+            // ทำสิ่งที่คุณต้องการหลังจากอัพเดทเสร็จ
+            console.log(response.data);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+
         this.$router.push({
                 name: 'NewsRead',
                 params: { id: News }
             });
+        
     }
     },
     computed: {

@@ -197,6 +197,21 @@ newsRoute.put('/update-paragraphs/:id/:ParagraphsID', async (req, res, next) => 
     }
 });
 
+newsRoute.put('/update-view/:id', async (req, res, next) => {
+    try {
+        const updatedNews = await newsModel.findByIdAndUpdate(
+            req.params.id,
+            {
+                $inc: { view_count: 1 }, // ใช้ $inc เพื่อเพิ่มค่า view_count ขึ้น 1
+            },
+            { new: true } // Return the updated document
+        );
+
+        res.json(updatedNews);
+    } catch (error) {
+        next(error);
+    }
+});
 
 
 module.exports = newsRoute;

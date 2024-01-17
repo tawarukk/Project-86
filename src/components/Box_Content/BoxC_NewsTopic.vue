@@ -54,6 +54,7 @@ export default{
             topic: '',
             description: '',
             img_card_news: '',
+            view_count: 0,
             type:'',
             paragraphs: [
                 {
@@ -81,6 +82,7 @@ try {
             description: '',
             img_card_news: '',
             type:'',
+            view_count: 0,
             paragraphs: [
             {
                     heading: '',

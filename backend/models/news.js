@@ -14,6 +14,9 @@ let newsSchema = new Schema({
     type: {
         type: String
     },
+    view_count: {
+        type: Number
+    },
     paragraphs: [{
         heading: {
             type: String
