@@ -14,6 +14,12 @@ let newsSchema = new Schema({
     type: {
         type: String
     },
+    tier: {
+        type: String
+    },
+    about: {
+        type: String
+    },
     view_count: {
         type: Number
     },

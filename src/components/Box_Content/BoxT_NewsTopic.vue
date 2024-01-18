@@ -3,11 +3,11 @@
     <div class="row">
         <div class="col-lg-12">
         <div class="page-content" style="background-color: #1f2122;">
-            <div style="font-size: 19px; font-weight: bold; display: flex; justify-content: center; align-items: center;"><h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-be">T</span>able <span class="color-be">N</span>ews [<span class="color-be">T</span>opic] </h1> </div>
-            <div class="addData mb-3 mt-3" type="button" @click="newsPage()" style="display: flex; justify-content: center; align-items: center;"> เพิ่มข้อมูล News [Topic]</div>
+            <div style="font-size: 19px; font-weight: bold; display: flex; justify-content: center; align-items: center;"><h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-be">T</span>able <span class="color-be">N</span>ews <span class="color-be">&</span> <span class="color-be">M</span>anual [<span class="color-be">T</span>opic] </h1> </div>
+            <div class="addData mb-3 mt-3" type="button" @click="newsPage()" style="display: flex; justify-content: center; align-items: center;"> เพิ่มข้อมูล News & Manual[Topic]</div>
 
             <div class=" mb-3" style="display: flex; justify-content: flex-end;">
-                <input type="text" class="form-control" v-model="searchKeyword" placeholder="ค้นหา News [Topic]" @input="onInputDelete">
+                <input type="text" class="form-control" v-model="searchKeyword" placeholder="ค้นหา News & Manual [Topic]" @input="onInputDelete">
             </div>
 
             <div class="row">
@@ -17,6 +17,7 @@
                         <tr>
                             <th>img_card_news</th>
                             <th>No.</th>
+                            <th>Type</th>
                             <th>Name</th>
                             <th>description</th>
                             <th>Available_content</th>
@@ -25,6 +26,7 @@
                         </thead>
                         <tbody>
                         <tr v-for="news, index  in NewsData" :key="news._id">
+                            
                             <td v-if="news.img_card_news == '' || news.img_card_news == null" style="width: 250px;">
                             <router-link :to="{name: 'img_topic', params: {id: news._id }}"
                             title="อัพโหลดรูปภาพ">
@@ -39,13 +41,14 @@
                             </router-link>
                             </td>
                             <td>{{ index + 1 }}</td>
+                            <td>{{ news.type }}</td>
                             <td>{{ news.topic }}</td>
                             <td>{{ news.description}} </td>
                             <td v-if="news.available_con == 1">available</td>
                             <td v-else>unavailable</td>
                             <td class="action-column">
                             <router-link :to="{name: 'edit_NewsTopic', params: {id: news._id}}" class="btn button" style="background-color: #FF9999;">
-                                จัดการหัวข้อข่าว
+                                จัดการหัวข้อ
                             </router-link>
                             <router-link :to="{name: 'NewsParagraphs_T', params: {id: news._id}}" class="btn button">
                                 จัดการย่อหน้า
@@ -54,6 +57,7 @@
                                 ลบข้อมูล
                             </button>
                             </td>
+                            
                         </tr>
                     </tbody>
                 </table>
@@ -123,7 +127,8 @@
         const lowerKeyword = keyword.toLowerCase();
         filteredNews = this.originalNewsData.filter((News) => {
             return (
-                News.topic.toLowerCase().includes(lowerKeyword)
+                News.topic.toLowerCase().includes(lowerKeyword) || 
+                News.type.toLowerCase().includes(lowerKeyword)
             );
         });
         }

@@ -13,20 +13,13 @@
                     <!-- //class="active" -->
                     <ul class="nav">
                         
-                        <li><router-link to="/Management" style="color: #e8bd4b;">Management</router-link></li>
-                        <li class="dropdown">
-                            <a href="javascript:void(0);" style="color: #fff;">HomePage</a>
-                            <div class="dropdown-content">
-                                <a class="drop mt-2" href="/HomePage"><span style="color: #e8bd4b;">HomePage</span></a>
-                                <a class="drop mt-2" href="/Manual"><span style="color: #4b9ce8;">Manual</span></a>
-                            </div>
-                        </li>
+                        <li><router-link to="/Management" style="color: whitesmoke;">Management</router-link></li>
                         <li><router-link to="/Operator_T" style="color: #e8bd4b;">Operator</router-link></li>
                         <li class="dropdown">
                             <a href="javascript:void(0);" style="color: #FF9999;">Content</a>
                             <div class="dropdown-content">
-                                <a class="drop mt-2" href="/Member_T"><span style="color: #FF9999;">Member</span></a>
-                                <a class="drop mt-2" href="/NewsTopic_T"><span style="color: #4b9ce8;">News</span></a>
+                                <a class="drop mt-2" href="/Member_T"><span style="color: #FF9999;">HomePage</span></a>
+                                <a class="drop mt-2" href="/NewsTopic_T"><span style="color: #4b9ce8;">News $ Manual</span></a>
                                 <a class="drop mt-2" href="/Creator_T"><span style="color: #e8bd4b;">Creator</span></a>
                             </div>
                         </li>

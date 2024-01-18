@@ -6,14 +6,14 @@
             <div class="cards-container col-6" style="background-color: #27292a;">
                     <el-breadcrumb separator="/">
                         <el-breadcrumb-item :to="{ path: '/Creator_T' }">Tablepage</el-breadcrumb-item>
-                        <el-breadcrumb-item>Create_News[Paragraphs] : {{ ParagraphsData.topic }}</el-breadcrumb-item>
+                        <el-breadcrumb-item>Create_News & Manual [Paragraphs] : {{ ParagraphsData.topic }}</el-breadcrumb-item>
                     </el-breadcrumb>
             </div>
             <div class="cards-container col-6" style="background-color: #27292a; width: auto; height: auto;">
               <form @submit.prevent="CreateParagraphs" style="font-size: 19px; font-weight: bold; display: flex; flex-direction: column; justify-content: center; align-items: center;">
                 <div class="mb-2">
                   <h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;">
-                    <span class="color-be">C</span>reates <span class="color-be">N</span>ews [<span class="color-be">P</span>aragraphs]
+                    <span class="color-be">C</span>reates <span class="color-be">N</span>ews <span class="color-be">&</span> <span class="color-be">M</span>anual[<span class="color-be">P</span>aragraphs]
                   </h1>
                 </div>
                 <div class="form-group">

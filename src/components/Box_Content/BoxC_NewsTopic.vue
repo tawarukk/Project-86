@@ -11,7 +11,7 @@
                 </div>
                 <div class="cards-container col-6" style="background-color: #27292a; width: auto; height: auto;">
                 <form @submit.prevent="CreateTopic" style="font-size: 19px; font-weight: bold; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                        <div class="mb-2"> <h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-be">C</span>reate <span class="color-be">N</span>ews [<span class="color-be">T</span>opic] </h1> </div>
+                        <div class="mb-2"> <h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-be">C</span>reate <span class="color-be">N</span>ews <span class="color-be">&</span> <span class="color-be">M</span>anual [<span class="color-be">T</span>opic] </h1> </div>
                         <div class="form-group">
                             <label for="topic" style="color: #A0A0A0;">Topic :</label> <span style="font-size: 15px; color: #666;"></span>
                             <input type="text" class="form-control mt-1" id="topic" v-model="newsData.topic" required>
@@ -28,8 +28,25 @@
                                 <option value="Announce">Announce</option>
                                 <option value="Information">Information</option>
                                 <option value="Anoter">Anoter</option>
+                                <option value="manual">Manual</option>
                             </select>
                         </div>
+
+                        <div class="form-group mt-3">
+                            <label for="type" style="color: #A0A0A0;">Tire content :</label> 
+                            <span style="font-size: 15px; color: #666;">กรอกเมื่อ กำหนด Type เป็น Manual</span>
+                            <select class="form-select mt-1" id="tier" v-model="newsData.tier" style="background-color: #666">
+                                <option value="beginner">beginner</option>
+                                <option value="intermediate">intermediate</option>
+                                <option value="Advanced">Advanced</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="about" style="color: #A0A0A0;">about :</label> <span style="font-size: 15px; color: #666;">กรอกเมื่อ กำหนด Type เป็น Manual</span>
+                            <input type="text" class="form-control mt-1" id="about" v-model="newsData.about" required>
+                        </div>
+                        
                         <button type="submit" class="btn mt-2 mb-2" style="background-color: #4b9ce8; width: 300px; color: #27292a; ">อัพโหลดข้อมูล</button>
                         <button class="btn mt-2 mb-2" @click="tablepage()" style="background-color: #666; width: 300px; color: #27292a; ">ยกเลิกการอัพโหลดข้อมูล</button>
                     </form>
@@ -56,6 +73,8 @@ export default{
             img_card_news: '',
             view_count: 0,
             type:'',
+            tier:'beginner',
+            about:'all',
             paragraphs: [
                 {
                     heading: '',
@@ -82,6 +101,8 @@ try {
             description: '',
             img_card_news: '',
             type:'',
+            tier:'beginner',
+            about:'all',
             view_count: 0,
             paragraphs: [
             {

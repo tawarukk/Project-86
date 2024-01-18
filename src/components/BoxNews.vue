@@ -47,27 +47,26 @@
     <div class="page-content" style="padding: 10px; margin-top: 0px;">
     <div class="cards-container" style="width: auto; height: auto; padding: 20px;">
     <div class="heading-section" style="margin-bottom: 5px;">
-        <h4>News : <span v-if="currentType !== ''"> {{ currentType }}</span> <span v-else> ALL</span> </h4> 
+        <h4>News : <span v-if="currentType != ''"> {{ currentType }}</span> <span v-else> ALL</span> </h4> 
     </div>
 
     <div class="row">
-        <div v-for="(cardItem, index) in filteredItems" :key="index" class="card" style="width: 18rem; padding: 0px; margin: 10px;">
-        <img :src="getImagePath(cardItem.img_card_news)" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title topic" type="button" @click="NewsPage(cardItem._id)" >{{ cardItem.topic }}</h5>
-            <p style="color: aliceblue;" >
-                Update : {{ cardItem.uploadedAt.slice(0, 10) }}
-            </p>
-        <div>
-        <span style="text-align: left; color: aliceblue; display: inline-block; vertical-align: middle;">
-            Platform : {{ cardItem.description }}
-        </span>
-        <div style="text-align: right; display: inline-block; vertical-align: middle;">
-    </div>
-    </div> 
-
-        </div>
-    </div>
+        <template v-for="(cardItem, index) in filteredItems" :key="index">
+            <div v-if="cardItem.type != 'manual'" class="card" style="width: 18rem; padding: 0px; margin: 10px;">
+                <img :src="getImagePath(cardItem.img_card_news)" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title topic" type="button" @click="NewsPage(cardItem._id)" >{{ cardItem.topic }}</h5>
+                        <p style="color: aliceblue;" >
+                            Update : {{ cardItem.uploadedAt.slice(0, 10) }}
+                        </p>
+                    <div>
+                    <span style="text-align: left; color: aliceblue; display: inline-block; vertical-align: middle;">
+                        Description : {{ cardItem.description }}
+                    </span>
+                    </div> 
+                </div>
+            </div>
+        </template>
     </div>
     </div>
     <!-- Pagination -->

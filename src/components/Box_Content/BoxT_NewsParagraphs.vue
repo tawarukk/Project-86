@@ -6,13 +6,13 @@
             <div class="cards-container col-6" style="background-color: #27292a;">
                     <el-breadcrumb separator="/">
                         <el-breadcrumb-item :to="{ path: '/NewsTopic_T' }">TablePage</el-breadcrumb-item>
-                        <el-breadcrumb-item>Edit_News[Paragraphs] : {{ ParagraphsData.topic }}</el-breadcrumb-item>
+                        <el-breadcrumb-item>Edit_News & Manual[Paragraphs] : {{ ParagraphsData.topic }}</el-breadcrumb-item>
                     </el-breadcrumb>
             </div>
-            <div style="font-size: 19px; font-weight: bold; display: flex; justify-content: center; align-items: center;"><h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-be">T</span>able <span class="color-be">N</span>ews [<span class="color-be">P</span>aragraphs ]</h1> </div>
-            <div class="addData mb-3 mt-3" type="button" @click="createPage(this.ParagraphsData._id)" style="display: flex; justify-content: center; align-items: center;"> เพิ่มข้อมูล News [Paragraphs]</div>
+            <div style="font-size: 19px; font-weight: bold; display: flex; justify-content: center; align-items: center;"><h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-be">T</span>able <span class="color-be">N</span>ews <span class="color-be">&</span> <span class="color-be">M</span>anual [<span class="color-be">P</span>aragraphs ]</h1> </div>
+            <div class="addData mb-3 mt-3" type="button" @click="createPage(this.ParagraphsData._id)" style="display: flex; justify-content: center; align-items: center;"> เพิ่มข้อมูล News & Manual [Paragraphs]</div>
             <div class=" mb-3" style="display: flex; justify-content: flex-end;">
-                <input type="text" class="form-control" v-model="searchKeyword" placeholder="ค้นหา News [Paragraphs]" @input="onInputDelete">
+                <input type="text" class="form-control" v-model="searchKeyword" placeholder="ค้นหา News & Manual [Paragraphs]" @input="onInputDelete">
             </div>
 
             <div class="row">
