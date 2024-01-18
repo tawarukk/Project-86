@@ -80,6 +80,49 @@ memberRoute.put('/update-profile-member/:id', async (req, res, next) => {
   }
 });
 
+memberRoute.route('/delete-member/:id').delete(async (req, res, next) => {
+  try {
+      const deletedmember = await memberModel.findOneAndDelete({ _id: req.params.id }).exec();
 
+      if (!deletedmember) {
+          res.status(404).json({
+              msg: "Member not found"
+          });
+          return;
+      }
+
+      res.status(200).json({
+          msg: "Member deleted successfully"
+      });
+  } catch (error) {
+      next(error);
+  }
+});
+
+memberRoute.get('/edit-member/:id', async (req, res, next) => {
+  try {
+      const member = await memberModel.findById(req.params.id);
+      res.json(member);
+  } catch (error) {
+      next(error);
+  }
+});
+
+memberRoute.put('/update-member/:id', async (req, res, next) => {
+  try {
+      const updatedmember = await memberModel.findByIdAndUpdate(
+          req.params.id,
+          {
+              $set: req.body 
+          },
+          { new: true } // Return the updated document
+      );
+
+      res.json(updatedmember);
+      console.log('Successfully updated');
+  } catch (error) {
+      next(error);
+  }
+});
 
 module.exports = memberRoute;

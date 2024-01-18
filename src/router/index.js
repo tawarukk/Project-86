@@ -23,16 +23,6 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/SimulatorView/Simulator_TradingView.vue')
   },
   {
-    path: '/view',
-    name: 'view',
-    component: () => import(/* webpackChunkName: "about" */ '../views/ListView.vue')
-  },
-  {
-    path: '/edit/:id',
-    name: 'edit',
-    component: () => import(/* webpackChunkName: "about" */ '../views/EditView.vue')
-  },
-  {
     path: '/news',
     name: 'news',
     component: () => import(/* webpackChunkName: "about" */ '../views/NewsView.vue')
@@ -236,6 +226,46 @@ const routes = [
     path: "/SelecProfile/:id",
     name: "SelecProfile",
     component: () => import(/* webpackChunkName: "about" */ '../views/SelecView/SelecView_Profile.vue'),
+  },
+  {
+    path: '/Member_T',
+    name: 'Member_T',
+    component: () => import(/* webpackChunkName: "about" */ '../views/MemberView/Member_TableView.vue')
+  },
+  {
+    path: '/Member_C',
+    name: 'Member_C',
+    component: () => import(/* webpackChunkName: "about" */ '../views/MemberView/Member_CreateView.vue')
+  },
+  {
+    path: "/Member_E/:id",
+    name: "edit_Member",
+    component: () => import(/* webpackChunkName: "about" */ '../views/MemberView/Member_EditView.vue'),
+  },
+  {
+    path: '/Admin_T',
+    name: 'Admin_T',
+    component: () => import(/* webpackChunkName: "about" */ '../views/MemberView/Admin_TableView.vue')
+  },
+  {
+    path: '/Profile_T',
+    name: 'Profile_T',
+    component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/Profile_TableView.vue')
+  },
+  {
+    path: '/Profile_C',
+    name: 'Profile_C',
+    component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/Profile_CreateView.vue')
+  },
+  {
+    path: '/Profile_E/:id',
+    name: 'edit_Profile',
+    component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/Profile_EditView.vue')
+  },
+  {
+    path: "/Profile_P/:id",
+    name: "img_Profile",
+    component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/Profile_IMGView.vue'),
   },
 ]
 

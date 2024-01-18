@@ -21,9 +21,15 @@
         <p>No comments available.</p>
       </div>
       <ul v-else>
+
         <li v-for="(comment, index) in filteredComments" :key="index">
-          <div class="comment-container">
-            <div class="user col-6">{{ comment.user_id }}</div>
+          <div class="comment-container" >
+            <div class="row">
+            <div class="user  text-center" style="width: 600px;">{{ comment.user_id }}</div>
+            <div class="user  text-center" v-if="comment.user_id == this.userID"> แก้ไข  </div>
+            <div class="user  text-center" v-if="comment.user_id == this.userID"> ลบ  </div>
+            <div class="user  text-center" v-if="comment.user_id == this.userID"> รายงาน </div>
+            </div>
             <div class="comment-wrapper" >
               <div class="avatar-container">
                 <el-avatar
@@ -32,10 +38,12 @@
                   src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
                 />
               </div>
-              <div class="comment-content">{{ comment.comment }}</div>
+                <div class="comment-content">{{ comment.comment }}</div>
             </div>
           </div>
         </li>
+
+
       </ul>
     </div>
   </div>
@@ -43,6 +51,7 @@
 
 <script>
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 
 export default {
   data() {
@@ -50,6 +59,7 @@ export default {
       comments: [],
       sortingKey: null, // สำหรับเก็บคีย์ที่ใช้เรียงลำดับ
       sortOrder: 'asc', // 1: น้อยไปมาก, -1: มากไปน้อย
+      userID:''
     };
   },
   computed: {
@@ -105,6 +115,22 @@ export default {
     console.error('Error fetching comments:', error);
   });
   },
+  mounted() {
+    const token = localStorage.getItem('token');
+    if (token) {
+        const decoded = jwt_decode(token);
+        this.userid = decoded.id;
+        axios.get(`http://localhost:4000/api_member/${this.userid}`)
+            .then(response => {
+                if (response.data && typeof response.data === 'object') {
+                    this.userID = response.data._id;
+                }
+            })
+            .catch(error => {
+                console.error('เกิดข้อผิดพลาดในการดึงข้อมูลผู้ใช้:', error);
+            });
+    }
+    },
 };
 </script>
 
@@ -143,11 +169,13 @@ export default {
 
 .user {
   background-color: #27292a;
-  border-radius: 10px 10px 10px 0px;
+  border-radius: 10px;
   margin-bottom: 10px; /* เพิ่มบรรทัดนี้ */
+  margin-left: 10px;
   padding: 5px;
   color: #e8bd4b;
   font-weight: bold;
+  width: 200px;
 }
 
 
@@ -156,10 +184,16 @@ export default {
   align-items: center; /* จัดให้อยู่ตรงกลางในทิศทางตั้ง */
   background-color: #27292a;
   border-radius: 10px;
+  position: relative;
 }
 
 .avatar-container {
   margin-right: 10px; /* ระยะห่างระหว่าง el-avatar กับ .comment-container */
+}
+
+.edit-button, .delete-button {
+  padding: 5px 10px;
+  cursor: pointer;
 }
 </style>
 

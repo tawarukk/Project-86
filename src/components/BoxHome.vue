@@ -46,9 +46,81 @@
             </div>
         
         </div>
+
+        <div class="page-content">
+          <div class="main-banner" :style="{ 'background-image': `url(${NewsImage})` }">
+              <div class="row">
+                <div class="col-lg-7">
+                  <div class="header-text">
+                    <h6 style="color: #1f2122;">Welcome To Box Of Rhode</h6>
+                    <h4><span>Browse</span> News</h4>
+                    <div class="main-button">
+                      <a href="browse.html">Browse Now</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="page-content">
+          <div class="main-banner" :style="{ 'background-image': `url(${CreatorImage})` }">
+              <div class="row">
+                <div class="col-lg-7">
+                  <div class="header-text">
+                    <h6 style="color: #1f2122;">Welcome To Box Of Rhode</h6>
+                    <h4><span>Browse</span> Creator</h4>
+                    <div class="main-button">
+                      <a href="browse.html">Browse Now</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="page-content">
+          <div class="main-banner mb-2" :style="{ 'background-image': `url(${FactoryImage})` }" style=" padding: 40px 30px;">
+              <div class="row">
+                <div class="col-lg-7">
+                  <div class="header-text">
+                    <h4><span>Browse</span> Factory </h4>
+                    <div class="main-button">
+                      <a href="browse.html">Browse Now</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="main-banner mb-2" :style="{ 'background-image': `url(${TradingImage})` }" style=" padding: 40px 30px;">
+              <div class="row">
+                <div class="col-lg-7">
+                  <div class="header-text">
+                    <h4><span>Browse</span> Trading Post</h4>
+                    <div class="main-button">
+                      <a href="browse.html">Browse Now</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        
+          <div class="main-banner" :style="{ 'background-image': `url(${ReceptionImage})` }" style=" padding: 40px 30px;">
+              <div class="row">
+                <div class="col-lg-7">
+                  <div class="header-text">
+                    <h4><span>Browse</span> Reception Room</h4>
+                    <div class="main-button">
+                      <a href="browse.html">Browse Now</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+
   </div>
-  <BoxNews/>
-  <BoxCreator/>
 </template>
 
 <script>
@@ -56,21 +128,23 @@
     import '../assets/css/owl.css'; 
     import { differenceInMilliseconds } from 'date-fns'
     import axios from 'axios';
-    import BoxCreator from '@/components/BoxCreator.vue'
-    import BoxNews from '@/components/BoxNews.vue'
 
     export default {
     name: 'BoxHome',
     components: {
-      BoxCreator,
-      BoxNews
     },
     props: {
         msg: String
     },
     data() {
     return {
-      imagetest: '65a3ad521a.jpg',
+      Event_image: '65a3acfd1a.jpg',
+      Topic_image: 'NewTopic_Test_04.jpg',
+      Creator_image: '65a3ad521a.jpg',
+      Factory_image: 'RIIC_Factory.jpg',
+      Trading_image: 'RIIC_Trading_Post.jpg',
+      Reception_image: 'RIIC_Reception_Room.jpg',
+      
       countdown: '',
         error: '',
         days: 0,
@@ -81,8 +155,24 @@
     },
     computed: {
       MainImage() {
-        return require(`@/assets/images/Topic/${this.imagetest}`);
+        return require(`@/assets/images/Topic/${this.Event_image}`);
       },
+      NewsImage() {
+        return require(`@/assets/images/Topic/${this.Topic_image}`);
+      },
+      CreatorImage() {
+        return require(`@/assets/images/Topic/${this.Creator_image}`);
+      },
+      FactoryImage() {
+        return require(`@/assets/images/Topic/${this.Factory_image}`);
+      },
+      TradingImage() {
+        return require(`@/assets/images/Topic/${this.Trading_image}`);
+      },
+      ReceptionImage() {
+        return require(`@/assets/images/Topic/${this.Reception_image}`);
+      },
+
     },
     
     methods:{
@@ -147,4 +237,7 @@
   width: 100%; /* ขยายตามขนาดของ .card */
 }
 
+.main-banner{
+  min-height: 0px;
+}
 </style>

@@ -4,8 +4,10 @@
         <div class="row">
             <div class="col-12">
                 <nav class="main-nav">
-                    <a href="../HomePage/homepage.html" class="logo">
-                        <img src="../../assets/images/Artboard.png" alt="">
+                    <a class="logo">
+                        <router-link to="/">
+                        <img src="../../assets/images/Artboard.png" alt="" style="background-color: #27292a; border-radius: 10px; padding: 10px;">
+                    </router-link>
                     </a>
                     
                     <div class="search-input">

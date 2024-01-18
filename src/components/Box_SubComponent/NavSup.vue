@@ -12,6 +12,8 @@
                     </a>
                     <!-- //class="active" -->
                     <ul class="nav">
+                        
+                        <li><router-link to="/Management" style="color: #e8bd4b;">Management</router-link></li>
                         <li class="dropdown">
                             <a href="javascript:void(0);" style="color: #fff;">HomePage</a>
                             <div class="dropdown-content">
@@ -23,7 +25,7 @@
                         <li class="dropdown">
                             <a href="javascript:void(0);" style="color: #FF9999;">Content</a>
                             <div class="dropdown-content">
-                                <a class="drop mt-2" href="/Member"><span style="color: #FF9999;">Member</span></a>
+                                <a class="drop mt-2" href="/Member_T"><span style="color: #FF9999;">Member</span></a>
                                 <a class="drop mt-2" href="/NewsTopic_T"><span style="color: #4b9ce8;">News</span></a>
                                 <a class="drop mt-2" href="/Creator_T"><span style="color: #e8bd4b;">Creator</span></a>
                             </div>

@@ -261,6 +261,30 @@ app.post('/api_news/create-paragraphs-img', (req, res) => {
     });
 });
 
+app.post('/api_profile/create-profile-img', (req, res) => {
+    const file = req.files.img_card_con;
+    
+    if (!file) {
+        res.status(400).json({ error: 'ไม่พบไฟล์ที่อัพโหลด' });
+        return;
+    }
+    
+      if (file.size > 3000 * 1024) {
+        res.status(400).json({ error: 'ขนาดไฟล์ต้องไม่เกิน 3000 KB' });
+        return;
+    }
+    
+    const newPath = path.join(__dirname, '../src/assets/images/Profile', file.name);
+    
+    file.mv(newPath, (error) => {
+        if (error) {
+            res.status(500).json({ error: 'เกิดข้อผิดพลาดในการบันทึกไฟล์' });
+        } else {
+            res.json({ message: 'อัพโหลดไฟล์รูปภาพสำเร็จ' });
+        }
+    });
+});
+
 app.use((err, req, res ,next) => {
     console.error(err.stack);
     res.status(500).send('เกิดข้อผิดพลาด: ' + err.message);
