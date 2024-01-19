@@ -1,29 +1,29 @@
 <template>
     <div class="container">
         <div class="page-content">
-            <div class="cards-container col-6">
-                งานที่ต้องรับผิดชอบ / สิทธิ์ในการเข้าถึง
-            </div>
-            <div v-if="userRole == 'admin'">
-                <div v-if="usertier == 'beginner'" class="cards-container col-12 mt-2">
-                    Operator / Module / skill / Product
+            <div class="row">
+                <div class="cards-container col-3">
+                    งานที่ต้องรับผิดชอบ / สิทธิ์ในการเข้าถึง : 
                 </div>
-                <div v-if="usertier == 'beginner'" class="cards-container col-12 mt-2">
-                    News
-                </div>
-                <div v-if="usertier == 'beginner'" class="cards-container col-12 mt-2">
-                    Creator
-                </div>
-                <div v-if="usertier == 'beginner'" class="cards-container col-12 mt-2">
-                    HomePage / Manul
-                </div>
-                <div v-if="usertier == 'beginner'" class="cards-container col-12 mt-2">
-                    Member / User Management
-                </div>
-            </div>
-            <div v-if="userRole == 'admin'">
-                <div v-if="usertier == 'beginner'" class="cards-container col-12 mt-2">
-                    All
+                <div v-if="userRole == 'admin' || userRole == 'superadmin'" class="col-9">
+                    <div v-if="usertier == 'Resource_Admin'" class="cards-container">
+                        Operator / Module / skill / Product
+                    </div>
+                    <div v-if="usertier == 'Content_Admin'" class="cards-container">
+                        News
+                    </div>
+                    <div v-if="usertier == 'News_Admin' || usertier == 'Content_Admin'" class="cards-container">
+                        Creator
+                    </div>
+                    <div v-if="usertier == 'Manual_Admin' || usertier == 'Content_Admin'" class="cards-container">
+                        HomePage / Manul
+                    </div>
+                    <div v-if="usertier == 'Member_Admin'" class="cards-container">
+                        Member / User Management
+                    </div>
+                    <div v-if="userRole == 'superadmin' || usertier == 'Key_Admin'" class="cards-container">
+                        All
+                    </div>
                 </div>
             </div>
         </div>
@@ -57,9 +57,6 @@ export default {
                     this.userName = response.data.name_member;
                     this.usertier = response.data.tier_member;
                     this.userRole = response.data.role_member;
-                    this.available_member = response.data.available_member;
-                    this.code = response.data.code_member;
-                    this.uploadedAt = response.data.uploadedAt;
                 }
             })
             .catch(error => {

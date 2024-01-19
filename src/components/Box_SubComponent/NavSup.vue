@@ -13,19 +13,20 @@
                     <!-- //class="active" -->
                     <ul class="nav">
                         
-                        <li><router-link to="/Management" style="color: whitesmoke;">Management</router-link></li>
-                        <li><router-link to="/Operator_T" style="color: #e8bd4b;">Operator</router-link></li>
+                        <li><router-link to="/" style="color: whitesmoke;">Home</router-link></li>
+                        <li><router-link to="/Member_T" style="color: #e8bd4b;">Member</router-link></li>
                         <li class="dropdown">
                             <a href="javascript:void(0);" style="color: #FF9999;">Content</a>
                             <div class="dropdown-content">
-                                <a class="drop mt-2" href="/Member_T"><span style="color: #FF9999;">HomePage</span></a>
-                                <a class="drop mt-2" href="/NewsTopic_T"><span style="color: #4b9ce8;">News $ Manual</span></a>
+                                <a class="drop mt-2" href="/HomePage_M"><span style="color: #FF9999;">HomePage</span></a>
+                                <a class="drop mt-2" href="/NewsTopic_T"><span style="color: #4b9ce8;">News/Manual</span></a>
                                 <a class="drop mt-2" href="/Creator_T"><span style="color: #e8bd4b;">Creator</span></a>
                             </div>
                         </li>
                         <li class="dropdown">
-                            <a href="javascript:void(0);" style="color: #4b9ce8;" >Management</a>
+                            <a href="javascript:void(0);" style="color: #4b9ce8;" >Resource</a>
                             <div class="dropdown-content">
+                                <a class="drop mt-2" href="/Operator_T"><span style="color: whitesmoke;">Operator</span></a>
                                 <a class="drop mt-2" href="/Module_T"><span style="color: #e8bd4b;">Module</span></a>
                                 <a class="drop mt-2" href="/Skill_T"><span style="color: #FF9999;">Skill</span></a>
                                 <a class="drop mt-2" href="/Product_T"><span style="color: #4b9ce8;">Product</span></a>
@@ -34,9 +35,8 @@
                         <li class="dropdown">
                             <a href="javascript:void(0);" class="dropbtn"><span style="color:#e8bd4b;">{{ userName }} <span v-if="code != ''">#{{ code }}</span></span> <img :src="getImagePath_Profile(userIMG)" class="card-img-top" alt="..."></a>
                             <div class="dropdown-content">
-                                <a class="drop-last mt-2" href="/Profile">Profile</a>
+                                <a class="drop-last mt-2" href="/Management">Profile</a>
                                 <a class="drop-last mt-2" type="button" @click="logout()">logout</a>
-                                <a v-if = "userRole == 'superadmin'" class="mt-2" href="/">Admin Management</a>
                             </div>
                         </li>
                     </ul>   
@@ -67,6 +67,7 @@
         userid:'',
         userName:'profile',
         userRole:'',
+        usertier:'',
         userIMG:'',
         code:'',
     };

@@ -63,7 +63,7 @@ export default {
     },
     methods: {
       getImagePath(imageFileName) {
-            if (imageFileName==undefined || imageFileName==''){
+            if (imageFileName==undefined || imageFileName=='' || imageFileName == null){
                 return require('@/assets/images/Topic/undefined.jpg');
             }
             return require(`@/assets/images/Topic/${imageFileName}`);

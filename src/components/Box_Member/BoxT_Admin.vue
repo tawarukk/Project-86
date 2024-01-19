@@ -4,15 +4,15 @@
         <div class="col-lg-12">
         <div class="page-content" style="background-color: #1f2122;">
             <div class="cards-container col-6" style="background-color: #27292a;">
-                    <el-breadcrumb separator="/">
+                <el-breadcrumb separator="/">
                         <el-breadcrumb-item :to="{ path: '/Member_T' }">Member [User]</el-breadcrumb-item>
-                        <el-breadcrumb-item v-if="this.userRole=='admin'" :to="{ path: '/Admin_T' }">Member [Admin]</el-breadcrumb-item>
-                        <el-breadcrumb-item v-if="this.userRole=='admin'" :to="{ path: '/' }"></el-breadcrumb-item>
+                        <el-breadcrumb-item v-if="this.userRole=='superadmin' " :to="{ path: '/Admin_T' }">Member [Admin]</el-breadcrumb-item>
+                        <el-breadcrumb-item v-if="this.userRole=='admin' || this.userRole=='superadmin'" :to="{ path: '/' }"></el-breadcrumb-item>
                     </el-breadcrumb>
             </div>
 
             <div style="font-size: 19px; font-weight: bold; display: flex; justify-content: center; align-items: center;"><h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-pk">T</span>able <span class="color-pk">M</span>ember [<span class="color-pk">A</span>dmin] </h1> </div>
-            <div class="addData mb-3 mt-3" type="button" @click="createPage()" style="display: flex; justify-content: center; align-items: center;"> เพิ่มข้อมูล Member [User]</div>
+            <div class="addData mb-3 mt-3" type="button" @click="createPage()" style="display: flex; justify-content: center; align-items: center;"> เพิ่มข้อมูล Member [Admin]</div>
 
             <div class=" mb-3" style="display: flex; justify-content: flex-end;">
                 <input type="text" class="form-control" v-model="searchKeyword" placeholder="ค้นหา Member []" @input="onInputDelete">
@@ -35,6 +35,7 @@
                         </thead>
                         <tbody>
                         <tr v-for="members, index  in Member" :key="members._id">
+                            <template v-if="members.role_member === 'admin' || members.role_member === 'superadmin'">
                             <td>{{ index + 1 }}</td>
                             <td>{{ members.name_member }}</td>
                             <td>{{ members.email_member }} </td>
@@ -51,6 +52,7 @@
                                 ลบข้อมูล
                             </button>
                             </td>
+                        </template>
                         </tr>
                     </tbody>
                 </table>

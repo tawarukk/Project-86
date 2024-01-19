@@ -1,9 +1,6 @@
 <template>
     <div class="container">
         <div class="page-content">
-            <div v-if="this.userRole === '' || this.userRole === 'a'">
-                <router-link to="/Management">Adminpage</router-link>
-            </div>
         <div class="avatar-container row">
         <el-tooltip
         class="box-item"

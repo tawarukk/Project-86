@@ -8,6 +8,12 @@ let commentSchema = new Schema({
     user_id: {
         type: String
     },
+    user_name_comment:{
+        type: String
+    },
+    user_img_comment:{
+        type: String
+    },
     comment: {
         type: String
     },

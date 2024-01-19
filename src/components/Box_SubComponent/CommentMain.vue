@@ -25,6 +25,8 @@ import jwt_decode from 'jwt-decode';
     data() {
       return {
         newComment: '',
+        userIMG:'',
+        userName:''
       };
     },
     methods: {
@@ -37,6 +39,8 @@ import jwt_decode from 'jwt-decode';
             const response = await axios.post('http://localhost:4000/api_comment/create-comment', {
                 post_id: this.$route.params.id,
                 user_id: userid,
+                user_name_comment: this.userName,
+                user_img_comment: this.userIMG,
                 comment: this.newComment,
                 available_con: 1
             });
@@ -54,6 +58,23 @@ import jwt_decode from 'jwt-decode';
         }
         },
         },
+        mounted() {
+    const token = localStorage.getItem('token');
+    if (token) {
+        const decoded = jwt_decode(token);
+        this.userid = decoded.id;
+        axios.get(`http://localhost:4000/api_member/${this.userid}`)
+            .then(response => {
+                if (response.data && typeof response.data === 'object') {
+                    this.userIMG = response.data.img_member;
+                    this.userName = response.data.name_member;
+                }
+            })
+            .catch(error => {
+                console.error('เกิดข้อผิดพลาดในการดึงข้อมูลผู้ใช้:', error);
+            });
+    }
+    }    
   };
 </script>
 

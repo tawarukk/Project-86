@@ -34,17 +34,22 @@
                     <div class="form-group mt-1">
                         <label for="tier_member" style="color: #A0A0A0;">Member tier :</label> <span style="font-size: 15px; color: #666;">(optional)</span>
                         <select class="form-control mt-1" id="tier_member" v-model="MemberData.tier_member" style="background-color: #666; border-color: #27292a;">
-                        <option value="beginner">beginner</option>
-                        <option value="intermediate">intermediate</option>
-                        <option value="Advanced">Advanced</option>
+                            <option value="beginner">beginner</option>
+                            <option value="intermediate">intermediate</option>
+                            <option value="Advanced">Advanced</option>
+                            <option v-if="userRole == 'superadmin'" value="Content_Admin">Content_Admin</option>
+                            <option v-if="userRole == 'superadmin'" value="Creator_Admin">Creator_Admin</option>
+                            <option v-if="userRole == 'superadmin'" value="News_Admin">News_Admin</option>
+                            <option v-if="userRole == 'superadmin'" value="Manual_Admin">Manual_Admin</option>
+                            <option v-if="userRole == 'superadmin'" value="Member_Admin">Member_Admin</option>
                         </select>
                     </div>
-                    <div v-if="userRole=='admin'"  class="form-group mt-1">
+                    <div v-if="userRole=='superadmin'"  class="form-group mt-1">
                         <label for="role_member" style="color: #A0A0A0;">Member Role :</label> <span style="font-size: 15px; color: #666;">(optional)</span>
                         <select class="form-control mt-1" id="role_member" v-model="MemberData.role_member" style="background-color: #666; border-color: #27292a;">
-                        <option value="user">user</option>
-                        <option value="admin">admin</option>
-                        <option value="superadmin">superadmin</option>
+                            <option value="user">user</option>
+                            <option value="admin">admin</option>
+                            <option value="superadmin">superadmin</option>
                         </select>
                     </div>
 
@@ -72,7 +77,8 @@ export default {
     return {
         MemberData: {
         },
-        userRole:''
+        userRole:'',
+        usertier:''
     };
 },
 created() {
@@ -123,6 +129,7 @@ methods: {
             .then(response => {
                 if (response.data && typeof response.data === 'object') {
                     this.userRole = response.data.role_member;
+                    this.usertier = response.data.tier_member;
                 }
             })
             .catch(error => {

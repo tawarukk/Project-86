@@ -6,8 +6,8 @@
             <div class="cards-container col-6" style="background-color: #27292a;">
                     <el-breadcrumb separator="/">
                         <el-breadcrumb-item :to="{ path: '/Member_T' }">Member [User]</el-breadcrumb-item>
-                        <el-breadcrumb-item v-if="this.userRole=='admin'" :to="{ path: '/Admin_T' }">Member [Admin]</el-breadcrumb-item>
-                        <el-breadcrumb-item v-if="this.userRole=='admin'" :to="{ path: '/' }"></el-breadcrumb-item>
+                        <el-breadcrumb-item v-if="this.userRole=='superadmin' " :to="{ path: '/Admin_T' }">Member [Admin]</el-breadcrumb-item>
+                        <el-breadcrumb-item v-if="this.userRole=='admin' || this.userRole=='superadmin'" :to="{ path: '/' }"></el-breadcrumb-item>
                     </el-breadcrumb>
             </div>
 

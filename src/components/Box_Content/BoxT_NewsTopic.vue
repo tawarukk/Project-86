@@ -53,7 +53,7 @@
                             <router-link :to="{name: 'NewsParagraphs_T', params: {id: news._id}}" class="btn button">
                                 จัดการย่อหน้า
                             </router-link>
-                            <button @click.prevent="deleteNewsData(news._id)" class="btn button" style="background-color: #27292a; color: aliceblue;">
+                            <button v-if="news.type != 'manual'" @click.prevent="deleteNewsData(news._id)" class="btn button" style="background-color: #27292a; color: aliceblue;">
                                 ลบข้อมูล
                             </button>
                             </td>

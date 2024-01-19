@@ -3,25 +3,10 @@
         <div class="page-content">
 
             <div class="most-popular mb-3 mt-0">
-                <h4><i class="fa-regular fa-bookmark"></i>  :<span class="color-yt"> Module</span> & <span class="color-pk">Operator </span>: Status Check ( Version 0.0.1 ) </h4> <div class="white-circle modal-lg" type="button" data-bs-toggle="modal" data-bs-target="#RuleModal"><i class="fa-solid fa-question"></i></div>
+                <h4><i class="fa-regular fa-bookmark"></i> :<span class="color-yt"> Module</span> & <span class="color-pk">Operator </span>: Status Check ( Version 0.0.1 ) </h4>
+                <div class="white-circle" @click="openNewsReadPage(usertier)" type="button"><i class="fa-solid fa-question"></i></div>
             </div>
-            <div class="modal fade" id="RuleModal" tabindex="-1" aria-labelledby="RuleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg ">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="RuleModalLabel" style="color: black;">Modal title</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
-                        </div>
-                        <div class="modal-body">
-                            ...
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
 
             <div class="row mb-3 d-flex">
                 <div class="col-sm card-character" @click="resetValues"><img :src="rule" style="border-radius: 10px;" /></div>
@@ -110,6 +95,7 @@ import '../assets/css/templatemo-cyborg-gaming.css';
 import '../assets/css/owl.css';
 import Swal from 'sweetalert2'; 
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 
 
 export default{
@@ -152,6 +138,8 @@ export default{
         ModuleId:null,
         operatorId:null, 
         BoxId: null,
+        usertier: '',
+        userid:'',
 
         Operator_Module_i:null,
         Operator_Module_ii:null,
@@ -261,6 +249,29 @@ export default{
     },
 
     methods: {
+        openNewsReadPage(usertier) {
+            if(usertier=='beginner'){
+                this.$router.push({
+                name: 'NewsRead',
+                params: { id: '65a935927eb2a14757b3e715' } 
+            });
+            }else if(usertier=='intermediate'){
+                this.$router.push({
+                name: 'NewsRead',
+                params: { id: '65a935927eb2a14757b3e715' } 
+            });
+            }else if(usertier=='Advanced'){
+                this.$router.push({
+                name: 'NewsRead',
+                params: { id: '65a935927eb2a14757b3e715' } 
+            });
+            }else{
+                this.$router.push({
+                name: 'NewsRead',
+                params: { id: '65a935927eb2a14757b3e715' } 
+            });
+            }
+        },
     goToSelectOperator(box) {
        // ไปยังหน้า SelectOperator
     this.$router.push({ name: 'Selec_O', params: { box: box } });
@@ -748,6 +759,22 @@ export default{
                 this.hasImage = false; // กำหนดให้ hasImage เป็น false เมื่อไม่มีรูปภาพ
             }
         }
+    },
+    mounted() {
+    const token = localStorage.getItem('token');
+    if (token) {
+        const decoded = jwt_decode(token);
+        this.userid = decoded.id;
+        axios.get(`http://localhost:4000/api_member/${this.userid}`)
+            .then(response => {
+                if (response.data && typeof response.data === 'object') {
+                    this.usertier = response.data.tier_member;
+                }
+            })
+            .catch(error => {
+                console.error('เกิดข้อผิดพลาดในการดึงข้อมูลผู้ใช้:', error);
+            });
+    }
     },
 }
 </script>

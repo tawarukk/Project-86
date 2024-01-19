@@ -18,14 +18,14 @@
         </div>
       </div>
       <div v-if="filteredComments.length === 0">
-        <p>No comments available.</p>
+        
       </div>
       <ul v-else>
 
         <li v-for="(comment, index) in filteredComments" :key="index">
           <div class="comment-container" >
             <div class="row">
-            <div class="user  text-center" style="width: 600px;">{{ comment.user_id }}</div>
+            <div class="user  text-center" style="width: 600px;">{{ comment.user_name_comment }}</div>
             <div class="user  text-center" v-if="comment.user_id == this.userID"> แก้ไข  </div>
             <div class="user  text-center" v-if="comment.user_id == this.userID"> ลบ  </div>
             <div class="user  text-center" v-if="comment.user_id == this.userID"> รายงาน </div>
@@ -35,7 +35,7 @@
                 <el-avatar
                   size="large"
                   shape="square"
-                  src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+                  :src="getImagePath(comment.user_img_comment)"
                 />
               </div>
                 <div class="comment-content">{{ comment.comment }}</div>
@@ -99,6 +99,12 @@ export default {
       .catch(error => {
         console.error('Error fetching comments:', error);
       });
+    },
+    getImagePath(imageFileName) {
+            if (imageFileName==undefined || imageFileName==''){
+                return require('@/assets/images/Profile/undefined.jpg');
+            }
+            return require(`@/assets/images/Profile/${imageFileName}`);
     },
   },
   created() {
