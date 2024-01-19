@@ -23,19 +23,23 @@
   <div class="countdown-box" style="color: aliceblue;">
         {{ countdown }}
   </div>
+
+  <HomePage/>
   
   </template>
   
   <script>
   import axios from 'axios';
   import  NavBar  from '@/components/Box_SubComponent/NavMain';
-  import SelecProfile from '@/components/Box_Selec/SelecProfile.vue'
+  import SelecProfile from '@/components/Box_Selec/SelecProfile.vue';
+  import HomePage from '@/components/Box_Content/BoxM_HomePage.vue'
   
   export default {
     
     components: {
       NavBar,
-      SelecProfile
+      SelecProfile,
+      HomePage
     },
     data() {
       return {

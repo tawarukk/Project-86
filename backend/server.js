@@ -31,7 +31,8 @@ const creatorAPI = require('./routes/creator.route');
 const newsAPI = require('./routes/news.route')
 const commentAPI = require('./routes/comment.route');
 const profileAPI = require('./routes/profile.route');
-const timerAPI = require('./routes/timer.route')
+const timerAPI = require('./routes/timer.route');
+const homepageAPI = require('./routes/homepage.route')
 
 const sessionAPI = require('./routes/session.route');
 
@@ -64,6 +65,7 @@ app.use('/api_news',newsAPI);
 app.use('/api_comment',commentAPI);
 app.use('/api_profile',profileAPI);
 app.use('/api_timer',timerAPI);
+app.use('/api_homepage',homepageAPI);
 
 app.get('/favicon.ico', (req, res) => {
     res.status(204); // สถานะ No Content
