@@ -59,7 +59,7 @@
 
         <div class="page-content">
                     <table class="table table-striped" >
-                    <thead class="border" >
+                    <thead class="" >
                         <tr>
                             <th>Name</th>
                             <th>IMG</th>
@@ -206,6 +206,6 @@ export default {
 
   .table {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 100px;
   }
 </style>
