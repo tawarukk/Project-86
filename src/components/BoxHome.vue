@@ -53,10 +53,10 @@
               <div class="row">
                 <div class="col-lg-7">
                   <div class="header-text">
-                    <h6 style="font-size: 20px;">ติดตามข่าวสารจากทาง Box Of Rhode ได้ที่</h6>
-                    <h4 style="color: #27292a;"> News </h4>
+                    <h6 style="font-size: 20px;">{{NewsData.descriptions}}</h6>
+                    <h4 style=""> {{ NewsData.topic}} </h4>
                     <div class="main-button">
-                      <a href="browse.html">Browse Now</a>
+                      <a :href="NewsData.link_page">Browse Now</a>
                     </div>
                   </div>
                 </div>
@@ -69,10 +69,10 @@
               <div class="row">
                 <div class="col-lg-7">
                   <div class="header-text">
-                    <h6 style="color: #1f2122;">ติดตาม Content Creator หรือแนะนำช่องทางที่น่าสนใจ</h6>
-                    <h4><span>Browse</span>Content Creator</h4>
+                    <h6 style="font-size: 20px;">{{CreatorData.descriptions}}</h6>
+                    <h4 style=""> {{ CreatorData.topic}} </h4>
                     <div class="main-button">
-                      <a href="browse.html">Browse Now</a>
+                      <a :href="CreatorData.link_page">Browse Now</a>
                     </div>
                   </div>
                 </div>
@@ -81,44 +81,50 @@
         </div>
 
         <div class="page-content">
-          <div class="main-banner mb-2" :style="{ 'background-image': `url(${FactoryImage})` }" style=" padding: 40px 30px;">
+          <div class="main-banner mb-2" :style="{ 'background-image': `url(${FactoryImage})` }" style=" padding: 40px 30px; position: relative;">
+            <div class="gradient-overlay"></div>
               <div class="row">
                 <div class="col-lg-7">
                   <div class="header-text">
-                    <h4><span>Browse</span> Factory </h4>
+                    <h4 style=""> {{ FactoryData.topic}} </h4>
                     <div class="main-button">
-                      <a href="browse.html">Browse Now</a>
+                      <a :href="FactoryData.link_page">Browse Now</a>
                     </div>
                   </div>
                 </div>
               </div>
           </div>
 
-          <div class="main-banner mb-2" :style="{ 'background-image': `url(${TradingImage})` }" style=" padding: 40px 30px;">
+          <div class="main-banner mb-2" :style="{ 'background-image': `url(${TradingImage})` }" style=" padding: 40px 30px; position: relative;">
+            <div class="gradient-overlay"></div>
               <div class="row">
                 <div class="col-lg-7">
                   <div class="header-text">
-                    <h4><span>Browse</span> Trading Post</h4>
+                    <h4 style=""> {{ TradingData.topic}} </h4>
                     <div class="main-button">
-                      <a href="browse.html">Browse Now</a>
+                      <a :href="TradingData.link_page">Browse Now</a>
                     </div>
                   </div>
                 </div>
               </div>
           </div>
         
-          <div class="main-banner" :style="{ 'background-image': `url(${ReceptionImage})` }" style=" padding: 40px 30px;">
-              <div class="row">
-                <div class="col-lg-7">
+          <div class="main-banner" :style="{ 'background-image': `url(${ReceptionImage})` }" style="padding: 40px 30px; position: relative;">
+          <div class="gradient-overlay"></div>
+          <div class="row">
+              <div class="col-lg-7">
                   <div class="header-text">
-                    <h4><span>Browse</span> Reception Room</h4>
-                    <div class="main-button">
-                      <a href="browse.html">Browse Now</a>
-                    </div>
+                      <h4 style="color: white;">{{ ReceptionData.topic }}</h4>
+                      <div class="main-button">
+                          <a :href="ReceptionData.link_page" style="color: white;">Browse Now</a>
+                      </div>
                   </div>
-                </div>
               </div>
           </div>
+      </div>
+
+
+
         </div>
 
   </div>
@@ -300,8 +306,8 @@
         try {
           let apiURL = `http://localhost:4000/api_homepage/edit-homepage/65aabd1f2eaf177d1ddb7711`;
           const response = await axios.get(apiURL);
-          this.Factory = response.data;
-          this.Factory_image = this.Factory.homepage_img;
+          this.FactoryData = response.data;
+          this.Factory_image = this.FactoryData.homepage_img;
         } catch (error) {
           console.error('เกิดข้อผิดพลาดในการดึงข้อมูล:', error);
         }
@@ -366,4 +372,15 @@
   border: 3px solid #1f2122;
 }
 
+.gradient-overlay {
+    content: '';
+    position: absolute;
+    border-radius: 20px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent); /* Adjust the gradient as needed */
+    pointer-events: none; /* Ensures that the overlay does not interfere with the content */
+}
 </style>

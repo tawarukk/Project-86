@@ -69,7 +69,7 @@ export default{
         },
     });
     console.log(response.data);
-    Swal.fire("อัพโหลดรูปภาพสำเร็จ");
+    
 
     let apiURL = `http://localhost:4000/api_profile/update-profile/${this.$route.params.id}`;
     await axios.put(apiURL, this.Profile);

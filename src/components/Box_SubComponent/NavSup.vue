@@ -14,7 +14,13 @@
                     <ul class="nav">
                         
                         <li><router-link to="/" style="color: whitesmoke;">Home</router-link></li>
-                        <li><router-link to="/Member_T" style="color: #e8bd4b;">Member</router-link></li>
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" style="color: #e8bd4b;">Member</a> 
+                            <div class="dropdown-content">
+                                <a class="drop mt-2" href="/Member_T"><span style="color: #4b9ce8;">Member</span></a>
+                                <a class="drop mt-2" href="/Profile_T"><span style="color: #FF9999;">Profile</span></a>
+                            </div>
+                        </li>
                         <li class="dropdown">
                             <a href="javascript:void(0);" style="color: #FF9999;">Content</a>
                             <div class="dropdown-content">

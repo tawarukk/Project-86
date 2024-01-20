@@ -292,35 +292,33 @@ export default {
     this.ProductID = this.$route.params.product;
 
     if (this.operatorId != "0") {
-    axios.get('http://localhost:4000/api_operator')
+        axios.get('http://localhost:4000/api_operator')
             .then(response => {
                 this.Operators_sel = response.data;
-                this.compareOperators()
+                this.compareOperators();
+                return axios.get('http://localhost:4000/api_skill');
             })
-            .catch(error => {
-                console.log(error);
-            });
-    
-    axios.get('http://localhost:4000/api_skill')
             .then(response => {
                 this.Skill_sel = response.data;
-                this.compareSkill(this.Oper_Skill)
+                this.compareSkill(this.Oper_Skill);
             })
             .catch(error => {
                 console.log(error);
             });
     } else {
-      axios.get('http://localhost:4000/api_product')
+        axios.get('http://localhost:4000/api_product')
             .then(response => {
                 this.Product_sel = response.data;
-                this.compareProduct()
+                this.compareProduct();
             })
             .catch(error => {
                 console.log(error);
             });
     }
+
     this.loadValuesFromStorage();
-  },
+},
+
 
   data() {
     return {
@@ -675,7 +673,6 @@ export default {
       this.saveValues('Condition_skill_ii_cc', this.Condition_skill_ii_cc = skill.condition_skill);
       this.saveValues('Effect_skill_ii_cc', this.Effect_skill_ii_cc = skill_ii.effect_skill);
     }
-    this.loadValuesFromStorage()
     }
     },
 
@@ -985,8 +982,13 @@ export default {
             });
             }
             
-        },
-    }
+    },
+    },
+  
+  mounted(){
+    
+  }
+  
 }
 
 

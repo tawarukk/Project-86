@@ -26,7 +26,7 @@
                             date-format="YYYY/MM/DD ddd"
                             time-format="A hh:mm:ss"
                         />
-                        <div class="cards-container" @click="SelectedStartTimer" style=" margin-left: 10px;"> 
+                        <div class="cards-container" @click="SelectedStartTimer" type="button" style=" margin-left: 10px; border-radius: 9px;"> 
                             อัพโหลดเวลา 
                         </div>
                         </div>
@@ -47,12 +47,27 @@
                             date-format="YYYY/MM/DD ddd"
                             time-format="A hh:mm:ss"
                         />
-                        <div class="cards-container" @click="SelectedEndTimer" style=" margin-left: 10px;"> 
+                        <div class="cards-container" @click="SelectedEndTimer" type="button" style=" margin-left: 10px; border-radius: 9px;"> 
                             อัพโหลดเวลา 
                         </div>
                         </div>
                     </div>
                 </div>
+
+                <div class="cards-container description" style="background-color: #27292a;">
+                    <div class="demo-datetime-picker">
+                        <div class="row" style="margin-left: 9px;">
+                            <router-link v-if="MainData._id" :to="{ name: 'edit_Homepage', params: { id: MainData._id } }" class="cards-container" style="border-radius: 9px; width: 250px;">
+                                แก้ไขรายละเอียด
+                            </router-link>
+
+                            <router-link v-if="MainData._id" :to="{ name: 'img_Homepage', params: { id: MainData._id } }" class="cards-container" style="border-radius: 9px; width: 250px;">
+                                เปลี่ยนรูปภาพ Main Banner 
+                            </router-link>
+                        </div>
+                    </div>
+                </div>
+
                 </div>
             </div>
         </div>
@@ -77,23 +92,24 @@
                             <td>{{ homepage.descriptions }}</td>
                             <td>{{ homepage.link_page }}</td>
                             <td class="action-column">
-                            <router-link :to="{name: 'edit_NewsTopic', params: {id: homepage._id}}" class="btn button" style="background-color: #FF9999;">
+                            <router-link :to="{name: 'edit_Homepage', params: {id: homepage._id}}" class="btn button">
                                 แก้ไขรายละเอียด
                             </router-link>
-                            <router-link :to="{name: 'NewsParagraphs_T', params: {id: homepage._id}}" class="btn button">
+                            <router-link :to="{name: 'img_Homepage', params: {id: homepage._id}}" class="btn button" style="background-color:#27292a; color: #e8bd4b;">
                                 เปลี่ยนรูปภาพ
                             </router-link>
                             </td>
                     </tr>
                     </tbody>        
                     </table>
-                </div>
         </div>
-    
+
+        </div>
 </template>
 
 <script>
 import axios from 'axios';
+import Swal from 'sweetalert2'; 
 
 export default {
     name: 'BoxNewsRead',
@@ -133,6 +149,7 @@ export default {
             axios.post(`http://localhost:4000/api_timer/update-timer/65a7c77e051c1172a3d9b8c0`, timerData)
             .then(response => {
                 console.log('อัพเดทค่าเริ่มในฐานข้อมูลสำเร็จ', response.data);
+                Swal.fire("อัพโหลดเวลาเริ่มสำเร็จ");
             })
             .catch(error => {
                 console.error('เกิดข้อผิดพลาดในการอัพเดทค่าในฐานข้อมูล', error);
@@ -151,18 +168,19 @@ export default {
             axios.post(`http://localhost:4000/api_timer/update-timer/65aa90c551ba153cd0ab4c1f`, timerData)
             .then(response => {
                 console.log('อัพเดทค่าจบในฐานข้อมูลสำเร็จ', response.data);
+                Swal.fire("อัพโหลดเวลาสิ้นสุดสำเร็จ");
             })
             .catch(error => {
                 console.error('เกิดข้อผิดพลาดในการอัพเดทค่าในฐานข้อมูล', error);
             });
             }
         },
-    GetMainData(){
-        let apiURL = `http://localhost:4000/api_homepage/edit-homepage/65aab6b92eaf177d1ddb770e`;
-        axios.get(apiURL).then((res) => {
-            this.MainData = res.data
-        })
-    }    
+        GetMainData(){
+            let apiURL = `http://localhost:4000/api_homepage/edit-homepage/65aab6b92eaf177d1ddb770e`;
+            axios.get(apiURL).then((res) => {
+                this.MainData = res.data
+            })
+        },
     }
 }
 </script>
@@ -170,6 +188,26 @@ export default {
 
 
 <style scoped>
+
+table {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #ddd;
+        border-radius: 10px; 
+        overflow: hidden; 
+    }
+    
+    /* กำหนดเส้นแบ่งระหว่างเซลล์ */
+    table, th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+    
+    input {
+    background-color: #666;
+    border: #27292a;
+    }
 .topic{
   max-width: 570px; 
   color: aliceblue;
@@ -206,6 +244,6 @@ export default {
 
   .table {
     width: 100%;
-    border-radius: 100px;
+    
   }
 </style>

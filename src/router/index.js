@@ -267,6 +267,21 @@ const routes = [
     name: "img_Profile",
     component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/Profile_IMGView.vue'),
   },
+  {
+    path: '/HomePage_M',
+    name: 'Homepage_M',
+    component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/HomePage_MView.vue')
+  },
+  {
+    path: '/HomePage_E/:id',
+    name: 'edit_Homepage',
+    component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/HomePage_EditView.vue')
+  },
+  {
+    path: "/HomePage_P/:id",
+    name: "img_Homepage",
+    component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/HomePage_IMGView'),
+  },
 ]
 
 

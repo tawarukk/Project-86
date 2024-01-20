@@ -25,11 +25,21 @@
         <li v-for="(comment, index) in filteredComments" :key="index">
           <div class="comment-container" >
             <div class="row">
-            <div class="user  text-center" style="width: 600px;">{{ comment.user_name_comment }}</div>
-            <div class="user  text-center" v-if="comment.user_id == this.userID"> แก้ไข  </div>
-            <div class="user  text-center" v-if="comment.user_id == this.userID"> ลบ  </div>
-            <div class="user  text-center" v-if="comment.user_id == this.userID"> รายงาน </div>
+            <div v-if="comment.user_id == this.userID" class="user  text-center" style="width: 600px; color: #e8bd4b;">{{ comment.user_name_comment }}</div>
+            <div v-else class="user  text-center" style="width: 600px; height: auto;">{{ comment.user_name_comment }}</div>
+            <div @click.prevent="EditComment(comment._id)" class="user btn text-center" v-if="comment.user_id == this.userID"> แก้ไข  </div>
+            <div @click.prevent="deleteComment(comment._id)" class="user btn text-center" v-if="comment.user_id == this.userID || this.userRole=='admin' || this.userRole=='superadmin'"> ลบ  </div>
             </div>
+
+            <el-form :model="commentBeingEdited" v-if="editMode && comment._id === commentBeingEdited._id" @submit.prevent="submitEdit">
+              <el-form-item >
+                <div class="edit-commemt text-center" style="width: 200px;">Comment : </div>
+                <el-input v-model="commentBeingEdited.comment" style="width: 800px"></el-input>
+                <el-button type="warning" native-type="submit" style="margin-left: 10px;">Save</el-button>
+                <el-button @click="cancelEdit">Cancel</el-button>
+              </el-form-item>
+            </el-form>
+            
             <div class="comment-wrapper" >
               <div class="avatar-container">
                 <el-avatar
@@ -52,6 +62,7 @@
 <script>
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
+import Swal from 'sweetalert2'; 
 
 export default {
   data() {
@@ -59,7 +70,10 @@ export default {
       comments: [],
       sortingKey: null, // สำหรับเก็บคีย์ที่ใช้เรียงลำดับ
       sortOrder: 'asc', // 1: น้อยไปมาก, -1: มากไปน้อย
-      userID:''
+      userID:'',
+      userRole:'',
+      editMode: false,
+      commentBeingEdited: {},
     };
   },
   computed: {
@@ -106,6 +120,51 @@ export default {
             }
             return require(`@/assets/images/Profile/${imageFileName}`);
     },
+    deleteComment(id) {
+    let apiURL = `http://localhost:4000/api_comment/delete-comment/${id}`;
+    let indexOfArrayItem = this.comments.findIndex(comment => comment._id === id);
+
+    if (window.confirm("Do you really want to delete?")) {
+        axios.delete(apiURL).then(() => {
+            this.comments.splice(indexOfArrayItem, 1);
+            Swal.fire("Deleted!", "Comment deleted successfully.", "success");
+        }).catch(error => {
+            console.log(error)
+            Swal.fire("Error!", "An error occurred while deleting the Comment.", "error");
+        });
+    } else {
+        Swal.fire("Cancel!", "An error occurred while deleting the Comment.", "cancel");
+    }
+    },
+    EditComment(id) {
+      // Set edit mode to true and find the comment to edit
+      this.editMode = true;
+      this.commentBeingEdited = this.comments.find((comment) => comment._id === id);
+    },
+    submitEdit() {
+      // Send a request to update the comment to your API
+      const apiURL = `http://localhost:4000/api_comment/update-comment/${this.commentBeingEdited._id}`;
+      axios
+        .put(apiURL, { comment: this.commentBeingEdited.comment })
+        .then((response) => {
+          // Handle success
+          console.log('Comment updated successfully:', response.data);
+          Swal.fire('Updated!', 'Comment updated successfully.', 'success');
+          // Reset edit mode and clear the commentBeingEdited
+          this.editMode = false;
+          this.commentBeingEdited = {};
+        })
+        .catch((error) => {
+          // Handle error
+          console.error('Error updating comment:', error);
+          Swal.fire('Error!', 'An error occurred while updating the Comment.', 'error');
+        });
+    },
+    cancelEdit() {
+      this.editMode = false;
+      this.commentBeingEdited = {};
+      this.$router.go(0);
+    },
   },
   created() {
   axios.get('http://localhost:4000/api_comment', {
@@ -130,6 +189,7 @@ export default {
             .then(response => {
                 if (response.data && typeof response.data === 'object') {
                     this.userID = response.data._id;
+                    this.userRole = response.data.role_member;
                 }
             })
             .catch(error => {
@@ -164,6 +224,17 @@ export default {
   color: #1f2122;
 }
 
+.btn:hover {
+  background-color: #e8bd4b;
+  color: #1f2122;
+}
+
+.comment-content {
+  white-space: pre-line; /* ขึ้นบรรทัดใหม่เมื่อพบการขึ้นบรรทัด (\n) */
+  max-height: 100px; /* กำหนดความสูงสูงสุดที่ต้องการ */
+  overflow: hidden; /* ซ่อนข้อความที่เกินขอบเขตของ max-height */
+}
+
 .comment-container {
   background-color: #1f2122;
   color: #fff;
@@ -171,6 +242,7 @@ export default {
   padding: 15px;
   border-radius: 15px;
   margin-bottom: 15px; /* เพิ่มบรรทัดนี้ */
+  height: auto;
 }
 
 .user {
@@ -179,11 +251,19 @@ export default {
   margin-bottom: 10px; /* เพิ่มบรรทัดนี้ */
   margin-left: 10px;
   padding: 5px;
-  color: #e8bd4b;
+  color: whitesmoke;
   font-weight: bold;
   width: 200px;
 }
 
+.edit-commemt{
+  background-color: #27292a;
+  border-radius: 5px;
+  padding: 2px;
+  color: whitesmoke;
+  font-weight: bold;
+  margin-right: 10px;
+}
 
 .comment-wrapper {
   display: flex;

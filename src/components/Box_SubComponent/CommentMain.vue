@@ -8,7 +8,7 @@
             type="textarea"
             placeholder="กรอกความคิดเห็น"
           />
-          <button type="submit" class="btn button">อัพโหลดความคิดเห็น</button>
+          <button  type="submit" class="btn button">อัพโหลดความคิดเห็น</button>
         </form>
       </div>
     </div>
@@ -30,12 +30,22 @@ import jwt_decode from 'jwt-decode';
       };
     },
     methods: {
-        async addComment() {
-            const token = localStorage.getItem('token');
-        if (token) {
-            const decoded = jwt_decode(token);
-            const userid = decoded.id;
-            try {
+      async addComment() {
+    const token = localStorage.getItem('token');
+    if (token) {
+        const decoded = jwt_decode(token);
+        const userid = decoded.id;
+
+        // ตรวจสอบว่า this.newComment ไม่ใช่ค่าว่าง
+        if (!this.newComment) {
+            // แสดงข้อความหรือทำอย่างไรก็ตามที่คุณต้องการเมื่อ this.newComment เป็นค่าว่าง
+            console.error('Comment is empty');
+            // ตัวอย่าง: แสดงข้อความแจ้งเตือน
+            Swal.fire("คำแนะนำ", "กรุณากรอกความคิดเห็นก่อนที่จะส่ง", "warning");
+            return; // หยุดการทำงานของฟังก์ชันหลังจากแจ้งเตือน
+        }
+
+        try {
             const response = await axios.post('http://localhost:4000/api_comment/create-comment', {
                 post_id: this.$route.params.id,
                 user_id: userid,
@@ -46,17 +56,18 @@ import jwt_decode from 'jwt-decode';
             });
 
             console.log('Comment added successfully:', response.data);
+            this.$router.go(0);
             // เคลียร์ค่าหลังจากที่ Comment ถูกเพิ่ม
             this.newComment = '';
-            } catch (error) {
+        } catch (error) {
             console.error('Error adding comment:', error);
             // ทำอย่างไรกับข้อผิดพลาด เช่น แสดงข้อความแจ้งเตือนหรือทำการบันทึกข้อผิดพลาดใน Console
-            }
         }
-        else{
-          Swal.fire("แก! ไม่มีสิทธิ์", "กรุณาล็อกอินก่อน Comment", "warning");
-        }
-        },
+    } else {
+        Swal.fire("แก! ไม่มีสิทธิ์", "กรุณาล็อกอินก่อน Comment", "warning");
+    }
+}
+
         },
         mounted() {
     const token = localStorage.getItem('token');
