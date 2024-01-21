@@ -31,8 +31,6 @@ import '../../assets/css/owl.css';
         created() {
             this.BoxId = this.$route.params.box;
             this.position = this.$route.params.position;
-            // console.log('box found:', this.BoxId)
-            // console.log('position:', this.position)
             axios.get('http://localhost:4000/api_operator')
                 .then(response => {
                     this.operators = response.data;

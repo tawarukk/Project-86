@@ -5,8 +5,14 @@ let simulatorSchema = new Schema({
     product_id: {
         type: String
     },
+    Name_product:{
+        type: String
+    },
     position: {
         type: String
+    },
+    Time_Remaining: {
+        type: Number,
     },
     view_count: {
         type: Number,
@@ -15,6 +21,11 @@ let simulatorSchema = new Schema({
     Rate: {
         type: Number,
         default: 0
+    },
+    Rate_cal: {
+        type: Number,
+        default: 0,
+        set: v => parseFloat(v.toFixed(1)), // Round to 1 decimal place
     },
     Rate_count: {
         type: Number,

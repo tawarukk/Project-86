@@ -1,29 +1,35 @@
 <template>
-    <div class="Reception">
+    <div class="ReceptionRead">
     <nav-bar/>
-    <BoxReception/> 
+    <BoxReceptionRead/> 
+    <CommentAdd/>
+    <CommentList/>
     <FooterMain/>
     </div>
 </template>
     
 <script>
     import  NavBar  from '@/components/Box_SubComponent/NavMain'
-    import  BoxReception  from '@/components/Box_Simulator/BoxSimulator_Share.vue'
+    import  BoxReceptionRead  from '@/components/Box_Simulator/BoxSimulator_Read.vue'
     import  FooterMain from '@/components/Box_SubComponent/FooterMain'
+    import  CommentAdd from '@/components/Box_SubComponent/CommentMain.vue';
+    import  CommentList from '@/components/Box_SubComponent/CommentList.vue';
 
     export default {
-    name: 'TradingView',
+    name: 'ReceptionReadView',
     components: {
     NavBar,
-    BoxReception,
-    FooterMain 
+    BoxReceptionRead,
+    FooterMain ,
+    CommentList,
+    CommentAdd 
     }
     }
 </script>
 
 
 <style scoped>
-.Reception {
+.ReceptionRead {
 width: 100%;
 height: 100vh;
 background: linear-gradient(

@@ -286,6 +286,11 @@ const routes = [
     path: "/Reception_Room",
     name: "Reception_Room",
     component: () => import(/* webpackChunkName: "about" */ '../views/SimulatorView/Simulator_ReceptionView.vue'),
+  },
+  {
+    path: "/Reception_Room_Read/:id",
+    name: "Reception_Room_Read",
+    component: () => import(/* webpackChunkName: "about" */ '../views/SimulatorView/Simulator_ReadView.vue'),
   }
 ]
 

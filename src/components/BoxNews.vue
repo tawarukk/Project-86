@@ -113,8 +113,7 @@ export default {
     },
     data() {
     return {
-        items: [
-        ], // ข้อมูลทั้งหมด
+        items: [], // ข้อมูลทั้งหมด
         itemsPerPage: 4, // จำนวนรายการต่อหน้า
         currentPage: 1, // หน้าปัจจุบัน
         News: [] ,

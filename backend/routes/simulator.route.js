@@ -16,7 +16,7 @@ simulatorRoute.route('/').get((req, res, next) => {
 
 simulatorRoute.route('/create-simulator').post(async (req, res, next) => {
         try {
-            const { operator, comment, product_id, position } = req.body;
+            const { operator, comment, product_id, position , Name_product , Time_Remaining } = req.body;
 
             let modifiedProductId;
 
@@ -48,6 +48,8 @@ simulatorRoute.route('/create-simulator').post(async (req, res, next) => {
                         operator,
                         comment,
                         product_id: modifiedProductId,
+                        Name_product,
+                        Time_Remaining,
                         position,
                     });
                     res.json(newSimulator);
@@ -58,6 +60,62 @@ simulatorRoute.route('/create-simulator').post(async (req, res, next) => {
         }
     });
 
+simulatorRoute.put('/update-view/:id', async (req, res, next) => {
+        try {
+            const updatedsimulator = await simulatorModel.findByIdAndUpdate(
+                req.params.id,
+                {
+                    $inc: { view_count: 1 }, // ใช้ $inc เพื่อเพิ่มค่า view_count ขึ้น 1
+                },
+                { new: true } // Return the updated document
+            );
     
+            res.json(updatedsimulator);
+        } catch (error) {
+            next(error);
+        }
+    });
+
+    simulatorRoute.put('/update-rate/:id', async (req, res, next) => {
+        try {
+            const simulatorId = req.params.id;
+            const rateToAdd = req.body.rate; // รับค่า rate ที่ส่งมาจาก request body
+    
+            // อัปเดตค่า Rate_count และ Rate
+            const updatedSimulator = await simulatorModel.findByIdAndUpdate(
+                simulatorId,
+                {
+                    $inc: { Rate_count: 1, Rate: rateToAdd },
+                },
+                { new: true }
+            );
+
+            const rateCalculated = (updatedSimulator.Rate || 0) / (updatedSimulator.Rate_count || 1);
+
+        // อัปเดตค่า Rate_cal
+        const updatedSimulatorWithRateCal = await simulatorModel.findByIdAndUpdate(
+            simulatorId,
+            {
+                $set: { Rate_cal: rateCalculated },
+            },
+            { new: true }
+        );
+
+        res.json(updatedSimulatorWithRateCal);
+        } catch (error) {
+            next(error);
+        }
+    });
+    
+    
+
+simulatorRoute.get('/edit-simulator/:id', async (req, res, next) => {
+        try {
+            const simulator = await simulatorModel.findById(req.params.id);
+            res.json(simulator);
+        } catch (error) {
+            next(error);
+        }
+    });
 
 module.exports = simulatorRoute;

@@ -132,7 +132,7 @@
                     <div class="col-12 bottom mb-2" style="background-color: #1f2122;">
                       เคลีย ข้อมูล
                     </div>
-                    <div class="col-12 bottom mb-2"  type="button" @click="shareSimulator('slot_1')"  style="background-color: #18ACFE; color: #1f2122;">
+                    <div class="col-12 bottom mb-2"  type="button" @click="CalRemaining_Time,shareSimulator('slot_1')"  style="background-color: #18ACFE; color: #1f2122;">
                       แชร์ Simulator
                     </div>
                     <!-- แถวล่าง -->
@@ -246,7 +246,7 @@
                     <div class="col-12 bottom mb-2" style="background-color: #1f2122;">
                       เคลีย ข้อมูล
                     </div>
-                    <div class="col-12 bottom mb-2"  type="button" @click="shareSimulator('slot_2')"  style="background-color: #18ACFE; color: #1f2122;">
+                    <div class="col-12 bottom mb-2"  type="button" @click="CalRemaining_Time,shareSimulator('slot_2')"  style="background-color: #18ACFE; color: #1f2122;">
                       แชร์ Simulator
                     </div>
                     <!-- แถวล่าง -->
@@ -469,6 +469,7 @@ export default {
         operator_b: this.operator_Trad_i_b,
         operator_c: this.operator_Trad_i_c,
         product: this.product_Name_i,
+        Name_product: this.product_Name_i,
         comment: this.comment_Trad_1,
         position: 'TradingPost',
         user_id: 'user_id'
@@ -481,6 +482,7 @@ export default {
         operator_d: this.operator_Trad_i_d,
         operator_e: this.operator_Trad_i_e,
         operator_f: this.operator_Trad_i_f,
+        Name_product: this.product_Name_i,
         product: this.product_Name_ii,
         comment: this.comment_Trad_2,
         position: 'TradingPost',
@@ -493,11 +495,13 @@ export default {
     if (shartSlot === 'slot_1') {
         const data = {
             operator: [
-                { operator_save_a: this.operator_Trad_i_a,
-                  operator_save_b: this.operator_Trad_i_b, 
-                  operator_save_c: this.operator_Trad_i_c }
+                { operator_save_a: this.Card_Trad_i_a,
+                  operator_save_b: this.Card_Trad_i_b, 
+                  operator_save_c: this.Card_Trad_i_c}
             ],
             product_id: this.product_Name_i,
+            Name_product: this.Card_Trad_product_i+ '.png',
+            Time_Remaining: 0,
             comment: [
                 { comment_member: this.comment_Trad_2, user: this.userName }
             ],
@@ -533,11 +537,13 @@ export default {
     } else if (shartSlot === 'slot_2') {
         const data = {
             operator: [
-                { operator_save_a: this.operator_Trad_i_d,
-                  operator_save_b: this.operator_Trad_i_e, 
-                  operator_save_c: this.operator_Trad_i_f }
+                { operator_save_a: this.Card_Trad_i_d,
+                  operator_save_b: this.Card_Trad_i_e, 
+                  operator_save_c: this.Card_Trad_i_f}
             ],
             product_id: this.product_Name_ii,
+            Name_product: this.Card_Trad_product_ii+ '.png',
+            Time_Remaining: 0,
             comment: [
                 { comment_member: this.comment_Trad_2, user: this.userName }
             ],

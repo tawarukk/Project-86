@@ -140,7 +140,7 @@
                     <div class="col-12 bottom mb-2" style="background-color: #1f2122;">
                       เคลีย ข้อมูล
                     </div>
-                    <div class="col-12 bottom mb-2"  type="button" @click="shareSimulator('slot_1')"  style="background-color: #e8bd4b; color: #1f2122;">
+                    <div class="col-12 bottom mb-2"  type="button" @click="CalRemaining_Time,shareSimulator('slot_1')"  style="background-color: #e8bd4b; color: #1f2122;">
                       แชร์ Simulator
                     </div>
                     <!-- แถวล่าง -->
@@ -260,7 +260,7 @@
                     <div class="col-12 bottom mb-2" style="background-color: #1f2122;">
                       เคลีย ข้อมูล
                     </div>
-                    <div class="col-12 bottom mb-2"  type="button" @click="shareSimulator('slot_2')"  style="background-color: #e8bd4b; color: #1f2122;">
+                    <div class="col-12 bottom mb-2"  type="button" @click="CalRemaining_Time,shareSimulator('slot_2')"  style="background-color: #e8bd4b; color: #1f2122;">
                       แชร์ Simulator
                     </div>
                     <!-- แถวล่าง -->
@@ -331,6 +331,8 @@ export default {
       ProductID: null,
       userName:'',
       userid:'',
+      Name_product_i:null,
+      Name_product_ii:null,
 
       //Save Shear
       SaveShareI_F: {},
@@ -488,11 +490,13 @@ export default {
     if (shartSlot === 'slot_1') {
         const data = {
             operator: [
-                { operator_save_a: this.operator_i_a,
-                  operator_save_b: this.operator_i_b, 
-                  operator_save_c: this.operator_i_c }
+                { operator_save_a: this.Card_i_a,
+                  operator_save_b: this.Card_i_b, 
+                  operator_save_c: this.Card_i_c }
             ],
             product_id: this.product_i,
+            Name_product: this.Card_product_i,
+            Time_Remaining: this.Remaining_Time_a,
             comment: [
                 { comment_member: this.comment_1, user: this.userName }
             ],
@@ -528,11 +532,13 @@ export default {
     } else if (shartSlot === 'slot_2') {
         const data = {
             operator: [
-                { operator_save_a: this.operator_i_aa,
-                  operator_save_b: this.operator_i_bb, 
-                  operator_save_c: this.operator_i_cv }
+                { operator_save_a: this.Card_i_aa,
+                  operator_save_b: this.Card_i_bb, 
+                  operator_save_c: this.Card_i_cc }
             ],
             product_id: this.product_ii,
+            Name_product: this.Card_product_ii,
+            Time_Remaining: this.Remaining_Time_aa,
             comment: [
                 { comment_member: this.comment_2, user: this.userName }
             ],
@@ -643,6 +649,7 @@ export default {
         this.saveValues('Product_type_i', this.Product_type_i = product.type_product);
         this.saveValues('Card_product_i', this.Card_product_i = product.img_portrait_product);
         this.saveValues('product_i', this.product_i = product._id);
+        this.saveValues('Name_product_i',this.Name_product_i = product.name_product);
 
       }
       if (box === 'box_ii') {
@@ -650,7 +657,7 @@ export default {
         this.saveValues('Product_type_ii', this.Product_type_ii = product.type_product);
         this.saveValues('Card_product_ii', this.Card_product_ii = product.img_portrait_product);
         this.saveValues('product_ii', this.product_ii = product._id);
-
+        this.saveValues('Name_product_ii',this.Name_product_ii = product.name_product);
       }
     }
     },
@@ -916,6 +923,11 @@ export default {
     this.product_i = JSON.parse(savedProduct_i);
     const savedProduct_ii = localStorage.getItem('product_ii')
     this.product_ii = JSON.parse(savedProduct_ii);
+
+    const savedName_product_i = localStorage.getItem('Name_product_i')
+    this.Name_product_i = JSON.parse(savedName_product_i);
+    const savedName_product_ii = localStorage.getItem('Name_product_ii')
+    this.Name_product_ii = JSON.parse(savedName_product_ii);
       
     const savedProduct_time_i = localStorage.getItem('Product_time_i')
     this.Product_time_i = JSON.parse(savedProduct_time_i);
