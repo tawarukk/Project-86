@@ -4,11 +4,11 @@
     <div class="col-lg-12">
     <div class="page-content">
         <div class="row">
-              <router-link class="col bg yellow-c mb-3 mt-0" type="button" to="/Simulator/Factory/:operators/:box/:product">Treading Post</router-link>
+              <router-link class="col bg yellow-c mb-3 mt-0" type="button" to="/Simulator/Factory/:operators/:box/:product">Factory Room</router-link>
 
               <router-link class="col bg blue mb-3 mt-0" type="button" to="/Simulator/Trading/:operators/:box/:product">Treading Post[ <i class="fa-solid fa-flag"></i> ]</router-link>
             
-              <router-link class="col bg pink-c mb-3 mt-0" type="button" to="/Simulator/Factory/:operators/:box/:product">Anoter Combo Set</router-link>
+              <router-link class="col bg pink-c mb-3 mt-0" type="button" to="/Reception_Room">Reception Room</router-link>
         </div>
 
         <div class="most-popular mb-3 mt-0">
@@ -126,13 +126,13 @@
                       <textarea v-model="comment_Trad_1" rows="5" @input="checkCharCount(1)" placeholder="ลองแบ่งปันคำแนะนำ สำหรับคนที่จะลองนำไปใช้สิ ^[]^" style="background-color: #27292a; width: 100%; min-height: 200px; font-size: 16px; color: #fff;"></textarea>
                       <p>{{ remainingChars_1 }} / 300</p>
                     </div>
-                    <div type="button" @click="testInput('comment_1')" class="col-12 bottom mb-2" style="background-color: #666; color: #1f2122;">
-                      บันทึก
+                    <div type="button" @click="CalRemaining_Time" class="col-12 bottom mb-2" style="background-color: #666; color: #1f2122;">
+                      คำนวณเวลาการผลิต
                     </div>
                     <div class="col-12 bottom mb-2" style="background-color: #1f2122;">
                       เคลีย ข้อมูล
                     </div>
-                    <div class="col-12 bottom mb-2" style="background-color: #18ACFE; color: #1f2122;">
+                    <div class="col-12 bottom mb-2"  type="button" @click="shareSimulator('slot_1')"  style="background-color: #18ACFE; color: #1f2122;">
                       แชร์ Simulator
                     </div>
                     <!-- แถวล่าง -->
@@ -240,13 +240,13 @@
                       <textarea v-model="comment_Trad_2" rows="5" @input="checkCharCount(1)" placeholder="ลองแบ่งปันคำแนะนำ สำหรับคนที่จะลองนำไปใช้สิ ^[]^" style="background-color: #27292a; width: 100%; min-height: 200px; font-size: 16px; color: #fff;"></textarea>
                       <p>{{ remainingChars_2 }} / 300</p>
                     </div>
-                    <div type="button" @click="testInput('comment_2')" class="col-12 bottom mb-2" style="background-color: #666; color: #1f2122;">
-                      บันทึก
+                    <div type="button" @click="CalRemaining_Time" class="col-12 bottom mb-2" style="background-color: #666; color: #1f2122;">
+                      คำนวณเวลาการผลิต
                     </div>
                     <div class="col-12 bottom mb-2" style="background-color: #1f2122;">
                       เคลีย ข้อมูล
                     </div>
-                    <div class="col-12 bottom mb-2" style="background-color: #18ACFE; color: #1f2122;">
+                    <div class="col-12 bottom mb-2"  type="button" @click="shareSimulator('slot_2')"  style="background-color: #18ACFE; color: #1f2122;">
                       แชร์ Simulator
                     </div>
                     <!-- แถวล่าง -->
@@ -268,6 +268,8 @@ import '../../assets/css/owl.css';
 import '../../assets/css/box.css'; 
 // import Swal from 'sweetalert2'; 
 import axios from 'axios';
+import Swal from 'sweetalert2';
+import jwt_decode from 'jwt-decode';
 
 export default {
   name: 'BoxTrading',
@@ -316,6 +318,8 @@ export default {
       Oper_Skill:null,
       BoxId: null,
       ProductID: null,
+      userName:'',
+      userid:'',
 
       //Save Shear
       SaveShearI_T: {},
@@ -485,6 +489,88 @@ export default {
     }
   },
 
+  shareSimulator(shartSlot) {
+    if (shartSlot === 'slot_1') {
+        const data = {
+            operator: [
+                { operator_save_a: this.operator_Trad_i_a,
+                  operator_save_b: this.operator_Trad_i_b, 
+                  operator_save_c: this.operator_Trad_i_c }
+            ],
+            product_id: this.product_Name_i,
+            comment: [
+                { comment_member: this.comment_Trad_2, user: this.userName }
+            ],
+            position: 'Treading',
+        };
+
+        axios.post('http://localhost:4000/api_simulator/create-simulator', data)
+            .then(response => {
+                console.log('Successfully created simulator:', response.data);
+                const action = response.data.Share_count == 0 ? 'Share' : 'Update';
+                if(action == 'Share'){
+                    Swal.fire({
+                      icon: 'success',
+                      title: `Simulator ถูก Share เรียบร้อย!`,
+                      text: `สามารถตรวจสอบได้ที่ RECEPTION ROOM`,
+                  });
+                }else{
+                  Swal.fire({
+                      icon: 'success',
+                      title: `เป็นรูปแบบที่มีใน<br> RECEPTION ROOM แล้ว`,
+                      text: `Comment ของคุณจะถูกเพิ่มใน Simulator แทน  สามารถตรวจสอบได้ที่ RECEPTION ROOM`,
+                  });
+                }
+            })
+            .catch(error => {
+                console.error('Error creating simulator:', error.response ? error.response.data : error.message);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'An error occurred while processing your request.',
+                });
+            });
+    } else if (shartSlot === 'slot_2') {
+        const data = {
+            operator: [
+                { operator_save_a: this.operator_Trad_i_d,
+                  operator_save_b: this.operator_Trad_i_e, 
+                  operator_save_c: this.operator_Trad_i_f }
+            ],
+            product_id: this.product_Name_ii,
+            comment: [
+                { comment_member: this.comment_Trad_2, user: this.userName }
+            ],
+            position: 'Treading',
+        };
+
+        axios.post('http://localhost:4000/api_simulator/create-simulator', data)
+            .then(response => {
+                const action = response.data.Share_count == 0 ? 'Share' : 'Update';
+                if(action == 'Share'){
+                    Swal.fire({
+                      icon: 'success',
+                      title: `Simulator ถูก Share เรียบร้อย!`,
+                      text: `สามารถตรวจสอบได้ที่ RECEPTION ROOM`,
+                  });
+                }else{
+                  Swal.fire({
+                      icon: 'success',
+                      title: `เป็นรูปแบบที่มีใน<br> RECEPTION ROOM แล้ว`,
+                      text: `Comment ของคุณจะถูกเพิ่มใน Simulator แทน   สามารถตรวจสอบได้ที่ RECEPTION ROOM`,
+                  });
+                }
+            })
+            .catch(error => {
+                console.error('Error creating simulator:', error.response ? error.response.data : error.message);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'An error occurred while processing your request.',
+                });
+            });
+    }
+    },
     goToSelectOperator(position,box) {
        // ไปยังหน้า SelectOperator
     this.$router.push({ name: 'Selec_OS', params: {position: position , box: box } });
@@ -497,13 +583,13 @@ export default {
           this.saveValues('product_Name_i', this.product_Name_i = "Originium");
           this.saveValues('Card_Trad_product_i', this.Card_Trad_product_i = "Originium");
           this.saveValues('product_Type_i', this.product_Type_i = "PreciousMetals");
-          // this.saveValues('product_Trad_i', this.product_Trad_i = '6513151e50115c24bac8258b');
+          this.saveValues('product_Trad_i', this.product_Trad_i = '6513151e50115c24bac8258b');
           }
         else if(Produce == "Originium"){
           this.saveValues('product_Name_i', this.product_Name_i = "PureGold");
           this.saveValues('Card_Trad_product_i', this.Card_Trad_product_i = "PureGold");
           this.saveValues('product_Type_i', this.product_Type_i = "OriginiumMaterials");
-          // this.saveValues('product_Trad_i:',this.product_Trad_i = '6513171350115c24bac82592');
+          this.saveValues('product_Trad_i:',this.product_Trad_i = '6513171350115c24bac82592');
           }
         }
       else if(box == 'box_2'){
@@ -511,13 +597,13 @@ export default {
           this.saveValues('product_Name_ii', this.product_Name_ii = "Originium");
           this.saveValues('Card_Trad_product_ii', this.Card_Trad_product_ii = "Originium");
           this.saveValues('product_Type_ii', this.product_Type_ii = "PreciousMetals");
-          // this.saveValues('product_Trad_ii:', this.product_Trad_ii = '6513151e50115c24bac8258b');
+          this.saveValues('product_Trad_ii:', this.product_Trad_ii = '6513151e50115c24bac8258b');
           }
         else if(Produce == "Originium"){
           this.saveValues('product_Name_ii', this.product_Name_ii = "PureGold");
           this.saveValues('Card_Trad_product_ii', this.Card_Trad_product_ii = "PureGold");
           this.saveValues('product_Type_ii', this.product_Type_ii = "OriginiumMaterials");
-          // this.saveValues('product_Trad_ii:', this.product_Trad_ii = '6513171350115c24bac82592');
+          this.saveValues('product_Trad_ii:', this.product_Trad_ii = '6513171350115c24bac82592');
           }
       }
         this.loadValuesFromStorage();
@@ -574,8 +660,6 @@ export default {
         this.saveValues('Card_Trad_i_f', this.Card_Trad_i_f = operator.img_portrait_oper);
         this.saveValues('operator_Trad_i_f', this.operator_Trad_i_f = operator._id);
       }
-
-      console.log(this.operator_Trad_i_a +  this.operator_Trad_i_b , this.operator_Trad_i_c)
     }
     },
 
@@ -1022,7 +1106,23 @@ export default {
             }
             
         },
+    },
+    mounted() {
+    const token = localStorage.getItem('token');
+    if (token) {
+        const decoded = jwt_decode(token);
+        this.userid = decoded.id;
+        axios.get(`http://localhost:4000/api_member/${this.userid}`)
+            .then(response => {
+                if (response.data && typeof response.data === 'object') {
+                    this.userName = response.data.name_member;
+                }
+            })
+            .catch(error => {
+                console.error('เกิดข้อผิดพลาดในการดึงข้อมูลผู้ใช้:', error);
+            });
     }
+    },
 }
 
 

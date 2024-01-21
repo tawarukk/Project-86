@@ -5,11 +5,11 @@
         <div class="page-content">
 
           <div class="row">
-              <router-link class="col bg yellow mb-3 mt-0" type="button" to="/Simulator/Factory/:operators/:box/:product">Treading Post[ <i class="fa-solid fa-flag"></i> ]</router-link>
+              <router-link class="col bg yellow mb-3 mt-0" type="button" to="/Simulator/Factory/:operators/:box/:product">Factory Room[ <i class="fa-solid fa-flag"></i> ]</router-link>
 
               <router-link class="col bg blue-c mb-3 mt-0" type="button" to="/Simulator/Trading/:operators/:box/:product">Treading Post</router-link>
             
-              <router-link class="col bg pink-c mb-3 mt-0" type="button" to="/Simulator/Factory/:operators/:box/:product">Anoter Combo Set</router-link>
+              <router-link class="col bg pink-c mb-3 mt-0" type="button" to="/Reception_Room">Reception Room</router-link>
           </div>
 
           <div class="most-popular mb-3 mt-0">
@@ -134,13 +134,13 @@
                       <textarea v-model="comment_1" rows="5" @input="checkCharCount(1)" placeholder="ลองแบ่งปันคำแนะนำ สำหรับคนที่จะลองนำไปใช้สิ ^[]^" style="background-color: #27292a; width: 100%; min-height: 200px; font-size: 16px; color: #fff;"></textarea>
                       <p>{{ remainingChars_1 }} / 300</p>
                     </div>
-                    <div type="button" @click="testInput('comment_1')" class="col-12 bottom mb-2" style="background-color: #666; color: #1f2122;">
-                      บันทึก
+                    <div type="button" @click="CalRemaining_Time" class="col-12 bottom mb-2" style="background-color: #666; color: #1f2122;">
+                      คำนวณเวลาการผลิต
                     </div>
                     <div class="col-12 bottom mb-2" style="background-color: #1f2122;">
                       เคลีย ข้อมูล
                     </div>
-                    <div class="col-12 bottom mb-2" style="background-color: #e8bd4b; color: #1f2122;">
+                    <div class="col-12 bottom mb-2"  type="button" @click="shareSimulator('slot_1')"  style="background-color: #e8bd4b; color: #1f2122;">
                       แชร์ Simulator
                     </div>
                     <!-- แถวล่าง -->
@@ -246,7 +246,6 @@
                   </div>
                 </div>
               </span>
-
               <span class="col-3 menu">
                 <!-- ส่วนที่ 3 -->
                 <div class="row">
@@ -255,13 +254,13 @@
                       <textarea v-model="comment_2" rows="5" @input="checkCharCount(2)" placeholder="ลองแบ่งปันคำแนะนำ สำหรับคนที่จะลองนำไปใช้สิ ^[]^" style="background-color: #27292a; width: 100%; min-height: 200px; font-size: 16px; color: #fff;"></textarea>
                       <p>{{ remainingChars_2 }} / 300</p>
                     </div>
-                    <div type="button" @click="testInput('comment_2')" class="col-12 bottom mb-2" style="background-color: #666; color: #1f2122;">
-                      บันทึก
+                    <div type="button" @click="CalRemaining_Time" class="col-12 bottom mb-2" style="background-color: #666; color: #1f2122;">
+                      คำนวณเวลาการผลิต
                     </div>
                     <div class="col-12 bottom mb-2" style="background-color: #1f2122;">
                       เคลีย ข้อมูล
                     </div>
-                    <div class="col-12 bottom mb-2" style="background-color: #e8bd4b; color: #1f2122;">
+                    <div class="col-12 bottom mb-2"  type="button" @click="shareSimulator('slot_2')"  style="background-color: #e8bd4b; color: #1f2122;">
                       แชร์ Simulator
                     </div>
                     <!-- แถวล่าง -->
@@ -281,8 +280,9 @@
 import '../../assets/css/templatemo-cyborg-gaming.css'; 
 import '../../assets/css/owl.css'; 
 import '../../assets/css/box.css'; 
-// import Swal from 'sweetalert2'; 
+import Swal from 'sweetalert2'; 
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 
 export default {
   name: 'BoxSimulator',
@@ -329,19 +329,23 @@ export default {
       Oper_Skill:null,
       BoxId: null,
       ProductID: null,
+      userName:'',
+      userid:'',
 
       //Save Shear
-      SaveShearI_F: {},
+      SaveShareI_F: {},
         operator_i_a: null,
         operator_i_b: null,
         operator_i_c: null,
         product_i: null,
-      SaveShearII_F: {},
-      operator_i_aa: null,
-      operator_i_bb: null,
-      operator_i_cc: null,
+      SaveShareII_F: {},
+        operator_i_aa: null,
+        operator_i_bb: null,
+        operator_i_cc: null,
       product_ii: null,
-
+      operator_save_i:'',
+      operator_save_ii:'',
+      operator_save_iii:'',
       //End Save Shear
       comment_1: '', 
       comment_2: '', 
@@ -480,32 +484,89 @@ export default {
     }
     },
 
-    testInput(comment) {
-      if(comment == 'comment_1'){
-        this.SaveShearI_F = {
-        operator_a: this.operator_i_a,
-        operator_b: this.operator_i_b,
-        operator_c: this.operator_i_c,
-        product: this.product_i,
-        comment: this.comment_1,
-        position: 'Factory',
-        user_id: 'user_id'
+    shareSimulator(shartSlot) {
+    if (shartSlot === 'slot_1') {
+        const data = {
+            operator: [
+                { operator_save_a: this.operator_i_a,
+                  operator_save_b: this.operator_i_b, 
+                  operator_save_c: this.operator_i_c }
+            ],
+            product_id: this.product_i,
+            comment: [
+                { comment_member: this.comment_1, user: this.userName }
+            ],
+            position: 'Factory',
         };
-        console.log(this.SaveShearI_F)
-      }
-      else if(comment == 'comment_2'){
-        this.SaveShearII_F = {
-        operator_a: this.operator_i_aa,
-        operator_b: this.operator_i_ba,
-        operator_c: this.operator_i_cc,
-        product: this.product_ii,
-        comment: this.comment_2,
-        position: 'Factory',
-        user_id: 'user_id'
+
+        axios.post('http://localhost:4000/api_simulator/create-simulator', data)
+            .then(response => {
+                console.log('Successfully created simulator:', response.data);
+                const action = response.data.Share_count == 0 ? 'Share' : 'Update';
+                if(action == 'Share'){
+                    Swal.fire({
+                      icon: 'success',
+                      title: `Simulator ถูก Share เรียบร้อย!`,
+                      text: `สามารถตรวจสอบได้ที่ RECEPTION ROOM`,
+                  });
+                }else{
+                  Swal.fire({
+                      icon: 'success',
+                      title: `เป็นรูปแบบที่มีใน<br> RECEPTION ROOM แล้ว`,
+                      text: `Comment ของคุณจะถูกเพิ่มใน Simulator แทน  สามารถตรวจสอบได้ที่ RECEPTION ROOM`,
+                  });
+                }
+            })
+            .catch(error => {
+                console.error('Error creating simulator:', error.response ? error.response.data : error.message);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'An error occurred while processing your request.',
+                });
+            });
+    } else if (shartSlot === 'slot_2') {
+        const data = {
+            operator: [
+                { operator_save_a: this.operator_i_aa,
+                  operator_save_b: this.operator_i_bb, 
+                  operator_save_c: this.operator_i_cv }
+            ],
+            product_id: this.product_ii,
+            comment: [
+                { comment_member: this.comment_2, user: this.userName }
+            ],
+            position: 'Factory',
         };
-        console.log(this.SaveShearI_F)
-      }
+
+        axios.post('http://localhost:4000/api_simulator/create-simulator', data)
+            .then(response => {
+                const action = response.data.Share_count == 0 ? 'Share' : 'Update';
+                if(action == 'Share'){
+                    Swal.fire({
+                      icon: 'success',
+                      title: `Simulator ถูก Share เรียบร้อย!`,
+                      text: `สามารถตรวจสอบได้ที่ RECEPTION ROOM`,
+                  });
+                }else{
+                  Swal.fire({
+                      icon: 'success',
+                      title: `เป็นรูปแบบที่มีใน<br> RECEPTION ROOM แล้ว`,
+                      text: `Comment ของคุณจะถูกเพิ่มใน Simulator แทน   สามารถตรวจสอบได้ที่ RECEPTION ROOM`,
+                  });
+                }
+            })
+            .catch(error => {
+                console.error('Error creating simulator:', error.response ? error.response.data : error.message);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'An error occurred while processing your request.',
+                });
+            });
+    }
     },
+
 
     goToSelectOperator(position,box) {
        // ไปยังหน้า SelectOperator
@@ -681,6 +742,7 @@ export default {
     },
 
     loadValuesFromStorage() {
+    
     const savedCard_i_a = localStorage.getItem('Card_i_a')
     const savedNameSkill_i_a = localStorage.getItem('NameSkill_i_a')
     const savedMorale_consumed_i_a = localStorage.getItem('Morale_consumed_i_a')
@@ -926,6 +988,7 @@ export default {
     this.Remaining_Time_ii = this.Remaining_Time_sum_ii + this.Productivity_position_ii + 1;
     this.Remaining_Time_aa = this.Product_time_ii / this.Remaining_Time_ii;
     this.Remaining_Time_def_ii = this.Product_time_ii - this.Remaining_Time_aa;
+
     },
 
     resetSimulator(box){
@@ -985,9 +1048,22 @@ export default {
     },
     },
   
-  mounted(){
-    
-  }
+    mounted() {
+    const token = localStorage.getItem('token');
+    if (token) {
+        const decoded = jwt_decode(token);
+        this.userid = decoded.id;
+        axios.get(`http://localhost:4000/api_member/${this.userid}`)
+            .then(response => {
+                if (response.data && typeof response.data === 'object') {
+                    this.userName = response.data.name_member;
+                }
+            })
+            .catch(error => {
+                console.error('เกิดข้อผิดพลาดในการดึงข้อมูลผู้ใช้:', error);
+            });
+    }
+    },
   
 }
 

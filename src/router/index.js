@@ -282,6 +282,11 @@ const routes = [
     name: "img_Homepage",
     component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/HomePage_IMGView'),
   },
+  {
+    path: "/Reception_Room",
+    name: "Reception_Room",
+    component: () => import(/* webpackChunkName: "about" */ '../views/SimulatorView/Simulator_ReceptionView.vue'),
+  }
 ]
 
 
