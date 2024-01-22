@@ -4,9 +4,22 @@
       <div class="page-content" style="background-color: #1f2122; padding: 10px;">
 
         <div class="d-flex">
-                <div class="cards-container col-5" style="background-color: #e8bd4b; color: #1f2122;">
-                  {{ simulatorsTopic.position }} Room : {{ simulatorsTopic.Name_product }}
-                </div>
+                <el-popover
+                    placement="top-start"
+                    title="คัดลอกรหัส Simulator"
+                    :width="350"
+                    trigger="hover"
+                    content="สามารถนำรหัส Simulator ไปบันทึกได้ในหน้า Profile"
+                  >
+                  <template #reference>
+                  <div v-if="simulatorsTopic.position=='Factory'" class="cards-container col-5" style="background-color: #e8bd4b; color: #1f2122;" @click="copyToClipboard(simulatorsTopic._id)" type="button">
+                    {{ simulatorsTopic.position }} Room : {{ simulatorsTopic.Name_product }}
+                  </div>
+                  <div v-else class="cards-container col-5" style="background-color: #4b9ce8; color: #1f2122;" @click="copyToClipboard(simulatorsTopic._id)" type="button">
+                    {{ simulatorsTopic.position }} Room : {{ simulatorsTopic.Name_product }}
+                  </div>
+                  </template>
+                </el-popover>
                 <div class="cards-container col-2">
                   <strong>Position : </strong> {{ simulatorsTopic.position }}
                 </div>
@@ -41,7 +54,8 @@
                   <template v-for="(comment, index) in simulatorsTopic.comment" :key="`comment_${index}`">
                     <div class="box-card" v-if="index === currentCommentIndex">
                       <div class="cards-container status">
-                        <span>{{ comment.user }}</span>
+                        <span>{{ comment.user }}</span> 
+                        <div @click.prevent="deleteComment(comment._id)" class="btn text-center" v-if="comment.user == this.userName || this.userRole=='admin' || this.userRole=='superadmin'" style="color: crimson;"> ลบ  </div>
                       </div>
                       <div class="cards-container status" style="height: 100px;">
                         <span>{{ comment.comment_member }}</span>
@@ -49,10 +63,10 @@
                     </div>
                   </template>
                   <div class="row">
-                    <div class="cards-container status" style="width: 245px; margin-left: 15px;" type="button" @click="showPreviousComment">
+                    <div class="cards-container status text-center" style="width: 245px; margin-left: 15px;" type="button" @click="showPreviousComment">
                         คำแนะนำก่อนหน้า
                     </div>
-                    <div class="cards-container status" style="width: 245px;" type="button" @click="showNextComment">
+                    <div class="cards-container status text-center" style="width: 245px;" type="button" @click="showNextComment">
                         คำแนะนำต่อไป
                     </div>
                   </div>
@@ -81,11 +95,15 @@
 <script>
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import jwt_decode from 'jwt-decode';
+import { ElNotification } from 'element-plus'
 
 export default {
   data() {
       return {
         simulatorsTopic: [], 
+        userName:'',
+        userRole:'',
         
       currentCommentIndex: 1,
       value: 0, // ให้เป็นค่าเริ่มต้นหรือค่าที่ได้มาจาก API
@@ -140,7 +158,41 @@ export default {
       });
       console.error('Error updating rate', error);
     });
-},
+      },
+      deleteComment(id) {
+        let apiURL = `http://localhost:4000/api_simulator/delete-comment/${this.$route.params.id}/${id}`;
+        if (Array.isArray(this.simulatorsTopic.comment)) {
+                let indexOfArrayItem = this.simulatorsTopic.comment.findIndex(i => i._id === id);
+
+                if (window.confirm("Do you really want to delete?")) {
+                    axios.delete(apiURL)
+                        .then(() => {
+                            this.simulatorsTopic.comment.splice(indexOfArrayItem, 1);
+                            Swal.fire("Deleted!", "comment deleted successfully.", "success");
+                        })
+                        .catch(error => {
+                            console.log(error)
+                            Swal.fire("Error!", "An error occurred while deleting the comment.", "error");
+                        });
+                } else {
+                    Swal.fire("Cancel!", "An error occurred while deleting the comment.", "cancel");
+                }
+            } else {
+                console.error("Invalid data structure: this.ParagraphsData.comment is not an array");
+            }
+      },
+      copyToClipboard(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            ElNotification({
+              title: 'รหัสถูกคัดลอกไปยังคลิปบอร์ด',
+              message:  'สามารถนำไปบันทึกที่ Profileได้'
+            })
+        },
 
   },
   computed: {
@@ -148,6 +200,24 @@ export default {
       return this.simulatorsTopic.comment[this.currentCommentIndex] || {};
     },
   },
+
+  mounted() {
+    const token = localStorage.getItem('token');
+    if (token) {
+        const decoded = jwt_decode(token);
+        this.userid = decoded.id;
+        axios.get(`http://localhost:4000/api_member/${this.userid}`)
+            .then(response => {
+                if (response.data && typeof response.data === 'object') {
+                    this.userName = response.data.name_member;
+                    this.userRole = response.data.role_member;
+                }
+            })
+            .catch(error => {
+                console.error('เกิดข้อผิดพลาดในการดึงข้อมูลผู้ใช้:', error);
+            });
+    }
+    },
 }
 </script>
 

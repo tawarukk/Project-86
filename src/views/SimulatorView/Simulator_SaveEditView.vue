@@ -1,41 +1,38 @@
 <template>
-    <div class="Profile">
+    <div class="Edit_Save">
         <NavBar/>
-        <BoxProfile/>
-        <SaveSlot/>
+        <SaveE/>
         <FooterMain/>
-        
     </div>
 </template>
 
 <script>
 import  NavBar  from '@/components/Box_SubComponent/NavMain'
-import  BoxProfile from'@/components/BoxProfile.vue'
+import  SaveE from '@/components/Box_SubComponent/BoxE_SaveSlot.vue'
 import  FooterMain from '@/components/Box_SubComponent/FooterMain'
-import  SaveSlot from '@/components/Box_SubComponent/SaveSlot.vue'
+
 
 export default {
-    name: 'ProfileView',
+    name: 'Edit_SaveView',
         components: {
         NavBar,
-        SaveSlot,
-        BoxProfile,
         FooterMain,
+        SaveE
         }
 }
 </script>
 
 
-<style>
-.Profile {
+<style scoped>
+.Edit_Save {
   width: 100%;
     min-height: 100vh;
     background: linear-gradient(
       to right,
       #E2E3DE 0%,  
       #E2E3DE 40%, 
-      #e8bd4b 40.1%, 
-      #e8bd4b 100% 
+      #FF9999 40.1%, 
+      #FF9999 100% 
     );
   }
 

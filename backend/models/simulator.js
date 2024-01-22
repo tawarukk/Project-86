@@ -33,7 +33,7 @@ let simulatorSchema = new Schema({
     },
     Share_count: {
         type: Number,
-        default: 0
+        default: 1
     },
     operator: [{
         operator_save_a: {
@@ -48,7 +48,8 @@ let simulatorSchema = new Schema({
     }],
     comment: [{
         comment_member: String,
-        user: String
+        user: String,
+        user_id: String
     }],
     uploadedAt: {
         type: Date,

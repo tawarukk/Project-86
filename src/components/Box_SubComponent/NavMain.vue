@@ -29,7 +29,7 @@
                                 <a class="mt-2" href="/Profile">Profile</a>
                                 <a  v-if = "userName != 'profile'" class="mt-2" type="button" @click="logout()">logout</a>
                                 <a  v-if = "userName == 'profile'" class="mt-2" type="button" @click="login()">login</a>
-                                <a  v-if = "userRole != 'user' || userRole != '' || userRole != null"  class="mt-2" type="button" @click="Management()"> Management </a>
+                                <a  v-if = "userRole == 'admin' || userRole == 'superadmin' && userRole != '' && userRole != null"  class="mt-2" type="button" @click="Management()"> Management </a>
                             </div>
                         </li>
                     </ul>   
@@ -59,7 +59,7 @@
     return {
       userid:'',
       userName:'profile',
-      userRole:'',
+      userRole:'user',
       userIMG:'',
       code:'',
     };

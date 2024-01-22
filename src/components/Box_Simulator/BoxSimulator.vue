@@ -498,7 +498,7 @@ export default {
             Name_product: this.Card_product_i,
             Time_Remaining: this.Remaining_Time_a,
             comment: [
-                { comment_member: this.comment_1, user: this.userName }
+                { comment_member: this.comment_1, user: this.userName ,user_id: this.userid}
             ],
             position: 'Factory',
         };
@@ -540,7 +540,7 @@ export default {
             Name_product: this.Card_product_ii,
             Time_Remaining: this.Remaining_Time_aa,
             comment: [
-                { comment_member: this.comment_2, user: this.userName }
+                { comment_member: this.comment_2, user: this.userName ,user_id: this.userid}
             ],
             position: 'Factory',
         };

@@ -503,7 +503,7 @@ export default {
             Name_product: this.Card_Trad_product_i+ '.png',
             Time_Remaining: 0,
             comment: [
-                { comment_member: this.comment_Trad_2, user: this.userName }
+                { comment_member: this.comment_Trad_2, user: this.userName , user_id: this.userid }
             ],
             position: 'Treading',
         };
@@ -545,7 +545,7 @@ export default {
             Name_product: this.Card_Trad_product_ii+ '.png',
             Time_Remaining: 0,
             comment: [
-                { comment_member: this.comment_Trad_2, user: this.userName }
+                { comment_member: this.comment_Trad_2, user: this.userName , user_id: this.userid}
             ],
             position: 'Treading',
         };

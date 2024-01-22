@@ -291,7 +291,22 @@ const routes = [
     path: "/Reception_Room_Read/:id",
     name: "Reception_Room_Read",
     component: () => import(/* webpackChunkName: "about" */ '../views/SimulatorView/Simulator_ReadView.vue'),
-  }
+  },
+  {
+    path: "/ProfileMember_E/:id",
+    name: "edit_Profile",
+    component: () => import(/* webpackChunkName: "about" */ '../views/MemberView/ProfileMember_EditView.vue'),
+  },
+  {
+    path: "/SaveSlot_E/:id",
+    name: "edit_save",
+    component: () => import(/* webpackChunkName: "about" */ '../views/SimulatorView/Simulator_SaveEditView.vue'),
+  },
+  {
+    path: "/SaveSlot_C",
+    name: "create_save",
+    component: () => import(/* webpackChunkName: "about" */ '../views/SimulatorView/Simulator_SaveCreateView.vue'),
+  },
 ]
 
 

@@ -12,9 +12,19 @@
           <li v-for="simulator in filteredItems" :key="simulator._id">
             <div v-if="simulator.position == 'Factory'" class="page-content" style="background-color: #1f2122; padding: 10px;">
               <div class="d-flex">
-                <div class="cards-container col-5" style="background-color: #e8bd4b; color: #1f2122;">
+                <el-popover
+                  placement="top-start"
+                  title="คัดลอกรหัส Simulator"
+                  :width="350"
+                  trigger="hover"
+                  content="สามารถนำรหัส Simulator ไปบันทึกได้ในหน้า Profile"
+                >
+                <template #reference>
+                <div class="cards-container col-5" style="background-color: #e8bd4b; color: #1f2122;" @click="copyToClipboard(simulator._id)" type="button">
                   {{ simulator.position }} Room : {{ simulator.Name_product }}
                 </div>
+                </template>
+              </el-popover>
                 <div class="cards-container col-2">
                   <strong>Position : </strong> {{ simulator.position }}
                 </div>
@@ -63,9 +73,19 @@
             </div>
             <div v-else class="page-content" style="background-color: #1f2122; padding: 10px;">
               <div class="d-flex">
-                <div class="cards-container col-5" style="background-color: #4b9ce8; color: #1f2122;">
+                <el-popover
+                  placement="top-start"
+                  title="คัดลอกรหัส Simulator"
+                  :width="350"
+                  trigger="hover"
+                  content="สามารถนำรหัส Simulator ไปบันทึกได้ในหน้า Profile"
+                >
+                <template #reference>
+                <div class="cards-container col-5" style="background-color: #4b9ce8; color: #1f2122;" @click="copyToClipboard(simulator._id)" type="button">
                   {{ simulator.position }} Room : {{ simulator.Name_product }}
                 </div>
+                </template>
+              </el-popover>
                 <div class="cards-container col-2">
                   <strong>Position : </strong> {{ simulator.position }}
                 </div>
@@ -138,6 +158,8 @@
   <script>
   import axios from 'axios';
   
+  import { ElNotification } from 'element-plus'
+  
   export default {
     data() {
       return {
@@ -184,7 +206,19 @@
                 name: 'Reception_Room_Read',
                 params: { id: Share }
             });
-        }
+      },
+      copyToClipboard(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            ElNotification({
+              title: 'รหัสถูกคัดลอกไปยังคลิปบอร์ด',
+              message:  'สามารถนำไปบันทึกที่ Profileได้'
+            })
+        },
     },
     computed: {
     paginatedItems() {

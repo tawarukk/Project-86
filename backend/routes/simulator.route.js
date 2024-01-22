@@ -118,4 +118,32 @@ simulatorRoute.get('/edit-simulator/:id', async (req, res, next) => {
         }
     });
 
+    simulatorRoute.route('/delete-comment/:simulatorId/:commentId').delete(async (req, res, next) => {
+        try {
+            const simulatorId = req.params.simulatorId;
+            const commentId= req.params.commentId;
+    
+            const simulator = await simulatorModel.findById(simulatorId);
+    
+            if (!simulator) {
+                return res.status(404).json({ message: 'simulator not found' });
+            }
+    
+            const indexToDelete = simulator.comment.findIndex(p => p._id == commentId);
+    
+            if (indexToDelete === -1) {
+                return res.status(404).json({ message: 'comment not found' });
+            }
+    
+            simulator.comment.splice(indexToDelete, 1);
+    
+            // Save the changes
+            await simulator.save();
+    
+            res.status(200).json({ message: 'comment deleted successfully', simulator });
+        } catch (error) {
+            next(error);
+        }
+    });
+
 module.exports = simulatorRoute;
