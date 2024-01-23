@@ -2,6 +2,7 @@
     <div>
       <NavBar/>
     </div>
+    <!-- <CLink/> -->
       <SelecProfile/>
 
   <div class="demo-datetime-picker">
@@ -34,12 +35,14 @@
   import SelecProfile from '@/components/Box_Selec/SelecProfile.vue';
   import HomePage from '@/components/Box_Content/BoxM_HomePage.vue'
   
+  
   export default {
     
     components: {
       NavBar,
       SelecProfile,
-      HomePage
+      HomePage,
+      // CLink
     },
     data() {
       return {

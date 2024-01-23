@@ -3,6 +3,15 @@
     <div class="row">
         <div class="col-lg-12">
         <div class="page-content" style="background-color: #1f2122;">
+
+            <div class="cards-container col-6" style="background-color: #27292a;">
+                <el-breadcrumb separator="/"  class="">
+                        <el-breadcrumb-item :to="{ path: '/NewsTopic_T' }">Table News [Topic]</el-breadcrumb-item>
+                        <el-breadcrumb-item :to="{ path: '/Manual_Link' }">Table Manual [Link]</el-breadcrumb-item>
+                        <el-breadcrumb-item :to="{ path: '/' }"></el-breadcrumb-item>
+                </el-breadcrumb>
+            </div>
+
             <div style="font-size: 19px; font-weight: bold; display: flex; justify-content: center; align-items: center;"><h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-be">T</span>able <span class="color-be">N</span>ews <span class="color-be">&</span> <span class="color-be">M</span>anual [<span class="color-be">T</span>opic] </h1> </div>
             <div class="addData mb-3 mt-3" type="button" @click="newsPage()" style="display: flex; justify-content: center; align-items: center;"> เพิ่มข้อมูล News & Manual[Topic]</div>
 
@@ -56,6 +65,9 @@
                             <button v-if="news.type != 'manual'" @click.prevent="deleteNewsData(news._id)" class="btn button" style="background-color: #27292a; color: aliceblue;">
                                 ลบข้อมูล
                             </button>
+                            <button v-if="news.type == 'manual'" @click.prevent="copyToClipboard(news._id)" class="btn button" style="background-color: #4b9ce8; color: aliceblue;">
+                                คัดลอก ID 
+                            </button>
                             </td>
                             
                         </tr>
@@ -74,6 +86,7 @@
     import '../../assets/css/owl.css'; 
     import axios from'axios';
     import Swal from 'sweetalert2';
+    import { ElNotification } from 'element-plus'
 
     export default {
         name: 'TableNewsBox',
@@ -158,6 +171,18 @@
             }
             return require(`@/assets/images/Topic/${imageFileName}`);
         },
+        copyToClipboard(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            ElNotification({
+              title: 'รหัสถูกคัดลอกไปยังคลิปบอร์ด',
+              message:  'สามารถนำไปบันทึกที่หน้า Manual-Link'
+            })
+        },
         }
     }
     </script>
@@ -203,5 +228,11 @@
     }
     .color-be {
     color: #4b9ce8;
+}
+.cards-container {
+    background-color: #1f2122;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 20px;
 }
 </style>

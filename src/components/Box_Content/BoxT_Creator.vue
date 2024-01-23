@@ -42,10 +42,18 @@
                                 </div>
                             </router-link>
                             </td>
-                            <td v-if="creators.survey_con == 1">available</td>
-                            <td v-else>unavailable</td>
-                            <td v-if="creators.available_con == 1">available</td>
-                            <td v-else>unavailable</td>
+                            <td style="width: 170px;">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" :id="'surveySwitch' + index" v-model="creators.survey_con" @change="updateSurveyStatus(creators._id, creators.survey_con)">
+                                <label class="form-check-label" :for="'surveySwitch' + index">{{ creators.survey_con ? 'ได้รับการตรวจสอบแล้ว' : 'ยังไม่ได้รับการตรวจสอบ' }}</label>
+                            </div>
+                            </td>
+                            <td style="width: 170px;">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" :id="'availableSwitch' + index" v-model="creators.available_con" @change="updateAvailableStatus(creators._id, creators.available_con)">
+                                    <label class="form-check-label" :for="'availableSwitch' + index">{{ creators.available_con ? 'เปิดการใช้งาน' : 'ปิดการใช้งาน' }}</label>
+                                </div>
+                            </td>
                             <td class="action-column">
                             <router-link :to="{name: 'edit_creator', params: {id: creators._id}}" class="btn button">
                                 แก้ไขข้อมูล
@@ -80,15 +88,21 @@
             originalCreator: [],
         }
         },
-        created(){
-        this.fetchCreator();
-        let apiURL='http://localhost:4000/api_creator';
-        axios.get(apiURL).then(res =>{
-            this.Creator = res.data
-        }).catch(error =>{
-            console.log(error)
-        })
-        },
+        created() {
+    this.fetchCreator();
+    let apiURL = 'http://localhost:4000/api_creator';
+    axios.get(apiURL).then(res => {
+        // console.log("ข้อมูลที่ดึงมาจากฐานข้อมูล:", res.data);
+        this.Creator = res.data.map(creator => ({
+            ...creator,
+            survey_con: creator.survey_con === "1", // แปลงเป็น boolean
+            available_con: creator.available_con === "1", // แปลงเป็น boolean
+        }));
+    }).catch(error => {
+        console.log(error);
+    });
+},
+
         
         watch: {
         searchKeyword(newKeyword) {
@@ -162,9 +176,38 @@
             }
             return require(`@/assets/images/Creator/${imageFileName}`);
         },
+        updateSurveyStatus(id, newStatus) {
+        // Convert boolean to 1 or 0
+        const statusToSend = newStatus ? "1" : "0";
+
+        let apiURL = `http://localhost:4000/api_creator/update-survey-status/${id}`;
+        axios.put(apiURL, { survey_con: statusToSend })
+            .then(() => {
+                Swal.fire("Updated!", "Survey status updated successfully.", "success");
+            })
+            .catch(error => {
+                console.log(error);
+                Swal.fire("Error!", "An error occurred while updating the survey status.", "error");
+            });
+        },
+
+        updateAvailableStatus(id, newStatus) {
+        // Convert boolean to 1 or 0
+        const statusToSend = newStatus ? "1" : "0";
+
+        let apiURL = `http://localhost:4000/api_creator/update-available-status/${id}`;
+        axios.put(apiURL, { available_con: statusToSend })
+            .then(() => {
+                Swal.fire("Updated!", "Available status updated successfully.", "success");
+            })
+            .catch(error => {
+                console.log(error);
+                Swal.fire("Error!", "An error occurred while updating the available status.", "error");
+            });
+    },
         }
     }
-    </script>
+</script>
     
     <style scoped>
     /* กำหนดความมันให้กับขอบตาราง */

@@ -5,6 +5,9 @@ let moduleSchama = new Schema({
     name_mod: {
         type: String
     },
+    descriptions:{
+        type: String
+    },
     effect_mod: {
         type: String
     },

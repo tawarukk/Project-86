@@ -105,7 +105,7 @@ export default {
         userName:'',
         userRole:'',
         
-      currentCommentIndex: 1,
+      currentCommentIndex: 0,
       value: 0, // ให้เป็นค่าเริ่มต้นหรือค่าที่ได้มาจาก API
       colors: ['#99A9BF', '#F7BA2A', '#FF9900'],
       };

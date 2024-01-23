@@ -28,6 +28,7 @@
                                 <option value="Announce">Announce</option>
                                 <option value="Information">Information</option>
                                 <option value="Anoter">Anoter</option>
+                                <option value="manual">Manual</option>
                             </select>
                         </div>
 
@@ -38,6 +39,7 @@
                                 <option value="beginner">beginner</option>
                                 <option value="intermediate">intermediate</option>
                                 <option value="Advanced">Advanced</option>
+                                
                             </select>
                         </div>
                         

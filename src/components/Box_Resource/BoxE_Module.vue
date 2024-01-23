@@ -21,6 +21,10 @@
                                     <label for="name_mod" style="color: #A0A0A0;">Name Module :</label> <span style="font-size: 15px; color: #e8bd4b;">(*จำเป็นต้องระบุ)</span>
                                     <input type="text" class="form-control mt-1" id="name_mod" v-model="Module.name_mod" required>
                                 </div>
+                                <div class="form-group">
+                                    <label for="descriptions" style="color: #A0A0A0;">Descriptions :</label> <span style="font-size: 15px; color: #e8bd4b;">(ระบุภายหลังได้)</span>
+                                    <input type="text" class="form-control mt-1" id="descriptions" v-model="Module.descriptions" required>
+                                </div>
                                 <div class="form-group mt-1">
                                     <label for="effect_mod" style="color: #A0A0A0;">Effect Module :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
                                     <input type="text" class="form-control mt-1" id="effect_mod" v-model="Module.effect_mod">
@@ -82,6 +86,7 @@ export default {
         let apiURL = `http://localhost:4000/api_module/edit-module/${this.$route.params.id}`;
         axios.get(apiURL).then((res) => {
             this.Module = res.data
+            this.rule = require(`@/assets/images/Module/${this.Module.img_cart_mod}`);
         })
     },
     methods: {
@@ -99,7 +104,9 @@ export default {
         },
         tablepage(){
     this.$router.push('/Module_T');
-}
+        },
+        
+        
     }
 }
 </script>
@@ -134,7 +141,7 @@ export default {
 }
 
 .cards .cards-front {
-    background-color: #fff;
+    background-color: #27292a;
   color: #1f2122;
 }
 

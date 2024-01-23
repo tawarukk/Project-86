@@ -2,13 +2,23 @@
     <div class="container ">
         <div class="page-content">
                 <div class="row justify-content-center">
-                    <template v-for="operator in operators">
-                        <div class="col-2 mb-3 mt-3" :key="operator._id" v-if="operator.position === position || operator.position == 'all'">
-                        <div class="card-status" type="button">
-                            <img :src="getImagePath(operator.img_portrait_oper)" @click="goToBoxSimulator(operator._id,position,BoxId)" alt="Operator Portrait">
-                        {{ operator.name_oper}}
-                        </div>
-                        </div>
+                    <template v-for="operator in operators" :key="operator._id">
+                        <el-popover
+                            placement="bottom"
+                            :title="operator.name_oper"
+                            :width="250"
+                            trigger="hover"
+                            :content="operator.descriptions"
+                        >
+                        <template #reference>
+                            <div class="col-2 mb-3 mt-3" :key="operator._id" v-if="operator.position === position || operator.position == 'all'">
+                                <div class="card-status" type="button">
+                                    <img :src="getImagePath(operator.img_portrait_oper)" @click="goToBoxSimulator(operator._id,position,BoxId)" alt="Operator Portrait">
+                                {{ operator.name_oper}}
+                                </div>
+                            </div>
+                        </template>
+                        </el-popover>
                     </template>
                 </div>
             

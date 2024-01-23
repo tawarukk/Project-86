@@ -176,12 +176,20 @@ mounted() {
                     this.available_member = response.data.available_member;
                     this.code = response.data.code_member;
                     this.uploadedAt = response.data.uploadedAt;
+                    if(this.userRole==''){
+                        this.$router.push('/');
+                    }
+                }else{
+                        this.$router.push('/');
                 }
             })
             .catch(error => {
                 console.error('เกิดข้อผิดพลาดในการดึงข้อมูลผู้ใช้:', error);
             });
-    }
+    }else{
+            this.$router.push('/');
+            Swal.fire("ใจเย็นๆ", "หน้า Profile สำหรับสมาชิกเท่านั้น", "error");
+        }
     },
 };
 

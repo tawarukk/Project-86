@@ -6,22 +6,22 @@
                     งานที่ต้องรับผิดชอบ / สิทธิ์ในการเข้าถึง : 
                 </div>
                 <div v-if="userRole == 'admin' || userRole == 'superadmin'" class="col-9">
-                    <div v-if="usertier == 'Resource_Admin'" class="cards-container">
+                    <div v-if="userRole == 'admin'" class="cards-container mt-2">
                         Operator / Module / skill / Product
                     </div>
-                    <div v-if="usertier == 'Content_Admin'" class="cards-container">
+                    <div v-if="userRole == 'admin'" class="cards-container mt-2">
                         News
                     </div>
-                    <div v-if="usertier == 'News_Admin' || usertier == 'Content_Admin'" class="cards-container">
+                    <div v-if="userRole == 'admin'" class="cards-container mt-2">
                         Creator
                     </div>
-                    <div v-if="usertier == 'Manual_Admin' || usertier == 'Content_Admin'" class="cards-container">
+                    <div v-if="userRole == 'admin'" class="cards-container mt-2">
                         HomePage / Manul
                     </div>
-                    <div v-if="usertier == 'Member_Admin'" class="cards-container">
+                    <div v-if="userRole == 'admin'" class="cards-container mt-2">
                         Member / User Management
                     </div>
-                    <div v-if="userRole == 'superadmin' || usertier == 'Key_Admin'" class="cards-container">
+                    <div v-if="userRole == 'superadmin'" class="cards-container">
                         All
                     </div>
                 </div>

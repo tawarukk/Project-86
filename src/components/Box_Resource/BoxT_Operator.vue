@@ -19,6 +19,7 @@
                             <th>Name</th>
                             <th>skill_i</th>
                             <th>skill_ii</th>
+                            <th>descriptions</th>
                             <th>Cart</th>
                             <th>Portrait</th>
                             <th>Available_content</th>
@@ -37,6 +38,7 @@
                             </td>
                             <td>{{ operators.skill_i }}</td>
                             <td>{{ operators.skill_ii }}</td>
+                            <td>{{ operators.descriptions }}</td>
                             <td v-if="operators.img_cart_oper == ''">
                             <router-link :to="{name: 'img_operator', params: {id: operators._id , IMG: 'Cart' }}"
                             title="อัพโหลดรูปภาพ">

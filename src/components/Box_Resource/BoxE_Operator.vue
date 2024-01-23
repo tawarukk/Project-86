@@ -26,6 +26,10 @@
                                     <input type="text" class="form-control mt-1" id="tier_oper" v-model="Operator.tier_oper" required>
                                 </div>
                                 <div class="form-group">
+                                    <label for="descriptions" style="color: #A0A0A0;">Descriptions :</label> <span style="font-size: 15px; color: #e8bd4b;">(*จำเป็นต้องระบุ)</span>
+                                    <input type="text" class="form-control mt-1" id="descriptions" v-model="Operator.descriptions" required>
+                                </div>
+                                <div class="form-group">
                                     <label for="skill_i" style="color: #A0A0A0;">Skill i :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
                                     <input type="text" class="form-control mt-1" id="skill_i" v-model="Operator.skill_i">
                                 </div>
@@ -87,6 +91,7 @@ export default {
         let apiURL = `http://localhost:4000/api_operator/edit-operator/${this.$route.params.id}`;
         axios.get(apiURL).then((res) => {
             this.Operator = res.data
+            this.rule = require(`@/assets/images/Card/${this.Operator.img_cart_oper}`);
         })
     },
     methods: {
@@ -103,8 +108,8 @@ export default {
             })
         },
         tablepage(){
-    this.$router.push('/Operator_T');
-}
+        this.$router.push('/Operator_T');
+        },
     }
 }
 </script>

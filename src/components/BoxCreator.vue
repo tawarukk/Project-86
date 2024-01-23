@@ -385,7 +385,7 @@ export default {
     },
     filteredItems() {
             // ตรวจสอบเงื่อนไขแล้วคืนค่า array ที่ถูกกรอง
-            return this.paginatedItems.filter(cardItem => cardItem.available_con !== '1');
+            return this.paginatedItems.filter(cardItem => cardItem.available_con !== '0');
         },
     },
 }

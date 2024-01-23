@@ -4,7 +4,6 @@
         <BoxProfile/>
         <SaveSlot/>
         <FooterMain/>
-        
     </div>
 </template>
 
@@ -13,6 +12,7 @@ import  NavBar  from '@/components/Box_SubComponent/NavMain'
 import  BoxProfile from'@/components/BoxProfile.vue'
 import  FooterMain from '@/components/Box_SubComponent/FooterMain'
 import  SaveSlot from '@/components/Box_SubComponent/SaveSlot.vue'
+
 
 export default {
     name: 'ProfileView',

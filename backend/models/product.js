@@ -5,6 +5,9 @@ let productSchama = new Schema({
     name_product: {
         type: String
     },
+    descriptions:{
+        type: String
+    },
     time_product: {
         type: Number
     },

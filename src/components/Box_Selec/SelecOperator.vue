@@ -4,9 +4,18 @@
             <div>
                 <div class="row mb-3 d-flex">
                     <div class="col-1 mb-3 card-status"  type="button" v-for="operator in operators" :key="operator._id"> 
-                        <img :src="getImagePath(operator.img_portrait_oper)" @click="goToBoxModule(operator._id,BoxId)" alt="Operator Portrait">
-                        {{ operator.name_oper}}
-                        <!-- {{ operator.maxhp_oper }} -->
+                        <el-popover
+                            placement="bottom"
+                            :title="operator.name_oper"
+                            :width="250"
+                            trigger="hover"
+                            :content="operator.descriptions"
+                        >
+                        <template #reference>
+                            <img :src="getImagePath(operator.img_portrait_oper)" @click="goToBoxModule(operator._id,BoxId)" alt="Operator Portrait">
+                            {{ operator.name_oper}}
+                        </template>
+                        </el-popover>
                     </div>    
                 </div>
                 <div class="row justify-content-center">

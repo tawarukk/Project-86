@@ -2,16 +2,16 @@
 <div class="container">
     <div class="page-content">
         <el-carousel :interval="4000" type="card" height="200px">
-            <el-carousel-item v-for="cardItem in News" :key="cardItem">
-            <div class="carousel-item-container">
-                <img :src="getImagePath(cardItem.img_card_news)" class="card-img-top" alt="...">
-            <div class="carousel-item-caption">
-                <h3  type="button" @click="NewsPage(cardItem._id)">{{ cardItem.topic }}</h3>
-                <p>{{ cardItem.description }}</p>
-            </div>
-            </div>
-            </el-carousel-item>
-        </el-carousel>
+    <el-carousel-item v-for="cardItem in filteredNews" :key="cardItem._id">
+      <div class="carousel-item-container">
+        <img :src="getImagePath(cardItem.img_card_news)" class="card-img-top" alt="...">
+        <div class="carousel-item-caption">
+          <h3 type="button" @click="NewsPage(cardItem._id)">{{ cardItem.topic }}</h3>
+          <p>{{ cardItem.description }}</p>
+        </div>
+      </div>
+    </el-carousel-item>
+  </el-carousel>
     </div>
 
     <div class="row">
@@ -219,8 +219,12 @@ export default {
     return filteredItems.slice(startIndex, endIndex);
     },
     filteredItems() {
-            return this.paginatedItems.filter(cardItem => cardItem.available_con !== '1');
+            return this.paginatedItems.filter(cardItem => cardItem.available_con != '0');
     },
+    filteredNews() {
+      // กรองข้อมูล News ที่มี available_con เท่ากับ '1'
+      return this.News.filter(cardItem => cardItem.available_con === '1');
+    }
     },
 }
 </script>

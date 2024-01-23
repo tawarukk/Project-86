@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import NotFound from '@/views/NotFoundView.vue';
 
 const routes = [
   {
@@ -307,6 +308,22 @@ const routes = [
     name: "create_save",
     component: () => import(/* webpackChunkName: "about" */ '../views/SimulatorView/Simulator_SaveCreateView.vue'),
   },
+  {
+    path: "/ManualLink_E/:id",
+    name: "edit_ManualLink",
+    component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/MemberLink_EditView.vue'),
+  },
+  {
+    path: "/ManualLink_C",
+    name: "Crate_ManualLink",
+    component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/MemberLink_CreateView.vue'),
+  },
+  {
+    path: "/Manual_Link",
+    name: "Table_ManualLink",
+    component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/MemberLink_TableView.vue'),
+  },
+  { path: '/:catchAll(.*)', component: NotFound }
 ]
 
 

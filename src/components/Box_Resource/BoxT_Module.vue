@@ -18,6 +18,7 @@
                           <th>No.</th>
                           <th>Name</th>
                           <th>IMG</th>
+                          <th>Descriptions</th>
                           <th>Operator</th>
                           <th>Operator_id</th>
                           <th>Available_content</th>
@@ -33,12 +34,13 @@
                             title="อัพโหลดรูปภาพ">
                                 <span style="color: #FF9999;"> อัพโหลดรูปภาพ </span>
                         </router-link></td>
-                        <td v-else>
+                        <td v-else style="width: 150px;">
                                 <router-link :to="{name: 'img_module', params: {id: modules._id}}" 
                                 title="แก้ไขรูปภาพ">
-                                <span style="color: #e8bd4b;">{{ modules.img_cart_mod }}</span>
+                                <img :src="getImagePath(modules.img_cart_mod)" class="card-img-top" alt="...">
                             </router-link>
                         </td>
+                        <td>{{ modules.descriptions }}</td>
                         <td>{{ modules.operator_mod }}</td>
                         <td v-if="modules.operator_mod_id !== ''">ข้อมูล Oprator ถูกเพิ่มแล้ว</td>
                         <td v-else>{{ modules.operator_mod_id }}</td>
@@ -147,7 +149,13 @@
         } else {
             this.searchModule(this.searchKeyword);
         }
-        }
+        },
+        getImagePath(imageFileName) {
+            if (imageFileName==undefined){
+                // return require('@/assets/images/Module/undefined.png');
+            }
+            return require(`@/assets/images/Module/${imageFileName}`);
+        },
       }
     }
   </script>

@@ -4,7 +4,7 @@
 
             <div class="most-popular mb-3 mt-0">
                 <h4><i class="fa-regular fa-bookmark"></i> :<span class="color-yt"> Module</span> & <span class="color-pk">Operator </span>: Status Check ( Version 0.0.1 ) </h4>
-                <div class="white-circle" @click="openNewsReadPage(usertier)" type="button"><i class="fa-solid fa-question"></i></div>
+                <div class="white-circle" @click="getmanualAPI(usertier,'Factory')" type="button"><i class="fa-solid fa-question"></i></div>
             </div>
             
 
@@ -110,7 +110,7 @@ export default{
         axios.get('http://localhost:4000/api_operator')
             .then(response => {
                 this.Operators_sel = response.data;
-                this.compareOperators(); // เรียกเมธอด compareOperators เพื่อเปรียบเทียบค่า
+                this.compareOperators();
             })
             .catch(error => {
                 console.log(error);
@@ -119,7 +119,7 @@ export default{
         axios.get('http://localhost:4000/api_module')
             .then(response => {
                 this.Module_sel = response.data;
-                this.compareModule(); // เรียกเมธอด compareOperators เพื่อเปรียบเทียบค่า
+                this.compareModule(); 
             })
             .catch(error => {
                 console.log(error);
@@ -140,6 +140,7 @@ export default{
         BoxId: null,
         usertier: '',
         userid:'',
+        ManualData:[],
 
         Operator_Module_i:null,
         Operator_Module_ii:null,
@@ -247,37 +248,25 @@ export default{
         Name_Mod_iv:null,
     };
     },
-
     methods: {
-        openNewsReadPage(usertier) {
-            if(usertier=='beginner'){
-                this.$router.push({
-                name: 'NewsRead',
-                params: { id: '65a935927eb2a14757b3e715' } 
-            });
-            }else if(usertier=='intermediate'){
-                this.$router.push({
-                name: 'NewsRead',
-                params: { id: '65a935927eb2a14757b3e715' } 
-            });
-            }else if(usertier=='Advanced'){
-                this.$router.push({
-                name: 'NewsRead',
-                params: { id: '65a935927eb2a14757b3e715' } 
-            });
-            }else{
-                this.$router.push({
-                name: 'NewsRead',
-                params: { id: '65a935927eb2a14757b3e715' } 
-            });
-            }
+        openNewsReadPage(link) {
+            this.$router.push({ name: 'NewsRead', params: { id: link } });
         },
+        getmanualAPI(usertier, posision) {
+        let apiURL = 'http://localhost:4000/api_manual';
+        axios.get(apiURL).then(res => {
+        this.ManualData = res.data.filter(item => item.m_posision === posision && item.m_tier === usertier);
+        this.openNewsReadPage(this.ManualData[0].manual_id);
+        }).catch(error => {
+        console.log(error);
+        });
+    },
     goToSelectOperator(box) {
        // ไปยังหน้า SelectOperator
     this.$router.push({ name: 'Selec_O', params: { box: box } });
         },
     goToSelectModule(operator_id,mod) {
-    console.log('ส่งไปแล้วน้ะจร๊ะ : '+operator_id);
+    // console.log('ส่งไปแล้วน้ะจร๊ะ : '+operator_id);
        // ไปยังหน้า SelectOperator
     if (operator_id !== null) {
     this.$router.push({ name: 'Selec_M', params: { operators_id: operator_id , mod: mod } });

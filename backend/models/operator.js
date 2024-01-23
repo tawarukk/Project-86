@@ -8,6 +8,9 @@ let operatorSchama = new Schema({
     tier_oper: {
         type: String
     },
+    descriptions:{
+        type: String
+    },
     maxhp_oper: {
         type: Number
     },

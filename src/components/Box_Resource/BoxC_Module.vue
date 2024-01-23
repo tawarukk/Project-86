@@ -22,6 +22,10 @@
                                     <input type="text" class="form-control mt-1" id="name_mod" v-model="ModuleData.name_mod" required>
                                 </div>
                                 <div class="form-group mt-1">
+                                    <label for="descriptions" style="color: #A0A0A0;">Descriptions :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
+                                    <input type="text" class="form-control mt-1" id="descriptions" v-model="ModuleData.descriptions">
+                                </div>
+                                <div class="form-group mt-1">
                                     <label for="effect_mod" style="color: #A0A0A0;">Effect Module :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
                                     <input type="text" class="form-control mt-1" id="effect_mod" v-model="ModuleData.effect_mod">
                                 </div>
@@ -76,6 +80,7 @@ export default {
     return {
         ModuleData: {
         name_mod: '',
+        descriptions:'',
         effect_mod: '',
         maxhp_mod: 0,
         attack_mod: 0,
@@ -122,6 +127,7 @@ methods: {
         this.ModuleData = {
                 name_mod: '',
                 effect_mod: '',
+                descriptions: '',
                 maxhp_mod: 0,
                 attack_mod: 0,
                 defent_mod: 0,

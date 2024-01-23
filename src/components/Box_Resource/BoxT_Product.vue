@@ -19,6 +19,7 @@
                           <th>name_product</th>
                           <th>time_product</th>
                           <th>type_product</th>
+                          <th>descriptions</th>
                           <th>img</th>
                           <th>available_content</th>
                           <th>Action</th>
@@ -30,15 +31,16 @@
                         <td>{{ products.name_product }}</td>
                         <td>{{ products.time_product }}</td>
                         <td>{{ products.type_product }}</td>
+                        <td>{{ products.descriptions }}</td>
                         <td v-if="products.img_portrait_product == ''">
                             <router-link :to="{name: 'img_product', params: {id: products._id}}"
                             title="อัพโหลดรูปภาพ">
                                 <span style="color: #FF9999;"> อัพโหลดรูปภาพ </span>
                         </router-link></td>
-                        <td v-else>
+                        <td v-else style="width: 120px;">
                                 <router-link :to="{name: 'img_product', params: {id: products._id}}" 
                                 title="แก้ไขรูปภาพ">
-                                <span style="color: #e8bd4b;">{{ products.img_portrait_product }}</span>
+                                <img :src="getImagePath(products.img_portrait_product )" class="card-img-top" alt="...">
                             </router-link>
                         </td>
                         <td v-if="products.available_content == 1">available</td>
@@ -145,7 +147,13 @@
         } else {
             this.searchProduct(this.searchKeyword);
         }
-        }
+        },
+        getImagePath(imageFileName) {
+            if (imageFileName==undefined){
+                // return require('@/assets/images/Module/undefined.png');
+            }
+            return require(`@/assets/images/product/${imageFileName}`);
+        },
       }
     }
   </script>

@@ -21,6 +21,10 @@
                                     <label for="name_product" style="color: #A0A0A0;">Name Product :</label> <span style="font-size: 15px; color: #4b9ce8;">(*จำเป็นต้องระบุ)</span>
                                     <input type="text" class="form-control mt-1" id="name_product" v-model="ProductData.name_product" required>
                                 </div>
+                                <div class="form-group">
+                                    <label for="descriptions" style="color: #A0A0A0;">Name Product :</label> <span style="font-size: 15px; color: #666;">(*จำเป็นต้องระบุ)</span>
+                                    <input type="text" class="form-control mt-1" id="descriptions" v-model="ProductData.descriptions" required>
+                                </div>
                                 <div class="form-group mt-1" >
                                     <label for="time_product" style="color: #A0A0A0;">Time Product :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
                                     <input type="number" class="form-control mt-1" id="time_product" v-model="ProductData.time_product" required>
@@ -59,6 +63,7 @@ export default {
     return {
         ProductData: {
         name_product: '',
+        descriptions: '',
         time_product: '',
         img_portrait_product: '',
         type_product: '',
@@ -92,6 +97,7 @@ methods: {
 
         this.ProductData = {
             name_product: '',
+            descriptions: '',
             time_product: '',
             img_portrait_product: '',
             type_product: '',

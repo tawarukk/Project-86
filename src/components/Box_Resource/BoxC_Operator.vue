@@ -26,6 +26,10 @@
                                     <input type="text" class="form-control mt-1" id="tier_oper" v-model="OperatorData.tier_oper" required>
                                 </div>
                                 <div class="form-group">
+                                    <label for="descriptions" style="color: #A0A0A0;">Descriptions :</label> <span style="font-size: 15px; color: #e8bd4b;">(ระบุภายหลังได้)</span>
+                                    <input type="text" class="form-control mt-1" id="descriptions" v-model="OperatorData.descriptions" required>
+                                </div>
+                                <div class="form-group">
                                     <label for="skill_i" style="color: #A0A0A0;">Skill i :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
                                     <input type="text" class="form-control mt-1" id="skill_i" v-model="OperatorData.skill_i">
                                 </div>
@@ -82,6 +86,7 @@ export default {
         OperatorData: {
         name_oper: '',
         tier_oper: '', 
+        descriptions: '',
         skill_i: 'unidentified',
         skill_ii: 'unidentified',
         position: '',
@@ -125,6 +130,7 @@ methods: {
         this.OperatorData = {
             name_oper: '',
             tier_oper: '', 
+            descriptions: '',
             skill_i: 'unidentified',
             skill_ii: 'unidentified',
             position: '',

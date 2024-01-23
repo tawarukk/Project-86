@@ -33,11 +33,11 @@
                             <option value="beginner">beginner</option>
                             <option value="intermediate">intermediate</option>
                             <option value="Advanced">Advanced</option>
-                            <option v-if="userRole == 'superadmin'" value="Content_Admin">Content_Admin</option>
+                            <!-- <option v-if="userRole == 'superadmin'" value="Content_Admin">Content_Admin</option>
                             <option v-if="userRole == 'superadmin'" value="Creator_Admin">Creator_Admin</option>
                             <option v-if="userRole == 'superadmin'" value="News_Admin">News_Admin</option>
                             <option v-if="userRole == 'superadmin'" value="Manual_Admin">Manual_Admin</option>
-                            <option v-if="userRole == 'superadmin'" value="Member_Admin">Member_Admin</option>
+                            <option v-if="userRole == 'superadmin'" value="Member_Admin">Member_Admin</option> -->
                         </select>
                     </div>
                     <button type="submit" class="btn mt-2 mb-2" style="background-color: #FF9999; width: 300px; color: #27292a; ">แก้ไขข้อมูล</button>

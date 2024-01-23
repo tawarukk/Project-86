@@ -3,13 +3,23 @@
       <div class="page-content">
           
             <div class="row justify-content-center">
-                    <template v-for="modules in modules">
-                        <div class="col-4 mb-3 mt-3" :key="modules._id" v-if="modules.operator_mod_id === OperID || modules.name_mod == 'Original'">
-                        <div class="card-status" type="button">
-                            <img :src="getImagePath(modules.img_cart_mod)" @click="goToBoxModule(modules._id, BoxId)" alt="Module Portrait"/>
-                        {{ modules.name_mod }}
-                        </div>
-                        </div>
+                    <template v-for="Modules in modules" :key="Modules._id">
+                        <el-popover
+                            placement="bottom"
+                            :title="Modules.name_mod"
+                            :width="350"
+                            trigger="hover"
+                            :content="Modules.descriptions"
+                        >
+                        <template #reference>
+                            <div class="col-4 mb-3 mt-3" :key="Modules._id" v-if="Modules.operator_mod_id === OperID || Modules.name_mod == 'Original'">
+                            <div class="card-status" type="button">
+                                <img :src="getImagePath(Modules.img_cart_mod)" @click="goToBoxModule(Modules._id, BoxId)" alt="Module Portrait"/>
+                            {{ Modules.name_mod }}
+                            </div>
+                            </div>
+                        </template>
+                        </el-popover>
                     </template>
                 </div>
         

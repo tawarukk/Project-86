@@ -90,4 +90,45 @@ creatorRoute.put('/update-creator/:id', async (req, res, next) => {
     }
 });
 
+creatorRoute.put('/update-survey-status/:id', async (req, res, next) => {
+    try {
+        const existingCreator = await creatorModel.findById(req.params.id);
+
+        if (existingCreator) {
+            // Update survey status based on the request body
+            existingCreator.survey_con = req.body.survey_con;
+
+            // Save the updated creator
+            const updatedCreator = await existingCreator.save();
+
+            res.json(updatedCreator);
+            console.log('Survey status updated successfully');
+        } else {
+            res.status(404).json({ message: 'Creator not found' });
+        }
+    } catch (error) {
+        next(error);
+    }
+});
+
+creatorRoute.put('/update-available-status/:id', async (req, res, next) => {
+    try {
+        const existingCreator = await creatorModel.findById(req.params.id);
+
+        if (existingCreator) {
+            // Update available status based on the request body
+            existingCreator.available_con = req.body.available_con;
+
+            // Save the updated creator
+            const updatedCreator = await existingCreator.save();
+
+            res.json(updatedCreator);
+            console.log('Available status updated successfully');
+        } else {
+            res.status(404).json({ message: 'Creator not found' });
+        }
+    } catch (error) {
+        next(error);
+    }
+});
 module.exports = creatorRoute;

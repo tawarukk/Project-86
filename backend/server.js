@@ -34,7 +34,8 @@ const profileAPI = require('./routes/profile.route');
 const timerAPI = require('./routes/timer.route');
 const homepageAPI = require('./routes/homepage.route');
 const simulatorAPI = require('./routes/simulator.route');
-const saveSlotAPI = require('./routes/saveslot.route')
+const saveSlotAPI = require('./routes/saveslot.route');
+const manualAPI = require('./routes/manual-link.route')
 
 const sessionAPI = require('./routes/session.route');
 
@@ -69,7 +70,9 @@ app.use('/api_profile',profileAPI);
 app.use('/api_timer',timerAPI);
 app.use('/api_homepage',homepageAPI);
 app.use('/api_simulator',simulatorAPI);
-app.use('/api_saveSlot',saveSlotAPI)
+app.use('/api_saveSlot',saveSlotAPI);
+app.use('/api_manual',manualAPI);
+
 
 app.get('/favicon.ico', (req, res) => {
     res.status(204); // สถานะ No Content
