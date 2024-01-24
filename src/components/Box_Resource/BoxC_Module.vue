@@ -31,11 +31,20 @@
                                 </div>
                                 <div class="form-group mt-1">
                                     <label for="operator_mod" style="color: #A0A0A0;">Name Operator :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
-                                    <input type="text" class="form-control mt-1" id="operator_mod" v-model="ModuleData.operator_mod">
+                                    <select class="form-select mt-1" id="operator_mod_id" v-model="ModuleData.operator_mod" style="background-color: #666">
+                                        <template v-for="operators in Operator" :key="operators._id">
+                                            <option :value="operators.name_oper">{{operators.name_oper}}</option>
+                                        </template>
+                                    </select>
                                 </div>
-                                <div class="form-group mt-1">
-                                    <label for="operator_mod_id" style="color: #A0A0A0;">ID Operator :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
-                                    <input type="text" class="form-control mt-1" id="operator_mod_id" v-model="ModuleData.operator_mod_id">
+                                <div class="form-group">
+                                    <label for="operator_mod_id" style="color: #A0A0A0;">ID Operator :</label>
+                                    <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
+                                    <select class="form-select mt-1" id="operator_mod_id" v-model="ModuleData.operator_mod_id" style="background-color: #666">
+                                        <template v-for="operators in Operator" :key="operators._id">
+                                            <option :value="operators._id">{{operators.name_oper}}</option>
+                                        </template>
+                                    </select>
                                 </div>
                                 <div class="mt-2" style="color: #A0A0A0;">Status Module <span style="font-size: 15px; color: #e8bd4b;">(*จำเป็นต้องระบุ)</span> </div> 
                                 <div class="form-group mt-1" style="width: 350px;">
@@ -98,18 +107,13 @@ export default {
         isUsernameUnique: true,
         isEmailUnique: true,
         isFlipped: false,
-        rule: require('@/assets/images/Card/Thermal-EX.png'),
+        Operator:{},
+        rule: require('@/assets/images/Card/Box.png'),
         ruleback: require('@/assets/images/Card/back.png'),
     };
 },
 created() {
-            axios.get('http://localhost:4000/api_member')
-                .then(response => {
-                    this.operators = response.data;
-                })
-                .catch(error => {
-                    console.log(error);
-                });
+    this.GetDataOperaotr();
         },
 methods: {
     flipCard() {
@@ -149,7 +153,15 @@ methods: {
     },
     tablepage(){
     this.$router.push('/Module_T');
-}
+    },
+    GetDataOperaotr(){
+        let apiURL='http://localhost:4000/api_operator';
+        axios.get(apiURL).then(res =>{
+            this.Operator = res.data
+        }).catch(error =>{
+            console.log(error)
+        })
+    }
 },
 };
 </script>

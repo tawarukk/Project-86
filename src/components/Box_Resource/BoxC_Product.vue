@@ -70,7 +70,7 @@ export default {
         available_content: "0",
         },
         isFlipped: false,
-        rule: require('@/assets/images/Card/Thermal-EX.png'),
+        rule: require('@/assets/images/Card/Box.png'),
         ruleback: require('@/assets/images/Card/back.png'),
     };
 },

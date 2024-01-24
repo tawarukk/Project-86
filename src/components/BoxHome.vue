@@ -23,10 +23,10 @@
                     <div class="col-md-6 pe-3 px-0 ">
                       <div class="card" style="border: 3px solid #1f2122;">
                         <div class="card-header" >
-                          <h5 style="color: #000;"> <i class="fa-solid fa-hourglass-start"></i> : กิจกรรมจะ<st> เริ่มต้น </st>ในอีก :</h5>
+                          <h5 style="color:#E2E3DE ;"> <i class="fa-solid fa-hourglass-start" style="color: #e8bd4b;"></i> : กิจกรรมจะ <span style="color: #e8bd4b;"> เริ่มต้น </span> ในอีก :</h5>
                         </div>
                         <div class="card-body" style="background-color: #27292a; border-radius: 10px;">
-                          <h4 style="color: #1f2122;"> {{ countdown }} </h4>
+                          <h4 style="color: #e8bd4b;"> {{ countdown }} </h4>
                         </div>
                         
                       </div>
@@ -35,10 +35,10 @@
                     <div class="col-md-6 pe-0 px-3">
                       <div class="card" style="border: 3px solid #1f2122;">
                         <div class="card-header">
-                          <h5 style="color: #000;">: กิจกรรมจะ<ed> สิ้นสุด </ed>ในอีก : <i class="fa-solid fa-hourglass-start fa-rotate-180"></i></h5>
+                          <h5 style="color: #E2E3DE;">: กิจกรรมจะ<span style="color: #FF9999;"> สิ้นสุด </span>ในอีก : <i class="fa-solid fa-hourglass-start fa-rotate-180" style="color: #FF9999"></i></h5>
                         </div>
                         <div class="card-body" style="background-color: #27292a; border-radius: 10px;">
-                          <h4 style="color: #1f2122;"> {{ countdownEnd }} </h4>
+                          <h4 style="color: #FF9999;"> {{ countdownEnd }} </h4>
                         </div>
                       </div>
                     </div>
@@ -162,7 +162,7 @@
 
 
       countdown: '',
-      countdownEnd:'',
+      countdownEnd:'ยังไม่ถึงเวลาเริ่มกิจกรรม',
         error: '',
         days: 0,
         hours: 0,
@@ -225,7 +225,7 @@
 
             if (timeDiff <= 0) {
               this.error = startDate
-              this.countdown = "Event กำลังดำเนินอยู่"
+              this.countdown = "กิจกรรม กำลังดำเนินอยู่"
               this.startCountdownEnd();
             } else {
               const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
@@ -233,7 +233,7 @@
               const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
               const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
 
-              this.countdown = `${days} วัน ${hours} ชั่วโมง ${minutes} นาที ${seconds} วินาที`;
+              this.countdown = `${days} วัน : ${hours} ชั่วโมง : ${minutes} นาที : ${seconds} วินาที`;
 
                       if (timeDiff > 0) {
                 requestAnimationFrame(() => this.calculateCountdown(timerData));
@@ -262,7 +262,7 @@
               const minutesEnd = Math.floor((timeDiffEnd % (1000 * 60 * 60)) / (1000 * 60));
               const secondsEnd = Math.floor((timeDiffEnd % (1000 * 60)) / 1000);
 
-              this.countdownEnd = `${daysEnd} วัน ${hoursEnd} ชั่วโมง ${minutesEnd} นาที ${secondsEnd} วินาที`;
+              this.countdownEnd = `${daysEnd} วัน : ${hoursEnd} ชั่วโมง : ${minutesEnd} นาที : ${secondsEnd} วินาที`;
 
               if (timeDiffEnd > 0) {
                 requestAnimationFrame(() => this.calculateCountdownEnd(timerEndData));
@@ -344,7 +344,7 @@
       await this.getTradingData();
       await this.getReceptionData();
       this.startCountdown();
-      this.startCountdownEnd();
+      // this.startCountdownEnd();
     }
     
 }

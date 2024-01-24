@@ -53,8 +53,12 @@
                             <td>{{ news.type }}</td>
                             <td>{{ news.topic }}</td>
                             <td>{{ news.description}} </td>
-                            <td v-if="news.available_con == 1">available</td>
-                            <td v-else>unavailable</td>
+                            <td>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" :id="'availableSwitch' + index" v-model="news.available_con" @change="updateAvailableStatus(news._id, news.available_con)">
+                                    <label class="form-check-label" :for="'availableSwitch' + index">{{ news.available_con ? 'แสดง' : 'ซ่อน' }}</label>
+                                </div>
+                            </td>
                             <td class="action-column">
                             <router-link :to="{name: 'edit_NewsTopic', params: {id: news._id}}" class="btn button" style="background-color: #FF9999;">
                                 จัดการหัวข้อ
@@ -101,7 +105,10 @@
         this.fetchNewsData();
         let apiURL='http://localhost:4000/api_news';
         axios.get(apiURL).then(res =>{
-            this.NewsData = res.data
+            this.NewsData = res.data.map(news => ({
+                    ...news,
+                    available_con: news.available_con === "1", // แปลงเป็น boolean
+                }));
         }).catch(error =>{
             console.log(error)
         })
@@ -183,6 +190,22 @@
               message:  'สามารถนำไปบันทึกที่หน้า Manual-Link'
             })
         },
+        updateAvailableStatus(id, newStatus) {
+        const statusToSend = newStatus ? "1" : "0";
+
+        let apiURL = `http://localhost:4000/api_news/update-available-status/${id}`;
+        axios.put(apiURL, { available_con: statusToSend })
+            .then(() => {
+                ElNotification({
+                title: 'สถานะมีการเปลี่ยนแปลง',
+                message:  'สถานะของข้อมูลได้รับการเปลี่ยนแปลงแล้ว'
+            })
+            })
+            .catch(error => {
+                console.log(error);
+                Swal.fire("Error!", "An error occurred while updating the available status.", "error");
+            });
+    },
         }
     }
     </script>

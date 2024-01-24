@@ -9,8 +9,8 @@
                       </el-breadcrumb>
               </div>
               <div class="row">
-                  <template v-for="Profile in profile">
-                      <div class="col-1 mb-2 mt-2" :key="Profile._id" v-if="Profile.available_con === '1'" type="button" style="margin-left: 10px; padding: 10px;">
+                  <template v-for="Profile in profile" :key="Profile._id">
+                      <div class="col-1 mb-2 mt-2" v-if="Profile.available_con === '1'" type="button" style="margin-left: 10px; padding: 10px;">
                         <el-tooltip
                           effect="dark"
                           :content="Profile.descriptions"

@@ -4,7 +4,17 @@
 
             <div class="most-popular mb-3 mt-0">
                 <h4><i class="fa-regular fa-bookmark"></i> :<span class="color-yt"> Module</span> & <span class="color-pk">Operator </span>: Status Check ( Version 0.0.1 ) </h4>
+                <el-popover
+                            placement="bottom"
+                            title="คู่มือแนะนำการใช้งานระบบ Simulator Module "
+                            :width="350"
+                            trigger="hover"
+                            content="สามารถปรับระดับ ตามความเหมาะสมได้ที่ Profile [Tier]"
+                        >
+                        <template #reference>
                 <div class="white-circle" @click="getmanualAPI(usertier,'Factory')" type="button"><i class="fa-solid fa-question"></i></div>
+                    </template>
+                </el-popover>
             </div>
             
 
@@ -254,11 +264,12 @@ export default{
         },
         getmanualAPI(usertier, posision) {
         let apiURL = 'http://localhost:4000/api_manual';
-        axios.get(apiURL).then(res => {
-        this.ManualData = res.data.filter(item => item.m_posision === posision && item.m_tier === usertier);
-        this.openNewsReadPage(this.ManualData[0].manual_id);
+            axios.get(apiURL).then(res => {
+            this.ManualData = res.data.filter(item => item.m_posision === posision && item.m_tier === usertier);
+            this.openNewsReadPage(this.ManualData[0].manual_id);
         }).catch(error => {
-        console.log(error);
+            console.log(error);
+            Swal.fire("ฮั่นแน่", "สมัครสมาชิกก่อนเดี๋ยวให้อ่านคู่มือ", "error");
         });
     },
     goToSelectOperator(box) {

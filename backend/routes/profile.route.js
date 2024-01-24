@@ -68,4 +68,25 @@ profileRoute.route('/delete-profile/:id').delete(async (req, res, next) => {
     }
   });
 
+  profileRoute.put('/update-available-status/:id', async (req, res, next) => {
+    try {
+        const existingProfile = await profileModel.findById(req.params.id);
+
+        if (existingProfile) {
+            // Update available status based on the request body
+            existingProfile.available_con = req.body.available_con;
+
+            // Save the updated creator
+            const updatedProfile = await existingProfile.save();
+
+            res.json(updatedProfile);
+            console.log('Available status updated successfully');
+        } else {
+            res.status(404).json({ message: 'Profile not found' });
+        }
+    } catch (error) {
+        next(error);
+    }
+});
+
 module.exports = profileRoute;

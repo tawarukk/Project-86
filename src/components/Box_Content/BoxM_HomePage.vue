@@ -43,9 +43,8 @@
                             type="datetimerange"
                             start-placeholder="Start date"
                             end-placeholder="End date"
-                            format="YYYY-MM-DD HH:mm:ss"
-                            date-format="YYYY/MM/DD ddd"
-                            time-format="A hh:mm:ss"
+                            format="YYYY-MM-DD"
+                            date-format="YYYY/MM/DD"
                         />
                         <div class="cards-container" @click="SelectedEndTimer" type="button" style=" margin-left: 10px; border-radius: 9px;"> 
                             อัพโหลดเวลา 

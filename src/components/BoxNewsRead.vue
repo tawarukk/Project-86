@@ -59,7 +59,11 @@ export default {
       let apiURL = `http://localhost:4000/api_news/edit-news/${this.$route.params.id}`;
         axios.get(apiURL).then((res) => {
             this.NewsTopic = res.data
-        }) 
+        })
+        .catch(error => {
+            console.log(error)
+            this.$router.push('/Eerro404');
+            });
     },
     methods: {
       getImagePath(imageFileName) {

@@ -39,10 +39,14 @@
                             </td>
                             <td>{{ index + 1 }}</td>
                             <td>{{ profile.descriptions}} </td>
-                            <td v-if="profile.available_con == 1">available</td>
-                            <td v-else>unavailable</td>
+                            <td style="width: 170px;">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" :id="'availableSwitch' + index" v-model="profile.available_con" @change="updateAvailableStatus(profile._id, profile.available_con)">
+                                    <label class="form-check-label" :for="'availableSwitch' + index">{{ profile.available_con ? 'แสดง' : 'ซ่อน' }}</label>
+                                </div>
+                            </td>
                             <td class="action-column">
-                            <router-link :to="{name: 'edit_Profile', params: {id: profile._id}}" class="btn button">
+                            <router-link :to="{name: 'edit_Profile_IMG', params: {id: profile._id}}" class="btn button">
                                 จัดการคำอธิบาย
                             </router-link>
                             <button @click.prevent="deleteProfileData(profile._id)" class="btn button" style="background-color: #27292a; color: aliceblue;">
@@ -65,6 +69,7 @@
     import '../../assets/css/owl.css'; 
     import axios from'axios';
     import Swal from 'sweetalert2';
+    import { ElNotification } from 'element-plus'
 
     export default {
         name: 'TableProfileBox',
@@ -79,7 +84,10 @@
         this.fetchProfileData();
         let apiURL='http://localhost:4000/api_profile';
         axios.get(apiURL).then(res =>{
-            this.ProfileData = res.data
+            this.ProfileData = res.data.map(profile => ({
+                    ...profile,
+                    available_con: profile.available_con === "1", // แปลงเป็น boolean
+                }));
         }).catch(error =>{
             console.log(error)
         })
@@ -148,6 +156,23 @@
             }
             return require(`@/assets/images/Profile/${imageFileName}`);
         },
+
+        updateAvailableStatus(id, newStatus) {
+        const statusToSend = newStatus ? "1" : "0";
+
+        let apiURL = `http://localhost:4000/api_profile/update-available-status/${id}`;
+        axios.put(apiURL, { available_con: statusToSend })
+            .then(() => {
+                ElNotification({
+                title: 'สถานะมีการเปลี่ยนแปลง',
+                message:  'สถานะของข้อมูลได้รับการเปลี่ยนแปลงแล้ว'
+            })
+            })
+            .catch(error => {
+                console.log(error);
+                Swal.fire("Error!", "An error occurred while updating the available status.", "error");
+            });
+    },
         }
     }
     </script>

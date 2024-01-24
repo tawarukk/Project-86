@@ -29,13 +29,21 @@
                                     <label for="descriptions" style="color: #A0A0A0;">Descriptions :</label> <span style="font-size: 15px; color: #e8bd4b;">(ระบุภายหลังได้)</span>
                                     <input type="text" class="form-control mt-1" id="descriptions" v-model="OperatorData.descriptions" required>
                                 </div>
-                                <div class="form-group">
-                                    <label for="skill_i" style="color: #A0A0A0;">Skill i :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
-                                    <input type="text" class="form-control mt-1" id="skill_i" v-model="OperatorData.skill_i">
+                                <div class="form-group mt-1">
+                                    <label for="skill_i" style="color: #A0A0A0;">Skill ii :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
+                                    <select class="form-select mt-1" id="skill_i" v-model="OperatorData.skill_i" style="background-color: #666">
+                                        <template v-for="skills in Skill" :key="skills._id">
+                                            <option :value="skills.name_skill">{{skills.name_skill}}</option>
+                                        </template>
+                                    </select>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group mt-1">
                                     <label for="skill_ii" style="color: #A0A0A0;">Skill ii :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
-                                    <input type="text" class="form-control mt-1" id="skill_ii" v-model="OperatorData.skill_ii">
+                                    <select class="form-select mt-1" id="skill_ii" v-model="OperatorData.skill_ii" style="background-color: #666">
+                                        <template v-for="skills in Skill" :key="skills._id">
+                                            <option :value="skills.name_skill">{{skills.name_skill}}</option>
+                                        </template>
+                                    </select>
                                 </div>
                                 <div class="form-group mt-1">
                                     <label for="position" style="color: #A0A0A0;">Position :</label>
@@ -102,18 +110,13 @@ export default {
         available_content: "0",
         },
         isFlipped: false,
-        rule: require('@/assets/images/Card/Thermal-EX.png'),
+        rule: require('@/assets/images/Card/Box.png'),
         ruleback: require('@/assets/images/Card/back.png'),
+        Skill:{},
     };
 },
 created() {
-            axios.get('http://localhost:4000/api_operator')
-                .then(response => {
-                    this.operators = response.data;
-                })
-                .catch(error => {
-                    console.log(error);
-                });
+        this.GetDataSkill();
         },
 methods: {
     flipCard() {
@@ -153,7 +156,15 @@ methods: {
     },
     tablepage(){
     this.$router.push('/Operator_T');
-}
+    },
+    GetDataSkill(){
+        let apiURL='http://localhost:4000/api_skill';
+        axios.get(apiURL).then(res =>{
+            this.Skill= res.data
+        }).catch(error =>{
+            console.log(error)
+        })
+    }
 },
 };
 </script>

@@ -48,7 +48,7 @@ export default {
             CreatorData: {
                 name_con: '',
                 survey_con: "0",
-                recommend_count: 0,
+                recommend_count: 1,
                 available_con: "0",
                 socialMedia: {
                 Facebook: '',
@@ -106,6 +106,7 @@ export default {
                     name_con: '',
                     survey_con: "0",
                     available_con: "0",
+                    recommend_count: 1,
                     socialMedia: {
                     Facebook: '',
                     F_link: '',

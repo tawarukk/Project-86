@@ -462,37 +462,13 @@ export default {
     }
   },
 
-    testInput(comment) {
-    if(comment == 'comment_1'){
-      this.SaveShearI_T = {
-        operator_a: this.operator_Trad_i_a,
-        operator_b: this.operator_Trad_i_b,
-        operator_c: this.operator_Trad_i_c,
-        product: this.product_Name_i,
-        Name_product: this.product_Name_i,
-        comment: this.comment_Trad_1,
-        position: 'TradingPost',
-        user_id: 'user_id'
-        };
-        console.log(this.SaveShearI_T);
-    }
-    else if(comment == 'comment_2'){
-      alert(this.comment_Trad_2);
-      this.SaveShearII_T = {
-        operator_d: this.operator_Trad_i_d,
-        operator_e: this.operator_Trad_i_e,
-        operator_f: this.operator_Trad_i_f,
-        Name_product: this.product_Name_i,
-        product: this.product_Name_ii,
-        comment: this.comment_Trad_2,
-        position: 'TradingPost',
-        user_id: 'user_id'
-        };
-    }
-  },
 
   shareSimulator(shartSlot) {
     if (shartSlot === 'slot_1') {
+      if(this.userName == '' || this.userName == null){
+        Swal.fire("ฮั่นแน่", "สมัครสมาชิกก่อนเดี๋ยวให้แชร์น้ะ", "error");
+        return 0;
+      }
         const data = {
             operator: [
                 { operator_save_a: this.Card_Trad_i_a,
@@ -503,7 +479,7 @@ export default {
             Name_product: this.Card_Trad_product_i+ '.png',
             Time_Remaining: 0,
             comment: [
-                { comment_member: this.comment_Trad_2, user: this.userName , user_id: this.userid }
+                { comment_member: this.comment_Trad_1, user: this.userName , user_id: this.userid }
             ],
             position: 'Treading',
         };
@@ -535,6 +511,10 @@ export default {
                 });
             });
     } else if (shartSlot === 'slot_2') {
+      if(this.userName == '' || this.userName == null){
+        Swal.fire("ฮั่นแน่", "สมัครสมาชิกก่อนเดี๋ยวให้แชร์น้ะ", "error");
+        return 0;
+      }
         const data = {
             operator: [
                 { operator_save_a: this.Card_Trad_i_d,

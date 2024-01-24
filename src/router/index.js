@@ -260,7 +260,7 @@ const routes = [
   },
   {
     path: '/Profile_E/:id',
-    name: 'edit_Profile',
+    name: 'edit_Profile_IMG',
     component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/Profile_EditView.vue')
   },
   {

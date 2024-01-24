@@ -44,13 +44,13 @@
             </div>
             <div class="avatar-container row mt-1">
                 <router-link :to="{name: 'edit_Profile', params: {id: userid}}" class="col-9">
-                    <div class="cards-container" style="background-color: #e8bd4b; padding: 3px; color: #000;"> 
+                    <div class="cards-container" style="background-color: #e8bd4b; padding: 3px; color: #27292a; border-radius: 5px;"> 
                         แก้ไขโปรไฟล์
                     </div>
                 </router-link>
 
                 <div class="col-3 d-flex justify-content-end">
-                    <div class="cards-container" @click="showConfirmationModal" style="background-color: #FF9999; padding: 3px; width: 300px; color: #000;">
+                    <div class="cards-container" @click="showConfirmationModal" style="background-color: #FF9999; padding: 3px; width: 300px; color: #27292a; border-radius: 5px;" type="button">
                         ลบโปรไฟล์
                     </div>
                 </div>
@@ -101,7 +101,8 @@ data() {
       userIMG:'',
       showModal: false,
       userDel:[],
-      userPassword:''
+      userPassword:'',
+      available_member:''
     };
 },
 methods: {
@@ -176,8 +177,9 @@ mounted() {
                     this.available_member = response.data.available_member;
                     this.code = response.data.code_member;
                     this.uploadedAt = response.data.uploadedAt;
-                    if(this.userRole==''){
-                        this.$router.push('/');
+                    if(this.userRole=='' || this.available_member=='0' ){
+                        this.$router.push('/login');
+                        Swal.fire("ไม่อนุญาติให้ใช้งาน", "คุณไปทำอะไรผิดมารึเปล่า รอไปอีก 99 วันน้ะ", "error");
                     }
                 }else{
                         this.$router.push('/');

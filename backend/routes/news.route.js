@@ -213,5 +213,25 @@ newsRoute.put('/update-view/:id', async (req, res, next) => {
     }
 });
 
+newsRoute.put('/update-available-status/:id', async (req, res, next) => {
+    try {
+        const existingNews = await newsModel.findById(req.params.id);
+
+        if (existingNews) {
+            // Update available status based on the request body
+            existingNews.available_con = req.body.available_con;
+
+            // Save the updated creator
+            const updatedNews = await existingNews.save();
+
+            res.json(updatedNews);
+            console.log('Available status updated successfully');
+        } else {
+            res.status(404).json({ message: 'News not found' });
+        }
+    } catch (error) {
+        next(error);
+    }
+});
 
 module.exports = newsRoute;

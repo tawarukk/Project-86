@@ -51,8 +51,9 @@
     </div>
 
     <div class="row">
-        <template v-for="(cardItem, index) in filteredItems" :key="index">
-            <div v-if="cardItem.type != 'manual'" class="card" style="width: 18rem; padding: 0px; margin: 10px;">
+        <template v-for="(cardItem) in filteredItems" :key="cardItem">
+        <template v-if="cardItem.type != 'manual'">
+            <div class="card" style="width: 18rem; padding: 0px; margin: 10px;">
                 <img :src="getImagePath(cardItem.img_card_news)" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title topic" type="button" @click="NewsPage(cardItem._id)" >{{ cardItem.topic }}</h5>
@@ -66,6 +67,7 @@
                     </div> 
                 </div>
             </div>
+        </template>
         </template>
     </div>
     </div>
@@ -147,7 +149,7 @@ export default {
     this.currentPage = 1;
     },
     getImagePath(imageFileName) {
-            if (imageFileName==undefined){
+            if (imageFileName==undefined || imageFileName==''){
                 return require('@/assets/images/Topic/undefined.jpg');
             }
             return require(`@/assets/images/Topic/${imageFileName}`);
@@ -219,11 +221,10 @@ export default {
     return filteredItems.slice(startIndex, endIndex);
     },
     filteredItems() {
-            return this.paginatedItems.filter(cardItem => cardItem.available_con != '0');
+            return this.paginatedItems.filter(cardItem => cardItem.available_con !== '0');
     },
     filteredNews() {
-      // กรองข้อมูล News ที่มี available_con เท่ากับ '1'
-      return this.News.filter(cardItem => cardItem.available_con === '1');
+      return this.News.filter(cardItem => cardItem.available_con !== '0');
     }
     },
 }

@@ -42,16 +42,16 @@
                                 </div>
                             </router-link>
                             </td>
-                            <td style="width: 170px;">
+                            <td style="width: 140px;">
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" :id="'surveySwitch' + index" v-model="creators.survey_con" @change="updateSurveyStatus(creators._id, creators.survey_con)">
-                                <label class="form-check-label" :for="'surveySwitch' + index">{{ creators.survey_con ? 'ได้รับการตรวจสอบแล้ว' : 'ยังไม่ได้รับการตรวจสอบ' }}</label>
+                                <label class="form-check-label" :for="'surveySwitch' + index">{{ creators.survey_con ? 'อนุมัติ' : 'ยังไม่อนุมัติ' }}</label>
                             </div>
                             </td>
-                            <td style="width: 170px;">
+                            <td style="width: 140px;">
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" type="checkbox" :id="'availableSwitch' + index" v-model="creators.available_con" @change="updateAvailableStatus(creators._id, creators.available_con)">
-                                    <label class="form-check-label" :for="'availableSwitch' + index">{{ creators.available_con ? 'เปิดการใช้งาน' : 'ปิดการใช้งาน' }}</label>
+                                    <label class="form-check-label" :for="'availableSwitch' + index">{{ creators.available_con ? 'แสดง' : 'ซ่อน' }}</label>
                                 </div>
                             </td>
                             <td class="action-column">
@@ -78,6 +78,7 @@
     import '../../assets/css/owl.css'; 
     import axios from'axios';
     import Swal from 'sweetalert2';
+    import { ElNotification } from 'element-plus'
 
     export default {
         name: 'TableCreatorBox',
@@ -89,19 +90,18 @@
         }
         },
         created() {
-    this.fetchCreator();
-    let apiURL = 'http://localhost:4000/api_creator';
-    axios.get(apiURL).then(res => {
-        // console.log("ข้อมูลที่ดึงมาจากฐานข้อมูล:", res.data);
-        this.Creator = res.data.map(creator => ({
-            ...creator,
-            survey_con: creator.survey_con === "1", // แปลงเป็น boolean
-            available_con: creator.available_con === "1", // แปลงเป็น boolean
-        }));
-    }).catch(error => {
-        console.log(error);
-    });
-},
+            this.fetchCreator();
+            let apiURL = 'http://localhost:4000/api_creator';
+            axios.get(apiURL).then(res => {
+                this.Creator = res.data.map(creator => ({
+                    ...creator,
+                    survey_con: creator.survey_con === "1", // แปลงเป็น boolean
+                    available_con: creator.available_con === "1", // แปลงเป็น boolean
+                }));
+            }).catch(error => {
+                console.log(error);
+            });
+        },
 
         
         watch: {
@@ -177,13 +177,15 @@
             return require(`@/assets/images/Creator/${imageFileName}`);
         },
         updateSurveyStatus(id, newStatus) {
-        // Convert boolean to 1 or 0
         const statusToSend = newStatus ? "1" : "0";
 
         let apiURL = `http://localhost:4000/api_creator/update-survey-status/${id}`;
         axios.put(apiURL, { survey_con: statusToSend })
             .then(() => {
-                Swal.fire("Updated!", "Survey status updated successfully.", "success");
+                ElNotification({
+                title: 'สถานะมีการเปลี่ยนแปลง',
+                message:  'สถานะของข้อมูลได้รับการเปลี่ยนแปลงแล้ว'
+            })
             })
             .catch(error => {
                 console.log(error);
@@ -192,13 +194,15 @@
         },
 
         updateAvailableStatus(id, newStatus) {
-        // Convert boolean to 1 or 0
         const statusToSend = newStatus ? "1" : "0";
 
         let apiURL = `http://localhost:4000/api_creator/update-available-status/${id}`;
         axios.put(apiURL, { available_con: statusToSend })
             .then(() => {
-                Swal.fire("Updated!", "Available status updated successfully.", "success");
+                ElNotification({
+                title: 'สถานะมีการเปลี่ยนแปลง',
+                message:  'สถานะของข้อมูลได้รับการเปลี่ยนแปลงแล้ว'
+            })
             })
             .catch(error => {
                 console.log(error);

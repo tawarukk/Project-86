@@ -67,7 +67,7 @@ export default {
         img_member:'',
         tier_member: 'beginner',
         role_member: 'user',
-        available_member: 'available',
+        available_member: '1',
         },
         isUsernameUnique: true,
         isEmailUnique: true,

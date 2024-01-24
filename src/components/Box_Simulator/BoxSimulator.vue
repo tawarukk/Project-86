@@ -488,6 +488,10 @@ export default {
 
     shareSimulator(shartSlot) {
     if (shartSlot === 'slot_1') {
+      if(this.userName == '' || this.userName == null){
+        Swal.fire("ฮั่นแน่", "สมัครสมาชิกก่อนเดี๋ยวให้แชร์น้ะ", "error");
+        return 0;
+      }
         const data = {
             operator: [
                 { operator_save_a: this.Card_i_a,
@@ -530,6 +534,10 @@ export default {
                 });
             });
     } else if (shartSlot === 'slot_2') {
+      if(this.userName == '' || this.userName == null){
+        Swal.fire("ฮั่นแน่", "สมัครสมาชิกก่อนเดี๋ยวให้แชร์น้ะ", "error");
+        return 0;
+      }
         const data = {
             operator: [
                 { operator_save_a: this.Card_i_aa,
