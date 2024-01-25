@@ -12,7 +12,7 @@
                             :content="Modules.descriptions"
                         >
                         <template #reference>
-                            <div class="col-4 mb-3 mt-3" :key="Modules._id" v-if="Modules.operator_mod_id === OperID || Modules.name_mod == 'Original'">
+                            <div class="col-4 mb-3 mt-3" :key="Modules._id" v-if="Modules.available_content=='1' && Modules.operator_mod_id === OperID || Modules.name_mod == 'Original'">
                             <div class="card-status" type="button">
                                 <img :src="getImagePath(Modules.img_cart_mod)" @click="goToBoxModule(Modules._id, BoxId)" alt="Module Portrait"/>
                             {{ Modules.name_mod }}

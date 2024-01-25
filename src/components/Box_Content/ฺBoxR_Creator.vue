@@ -82,6 +82,11 @@ export default {
         },
         async uploadCreator() {
             try {
+            
+                document.getElementById('name_con').addEventListener('input', function () {
+                this.value = this.value.replace(/\s/g, ''); // ใช้ Regular Expression เพื่อตัดช่องว่างทั้งหมด
+                });
+
                 const existingCreator = this.Creator.find(creator => creator.name_con.toLowerCase() === this.CreatorData.name_con.toLowerCase());
                 
                 if (existingCreator) {
@@ -145,6 +150,8 @@ export default {
             this.$router.push('/Creator');
         }
     }
+
+    
 };
 </script>
 

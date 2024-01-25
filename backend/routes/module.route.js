@@ -68,4 +68,24 @@ moduleRoute.put('/update-module/:id', async (req, res, next) => {
     }
 });
 
+moduleRoute.put('/update-available-status/:id', async (req, res, next) => {
+    try {
+        const existingModule = await moduleModel.findById(req.params.id);
+
+        if (existingModule) {
+
+            existingModule.available_content = req.body.available_content;
+
+            const updatedModule = await existingModule.save();
+
+            res.json(updatedModule);
+            console.log('Available status updated successfully');
+        } else {
+            res.status(404).json({ message: 'Creator not found' });
+        }
+    } catch (error) {
+        next(error);
+    }
+});
+
 module.exports = moduleRoute;

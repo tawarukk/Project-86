@@ -3,6 +3,7 @@
         <div class="page-content">
                 <div class="row justify-content-center">
                     <template v-for="operator in operators" :key="operator._id">
+                        <div class="col-2 mb-3 mt-3" :key="operator._id" v-if="operator.available_content=='1' && operator.position === position || operator.position == 'all'">
                         <el-popover
                             placement="bottom"
                             :title="operator.name_oper"
@@ -11,14 +12,13 @@
                             :content="operator.descriptions"
                         >
                         <template #reference>
-                            <div class="col-2 mb-3 mt-3" :key="operator._id" v-if="operator.position === position || operator.position == 'all'">
                                 <div class="card-status" type="button">
                                     <img :src="getImagePath(operator.img_portrait_oper)" @click="goToBoxSimulator(operator._id,position,BoxId)" alt="Operator Portrait">
                                 {{ operator.name_oper}}
                                 </div>
-                            </div>
                         </template>
                         </el-popover>
+                        </div>
                     </template>
                 </div>
             

@@ -27,8 +27,8 @@
                             <a href="javascript:void(0);" class="dropbtn"><span style="color:#e8bd4b;">{{ userName }} <span v-if="code != ''">#{{ code }}</span></span> <img :src="getImagePath_Profile(userIMG)" class="card-img-top" alt="..."></a>
                             <div class="dropdown-content" href="/Profile">
                                 <a class="mt-2" href="/Profile">Profile</a>
-                                <a  v-if = "userName != 'profile'" class="mt-2" type="button" @click="logout()">logout</a>
-                                <a  v-if = "userName == 'profile'" class="mt-2" type="button" @click="login()">login</a>
+                                <a  v-if = "userName != 'Login'" class="mt-2" type="button" @click="logout()">logout</a>
+                                <a  v-if = "userName == 'Login'" class="mt-2" type="button" @click="login()">login</a>
                                 <a  v-if = "userRole == 'admin' || userRole == 'superadmin' && userRole != '' && userRole != null"  class="mt-2" type="button" @click="Management()"> Management </a>
                             </div>
                         </li>
@@ -58,7 +58,7 @@
     data() {
     return {
       userid:'',
-      userName:'profile',
+      userName:'Login',
       userRole:'user',
       userIMG:'',
       code:'',

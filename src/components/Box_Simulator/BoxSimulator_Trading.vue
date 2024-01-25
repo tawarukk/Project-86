@@ -20,34 +20,52 @@
                   <div class="col-12 card-status name mb-3" style="color: #1f2122;">
                     Treading Post Room <i class="fa-solid fa-dice-one"></i>
                   </div>
+                  <el-tooltip class="box-item"
+                    effect="dark"
+                    content="เลือก Operator"
+                    placement="bottom"
+                  >
                   <div class="col operator mb-3">
                     <i type="button" @click="resetSimulator('box_11'), goToSelectOperator('TradingPost','box_11')"><img :src="getImagePath(Card_Trad_i_a)" style="border-radius: 10px;" /><span v-if="!hasImage"><i class="fas fa-plus"></i></span></i>
                   </div>
+                  </el-tooltip>
+                  <el-tooltip class="box-item"
+                    effect="dark"
+                    content="เลือก Operator"
+                    placement="bottom"
+                  >
                   <div class="col operator mb-3">
                     <i type="button" @click="resetSimulator('box_12'), goToSelectOperator('TradingPost','box_12')"><img :src="getImagePath(Card_Trad_i_b)" style="border-radius: 10px;" /><span v-if="!hasImage"><i class="fas fa-plus"></i></span></i>
                   </div>
+                  </el-tooltip>
+                  <el-tooltip class="box-item"
+                    effect="dark"
+                    content="เลือก Operator"
+                    placement="bottom"
+                  >
                   <div class="col operator mb-3">
                     <i type="button" @click="resetSimulator('box_13'), goToSelectOperator('TradingPost','box_13')"><img :src="getImagePath(Card_Trad_i_c)" style="border-radius: 10px;" /><span v-if="!hasImage"><i class="fas fa-plus"></i></span></i>
                   </div>
+                  </el-tooltip>
                   <!-- แถวล่าง -->
                   <div class="col-12 card-status skill" style="padding: 5px; overflow-y: auto; max-height: 200px;min-height: 170px;">
                     <span v-if="NameTradSkill_i_a !== null"><div class="card-status bgSkill mb-2 mt-2" >
-                    <div class="skillname">[1] {{ NameTradSkill_i_a }}</div>>._{{  Effect_Trad_skill_i_a }}
+                    <div class="skillname">[1] {{ NameTradSkill_i_a }}</div>{{  Effect_Trad_skill_i_a }}
                     </div></span>
                     <span v-if="NameTradSkill_ii_a !== null"><div class="card-status bgSkill mb-2 mt-2" >
-                    <div class="skillname">[1] {{ NameTradSkill_ii_a }}</div>>._{{  Effect_Trad_skill_ii_a }}
+                    <div class="skillname">[1] {{ NameTradSkill_ii_a }}</div>{{  Effect_Trad_skill_ii_a }}
                     </div></span>
                     <span v-if="NameTradSkill_i_b !== null"><div class="card-status bgSkill mb-2 mt-2" >
-                    <div class="skillname">[2] {{ NameTradSkill_i_b }}</div>>._{{  Effect_Trad_skill_i_b }}
+                    <div class="skillname">[2] {{ NameTradSkill_i_b }}</div>{{  Effect_Trad_skill_i_b }}
                     </div></span>
                     <span v-if="NameTradSkill_ii_b !== null"><div class="card-status bgSkill mb-2 mt-2" >
-                    <div class="skillname">[2] {{ NameTradSkill_ii_b }}</div>>._{{  Effect_Trad_skill_ii_b }}
+                    <div class="skillname">[2] {{ NameTradSkill_ii_b }}</div>{{  Effect_Trad_skill_ii_b }}
                     </div></span>
                     <span v-if="NameTradSkill_i_c !== null"><div class="card-status bgSkill mb-2 mt-2" >
-                    <div class="skillname">[3] {{ NameTradSkill_i_c }}</div>>._{{  Effect_Trad_skill_i_c }}
+                    <div class="skillname">[3] {{ NameTradSkill_i_c }}</div>{{  Effect_Trad_skill_i_c }}
                     </div></span>
                     <span v-if="NameTradSkill_ii_c !== null"><div class="card-status bgSkill mb-2 mt-2" >
-                    <div class="skillname">[3] {{ NameTradSkill_ii_c }}</div>>._{{  Effect_Trad_skill_ii_c }}
+                    <div class="skillname">[3] {{ NameTradSkill_ii_c }}</div>{{  Effect_Trad_skill_ii_c }}
                     </div></span>
                   </div>
                 </div>
@@ -57,27 +75,20 @@
                 <div class="row" style="justify-content: center;">
 
                     <span class="col-1 card-status result re-status rule mb-2">
+                      <el-popover
+                            placement="top"
+                            title="คู่มือแนะนำการใช้งานระบบ Factory Room "
+                            :width="350"
+                            trigger="hover"
+                            content="สามารถปรับระดับ ตามความเหมาะสมได้ที่ Profile [Tier]"
+                        >
+                          <template #reference>
                           <div class="white-circle modal-lg" type="button" data-bs-toggle="modal" data-bs-target="#RuleModal"> Treading Post ใช้งานอย่างไร <i class="fa-solid fa-question"></i></div>
-                          <div class="modal fade" id="RuleModal" tabindex="-1" aria-labelledby="RuleModalLabel" aria-hidden="true">
-                              <div class="modal-dialog modal-lg ">
-                                  <div class="modal-content">
-                                      <div class="modal-header">
-                                          <h5 class="modal-title" id="RuleModalLabel" style="color: black;">Modal title</h5>
-                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
-                                      </div>
-                                      <div class="modal-body">
-                                          ...
-                                      </div>
-                                      <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                          <button type="button" class="btn btn-primary">Save changes</button>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
+                          </template>
+                        </el-popover>
                     </span>
                   
-                  <div class="text mb-2">>.Morale Consumed / hr</div>
+                  <div class="text mb-2">Morale Consumed / hr</div>
                   <span class="col-1 card-status result re re-status mb-1">
                     {{ Morale_Trad_i }}
                   </span>
@@ -89,7 +100,7 @@
                   </span>
 
                   <div class="text mb-1">
-                    >.Order Efficiency
+                    Order Efficiency
                   </div>
                   <span class="col-1 card-status result re re-status mb-1">
                     {{ Efficiency_i }}
@@ -102,19 +113,25 @@
                   </span>
 
                   <div class="text mb-1">
-                    >.Maxzimum [Capacity]
+                    Maxzimum [Capacity]
                   </div>
                   <span class="col-1 card-status result re-status mb-1">
                       {{ Max_Capacity_i }} + <span class="ed"> {{ this.Capacity_i_a + this.Capacity_ii_a + this.Capacity_i_b + this.Capacity_ii_b+ this.Capacity_i_c + this.Capacity_ii_c}} </span>
 
                   </span>
                   <div class="text mb-1">
-                    >.Produce / Item
+                    Produce
                   </div>
+                  <el-tooltip class="box-item"
+                    effect="dark"
+                    content="สลับ Product [PureGold / Originium]"
+                    placement="bottom"
+                  >
                   <div class="col-12 card-status result re-item mb-1" style="font-size: 20px;">
                     <i class="mt-2 mb-2" type="button" @click="SelectProduct(Card_Trad_product_i,'box_1')"><img :src="getImagePathProduct_Trad(Card_Trad_product_i)" style="border-radius: 10px; max-height: 120px;" /><span v-if="!hasImage"><i class="fas fa-plus"></i></span></i>
                     <br>{{ product_Name_i }}
                   </div>
+                  </el-tooltip>
                 </div>
               </span>
 
@@ -123,17 +140,17 @@
                 <div class="row">
                     <!-- แถวบน -->
                     <div class="col-12 comment mb-4">
-                      <textarea v-model="comment_Trad_1" rows="5" @input="checkCharCount(1)" placeholder="ลองแบ่งปันคำแนะนำ สำหรับคนที่จะลองนำไปใช้สิ ^[]^" style="background-color: #27292a; width: 100%; min-height: 200px; font-size: 16px; color: #fff;"></textarea>
+                      <textarea v-model="comment_Trad_1" rows="5" @input="checkCharCount(1)" placeholder="แบ่งปันคำแนะนำและความคิดเห็น" style="background-color: #27292a; width: 100%; min-height: 200px; font-size: 16px; color: #fff;"></textarea>
                       <p>{{ remainingChars_1 }} / 300</p>
                     </div>
                     <div type="button" @click="CalRemaining_Time" class="col-12 bottom mb-2" style="background-color: #666; color: #1f2122;">
-                      คำนวณเวลาการผลิต
+                      Calculate Production Time
                     </div>
                     <div class="col-12 bottom mb-2" style="background-color: #1f2122;">
-                      เคลีย ข้อมูล
+                      Clear data
                     </div>
                     <div class="col-12 bottom mb-2"  type="button" @click="CalRemaining_Time,shareSimulator('slot_1')"  style="background-color: #18ACFE; color: #1f2122;">
-                      แชร์ Simulator
+                      Share Simulator
                     </div>
                     <!-- แถวล่าง -->
                   </div>
@@ -151,34 +168,52 @@
                   <div class="col-12 card-status name mb-3" style="color: #1f2122;">
                     Treading Post Room <i class="fa-solid fa-dice-two"></i>
                   </div>
+                  <el-tooltip class="box-item"
+                    effect="dark"
+                    content="เลือก Operator"
+                    placement="bottom"
+                  >
                   <div class="col operator mb-3">
                     <i type="button" @click="resetSimulator('box_21'), goToSelectOperator('TradingPost','box_21')"><img :src="getImagePath(Card_Trad_i_d)" style="border-radius: 10px;" /><span v-if="!hasImage"><i class="fas fa-plus"></i></span></i>
                   </div>
+                  </el-tooltip>
+                  <el-tooltip class="box-item"
+                    effect="dark"
+                    content="เลือก Operator"
+                    placement="bottom"
+                  >
                   <div class="col operator mb-3">
                     <i type="button" @click="resetSimulator('box_22'), goToSelectOperator('TradingPost','box_22')"><img :src="getImagePath(Card_Trad_i_e)" style="border-radius: 10px;" /><span v-if="!hasImage"><i class="fas fa-plus"></i></span></i>
                   </div>
+                  </el-tooltip>
+                  <el-tooltip class="box-item"
+                    effect="dark"
+                    content="เลือก Operator"
+                    placement="bottom"
+                  >
                   <div class="col operator mb-3">
                     <i type="button" @click="resetSimulator('box_23'), goToSelectOperator('TradingPost','box_23')"><img :src="getImagePath(Card_Trad_i_f)" style="border-radius: 10px;" /><span v-if="!hasImage"><i class="fas fa-plus"></i></span></i>
                   </div>
+                  </el-tooltip>
                   <!-- แถวล่าง -->
                   <div class="col-12 card-status skill" style="padding: 5px; overflow-y: auto; max-height: 200px;min-height: 170px;">
                     <span v-if="NameTradSkill_i_d !== null"><div class="card-status bgSkill mb-2 mt-2" >
-                    <div class="skillname">[1] {{ NameTradSkill_i_d }}</div>>._{{  Effect_Trad_skill_i_d }}
+                    <div class="skillname">[1] {{ NameTradSkill_i_d }}</div>{{  Effect_Trad_skill_i_d }}
                     </div></span>
                     <span v-if="NameTradSkill_ii_d !== null"><div class="card-status bgSkill mb-2 mt-2" >
-                    <div class="skillname">[1] {{ NameTradSkill_ii_d }}</div>>._{{  Effect_Trad_skill_ii_d }}
+                    <div class="skillname">[1] {{ NameTradSkill_ii_d }}</div>{{  Effect_Trad_skill_ii_d }}
                     </div></span>
                     <span v-if="NameTradSkill_i_e !== null"><div class="card-status bgSkill mb-2 mt-2" >
-                    <div class="skillname">[2] {{ NameTradSkill_i_e }}</div>>._{{  Effect_Trad_skill_i_e }}
+                    <div class="skillname">[2] {{ NameTradSkill_i_e }}</div>{{  Effect_Trad_skill_i_e }}
                     </div></span>
                     <span v-if="NameTradSkill_ii_e !== null"><div class="card-status bgSkill mb-2 mt-2" >
-                    <div class="skillname">[2] {{ NameTradSkill_ii_e }}</div>>._{{  Effect_Trad_skill_ii_e }}
+                    <div class="skillname">[2] {{ NameTradSkill_ii_e }}</div>{{  Effect_Trad_skill_ii_e }}
                     </div></span>
                     <span v-if="NameTradSkill_i_f !== null"><div class="card-status bgSkill mb-2 mt-2" >
-                    <div class="skillname">[3] {{ NameTradSkill_i_f }}</div>>._{{  Effect_Trad_skill_i_f }}
+                    <div class="skillname">[3] {{ NameTradSkill_i_f }}</div>{{  Effect_Trad_skill_i_f }}
                     </div></span>
                     <span v-if="NameTradSkill_ii_f !== null"><div class="card-status bgSkill mb-2 mt-2" >
-                    <div class="skillname">[3] {{ NameTradSkill_ii_f }}</div>>._{{  Effect_Trad_skill_ii_f }}
+                    <div class="skillname">[3] {{ NameTradSkill_ii_f }}</div>{{  Effect_Trad_skill_ii_f }}
                     </div></span>
                   </div>
                 </div>
@@ -188,10 +223,20 @@
                 <div class="row" style="justify-content: center;">
 
                     <span class="col-1 card-status result re-status rule mb-2">
+                      <el-popover
+                            placement="top"
+                            title="คู่มือแนะนำการใช้งานระบบ Factory Room "
+                            :width="350"
+                            trigger="hover"
+                            content="สามารถปรับระดับ ตามความเหมาะสมได้ที่ Profile [Tier]"
+                        >
+                          <template #reference>
                           <div class="white-circle modal-lg" type="button" data-bs-toggle="modal" data-bs-target="#RuleModal"> Treading Post ใช้งานอย่างไร <i class="fa-solid fa-question"></i></div>
+                          </template>
+                        </el-popover>
                     </span>
                   
-                  <div class="text mb-2">>.Morale Consumed / hr</div>
+                  <div class="text mb-2">Morale Consumed / hr</div>
                   <span class="col-1 card-status result re re-status mb-1">
                     {{ Morale_Trad_i }}
                   </span>
@@ -203,7 +248,7 @@
                   </span>
 
                   <div class="text mb-1">
-                    >.Order Efficiency
+                    Order Efficiency
                   </div>
                   <span class="col-1 card-status result re re-status mb-1">
                     {{ Efficiency_i }}
@@ -216,19 +261,25 @@
                   </span>
 
                   <div class="text mb-1">
-                    >.Maxzimum [Capacity]
+                    Maxzimum [Capacity]
                   </div>
                   <span class="col-1 card-status result re-status mb-1">
                       {{ Max_Capacity_i }} + <span class="ed"> {{ this.Capacity_i_d + this.Capacity_ii_d + this.Capacity_i_e + this.Capacity_ii_e+ this.Capacity_i_f + this.Capacity_ii_f}} </span>
 
                   </span>
                   <div class="text mb-1">
-                    >.Produce / Item
+                    Produce 
                   </div>
+                  <el-tooltip class="box-item"
+                    effect="dark"
+                    content="สลับ Product [PureGold / Originium]"
+                    placement="bottom"
+                  >
                   <div class="col-12 card-status result re-item mb-1" style="font-size: 20px;">
                     <i class="mt-2 mb-2" type="button" @click="SelectProduct(Card_Trad_product_ii,'box_2')"><img :src="getImagePathProduct_Trad(Card_Trad_product_ii)" style="border-radius: 10px; max-height: 120px;" /><span v-if="!hasImage"><i class="fas fa-plus"></i></span></i>
                     <br>{{ product_Name_ii }}
                   </div>
+                  </el-tooltip>
                 </div>
               </span>
 
@@ -237,17 +288,17 @@
                 <div class="row">
                     <!-- แถวบน -->
                     <div class="col-12 comment mb-4">
-                      <textarea v-model="comment_Trad_2" rows="5" @input="checkCharCount(1)" placeholder="ลองแบ่งปันคำแนะนำ สำหรับคนที่จะลองนำไปใช้สิ ^[]^" style="background-color: #27292a; width: 100%; min-height: 200px; font-size: 16px; color: #fff;"></textarea>
+                      <textarea v-model="comment_Trad_2" rows="5" @input="checkCharCount(1)" placeholder="แบ่งปันคำแนะนำและความคิดเห็น" style="background-color: #27292a; width: 100%; min-height: 200px; font-size: 16px; color: #fff;"></textarea>
                       <p>{{ remainingChars_2 }} / 300</p>
                     </div>
                     <div type="button" @click="CalRemaining_Time" class="col-12 bottom mb-2" style="background-color: #666; color: #1f2122;">
-                      คำนวณเวลาการผลิต
+                      Calculate Production Time
                     </div>
                     <div class="col-12 bottom mb-2" style="background-color: #1f2122;">
-                      เคลีย ข้อมูล
+                      Clear data
                     </div>
                     <div class="col-12 bottom mb-2"  type="button" @click="CalRemaining_Time,shareSimulator('slot_2')"  style="background-color: #18ACFE; color: #1f2122;">
-                      แชร์ Simulator
+                      Share Simulator
                     </div>
                     <!-- แถวล่าง -->
                   </div>

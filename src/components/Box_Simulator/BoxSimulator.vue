@@ -21,34 +21,53 @@
                   <div class="col-12 card-status name mb-3" style="color: #1f2122;">
                     Factory Room <i class="fa-solid fa-dice-one"></i>
                   </div>
+                  <el-tooltip class="box-item"
+                    effect="dark"
+                    content="เลือก Operator"
+                    placement="bottom"
+                  >
                   <div class="col operator mb-3">
                     <i type="button" @click="resetSimulator('box_11'), goToSelectOperator('Factory','box_11')"><img :src="getImagePath(Card_i_a)" style="border-radius: 10px;" /><span v-if="!hasImage"><i class="fas fa-plus"></i></span></i>
                   </div>
+                  </el-tooltip>
+                  <el-tooltip class="box-item"
+                    effect="dark"
+                    content="เลือก Operator"
+                    placement="bottom"
+                  >
                   <div class="col operator mb-3">
                     <i type="button" @click="resetSimulator('box_12'), goToSelectOperator('Factory','box_12')"><img :src="getImagePath(Card_i_b)" style="border-radius: 10px;" /><span v-if="!hasImage"><i class="fas fa-plus"></i></span></i>
                   </div>
+                  </el-tooltip>
+                  <el-tooltip class="box-item"
+                    effect="dark"
+                    content="เลือก Operator"
+                    placement="bottom"
+                  >
                   <div class="col operator mb-3">
                     <i type="button" @click="resetSimulator('box_13'), goToSelectOperator('Factory','box_13')"><img :src="getImagePath(Card_i_c)" style="border-radius: 10px;" /><span v-if="!hasImage"><i class="fas fa-plus"></i></span></i>
                   </div>
+                  </el-tooltip>
+
                   <!-- แถวล่าง -->
                   <div class="col-12 card-status skill" style="padding: 5px; overflow-y: auto; max-height: 200px;min-height: 170px;">
                     <span v-if="NameSkill_i_a !== null"><div class="card-status bgSkill mb-2 mt-2" >
-                    <div class="skillname">[1] {{ NameSkill_i_a }}</div>>._{{ Effect_skill_i_a }}
+                    <div class="skillname">[1] {{ NameSkill_i_a }}</div>{{ Effect_skill_i_a }}
                     </div></span>
                     <span v-if="NameSkill_ii_a !== null"><div class="card-status bgSkill mb-2 mt-2" >
-                    <div class="skillname">[1] {{ NameSkill_ii_a }}</div>>._{{ Effect_skill_ii_a }}
+                    <div class="skillname">[1] {{ NameSkill_ii_a }}</div>{{ Effect_skill_ii_a }}
                     </div></span>
                     <span v-if="NameSkill_i_b !== null"><div class="card-status bgSkill mb-2 mt-2" >
-                    <div class="skillname">[2] {{ NameSkill_i_b }}</div>>._{{ Effect_skill_i_b }}
+                    <div class="skillname">[2] {{ NameSkill_i_b }}</div>{{ Effect_skill_i_b }}
                     </div></span>
                     <span v-if="NameSkill_ii_b !== null"><div class="card-status bgSkill mb-2 mt-2" >
-                    <div class="skillname">[2] {{ NameSkill_ii_b }}</div>>._{{ Effect_skill_ii_b }}
+                    <div class="skillname">[2] {{ NameSkill_ii_b }}</div>{{ Effect_skill_ii_b }}
                     </div></span>
                     <span v-if="NameSkill_i_c !== null"><div class="card-status bgSkill mb-2 mt-2" >
-                    <div class="skillname">[3] {{ NameSkill_i_c }}</div>>._{{ Effect_skill_i_c }}
+                    <div class="skillname">[3] {{ NameSkill_i_c }}</div>{{ Effect_skill_i_c }}
                     </div></span>
                     <span v-if="NameSkill_ii_c !== null"><div class="card-status bgSkill mb-2 mt-2" >
-                    <div class="skillname">[3] {{ NameSkill_ii_c }}</div>>._{{ Effect_skill_ii_c }}
+                    <div class="skillname">[3] {{ NameSkill_ii_c }}</div>{{ Effect_skill_ii_c }}
                     </div></span>
                   </div>
                 </div>
@@ -58,27 +77,20 @@
                 <div class="row" style="justify-content: center;">
 
                     <span class="col-1 card-status result re-status rule mb-2">
-                          <div class="white-circle modal-lg" type="button" data-bs-toggle="modal" data-bs-target="#RuleModal"> Factory Room ใช้งานอย่างไร <i class="fa-solid fa-question"></i></div>
-                          <div class="modal fade" id="RuleModal" tabindex="-1" aria-labelledby="RuleModalLabel" aria-hidden="true">
-                              <div class="modal-dialog modal-lg ">
-                                  <div class="modal-content">
-                                      <div class="modal-header">
-                                          <h5 class="modal-title" id="RuleModalLabel" style="color: black;">Modal title</h5>
-                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
-                                      </div>
-                                      <div class="modal-body">
-                                          ...
-                                      </div>
-                                      <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                          <button type="button" class="btn btn-primary">Save changes</button>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
+                    <el-popover
+                            placement="top"
+                            title="คู่มือแนะนำการใช้งานระบบ Factory Room "
+                            :width="350"
+                            trigger="hover"
+                            content="สามารถปรับระดับ ตามความเหมาะสมได้ที่ Profile [Tier]"
+                        >
+                    <template #reference>
+                          <div class="white-circle modal-lg" type="button"> Factory Room ใช้งานอย่างไร <i class="fa-solid fa-question"></i></div>
+                    </template>
+                    </el-popover>
                     </span>
                   
-                  <div class="text mb-2">>.Morale Consumed / hr</div>
+                  <div class="text mb-2"> Morale Consumed / hr</div>
                   <span class="col-1 card-status result re re-status mb-1">
                     {{ Morale_i }}
                   </span>
@@ -90,7 +102,7 @@
                   </span>
 
                   <div class="text mb-1">
-                    >.Productivity
+                    Productivity
                   </div>
                   <span class="col-1 card-status result re re-status mb-1">
                     {{ Productivity_i }}
@@ -103,26 +115,50 @@
                   </span>
 
                   <div class="text mb-1">
-                    >.Pre-Time Remaining
+                    Pre-Time Remaining
                   </div>
+                  <el-tooltip class="box-item"
+                    effect="dark"
+                    content="เวลาก่อนการคำนวณ [ชั่วโมง:นาที:วินาที]"
+                    placement="bottom"
+                  >
                   <span class="col-1 card-status result re-status mb-1">
                       {{ Math.floor(this.Product_time_i / 60) }} : {{ Math.floor(this.Product_time_i % 60) }} : {{ Math.round((this.Product_time_i % 1) * 60) }}
                   </span>
+                  </el-tooltip>
                   <div class="text mb-1">
-                    >.Time Remaining / Reduce
+                    <span style="color: #FF9999;"> Reduce Time </span> / Remaining Time 
                   </div>
+                  <el-tooltip class="box-item"
+                    effect="dark"
+                    content="เวลาที่ลด [ชั่วโมง:นาที:วินาที]"
+                    placement="bottom"
+                  >
                   <span class="col-1 card-status result re-status mb-1 ed">
                     {{ Math.floor(this.Remaining_Time_def / 60) }} : {{ Math.floor(this.Remaining_Time_def % 60) }} : {{ Math.round((this.Remaining_Time_def % 1) * 60) }}
                   </span>
+                  </el-tooltip>
+                  <el-tooltip class="box-item"
+                    effect="dark"
+                    content="เวลาหลังการคำนวณ [ชั่วโมง:นาที:วินาที]"
+                    placement="bottom"
+                  >
                   <span class="col-1 card-status result re-status mb-1">
                     {{ Math.floor(this.Remaining_Time_a / 60) }} : {{ Math.floor(this.Remaining_Time_a % 60) }} : {{ Math.round((this.Remaining_Time_a % 1) * 60) }}
                   </span>
+                  </el-tooltip>
                   <div class="text mb-1">
-                    >.Produce / Item
+                    Produce
                   </div>
+                  <el-tooltip class="box-item"
+                    effect="dark"
+                    content="เลือก Product ที่ต้องการผลิต"
+                    placement="bottom"
+                  >
                   <div class="col-12 card-status result re-item mb-1">
                     <i type="button" @click="resetSimulator('box_i'), goToSelectProduct('box_i')"><img :src="getImagePathProduct(Card_product_i)" style="border-radius: 10px; max-height: 80px;" /><span v-if="!hasImage"><i class="fas fa-plus"></i></span></i>
                   </div>
+                  </el-tooltip>
                 </div>
               </span>
 
@@ -131,17 +167,17 @@
                 <div class="row">
                     <!-- แถวบน -->
                     <div class="col-12 comment mb-4">
-                      <textarea v-model="comment_1" rows="5" @input="checkCharCount(1)" placeholder="ลองแบ่งปันคำแนะนำ สำหรับคนที่จะลองนำไปใช้สิ ^[]^" style="background-color: #27292a; width: 100%; min-height: 200px; font-size: 16px; color: #fff;"></textarea>
+                      <textarea v-model="comment_1" rows="5" @input="checkCharCount(1)" placeholder="แบ่งปันคำแนะนำและความคิดเห็น" style="background-color: #27292a; width: 100%; min-height: 200px; font-size: 16px; color: #fff;"></textarea>
                       <p>{{ remainingChars_1 }} / 300</p>
                     </div>
                     <div type="button" @click="CalRemaining_Time" class="col-12 bottom mb-2" style="background-color: #666; color: #1f2122;">
-                      คำนวณเวลาการผลิต
+                      Calculate Production Time
                     </div>
                     <div class="col-12 bottom mb-2" style="background-color: #1f2122;">
-                      เคลีย ข้อมูล
+                      Clear data
                     </div>
                     <div class="col-12 bottom mb-2"  type="button" @click="CalRemaining_Time,shareSimulator('slot_1')"  style="background-color: #e8bd4b; color: #1f2122;">
-                      แชร์ Simulator
+                      Share Simulator
                     </div>
                     <!-- แถวล่าง -->
                   </div>
@@ -159,34 +195,53 @@
                   <div class="col-12 card-status name mb-3" style="color: #1f2122;">
                     Factory Room <i class="fa-solid fa-dice-two"></i>
                   </div>
+                  <el-tooltip class="box-item"
+                    effect="dark"
+                    content="เลือก Operator"
+                    placement="bottom"
+                  >
                   <div class="col operator mb-3">
                     <i type="button" @click="resetSimulator('box_21'), goToSelectOperator('Factory','box_21')"><img :src="getImagePath(Card_i_aa)" style="border-radius: 10px;" /><span v-if="!hasImage"><i class="fas fa-plus"></i></span></i>
                   </div>
+                  </el-tooltip>
+                  <el-tooltip class="box-item"
+                    effect="dark"
+                    content="เลือก Operator"
+                    placement="bottom"
+                  >
                   <div class="col operator mb-3">
                     <i type="button" @click="resetSimulator('box_22'), goToSelectOperator('Factory','box_22')"><img :src="getImagePath(Card_i_bb)" style="border-radius: 10px;" /><span v-if="!hasImage"><i class="fas fa-plus"></i></span></i>
                   </div>
+                  </el-tooltip>
+                  <el-tooltip class="box-item"
+                    effect="dark"
+                    content="เลือก Operator"
+                    placement="bottom"
+                  >
                   <div class="col operator mb-3">
                     <i type="button" @click="resetSimulator('box_23'), goToSelectOperator('Factory','box_23')"><img :src="getImagePath(Card_i_cc)" style="border-radius: 10px;" /><span v-if="!hasImage"><i class="fas fa-plus"></i></span></i>
                   </div>
+                  </el-tooltip>
+
                   <!-- แถวล่าง -->
                   <div class="col-12 card-status skill" style="padding: 5px; overflow-y: auto; max-height: 200px;min-height: 170px;">
                     <span v-if="NameSkill_i_aa !== null"><div class="card-status bgSkill mb-2 mt-2" >
-                    <div class="skillname">[1] {{ NameSkill_i_aa }}</div>>._{{ Effect_skill_i_aa }}
+                    <div class="skillname">[1] {{ NameSkill_i_aa }}</div>{{ Effect_skill_i_aa }}
                     </div></span>
                     <span v-if="NameSkill_ii_aa !== null"><div class="card-status bgSkill mb-2 mt-2" >
-                    <div class="skillname">[1] {{ NameSkill_ii_aa }}</div>>._{{ Effect_skill_ii_aa }}
+                    <div class="skillname">[1] {{ NameSkill_ii_aa }}</div>{{ Effect_skill_ii_aa }}
                     </div></span>
                     <span v-if="NameSkill_i_bb !== null"><div class="card-status bgSkill mb-2 mt-2" >
-                    <div class="skillname">[2] {{ NameSkill_i_bb }}</div>>._{{ Effect_skill_i_bb }}
+                    <div class="skillname">[2] {{ NameSkill_i_bb }}</div>{{ Effect_skill_i_bb }}
                     </div></span>
                     <span v-if="NameSkill_ii_bb !== null"><div class="card-status bgSkill mb-2 mt-2" >
-                    <div class="skillname">[2] {{ NameSkill_ii_bb }}</div>>._{{ Effect_skill_ii_bb }}
+                    <div class="skillname">[2] {{ NameSkill_ii_bb }}</div>{{ Effect_skill_ii_bb }}
                     </div></span>
                     <span v-if="NameSkill_i_cc !== null"><div class="card-status bgSkill mb-2 mt-2" >
-                    <div class="skillname">[3] {{ NameSkill_i_cc }}</div>>._{{ Effect_skill_i_cc }}
+                    <div class="skillname">[3] {{ NameSkill_i_cc }}</div>{{ Effect_skill_i_cc }}
                     </div></span>
                     <span v-if="NameSkill_ii_cc !== null"><div class="card-status bgSkill mb-2 mt-2" >
-                    <div class="skillname">[3] {{ NameSkill_ii_cc }}</div>>._{{ Effect_skill_ii_cc }}
+                    <div class="skillname">[3] {{ NameSkill_ii_cc }}</div>{{ Effect_skill_ii_cc }}
                     </div></span>
                   </div>
                 </div>
@@ -195,11 +250,21 @@
                 <!-- ส่วนที่ 2 -->
                 <div class="row" style="justify-content: center;">
 
+                  <el-popover
+                            placement="top"
+                            title="คู่มือแนะนำการใช้งานระบบ Factory Room "
+                            :width="350"
+                            trigger="hover"
+                            content="สามารถปรับระดับ ตามความเหมาะสมได้ที่ Profile [Tier]"
+                        >
+                  <template #reference>
                   <span class="col-1 card-status result re-status rule mb-2">
                           <div class="white-circle modal-lg" type="button" data-bs-toggle="modal" data-bs-target="#RuleModal"> Factory Room ใช้งานอย่างไร <i class="fa-solid fa-question"></i></div>
                   </span>
-                  
-                  <div class="text mb-2">>.Morale Consumed / hr</div>
+                  </template>
+                  </el-popover>
+
+                  <div class="text mb-2">Morale Consumed / hr</div>
                   <span class="col-1 card-status result re re-status mb-1">
                     {{ Morale_i }}
                   </span>
@@ -211,7 +276,7 @@
                   </span>
 
                   <div class="text mb-1">
-                    >.Productivity
+                    Productivity
                   </div>
                   <span class="col-1 card-status result re re-status mb-1">
                     {{ Productivity_i }}
@@ -224,26 +289,50 @@
                   </span>
 
                   <div class="text mb-1">
-                    >.Pre-Time Remaining
+                    Pre-Time Remaining
                   </div>
+                  <el-tooltip class="box-item"
+                    effect="dark"
+                    content="เวลาก่อนการคำนวณ [ชั่วโมง:นาที:วินาที]"
+                    placement="bottom"
+                  >
                   <span class="col-1 card-status result re-status mb-1">
                       {{ Math.floor(this.Product_time_ii / 60) }} : {{ Math.floor(this.Product_time_ii % 60) }} : {{ Math.round((this.Product_time_ii % 1) * 60) }}
                   </span>
+                  </el-tooltip>
                   <div class="text mb-1">
-                    >.Time Remaining / Reduce
+                    <span style="color: #FF9999;"> Reduce Time </span> / Remaining Time 
                   </div>
+                  <el-tooltip class="box-item"
+                    effect="dark"
+                    content="เวลาที่ลด [ชั่วโมง:นาที:วินาที]"
+                    placement="bottom"
+                  >
                   <span class="col-1 card-status result re-status mb-1 ed">
                     {{ Math.floor(this.Remaining_Time_def_ii / 60) }} : {{ Math.floor(this.Remaining_Time_def_ii % 60) }} : {{ Math.round((this.Remaining_Time_def_ii % 1) * 60) }}
                   </span>
+                  </el-tooltip>
+                  <el-tooltip class="box-item"
+                    effect="dark"
+                    content="เวลาหลังการคำนวณ [ชั่วโมง:นาที:วินาที]"
+                    placement="bottom"
+                  >
                   <span class="col-1 card-status result re-status mb-1">
                     {{ Math.floor(this.Remaining_Time_aa / 60) }} : {{ Math.floor(this.Remaining_Time_aa % 60) }} : {{ Math.round((this.Remaining_Time_aa % 1) * 60) }}
                   </span>
+                  </el-tooltip>
                   <div class="text mb-1">
-                    >.Produce / Item
+                    Produce 
                   </div>
+                  <el-tooltip class="box-item"
+                    effect="dark"
+                    content="เลือก Product ที่ต้องการผลิต"
+                    placement="bottom"
+                  >
                   <div class="col-12 card-status result re-item mb-1">
                     <i type="button" @click="resetSimulator('box_ii'), goToSelectProduct('box_ii')"><img :src="getImagePathProduct(Card_product_ii)" style="border-radius: 10px; max-height: 80px;" /><span v-if="!hasImage"><i class="fas fa-plus"></i></span></i>
                   </div>
+                  </el-tooltip>
                 </div>
               </span>
               <span class="col-3 menu">
@@ -251,17 +340,17 @@
                 <div class="row">
                     <!-- แถวบน -->
                     <div class="col-12 comment mb-4">
-                      <textarea v-model="comment_2" rows="5" @input="checkCharCount(2)" placeholder="ลองแบ่งปันคำแนะนำ สำหรับคนที่จะลองนำไปใช้สิ ^[]^" style="background-color: #27292a; width: 100%; min-height: 200px; font-size: 16px; color: #fff;"></textarea>
+                      <textarea v-model="comment_2" rows="5" @input="checkCharCount(2)" placeholder="แบ่งปันคำแนะนำและความคิดเห็น" style="background-color: #27292a; width: 100%; min-height: 200px; font-size: 16px; color: #fff;"></textarea>
                       <p>{{ remainingChars_2 }} / 300</p>
                     </div>
                     <div type="button" @click="CalRemaining_Time" class="col-12 bottom mb-2" style="background-color: #666; color: #1f2122;">
-                      คำนวณเวลาการผลิต
+                      Calculate Production Time
                     </div>
                     <div class="col-12 bottom mb-2" style="background-color: #1f2122;">
-                      เคลีย ข้อมูล
+                      Clear data
                     </div>
                     <div class="col-12 bottom mb-2"  type="button" @click="CalRemaining_Time,shareSimulator('slot_2')"  style="background-color: #e8bd4b; color: #1f2122;">
-                      แชร์ Simulator
+                      Share Simulator
                     </div>
                     <!-- แถวล่าง -->
                   </div>

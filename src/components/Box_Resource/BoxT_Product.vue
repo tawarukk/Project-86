@@ -43,8 +43,12 @@
                                 <img :src="getImagePath(products.img_portrait_product )" class="card-img-top" alt="...">
                             </router-link>
                         </td>
-                        <td v-if="products.available_content == 1">available</td>
-                        <td v-else>unavailable</td>
+                        <td style="width: 140px;">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" :id="'availableSwitch' + index" v-model="products.available_content " @change="updateAvailableStatus(products._id, products.available_content )">
+                                    <label class="form-check-label" :for="'availableSwitch' + index">{{ products.available_content  ? 'แสดง' : 'ซ่อน' }}</label>
+                                </div>
+                        </td>
                         <td>
                           <router-link :to="{name: 'edit_product', params: {id: products._id}}" class="btn button">
                             Edit
@@ -70,6 +74,7 @@
     import '../../assets/css/owl.css'; 
     import axios from'axios';
     import Swal from 'sweetalert2';
+    import { ElNotification } from 'element-plus'
 
   export default {
     name: 'TableProductBox',
@@ -84,7 +89,10 @@
       this.fetchProduct();
       let apiURL='http://localhost:4000/api_product';
       axios.get(apiURL).then(res =>{
-        this.Product = res.data
+        this.Product = res.data.map(product => ({
+                    ...product,
+                    available_content: product.available_content === "1", 
+                }));
       }).catch(error =>{
         console.log(error)
       })
@@ -153,6 +161,22 @@
                 // return require('@/assets/images/Module/undefined.png');
             }
             return require(`@/assets/images/product/${imageFileName}`);
+        },
+        updateAvailableStatus(id, newStatus) {
+        const statusToSend = newStatus ? "1" : "0";
+
+        let apiURL = `http://localhost:4000/api_product/update-available-status/${id}`;
+        axios.put(apiURL, { available_content: statusToSend })
+            .then(() => {
+                ElNotification({
+                title: 'สถานะมีการเปลี่ยนแปลง',
+                message:  'สถานะของข้อมูลได้รับการเปลี่ยนแปลงแล้ว'
+            })
+            })
+            .catch(error => {
+                console.log(error);
+                Swal.fire("Error!", "An error occurred while updating the available status.", "error");
+            });
         },
       }
     }

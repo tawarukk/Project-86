@@ -67,4 +67,24 @@ operatorRoute.put('/update-operator/:id', async (req, res, next) => {
         next(error);
     }
 });
+
+operatorRoute.put('/update-available-status/:id', async (req, res, next) => {
+    try {
+        const existingOperator = await operatorModel.findById(req.params.id);
+
+        if (existingOperator) {
+
+            existingOperator.available_content = req.body.available_content;
+
+            const updatedOperator = await existingOperator.save();
+
+            res.json(updatedOperator);
+            console.log('Available status updated successfully');
+        } else {
+            res.status(404).json({ message: 'Creator not found' });
+        }
+    } catch (error) {
+        next(error);
+    }
+});
 module.exports = operatorRoute;

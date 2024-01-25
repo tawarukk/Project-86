@@ -3,20 +3,22 @@
         <div class="page-content">
             <div>
                 <div class="row mb-3 d-flex">
-                    <div class="col-1 mb-3 card-status"  type="button" v-for="operator in operators" :key="operator._id"> 
-                        <el-popover
-                            placement="bottom"
-                            :title="operator.name_oper"
-                            :width="250"
-                            trigger="hover"
-                            :content="operator.descriptions"
-                        >
-                        <template #reference>
-                            <img :src="getImagePath(operator.img_portrait_oper)" @click="goToBoxModule(operator._id,BoxId)" alt="Operator Portrait">
+                    <template v-for="operator in operators" :key="operator._id">
+                        <div v-if="operator.available_content=='1'" class="mb-3 card-status" style="width: 150px; font-size: medium;" type="button" > 
+                            <el-popover
+                                placement="bottom"
+                                :title="operator.name_oper"
+                                :width="250"
+                                trigger="hover"
+                                :content="operator.descriptions"
+                            >
+                            <template #reference>
+                                <img :src="getImagePath(operator.img_portrait_oper)" @click="goToBoxModule(operator._id,BoxId)" alt="Operator Portrait">
+                            </template>
+                            </el-popover>
                             {{ operator.name_oper}}
-                        </template>
-                        </el-popover>
-                    </div>    
+                        </div>
+                    </template>    
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-6 card-status" type="button" @click="goToBox()">

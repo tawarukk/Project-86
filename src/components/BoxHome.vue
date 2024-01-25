@@ -225,7 +225,7 @@
 
             if (timeDiff <= 0) {
               this.error = startDate
-              this.countdown = "กิจกรรม กำลังดำเนินอยู่"
+                this.countdown = "กิจกรรม กำลังดำเนินอยู่"
               this.startCountdownEnd();
             } else {
               const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
@@ -255,7 +255,8 @@
 
             if (timeDiffEnd <= 0) {
               this.error = startEndDate
-              this.countdownEnd = "Event ได้สิ้นสุดไปแล้ว"
+              this.countdown = "รอพบกับกิจกรรมต่อไปน้ะ"
+              this.countdownEnd = "Event นี้ได้สิ้นสุดไปแล้ว"
             } else {
               const daysEnd = Math.floor(timeDiffEnd / (1000 * 60 * 60 * 24));
               const hoursEnd = Math.floor((timeDiffEnd % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));

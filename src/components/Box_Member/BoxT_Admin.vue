@@ -41,8 +41,12 @@
                             <td>{{ members.email_member }} </td>
                             <td>{{ members.tier_member }}</td>
                             <td>{{ members.role_member }} </td>
-                            <td v-if="members.available_member == 1">available</td>
-                            <td v-else>unavailable</td>
+                            <td style="width: 140px;">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" :id="'availableSwitch' + index" v-model="members.available_member " @change="updateAvailableStatus(members._id, members.available_member )">
+                                    <label class="form-check-label" :for="'availableSwitch' + index">{{ members.available_member  ? 'เปิดการใช้งาน' : 'ปิดการใช้งาน' }}</label>
+                                </div>
+                            </td>
                             <td>{{ members.uploadedAt.slice(0, 10) }} </td>
                             <td class="action-column">
                             <router-link :to="{name: 'edit_Member', params: {id: members._id}}" class="btn button">
@@ -70,6 +74,7 @@
     import axios from'axios';
     import Swal from 'sweetalert2';
     import jwt_decode from 'jwt-decode';
+    import { ElNotification } from 'element-plus'
 
     export default {
         name: 'TableMemberBox',
@@ -85,7 +90,10 @@
         this.fetchMember();
         let apiURL='http://localhost:4000/api_member';
         axios.get(apiURL).then(res =>{
-            this.Member = res.data
+            this.Member = res.data.map(member => ({
+                    ...member,
+                    available_member: member.available_member === "1", 
+                }));
         }).catch(error =>{
             console.log(error)
         })
@@ -159,7 +167,24 @@
             this.searchMember(this.searchKeyword);
         }
         },
-    },mounted() {
+        updateAvailableStatus(id, newStatus) {
+        const statusToSend = newStatus ? "1" : "0";
+
+        let apiURL = `http://localhost:4000/api_member/update-available-status/${id}`;
+        axios.put(apiURL, { available_member: statusToSend })
+            .then(() => {
+                ElNotification({
+                title: 'สถานะมีการเปลี่ยนแปลง',
+                message:  'สถานะของข้อมูลได้รับการเปลี่ยนแปลงแล้ว'
+            })
+            })
+            .catch(error => {
+                console.log(error);
+                Swal.fire("Error!", "An error occurred while updating the available status.", "error");
+            });
+        },
+    },
+    mounted() {
     const token = localStorage.getItem('token');
     if (token) {
         const decoded = jwt_decode(token);

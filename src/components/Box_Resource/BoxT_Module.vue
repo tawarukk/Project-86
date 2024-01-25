@@ -44,8 +44,12 @@
                         <td>{{ modules.operator_mod }}</td>
                         <td v-if="modules.operator_mod_id !== ''">ข้อมูล Oprator ถูกเพิ่มแล้ว</td>
                         <td v-else>{{ modules.operator_mod_id }}</td>
-                        <td v-if="modules.available_content == 1">available</td>
-                        <td v-else>unavailable</td>
+                        <td style="width: 140px;">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" :id="'availableSwitch' + index" v-model="modules.available_content " @change="updateAvailableStatus(modules._id, modules.available_content )">
+                                    <label class="form-check-label" :for="'availableSwitch' + index">{{ modules.available_content  ? 'แสดง' : 'ซ่อน' }}</label>
+                                </div>
+                        </td>
                         <td>
                           <router-link :to="{name: 'edit_module', params: {id: modules._id}}" class="btn button">
                             Edit
@@ -71,6 +75,7 @@
     import '../../assets/css/owl.css'; 
     import axios from'axios';
     import Swal from 'sweetalert2';
+    import { ElNotification } from 'element-plus'
 
   export default {
     name: 'TableModuleBox',
@@ -85,7 +90,10 @@
       this.fetchModule();
       let apiURL='http://localhost:4000/api_module';
       axios.get(apiURL).then(res =>{
-        this.Module = res.data
+        this.Module = res.data.map(module => ({
+                    ...module,
+                    available_content: module.available_content === "1", 
+                }));
       }).catch(error =>{
         console.log(error)
       })
@@ -155,6 +163,22 @@
                 // return require('@/assets/images/Module/undefined.png');
             }
             return require(`@/assets/images/Module/${imageFileName}`);
+        },
+        updateAvailableStatus(id, newStatus) {
+        const statusToSend = newStatus ? "1" : "0";
+
+        let apiURL = `http://localhost:4000/api_module/update-available-status/${id}`;
+        axios.put(apiURL, { available_content: statusToSend })
+            .then(() => {
+                ElNotification({
+                title: 'สถานะมีการเปลี่ยนแปลง',
+                message:  'สถานะของข้อมูลได้รับการเปลี่ยนแปลงแล้ว'
+            })
+            })
+            .catch(error => {
+                console.log(error);
+                Swal.fire("Error!", "An error occurred while updating the available status.", "error");
+            });
         },
       }
     }

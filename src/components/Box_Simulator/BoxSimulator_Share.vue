@@ -21,7 +21,7 @@
                 >
                 <template #reference>
                 <div class="cards-container col-5" style="background-color: #e8bd4b; color: #1f2122;" @click="copyToClipboard(simulator._id)" type="button">
-                  {{ simulator.position }} Room : {{ simulator.Name_product }}
+                  {{ simulator.position }} Room : {{ removeExtension(simulator.Name_product) }}
                 </div>
                 </template>
               </el-popover>
@@ -82,7 +82,7 @@
                 >
                 <template #reference>
                 <div class="cards-container col-5" style="background-color: #4b9ce8; color: #1f2122;" @click="copyToClipboard(simulator._id)" type="button">
-                  {{ simulator.position }} Room : {{ simulator.Name_product }}
+                  {{ simulator.position }} Room : {{ removeExtension(simulator.Name_product) }}
                 </div>
                 </template>
               </el-popover>
@@ -224,7 +224,10 @@
               title: 'รหัสถูกคัดลอกไปยังคลิปบอร์ด',
               message:  'สามารถนำไปบันทึกที่ Profileได้'
             })
-        },
+      },
+      removeExtension(filename) {
+            return filename.slice(0, filename.lastIndexOf('.'));
+      }
     },
     computed: {
     paginatedItems() {

@@ -90,6 +90,26 @@ methods: {
         this.isFlipped = !this.isFlipped;
     },
     async registerUser() {
+        if (this.userData.name_member.includes(' ')) {
+            Swal.fire("ชื่อผู้ใช้ไม่สามารถมีช่องว่าง", "กรุณาลองใหม่อีกครั้ง", "error");
+            return;
+        }
+
+        if (this.userData.password_member.includes(' ')) {
+            Swal.fire("รหัสผ่านไม่สามารถมีช่องว่าง", "กรุณาลองใหม่อีกครั้ง", "error");
+            return;
+        }
+
+        if (/\s/.test(this.userData.name_member) || /[^\w\d]/.test(this.userData.name_member)) {
+            Swal.fire("ชื่อผู้ใช้ไม่สามารถมีช่องว่างหรืออักษรพิเศษ", "กรุณาลองใหม่อีกครั้ง", "error");
+            return;
+        }
+
+        if (/\s/.test(this.userData.password_member) || /[^\w\d]/.test(this.userData.password_member)) {
+            Swal.fire("รหัสผ่านไม่สามารถมีช่องว่างหรืออักษรพิเศษ", "กรุณาลองใหม่อีกครั้ง", "error");
+            return;
+        }
+        
     if (this.userData.password_member !== this.userData.confirmPassword) {
         Swal.fire("Confirm Password ไม่ถูกต้อง", "อย่าตกใจ! <br> คุณแค่ต้องกรอกในส่วนของ Password ให้ตรงกับ <br> Confirm Password เพียงเท่านั้น", "error");
     } else {

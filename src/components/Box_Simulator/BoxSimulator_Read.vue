@@ -13,10 +13,10 @@
                   >
                   <template #reference>
                   <div v-if="simulatorsTopic.position=='Factory'" class="cards-container col-5" style="background-color: #e8bd4b; color: #1f2122;" @click="copyToClipboard(simulatorsTopic._id)" type="button">
-                    {{ simulatorsTopic.position }} Room : {{ simulatorsTopic.Name_product }}
+                    {{ simulatorsTopic.position }} Room : {{ simulatorsTopic.Name_product && simulatorsTopic.Name_product.slice(0, 8) }}
                   </div>
                   <div v-else class="cards-container col-5" style="background-color: #4b9ce8; color: #1f2122;" @click="copyToClipboard(simulatorsTopic._id)" type="button">
-                    {{ simulatorsTopic.position }} Room : {{ simulatorsTopic.Name_product }}
+                    {{ simulatorsTopic.position }} Room : {{ simulatorsTopic.Name_product && simulatorsTopic.Name_product.slice(0, 8) }}
                   </div>
                   </template>
                 </el-popover>

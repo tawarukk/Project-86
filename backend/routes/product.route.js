@@ -44,8 +44,8 @@ productRoute.route('/delete-product/:id').delete(async (req, res, next) => {
 
 productRoute.get('/edit-product/:id', async (req, res, next) => {
     try {
-        const module = await productModel.findById(req.params.id);
-        res.json(module);
+        const product = await productModel.findById(req.params.id);
+        res.json(product);
     } catch (error) {
         next(error);
     }
@@ -63,6 +63,26 @@ productRoute.put('/update-product/:id', async (req, res, next) => {
 
         res.json(updatedproduct);
         console.log('Successfully updated');
+    } catch (error) {
+        next(error);
+    }
+});
+
+productRoute.put('/update-available-status/:id', async (req, res, next) => {
+    try {
+        const existingProduct = await productModel.findById(req.params.id);
+
+        if (existingProduct) {
+
+            existingProduct.available_content = req.body.available_content;
+
+            const updatedProduct = await existingProduct.save();
+
+            res.json(updatedProduct);
+            console.log('Available status updated successfully');
+        } else {
+            res.status(404).json({ message: 'Creator not found' });
+        }
     } catch (error) {
         next(error);
     }

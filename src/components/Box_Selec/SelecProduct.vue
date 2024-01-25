@@ -12,7 +12,7 @@
                             :content="products.descriptions"
                         >
                         <template #reference>
-                        <div class="col-2 mb-3 mt-3" v-if="products.type_product === 'PreciousMetals'">
+                        <div class="col-2 mb-3 mt-3" v-if="products.available_content=='1' && products.type_product === 'PreciousMetals'">
                         <div class="card-status product" type="button">
                             <img :src="getImagePath(products.img_portrait_product)" @click="goToBoxModule(products._id, BoxId)" alt="products Portrait">
                             {{ products.name_product}}
@@ -33,7 +33,7 @@
                             :content="products.descriptions"
                         >
                         <template #reference>
-                        <div class="col-2 mb-3 mt-3" v-if="products.type_product === 'BattleRecord'">
+                        <div class="col-2 mb-3 mt-3" v-if="products.available_content=='1' && products.type_product === 'BattleRecord'">
                         <div class="card-status product" type="button">
                             <img :src="getImagePath(products.img_portrait_product)" @click="goToBoxModule(products._id, BoxId)" alt="products Portrait">
                             {{ products.name_product}}
@@ -54,7 +54,7 @@
                             :content="products.descriptions"
                         >
                         <template #reference>
-                        <div class="col-2 mb-3 mt-3" v-if="products.type_product === 'Chips'">
+                        <div class="col-2 mb-3 mt-3" v-if="products.available_content=='1' && products.type_product === 'Chips'">
                         <div class="card-status product" type="button">
                             <img :src="getImagePath(products.img_portrait_product)" @click="goToBoxModule(products._id, BoxId)" alt="products Portrait">
                             {{ products.name_product}}
@@ -75,7 +75,7 @@
                             :content="products.descriptions"
                         >
                         <template #reference>
-                        <div class="col-2 mb-3 mt-3" v-if="products.type_product === 'OriginiumMaterials'">
+                        <div class="col-2 mb-3 mt-3" v-if="products.available_content=='1' && products.type_product === 'OriginiumMaterials'">
                         <div class="card-status product" type="button">
                             <img :src="getImagePath(products.img_portrait_product)" @click="goToBoxModule(products._id, BoxId)" alt="products Portrait">
                             {{ products.name_product}}

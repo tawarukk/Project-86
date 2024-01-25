@@ -62,8 +62,12 @@
                                 <img :src="getImagePath_Port(operators.img_portrait_oper)" class="card-img-top" alt="...">
                             </router-link>
                             </td>
-                            <td v-if="operators.available_content == 1">available</td>
-                            <td v-else>unavailable</td>
+                            <td style="width: 140px;">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" :id="'availableSwitch' + index" v-model="operators.available_content " @change="updateAvailableStatus(operators._id, operators.available_content )">
+                                    <label class="form-check-label" :for="'availableSwitch' + index">{{ operators.available_content  ? 'แสดง' : 'ซ่อน' }}</label>
+                                </div>
+                            </td>
                             <td>
                             <router-link :to="{name: 'edit_operator', params: {id: operators._id}}" class="btn button">
                                 Edit
@@ -88,6 +92,7 @@
     import '../../assets/css/owl.css'; 
     import axios from'axios';
     import Swal from 'sweetalert2';
+    import { ElNotification } from 'element-plus'
 
     export default {
         name: 'TableOperatorBox',
@@ -102,7 +107,10 @@
         this.fetchOperators();
         let apiURL='http://localhost:4000/api_operator';
         axios.get(apiURL).then(res =>{
-            this.Operator = res.data
+            this.Operator = res.data.map(operator => ({
+                    ...operator,
+                    available_content: operator.available_content === "1", // แปลงเป็น boolean
+                }));
         }).catch(error =>{
             console.log(error)
         })
@@ -159,7 +167,6 @@
         this.Operator = filteredOperators;
         },
         fetchOperators() {
-        // ฟังก์ชั่นดึงข้อมูล Operator ทั้งหมดจาก API
         let apiURL = 'http://localhost:4000/api_operator';
         axios.get(apiURL)
             .then(res => {
@@ -188,6 +195,22 @@
                 // return require('@/assets/images/portrait/undefined.jpg');
             }
             return require(`@/assets/images/Card/${imageFileName}`);
+        },
+        updateAvailableStatus(id, newStatus) {
+        const statusToSend = newStatus ? "1" : "0";
+
+        let apiURL = `http://localhost:4000/api_operator/update-available-status/${id}`;
+        axios.put(apiURL, { available_content: statusToSend })
+            .then(() => {
+                ElNotification({
+                title: 'สถานะมีการเปลี่ยนแปลง',
+                message:  'สถานะของข้อมูลได้รับการเปลี่ยนแปลงแล้ว'
+            })
+            })
+            .catch(error => {
+                console.log(error);
+                Swal.fire("Error!", "An error occurred while updating the available status.", "error");
+            });
         },
         }
     }

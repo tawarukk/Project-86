@@ -125,4 +125,24 @@ memberRoute.put('/update-member/:id', async (req, res, next) => {
   }
 });
 
+memberRoute.put('/update-available-status/:id', async (req, res, next) => {
+  try {
+      const existingMember = await memberModel.findById(req.params.id);
+
+      if (existingMember) {
+
+          existingMember.available_member = req.body.available_member;
+
+          const updatedMember = await existingMember.save();
+
+          res.json(updatedMember);
+          console.log('Available status updated successfully');
+      } else {
+          res.status(404).json({ message: 'Creator not found' });
+      }
+  } catch (error) {
+      next(error);
+  }
+});
+
 module.exports = memberRoute;

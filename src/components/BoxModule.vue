@@ -11,7 +11,7 @@
                             trigger="hover"
                             content="สามารถปรับระดับ ตามความเหมาะสมได้ที่ Profile [Tier]"
                         >
-                        <template #reference>
+                    <template #reference>
                 <div class="white-circle" @click="getmanualAPI(usertier,'Factory')" type="button"><i class="fa-solid fa-question"></i></div>
                     </template>
                 </el-popover>
