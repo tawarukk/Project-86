@@ -3,9 +3,9 @@
       <div class="row">
         <div class="col-lg-12">
             <div class="page-content" style="background-color: #1f2122;">
-                <div class="cards-container col-6" style="background-color: #27292a;">
+                <div class="cards-container col-6" style="background-color: #E2E3DE;">
                     <el-breadcrumb separator="/">
-                        <el-breadcrumb-item :to="{ path: '/Creator_T' }">Tablepage</el-breadcrumb-item>
+                        <el-breadcrumb-item :to="{ path: '/Creator_T' }">Table_Creator</el-breadcrumb-item>
                         <el-breadcrumb-item>Edit_img_card_Creator : {{ Creator.name_con }}</el-breadcrumb-item>
                     </el-breadcrumb>
                 </div>

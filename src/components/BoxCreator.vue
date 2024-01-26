@@ -1,6 +1,130 @@
 <template>
     <div class="container">
 
+    <div class="row">
+    <div class="page-content" style="padding: 10px; text-align: center; width: 1050px; margin: 10px;">
+    <div class="row">
+        <div class="type" type="button" style="margin-left: 30px;" @click="filterByType('Gameplay')">
+            Gameplay
+        </div>
+        <div class="type" type="button" @click="filterByType('Story')">
+            Story
+        </div>
+        <div class="type" type="button" @click="filterByType('Live')">
+            Live
+        </div>
+        <div class="type" type="button" @click="filterByType('Anoter')">
+            Other
+        </div>
+        <div class="type" type="button" @click="sortByDate" :class="{ 'active': sortOrder === 'asc' }">
+        Date
+        <i v-if="sortOrder === 'asc'" class="fa-solid fa-chevron-down"></i>
+        <i v-if="sortOrder === 'desc'" class="fa-solid fa-chevron-up"></i>
+        </div>
+    </div>
+    </div>
+    <div class="page-content" style="padding: 10px; text-align: center; width: 220px; margin: 10px;">
+        <div class="type" type="button"  @click="filterByType()">
+            Reset
+        </div>
+    </div>
+    </div>
+
+    <div class="page-content" style="padding: 10px; margin-top: 0px;">
+    <div class="cards-container" style="width: auto; height: auto; padding: 20px;">
+    <div class="heading-section" style="margin-bottom: 5px;">
+        <h4 style="color: #E2E3DE;"><span style="color: #e8bd4b;">C</span>ategory : 
+            <span v-if="currentType == 'Anoter'"> Other</span> 
+            <span v-else-if="currentType !== ''"> {{ currentType }} </span> 
+            <span v-else> All</span>
+        </h4> 
+    </div>
+
+    <div class="row">
+        <div v-for="(cardItem, index) in filteredItems" :key="index" class="card" style="width: 18rem; padding: 0px; margin: 10px;">
+        <img :src="getImagePath(cardItem.img_card_con)" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title" style="color: aliceblue;">{{ cardItem.name_con }}</h5>
+            <p style="color: aliceblue;" >
+                Update : {{ cardItem.createdAt.slice(0, 10) }}
+            </p>
+        <div>
+        <span style="text-align: left; color: aliceblue; display: inline-block; vertical-align: middle;">
+            Platform :
+        </span>
+        <div style="text-align: right; display: inline-block; vertical-align: middle;">
+            <el-tooltip
+                class="box-item"
+                effect="dark"
+                :content="'Platform: ' + cardItem.socialMedia.Facebook"
+                placement="bottom"
+            >
+            <a v-if="cardItem.socialMedia.Facebook !== ''" :href="cardItem.socialMedia.F_link"  class="btn" style="color: #3b5998;"><i class="fa-brands fa-facebook"></i></a>
+            </el-tooltip>
+            <el-tooltip
+            v-if="cardItem.socialMedia.Youtube !== ''"
+            class="box-item"
+            effect="dark"
+            :content="'Platform: ' + cardItem.socialMedia.Youtube"
+            placement="bottom"
+            >
+            <a :href="cardItem.socialMedia.Y_link" class="btn" style="color: #FF0000;"><i class="fa-brands fa-square-youtube"></i></a>
+            </el-tooltip>
+
+            <el-tooltip
+            v-if="cardItem.socialMedia.Twitter !== ''"
+            class="box-item"
+            effect="dark"
+            :content="'Platform: ' + cardItem.socialMedia.Twitter"
+            placement="bottom"
+            >
+            <a :href="cardItem.socialMedia.T_link"  class="btn" style="color: #1DA1F2;"><i class="fa-brands fa-square-twitter"></i></a>
+            </el-tooltip>
+
+            <el-tooltip
+            v-if="cardItem.socialMedia.Raddit !== ''"
+            class="box-item"
+            effect="dark"
+            :content="'Platform: ' + cardItem.socialMedia.Raddit"
+            placement="bottom"
+            >
+            <a :href="cardItem.socialMedia.R_link"  class="btn" style="color: #FF5700;"><i class="fa-brands fa-square-reddit"></i></a>
+            </el-tooltip>
+
+            <el-tooltip
+            v-if="cardItem.socialMedia.Anoter !== ''"
+            class="box-item"
+            effect="dark"
+            :content="'Platform: ' + cardItem.socialMedia.Anoter"
+            placement="bottom"
+            >
+            <a :href="cardItem.socialMedia.A_link"  class="btn" style="color: #e8bd4b;"><i class="fa-solid fa-circle-info"></i></a>
+            </el-tooltip>
+    </div>
+</div>
+
+        </div>
+    </div>
+    </div>
+    </div>
+    <!-- Pagination -->
+    <div class="mt-2">
+        <ul class="pagination">
+        <li class="page-item" :class="{ 'disabled': currentPage === 1 }">
+            <a class="page-link" type="button" @click="currentPage -= 1">Previous</a>
+        </li>
+
+        <li class="page-item" v-for="page in Math.ceil(Creator.length / itemsPerPage)" :key="page" :class="{ 'active': page === currentPage }">
+            <a class="page-link" type="button" @click="currentPage = page">{{ page }}</a>
+        </li>
+
+        <li class="page-item" :class="{ 'disabled': currentPage === Math.ceil(Creator.length / itemsPerPage) }">
+            <a class="page-link" type="button" @click="currentPage += 1">Next</a>
+        </li>
+        </ul>
+    </div>
+    </div>
+
     <div class="page-content">
         <div class="row">
             <div class="cards-container col-6" style="width: 20rem; height: auto; padding: 15px;">
@@ -135,127 +259,6 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="row">
-    <div class="page-content" style="padding: 10px; text-align: center; width: 1050px; margin: 10px;">
-    <div class="row">
-        <div class="type" type="button" style="margin-left: 30px;" @click="filterByType('Gameplay')">
-            Gameplay
-        </div>
-        <div class="type" type="button" @click="filterByType('Story')">
-            Story
-        </div>
-        <div class="type" type="button" @click="filterByType('Live')">
-            Live
-        </div>
-        <div class="type" type="button" @click="filterByType('Anoter')">
-            Anoter
-        </div>
-        <div class="type" type="button" @click="sortByDate" :class="{ 'active': sortOrder === 'asc' }">
-        Date
-        <i v-if="sortOrder === 'asc'" class="fa-solid fa-chevron-down"></i>
-        <i v-if="sortOrder === 'desc'" class="fa-solid fa-chevron-up"></i>
-        </div>
-    </div>
-    </div>
-    <div class="page-content" style="padding: 10px; text-align: center; width: 220px; margin: 10px;">
-        <div class="type" type="button"  @click="filterByType()">
-            Reset
-        </div>
-    </div>
-    </div>
-
-    <!-- Third Section with Pagination -->
-    <div class="page-content" style="padding: 10px; margin-top: 0px;">
-    <div class="cards-container" style="width: auto; height: auto; padding: 20px;">
-    <div class="heading-section" style="margin-bottom: 5px;">
-        <h4>Content Creator : <span v-if="currentType !== ''"> {{ currentType }}</span> <span v-else> ALL</span> </h4> 
-    </div>
-
-    <div class="row">
-        <div v-for="(cardItem, index) in filteredItems" :key="index" class="card" style="width: 18rem; padding: 0px; margin: 10px;">
-        <img :src="getImagePath(cardItem.img_card_con)" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title" style="color: aliceblue;">{{ cardItem.name_con }}</h5>
-            <p style="color: aliceblue;" >
-                Update : {{ cardItem.createdAt.slice(0, 10) }}
-            </p>
-        <div>
-        <span style="text-align: left; color: aliceblue; display: inline-block; vertical-align: middle;">
-            Platform :
-        </span>
-        <div style="text-align: right; display: inline-block; vertical-align: middle;">
-            <el-tooltip
-                class="box-item"
-                effect="dark"
-                :content="'Platform: ' + cardItem.socialMedia.Facebook"
-                placement="bottom"
-            >
-            <a v-if="cardItem.socialMedia.Facebook !== ''" :href="cardItem.socialMedia.F_link"  class="btn" style="color: #3b5998;"><i class="fa-brands fa-facebook"></i></a>
-            </el-tooltip>
-            <el-tooltip
-            v-if="cardItem.socialMedia.Youtube !== ''"
-            class="box-item"
-            effect="dark"
-            :content="'Platform: ' + cardItem.socialMedia.Youtube"
-            placement="bottom"
-            >
-            <a :href="cardItem.socialMedia.Y_link" class="btn" style="color: #FF0000;"><i class="fa-brands fa-square-youtube"></i></a>
-            </el-tooltip>
-
-            <el-tooltip
-            v-if="cardItem.socialMedia.Twitter !== ''"
-            class="box-item"
-            effect="dark"
-            :content="'Platform: ' + cardItem.socialMedia.Twitter"
-            placement="bottom"
-            >
-            <a :href="cardItem.socialMedia.T_link"  class="btn" style="color: #1DA1F2;"><i class="fa-brands fa-square-twitter"></i></a>
-            </el-tooltip>
-
-            <el-tooltip
-            v-if="cardItem.socialMedia.Raddit !== ''"
-            class="box-item"
-            effect="dark"
-            :content="'Platform: ' + cardItem.socialMedia.Raddit"
-            placement="bottom"
-            >
-            <a :href="cardItem.socialMedia.R_link"  class="btn" style="color: #FF5700;"><i class="fa-brands fa-square-reddit"></i></a>
-            </el-tooltip>
-
-            <el-tooltip
-            v-if="cardItem.socialMedia.Anoter !== ''"
-            class="box-item"
-            effect="dark"
-            :content="'Platform: ' + cardItem.socialMedia.Anoter"
-            placement="bottom"
-            >
-            <a :href="cardItem.socialMedia.A_link"  class="btn" style="color: #e8bd4b;"><i class="fa-solid fa-circle-info"></i></a>
-            </el-tooltip>
-    </div>
-</div>
-
-        </div>
-    </div>
-    </div>
-    </div>
-    <!-- Pagination -->
-    <div class="mt-2">
-        <ul class="pagination">
-        <li class="page-item" :class="{ 'disabled': currentPage === 1 }">
-            <a class="page-link" type="button" @click="currentPage -= 1">Previous</a>
-        </li>
-
-        <li class="page-item" v-for="page in Math.ceil(Creator.length / itemsPerPage)" :key="page" :class="{ 'active': page === currentPage }">
-            <a class="page-link" type="button" @click="currentPage = page">{{ page }}</a>
-        </li>
-
-        <li class="page-item" :class="{ 'disabled': currentPage === Math.ceil(Creator.length / itemsPerPage) }">
-            <a class="page-link" type="button" @click="currentPage += 1">Next</a>
-        </li>
-        </ul>
-    </div>
     </div>
 </div>
 </template>

@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="page-content" style="background-color: #1f2122;">
-                    <div class="cards-container col-6" style="background-color: #27292a;">
+                    <div class="cards-container col-6" style="background-color: #E2E3DE;">
                         <el-breadcrumb separator="/">
                             <el-breadcrumb-item :to="{ path: '/creator' }">CreatorPage</el-breadcrumb-item>
                             <el-breadcrumb-item>Recommend_Creator</el-breadcrumb-item>

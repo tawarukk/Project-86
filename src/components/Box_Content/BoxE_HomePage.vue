@@ -3,9 +3,9 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="page-content" style="background-color: #1f2122;">
-                <div class="cards-container col-6" style="background-color: #27292a;">
+                <div class="cards-container col-6" style="background-color: #E2E3DE;">
                     <el-breadcrumb separator="/">
-                        <el-breadcrumb-item :to="{ path: '/Homepage_M' }">Tablepage</el-breadcrumb-item>
+                        <el-breadcrumb-item :to="{ path: '/Homepage_M' }">Table_HomePage</el-breadcrumb-item>
                         <el-breadcrumb-item>Edit HomePage [descriptions] : {{ Homepage.topic }}</el-breadcrumb-item>
                     </el-breadcrumb>
                 </div>

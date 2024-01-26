@@ -3,9 +3,9 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="page-content" style="background-color: #1f2122;">
-            <div class="cards-container col-6" style="background-color: #27292a;">
+            <div class="cards-container col-6" style="background-color: #E2E3DE;">
                     <el-breadcrumb separator="/">
-                        <el-breadcrumb-item :to="{ path: '/Creator_T' }">Tablepage</el-breadcrumb-item>
+                        <el-breadcrumb-item :to="{ path: '/Creator_T' }">Table_[Paragraphs]</el-breadcrumb-item>
                         <el-breadcrumb-item>Create_News & Manual [Paragraphs] : {{ ParagraphsData.topic }}</el-breadcrumb-item>
                     </el-breadcrumb>
             </div>

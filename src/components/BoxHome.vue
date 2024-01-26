@@ -1,5 +1,8 @@
 <template>
-  <el-backtop :right="25" :bottom="25" />
+  <el-backtop :right="25" :bottom="70" />
+
+  <button @click="openPopup" class="open-popup-button">Link</button>
+  <PopupPage v-if="showPopup" @close-popup="closePopup" />
 
   <div class="container">
         <div class="page-content">
@@ -28,7 +31,6 @@
                         <div class="card-body" style="background-color: #27292a; border-radius: 10px;">
                           <h4 style="color: #e8bd4b;"> {{ countdown }} </h4>
                         </div>
-                        
                       </div>
                     </div>
 
@@ -43,7 +45,6 @@
                       </div>
                     </div>
                   </div>
-
             </div>
         
         </div>
@@ -122,23 +123,24 @@
               </div>
           </div>
       </div>
-
-
-
         </div>
-
   </div>
+
 </template>
+
+
 
 <script>
     import '../assets/css/templatemo-cyborg-gaming.css'; 
     import '../assets/css/owl.css'; 
+    import PopupPage from '@/components/Box_SubComponent/PopupPage.vue';
     import { differenceInMilliseconds } from 'date-fns'
     import axios from 'axios';
 
     export default {
     name: 'BoxHome',
     components: {
+      PopupPage
     },
     props: {
         msg: String
@@ -160,6 +162,7 @@
       ReceptionData:[],
       timerEndData: null,
 
+      showPopup: true,
 
       countdown: '',
       countdownEnd:'ยังไม่ถึงเวลาเริ่มกิจกรรม',
@@ -333,9 +336,25 @@
           console.error('เกิดข้อผิดพลาดในการดึงข้อมูล:', error);
         }
         },
+        openPopup() {
+      this.showPopup = true;
+      localStorage.removeItem('popupClosed');
+        },
+        closePopup() {
+          this.showPopup = false;
+          localStorage.setItem('popupClosed', 'true');
+          this.ReflectPage()
+        },
+        ReflectPage() {
+          this.$router.go(0);
+        }
     },
     mounted(){
       this.startCountdown();
+      const isPopupClosed = localStorage.getItem('popupClosed');
+    if (isPopupClosed) {
+      this.showPopup = false;
+    }
     },
     async created() {
       await this.getDataMain();
@@ -352,6 +371,17 @@
 </script>
 
 <style scoped>
+.open-popup-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px;
+  background-color: #fff;
+  color: #007BFF;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+}
   .card {
   border: 3px solid #1f2122;
   border-radius: 10px;

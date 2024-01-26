@@ -2,9 +2,9 @@
   <div class="container">
     <div class="page-content" style="padding: 20px;">
       <div class="row">
-        <div class="cards-container col-6">
-          <el-breadcrumb separator="/">
-            <el-breadcrumb-item :to="{ path: '/news' }">homepage</el-breadcrumb-item>
+        <div class="cards-container col-6" style="background-color: #E2E3DE;">
+          <el-breadcrumb separator="/" >
+            <el-breadcrumb-item :to="{ path: '/news' }">Home</el-breadcrumb-item>
             <el-breadcrumb-item>{{ NewsTopic.topic }}</el-breadcrumb-item>
           </el-breadcrumb>
         </div>

@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="cards-container col-6">
                 <el-breadcrumb separator="/">
-                    <el-breadcrumb-item :to="{ path: '/news' }">homepage</el-breadcrumb-item>
+                    <el-breadcrumb-item :to="{ path: '/news' }">HomePage</el-breadcrumb-item>
                 </el-breadcrumb>
                 </div>
                 <div class="cards-container col-6" style="display: flex; align-items: center;">

@@ -4,9 +4,9 @@
         <div class="col-lg-12">
         <div class="page-content" style="background-color: #1f2122;">
 
-                <div class="cards-container col-6" style="background-color: #27292a;">
+                <div class="cards-container col-6" style="background-color: #E2E3DE;">
                     <el-breadcrumb separator="/">
-                        <el-breadcrumb-item :to="{ path: '/NewsTopic_T' }">News [Topic] Tablepage</el-breadcrumb-item>
+                        <el-breadcrumb-item :to="{ path: '/NewsTopic_T' }">Table_[Topic]</el-breadcrumb-item>
                         <el-breadcrumb-item>Create Manual [Link]</el-breadcrumb-item>
                     </el-breadcrumb>
                 </div>
