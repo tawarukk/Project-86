@@ -3,7 +3,7 @@
         <div class="page-content">
 
             <div class="most-popular mb-3 mt-0">
-                <h4><i class="fa-regular fa-bookmark"></i> :<span class="color-yt"> Module</span> & <span class="color-pk">Operator </span>: Status Check ( Version 0.0.1 ) </h4>
+                <h4><i class="fa-regular fa-bookmark"></i> Simulator :<span class="color-yt"> Module</span> & <span class="color-pk">Operator </span>: Status Check </h4>
                 <el-popover
                             placement="bottom"
                             title="คู่มือแนะนำการใช้งานระบบ Simulator Module "
@@ -141,7 +141,7 @@ export default{
 
     data() {
     return {
-        rule: require('@/assets/images/Card/Test.png'),
+        rule: require('@/assets/images/Card/back.png'),
         hasImage: false,
         Operators_sel: [],
         Module_sel:[],
@@ -793,6 +793,11 @@ export default{
     font-size: 20px; /* ปรับขนาดตัวหนังสือตามต้องการ */
     overflow: hidden;
     align-items: center;
+}
+
+.card-character {
+    padding: 30px;
+    max-height: 1000px;
 }
 
 .card-status ,pig{

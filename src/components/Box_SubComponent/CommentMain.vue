@@ -26,7 +26,8 @@ import jwt_decode from 'jwt-decode';
       return {
         newComment: '',
         userIMG:'',
-        userName:''
+        userName:'',
+        userCode:''
       };
     },
     methods: {
@@ -51,6 +52,7 @@ import jwt_decode from 'jwt-decode';
                 user_id: userid,
                 user_name_comment: this.userName,
                 user_img_comment: this.userIMG,
+                user_code_comment: this.userCode,
                 comment: this.newComment,
                 available_con: 1
             });
@@ -79,6 +81,7 @@ import jwt_decode from 'jwt-decode';
                 if (response.data && typeof response.data === 'object') {
                     this.userIMG = response.data.img_member;
                     this.userName = response.data.name_member;
+                    this.userCode = response.data.code_member;
                 }
             })
             .catch(error => {

@@ -85,7 +85,7 @@
                             content="สามารถปรับระดับ ตามความเหมาะสมได้ที่ Profile [Tier]"
                         >
                     <template #reference>
-                          <div class="white-circle modal-lg" type="button"> Factory Room ใช้งานอย่างไร <i class="fa-solid fa-question"></i></div>
+                          <div class="white-circle modal-lg" type="button" @click="getmanualAPI(usertier,'Factory')"> Factory Room ใช้งานอย่างไร <i class="fa-solid fa-question"></i></div>
                     </template>
                     </el-popover>
                     </span>
@@ -259,7 +259,7 @@
                         >
                   <template #reference>
                   <span class="col-1 card-status result re-status rule mb-2">
-                          <div class="white-circle modal-lg" type="button" data-bs-toggle="modal" data-bs-target="#RuleModal"> Factory Room ใช้งานอย่างไร <i class="fa-solid fa-question"></i></div>
+                          <div class="white-circle modal-lg" type="button" @click="getmanualAPI(usertier,'Factory')"> Factory Room ใช้งานอย่างไร <i class="fa-solid fa-question"></i></div>
                   </span>
                   </template>
                   </el-popover>
@@ -420,6 +420,7 @@ export default {
       ProductID: null,
       userName:'',
       userid:'',
+      usertier: '',
       Name_product_i:null,
       Name_product_ii:null,
 
@@ -1155,8 +1156,20 @@ export default {
             }
             
     },
+    getmanualAPI(usertier, posision) {
+        let apiURL = 'http://localhost:4000/api_manual';
+            axios.get(apiURL).then(res => {
+            this.ManualData = res.data.filter(item => item.m_posision === posision && item.m_tier === usertier);
+            this.openNewsReadPage(this.ManualData[0].manual_id);
+        }).catch(error => {
+            console.log(error);
+            Swal.fire("ฮั่นแน่", "สมัครสมาชิกก่อนเดี๋ยวให้อ่านคู่มือ", "error");
+        });
     },
-  
+    openNewsReadPage(link) {
+            this.$router.push({ name: 'NewsRead', params: { id: link } });
+        },
+    },
     mounted() {
     const token = localStorage.getItem('token');
     if (token) {
@@ -1166,6 +1179,7 @@ export default {
             .then(response => {
                 if (response.data && typeof response.data === 'object') {
                     this.userName = response.data.name_member;
+                    this.usertier = response.data.tier_member;
                 }
             })
             .catch(error => {

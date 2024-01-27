@@ -17,7 +17,7 @@
             Other
         </div>
         <div class="type" type="button" @click="sortByDate" :class="{ 'active': sortOrder === 'asc' }">
-        Date
+            Date
         <i v-if="sortOrder === 'asc'" class="fa-solid fa-chevron-down"></i>
         <i v-if="sortOrder === 'desc'" class="fa-solid fa-chevron-up"></i>
         </div>
@@ -29,15 +29,31 @@
         </div>
     </div>
     </div>
-
+    
     <div class="page-content" style="padding: 10px; margin-top: 0px;">
     <div class="cards-container" style="width: auto; height: auto; padding: 20px;">
+
     <div class="heading-section" style="margin-bottom: 5px;">
-        <h4 style="color: #E2E3DE;"><span style="color: #e8bd4b;">C</span>ategory : 
-            <span v-if="currentType == 'Anoter'"> Other</span> 
-            <span v-else-if="currentType !== ''"> {{ currentType }} </span> 
-            <span v-else> All</span>
-        </h4> 
+        <div style="background-color: #27292a; padding: 10px; border-radius: 10px;">
+            <h4 style="color: #E2E3DE; margin-bottom: 0px;"><span style="color: #e8bd4b;">C</span>ategory : 
+                <span v-if="currentType == 'Anoter'"> Other</span> 
+                <span v-else-if="currentType !== ''"> {{ currentType }} </span> 
+                <span v-else> All</span>
+            </h4>
+        </div>
+        <el-popover
+                placement="top-start"
+                title="แนะนำ Content Creator คนอื่นๆ"
+                :width="440"
+                trigger="hover"
+                content="สามารถแนะนำช่อง Content Creator หรือ ช่องของคุณเอง โดยการพิมพ์ชื่อช่องส่งมา และทางแอดมินจะตรวจสอบและอัพข้อมูลให้โดยเร็ว"
+        >
+        <template #reference>
+            <router-link :to="{name: 'Creator_R'}">
+                <div class="Random" type="button">Recommend Creator</div>
+            </router-link>
+        </template>
+        </el-popover>
     </div>
 
     <div class="row">
@@ -45,14 +61,50 @@
         <img :src="getImagePath(cardItem.img_card_con)" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title" style="color: aliceblue;">{{ cardItem.name_con }}</h5>
-            <p style="color: aliceblue;" >
-                Update : {{ cardItem.createdAt.slice(0, 10) }}
-            </p>
         <div>
-        <span style="text-align: left; color: aliceblue; display: inline-block; vertical-align: middle;">
-            Platform :
+        <span style="color: #E2E3DE;">
+            Category : 
         </span>
-        <div style="text-align: right; display: inline-block; vertical-align: middle;">
+
+        <span style="color: #E2E3DE;" v-for="Category in cardItem.type_con" :key="Category._id">
+            <el-tooltip
+                            class="box-item"
+                            effect="light"
+                            :content="'Category: Gameplay'"
+                            placement="top"
+                        >
+            <span v-if="Category=='Gameplay'" style="margin-left: 10px;"><i class="fa-solid fa-gamepad"></i></span>
+            </el-tooltip>
+            <el-tooltip
+                            class="box-item"
+                            effect="light"
+                            :content="'Category: Story'"
+                            placement="top"
+                        >
+            <span v-if="Category=='Story'" style="margin-left: 10px;"><i class="fa-solid fa-book"></i></span>
+            </el-tooltip>
+            <el-tooltip
+                            class="box-item"
+                            effect="light"
+                            :content="'Category: Live'"
+                            placement="top"
+                        >
+            <span v-if="Category=='Live'" style="margin-left: 10px;"><i class="fa-solid fa-headset"></i></span>
+            </el-tooltip>
+            <el-tooltip
+                            class="box-item"
+                            effect="light"
+                            :content="'Category: Other'"
+                            placement="top"
+                        >
+            <span v-if="Category=='Anoter'" style="margin-left: 10px;"><i class="fa-solid fa-circle-info"></i></span>
+            </el-tooltip>
+        </span><br>
+        <div style="text-align: left; color: #E2E3DE; display: inline-block; vertical-align: middle;">
+            Platform : 
+        </div><br>
+        <div style="text-align: right; display: inline-block; vertical-align: middle; color: #E2E3DE;">
+            |
             <el-tooltip
                 class="box-item"
                 effect="dark"
@@ -100,9 +152,11 @@
             >
             <a :href="cardItem.socialMedia.A_link"  class="btn" style="color: #e8bd4b;"><i class="fa-solid fa-circle-info"></i></a>
             </el-tooltip>
-    </div>
-</div>
-
+            </div>
+        </div>
+        <p style="color: #A0A0A0;" >
+            Upload : {{ cardItem.createdAt.slice(0, 10) }}
+        </p>
         </div>
     </div>
     </div>
@@ -133,14 +187,49 @@
                     <img :src="getImagePath(selectCreator.img_card_con)" class="card-img-top" alt="...">
                     <div class="card-body">
                     <h5 class="card-title" style="color: aliceblue;">{{ selectCreator.name_con }}</h5>
-                    <p style="color: aliceblue;">
-                        Update : {{ selectCreator.createdAt.slice(0, 10) }}
-                    </p>
                     <div>
-                        <span style="text-align: left; color: aliceblue; display: inline-block; vertical-align: middle;">
-                        Platform :
+                        <span style="color: #E2E3DE;">
+                            Category :
                         </span>
-                        <div style="text-align: right; display: inline-block; vertical-align: middle;">
+                        <span style="color: #E2E3DE;" v-for="Category in selectCreator.type_con" :key="Category._id">
+                        <el-tooltip
+                            class="box-item"
+                            effect="light"
+                            :content="'Category: Gameplay'"
+                            placement="top"
+                        >
+                            <span v-if="Category=='Gameplay'" style="margin-left: 10px;"><i class="fa-solid fa-gamepad"></i></span>
+                        </el-tooltip>
+                        <el-tooltip
+                            class="box-item"
+                            effect="light"
+                            :content="'Category: Story'"
+                            placement="top"
+                        >
+                            <span v-if="Category=='Story'" style="margin-left: 10px;"><i class="fa-solid fa-book"></i></span>
+                        </el-tooltip>
+                        <el-tooltip
+                            class="box-item"
+                            effect="light"
+                            :content="'Category: Live'"
+                            placement="top"
+                        >
+                            <span v-if="Category=='Live'" style="margin-left: 10px;"><i class="fa-solid fa-headset"></i></span>
+                        </el-tooltip>
+                        <el-tooltip
+                            class="box-item"
+                            effect="light"
+                            :content="'Category: Other'"
+                            placement="top"
+                        >
+                            <span v-if="Category=='Anoter'" style="margin-left: 10px;"><i class="fa-solid fa-circle-info"></i></span>
+                        </el-tooltip>
+                        </span><br>
+                        <span style="text-align: left; color: #E2E3DE; display: inline-block; vertical-align: middle;">
+                        Platform :
+                        </span><br>
+                        <div style="text-align: right; display: inline-block; vertical-align: middle; color: #E2E3DE;">
+                        |
                         <el-tooltip
                             class="box-item"
                             effect="dark"
@@ -186,6 +275,9 @@
                             <a :href="selectCreator.socialMedia.A_link" class="btn" style="color: #e8bd4b;"><i class="fa-solid fa-circle-info"></i></a>
                         </el-tooltip>
                         </div>
+                            <p style="color: #A0A0A0;">
+                                Update : {{ selectCreator.createdAt.slice(0, 10) }}
+                            </p>
                     </div>
                     </div>
                 </div>
@@ -196,13 +288,11 @@
                 <img :src="getImagePath(undefined)" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title" style="color: aliceblue;">Box of Rhost</h5>
-                    <p style="color: aliceblue;">
-                        Update : 2024-1-12 02:03 
-                    </p>
-                    <span style="text-align: left; color: aliceblue; display: inline-block; vertical-align: middle;">
+                    <span style="text-align: left; color:  #E2E3DE; display: inline-block; vertical-align: middle;">
                         Platform :
-                    </span>
-                    <div style="text-align: right; display: inline-block; vertical-align: middle;">
+                    </span><br>
+                    <div style="text-align: right; display: inline-block; vertical-align: middle; color:  #E2E3DE;">
+                        |
                         <el-tooltip
                             class="box-item"
                             effect="dark"
@@ -211,17 +301,25 @@
                         >
                             <a href="https://www.facebook.com/Gang404" class="btn" style="color: #3b5998;"><i class="fa-brands fa-facebook"></i></a>
                         </el-tooltip>
+                        <el-tooltip
+                            class="box-item"
+                            effect="dark"
+                            :content="'Platform: ขนมปัง'"
+                            placement="bottom"
+                        >
+                            <a href="https://www.youtube.com/@user-nn3oi3gw6q/playlists" class="btn" style="color: #FF0000;"><i class="fa-brands fa-square-youtube"></i></a>
+                        </el-tooltip>
                     </div>    
-                    <p style="color: aliceblue;">
-                        Description : 
+                    <p style="color:  #E2E3DE;">
+                        Description : ในส่วนนี้คุณสามารถตรวจสอบ สถานะช่องที่ถูกแนะนำไดจากตาราง 
+                    </p>
+                    <p style="color: #A0A0A0;">
+                        Upload : 
                     </p>
                 </div>
                 </div>
             </div>
                 <div class="Random" type="button" style=";" @click="randomCreator()">Random Creator</div>
-                <router-link :to="{name: 'Creator_R'}">
-                    <div class="Random" type="button">Recommend Creator</div>
-                </router-link>
             </div>
             <div class="container" style="width: 930px;">
                 <div class="cards-container" style="width: 900px; height: 370px; overflow-y: auto;">
@@ -236,7 +334,7 @@
                     </thead>
                     <tbody>
             <tr v-for="creator in Creator" :key="creator._id">
-                            <el-tooltip
+            <el-tooltip
                 class="box-item"
                 effect="dark"
                 :content="'Select: ' + creator.name_con "
@@ -359,11 +457,20 @@ export default {
             });
         },
     randomCreator() {
-    // สุ่มตำแหน่ง (index) จาก this.Creator
-    const randomIndex = Math.floor(Math.random() * this.Creator.length);
-    
-    // เก็บ Creator ที่สุ่มได้ไว้ใน this.selectCreator
+
+    let validIndices = [];
+        for (let i = 0; i < this.Creator.length; i++) {
+        if (this.Creator[i].survey_con !== '0') {
+            validIndices.push(i);
+        }
+        }
+
+    if (validIndices.length > 0) {
+    const randomIndex = validIndices[Math.floor(Math.random() * validIndices.length)];
     this.selectCreator = this.Creator[randomIndex];
+    } else {
+    console.log("ไม่พบ index ที่ survey_con ไม่เท่ากับ '0'");
+    }
     },
     SelectCreator(id) {
       const foundCreators = this.Creator.filter(creator => creator._id === id);

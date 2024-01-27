@@ -83,7 +83,7 @@
                             content="สามารถปรับระดับ ตามความเหมาะสมได้ที่ Profile [Tier]"
                         >
                           <template #reference>
-                          <div class="white-circle modal-lg" type="button" data-bs-toggle="modal" data-bs-target="#RuleModal"> Treading Post ใช้งานอย่างไร <i class="fa-solid fa-question"></i></div>
+                          <div class="white-circle modal-lg" type="button" @click="getmanualAPI(usertier,'Factory')"> Treading Post ใช้งานอย่างไร <i class="fa-solid fa-question"></i></div>
                           </template>
                         </el-popover>
                     </span>
@@ -231,7 +231,7 @@
                             content="สามารถปรับระดับ ตามความเหมาะสมได้ที่ Profile [Tier]"
                         >
                           <template #reference>
-                          <div class="white-circle modal-lg" type="button" data-bs-toggle="modal" data-bs-target="#RuleModal"> Treading Post ใช้งานอย่างไร <i class="fa-solid fa-question"></i></div>
+                          <div class="white-circle modal-lg" type="button" @click="getmanualAPI(usertier,'Factory')"> Treading Post ใช้งานอย่างไร <i class="fa-solid fa-question"></i></div>
                           </template>
                         </el-popover>
                     </span>
@@ -371,6 +371,7 @@ export default {
       ProductID: null,
       userName:'',
       userid:'',
+      usertier:'',
 
       //Save Shear
       SaveShearI_T: {},
@@ -1043,7 +1044,6 @@ export default {
     this.CalRemaining_Time();
 
     },
-
     CalRemaining_Time(){
 
       if (this.Card_Trad_i_a !== null && this.Card_Trad_i_b !== null && this.Card_Trad_i_c !== null ) {
@@ -1143,6 +1143,19 @@ export default {
             }
             
         },
+        getmanualAPI(usertier, posision) {
+        let apiURL = 'http://localhost:4000/api_manual';
+            axios.get(apiURL).then(res => {
+            this.ManualData = res.data.filter(item => item.m_posision === posision && item.m_tier === usertier);
+            this.openNewsReadPage(this.ManualData[0].manual_id);
+        }).catch(error => {
+            console.log(error);
+            Swal.fire("ฮั่นแน่", "สมัครสมาชิกก่อนเดี๋ยวให้อ่านคู่มือ", "error");
+        });
+    },
+    openNewsReadPage(link) {
+            this.$router.push({ name: 'NewsRead', params: { id: link } });
+        },
     },
     mounted() {
     const token = localStorage.getItem('token');
@@ -1153,6 +1166,7 @@ export default {
             .then(response => {
                 if (response.data && typeof response.data === 'object') {
                     this.userName = response.data.name_member;
+                    this.usertier = response.data.tier_member;
                 }
             })
             .catch(error => {

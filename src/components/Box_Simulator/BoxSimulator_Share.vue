@@ -9,6 +9,11 @@
               <router-link class="col bg pink mb-3 mt-0" type="button"  to="/Reception_Room">Reception Room[ <i class="fa-solid fa-flag"></i> ]</router-link>
           </div>
         <ul>
+
+          <div class="mb-3" style="display: flex; justify-content: flex-end; margin-left: 5px;">
+                <input type="text" class="form-control" v-model="searchKeyword" placeholder="ค้นหา Simulator [สามารถใส่ ชนิดของห้อง หรือ ชนิดของสินค้า เพื่อกรองรูปแบบ Simulator]" @input="onInputDelete">
+          </div>
+          
           <li v-for="simulator in filteredItems" :key="simulator._id">
             <div v-if="simulator.position == 'Factory'" class="page-content" style="background-color: #1f2122; padding: 10px;">
               <div class="d-flex">
@@ -20,7 +25,7 @@
                   content="สามารถนำรหัส Simulator ไปบันทึกได้ในหน้า Profile"
                 >
                 <template #reference>
-                <div class="cards-container col-5" style="background-color: #e8bd4b; color: #1f2122;" @click="copyToClipboard(simulator._id)" type="button">
+                <div class="cards-container" style="width: 675px; background-color: #e8bd4b; color: #1f2122;" @click="copyToClipboard(simulator._id)" type="button">
                   {{ simulator.position }} Room : {{ removeExtension(simulator.Name_product) }}
                 </div>
                 </template>
@@ -29,30 +34,30 @@
                   <strong>Position : </strong> {{ simulator.position }}
                 </div>
                 <div class="cards-container col-2">
-                  <strong>จำนวนการแนะนำ : </strong> {{ simulator.Share_count }}
+                  <strong>Share : </strong> {{ simulator.Share_count }}
                 </div>
                 <div class="cards-container" style="width: 270px; height: 55px;">
-                  <strong>จำนวนการเข้าชม : </strong> {{ simulator.view_count }}
+                  <strong>View : </strong> {{ simulator.view_count }}
                 </div>
 
               </div>
               <div class="d-flex flex-row">
-                <div class="cards-container">
+                <div class="cards-container" style="border: 2px solid #E2E3DE;">
                   <img :src="getImageOperator(simulator.operator[0].operator_save_a)" class="img-fluid" alt="Operator A">
-                  <p class="text-center mt-2">Operator A</p>
+                  <p class="text-center mt-2">{{simulator.operator[0].operator_save_a.slice(0, -4)}}</p>
                 </div>
-                <div class="cards-container">
+                <div class="cards-container" style="border: 2px solid #E2E3DE;">
                   <img :src="getImageOperator(simulator.operator[0].operator_save_b)" class="img-fluid" alt="Operator B">
-                  <p class="text-center mt-2">Operator B</p>
+                  <p class="text-center mt-2">{{simulator.operator[0].operator_save_b.slice(0, -4)}}</p>
                 </div>
-                <div class="cards-container">
+                <div class="cards-container" style="border: 2px solid #E2E3DE;">
                   <img :src="getImageOperator(simulator.operator[0].operator_save_c)" class="img-fluid" alt="Operator C">
-                  <p class="text-center mt-2">Operator C</p>
+                  <p class="text-center mt-2">{{simulator.operator[0].operator_save_c.slice(0, -4)}}</p>
                 </div>
                 <div class="cards-container"></div>
-                <div class="cards-container">
+                <div class="cards-container" style="border: 2px solid #E2E3DE;">
                   <img :src="getImageProduct(simulator.Name_product)" class="img-fluid" alt="Operator C">
-                  <p class="text-center mt-2">Operator C</p>
+                  <p class="text-center mt-2">{{simulator.Name_product.slice(0, -4)}}</p>
                 </div>
                 <div class="cards-container"></div>
                 <div class="cards-container">
@@ -66,7 +71,7 @@
                     text-color="#ff9900"
                     score-template="{value} points"
                   /></div>
-                  <div class="cards-container status" @click="ReadPage(simulator._id)" style="background-color: #E2E3DE; color: #1f2122;">ดูรายละเอียด</div>
+                  <div class="cards-container status" @click="ReadPage(simulator._id)" style="background-color: #E2E3DE; color: #1f2122;" type="button">View details</div>
                 </div>
                 <div class="cards-container"></div>
               </div>
@@ -81,7 +86,7 @@
                   content="สามารถนำรหัส Simulator ไปบันทึกได้ในหน้า Profile"
                 >
                 <template #reference>
-                <div class="cards-container col-5" style="background-color: #4b9ce8; color: #1f2122;" @click="copyToClipboard(simulator._id)" type="button">
+                <div class="cards-container" style="width: 675px; background-color: #4b9ce8; color: #1f2122;" @click="copyToClipboard(simulator._id)" type="button">
                   {{ simulator.position }} Room : {{ removeExtension(simulator.Name_product) }}
                 </div>
                 </template>
@@ -90,30 +95,30 @@
                   <strong>Position : </strong> {{ simulator.position }}
                 </div>
                 <div class="cards-container col-2">
-                  <strong>จำนวนการแนะนำ : </strong> {{ simulator.Share_count }}
+                  <strong>Share : </strong> {{ simulator.Share_count }}
                 </div>
                 <div class="cards-container" style="width: 270px; height: 55px;">
-                  <strong>จำนวนการเข้าชม : </strong> {{ simulator.view_count }}
+                  <strong>View : </strong> {{ simulator.view_count }}
                 </div>
 
               </div>
               <div class="d-flex flex-row">
-                <div class="cards-container">
+                <div class="cards-container" style="border: 2px solid #E2E3DE;">
                   <img :src="getImageOperator(simulator.operator[0].operator_save_a)" class="img-fluid" alt="Operator A">
-                  <p class="text-center mt-2">Operator A</p>
+                  <p class="text-center mt-2">{{ simulator.operator[0].operator_save_a.slice(0, -4) }}</p>
                 </div>
-                <div class="cards-container">
+                <div class="cards-container" style="border: 2px solid #E2E3DE;">
                   <img :src="getImageOperator(simulator.operator[0].operator_save_b)" class="img-fluid" alt="Operator B">
-                  <p class="text-center mt-2">Operator B</p>
+                  <p class="text-center mt-2">{{ simulator.operator[0].operator_save_b.slice(0, -4) }}</p>
                 </div>
-                <div class="cards-container">
+                <div class="cards-container" style="border: 2px solid #E2E3DE;">
                   <img :src="getImageOperator(simulator.operator[0].operator_save_c)" class="img-fluid" alt="Operator C">
-                  <p class="text-center mt-2">Operator C</p>
+                  <p class="text-center mt-2">{{ simulator.operator[0].operator_save_c.slice(0, -4) }}</p>
                 </div>
                 <div class="cards-container"></div>
-                <div class="cards-container">
+                <div class="cards-container" style="border: 2px solid #E2E3DE;">
                   <img :src="getImageProduct(simulator.Name_product)" class="img-fluid" alt="Operator C">
-                  <p class="text-center mt-2">Operator C</p>
+                  <p class="text-center mt-2">{{ simulator.Name_product.slice(0, -4) }}</p>
                 </div>
                 <div class="cards-container"></div>
                 <div class="cards-container">
@@ -127,7 +132,7 @@
                     text-color="#ff9900"
                     score-template="{value} points"
                   /></div>
-                  <div class="cards-container status" @click="ReadPage(simulator._id)" style="background-color: #E2E3DE; color: #1f2122;">ดูรายละเอียด</div>
+                  <div class="cards-container status" @click="ReadPage(simulator._id)" style="background-color: #E2E3DE; color: #1f2122;" type="button">View Details</div>
                 </div>
                 <div class="cards-container"></div>
               </div>
@@ -163,10 +168,11 @@
   export default {
     data() {
       return {
-        simulators: [], // เก็บข้อมูลที่ดึงมาจาก API
-        items: [], // ข้อมูลทั้งหมด
-        itemsPerPage: 4, // จำนวนรายการต่อหน้า
-        currentPage: 1, // หน้าปัจจุบัน
+        simulators: [], 
+        itemsPerPage: 4, 
+        currentPage: 1, 
+        searchKeyword: '' ,
+        originalsimulatorsData: [],
       };
     },
     mounted() {
@@ -178,6 +184,7 @@
         try {
           const response = await axios.get('http://localhost:4000/api_simulator');
           this.simulators = response.data; // เก็บข้อมูลที่ได้เข้าไปใน data
+          this.originalsimulatorsData = [...response.data];
         } catch (error) {
           console.error('Error fetching simulator data:', error);
         }
@@ -227,26 +234,48 @@
       },
       removeExtension(filename) {
             return filename.slice(0, filename.lastIndexOf('.'));
-      }
+      },
+      onInputDelete() {
+        if (this.searchKeyword === '') {
+            this.simulators = this.originalsimulatorsData;
+        } else {
+            this.searchSimulator(this.searchKeyword);
+        }
+      },
+      searchSimulator(keyword) {
+        let filteredSimulator = this.originalsimulatorsData;
+
+        if (keyword !== '') {
+        const lowerKeyword = keyword.toLowerCase();
+        filteredSimulator = this.originalsimulatorsData.filter((Share) => {
+            return (
+                Share.Name_product.toLowerCase().includes(lowerKeyword)||
+                Share.position.toLowerCase().includes(lowerKeyword) 
+                
+            );
+        });
+        }
+        this.simulators= filteredSimulator;
+        },
     },
     computed: {
     paginatedItems() {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
+        const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+        const endIndex = startIndex + this.itemsPerPage;
 
-    const filteredItems = this.currentType
-    ? this.simulators.filter(item => item.type.includes(this.currentType))
-    : this.simulators;
+        const filteredItems = this.currentType
+        ? this.simulators.filter(item => item.type.includes(this.currentType))
+        : this.simulators;
 
-    return filteredItems.slice(startIndex, endIndex);
-    },
-    filteredItems() {
-            return this.paginatedItems.filter(cardItem => cardItem.available_con !== '1');
-    },
+        return filteredItems.slice(startIndex, endIndex);
+        },
+        filteredItems() {
+                return this.paginatedItems.filter(cardItem => cardItem.available_con !== '1');
+        },
     },
     watch: {
         searchKeyword(newKeyword) {
-        this.searchNews(newKeyword);
+        this.searchSimulator(newKeyword);
         }
     },
   };

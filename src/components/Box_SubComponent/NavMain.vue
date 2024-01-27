@@ -18,7 +18,7 @@
                     </div>
                     <!-- //class="active" -->
                     <ul class="nav">
-                        <li><router-link to="/">Home</router-link></li>
+                        <li><router-link to="/"><span style="color: #E2E3DE;">Home</span></router-link></li>
                         <li><router-link to="/news">News</router-link></li>
                         <li><router-link to="/creator">creator</router-link></li>
                         <li><router-link to="/Module/:operators/:box/:modules/:mod">Module</router-link></li>
@@ -70,15 +70,15 @@
     methods: {
         logout(){
             Swal.fire({
-            title: 'ต้องการทำลาย token (ออกจากระบบ) ใช่หรือไม่',
+            title: 'ต้องการออกจากระบบใช่หรือไม่',
             showDenyButton: true,
-            denyButtonText: 'ยอมรับ',
-            confirmButtonText: `ไม่ยอมรับ`,
+            denyButtonText: 'ออกจากระบบ',
+            confirmButtonText: `อยู่ต่อ`,
             }).then((result) => {
             if (result.isConfirmed) {
                 //
             } else if (result.isDenied) {
-                Swal.fire('เรียบร้อย', 'ทำลาย token สำเร็จ(logout)', 'success')
+                Swal.fire('ออกจากระบบ', 'ออกจากระบบสำเร็จ', 'success')
                 this.$router.push('/login');
             }
             })

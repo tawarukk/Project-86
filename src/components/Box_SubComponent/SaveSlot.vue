@@ -10,20 +10,26 @@
           <div v-for="(saveSlot, index) in SaveSlotData" :key="index">
             <template v-if="saveSlot.user_save_id == this.user_id">
                 <div class="row mt-1">
-                    <div v-if="saveSlot.save_color=='white'" @click.prevent="SaveDataSimulator(saveSlot.save_id)" class="cards-container slot col-1" style="background-color: #E2E3DE; margin-left: 10px;"></div>
-                    <div v-if="saveSlot.save_color=='blue'" @click.prevent="SaveDataSimulator(saveSlot.save_id)" class="cards-container slot col-1" style="background-color: #4b9ce8; margin-left: 10px;"></div>
-                    <div v-if="saveSlot.save_color=='yellow'" @click.prevent="SaveDataSimulator(saveSlot.save_id)" class="cards-container slot col-1" style="background-color: #e8bd4b; margin-left: 10px;"></div>
-                    <div v-if="saveSlot.save_color=='pink'" @click.prevent="SaveDataSimulator(saveSlot.save_id)" class="cards-container slot col-1" style="background-color: #FF9999; margin-left: 10px;"></div>  
+                  <el-tooltip
+                          effect="dark"
+                          content="ไปยังหน้าที่บันทึกไว้"
+                          placement="bottom"
+                          >
+                    <div v-if="saveSlot.save_color=='white'" @click.prevent="SaveDataSimulator(saveSlot.save_id)" class="cards-container slot col-1" style="background-color: #E2E3DE; margin-left: 10px;" type="button"></div>
+                    <div v-if="saveSlot.save_color=='blue'" @click.prevent="SaveDataSimulator(saveSlot.save_id)" class="cards-container slot col-1" style="background-color: #4b9ce8; margin-left: 10px;" type="button"></div>
+                    <div v-if="saveSlot.save_color=='yellow'" @click.prevent="SaveDataSimulator(saveSlot.save_id)" class="cards-container slot col-1" style="background-color: #e8bd4b; margin-left: 10px;" type="button"></div>
+                    <div v-if="saveSlot.save_color=='pink'" @click.prevent="SaveDataSimulator(saveSlot.save_id)" class="cards-container slot col-1" style="background-color: #FF9999; margin-left: 10px;" type="button"></div> 
+                    </el-tooltip> 
                 <div class="cards-container slot col-3" style="">
                     <div>{{ saveSlot.save_topic }}</div>
                 </div>
                 <div class="cards-container slot" style="width: 580px;">
                     <div>{{ saveSlot.save_description }}</div>
                 </div>
-                <router-link :to="{name: 'edit_save', params: {id: saveSlot._id}}" class="cards-container slot col-1">
+                <router-link :to="{name: 'edit_save', params: {id: saveSlot._id}}" class="cards-container slot col-1" style="color: #e8bd4b;">
                     แก้ไข
                 </router-link>
-                <div class="cards-container slot col-1" style="" @click.prevent="deleteSaveData(saveSlot._id)">
+                <div class="cards-container slot col-1" style="color: #FF9999;" @click.prevent="deleteSaveData(saveSlot._id)" type="button">
                     ลบ 
                 </div>
                 </div>

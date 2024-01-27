@@ -2,16 +2,16 @@
 <div class="container">
     <div class="page-content">
         <el-carousel :interval="4000" type="card" height="200px">
-    <el-carousel-item v-for="cardItem in filteredNews" :key="cardItem._id">
-      <div class="carousel-item-container">
-        <img :src="getImagePath(cardItem.img_card_news)" class="card-img-top" alt="...">
-        <div class="carousel-item-caption">
-          <h3 type="button" @click="NewsPage(cardItem._id)">{{ cardItem.topic }}</h3>
-          <p>{{ cardItem.description }}</p>
+        <el-carousel-item v-for="cardItem in filteredNews" :key="cardItem._id">
+        <div class="carousel-item-container">
+            <img :src="getImagePath(cardItem.img_card_news)" class="card-img-top" alt="...">
+            <div class="carousel-item-caption">
+            <h3 type="button" @click="NewsPage(cardItem._id)">{{ cardItem.topic }}</h3>
+            <p>{{ cardItem.description }}</p>
+            </div>
         </div>
-      </div>
-    </el-carousel-item>
-  </el-carousel>
+        </el-carousel-item>
+    </el-carousel>
     </div>
 
     <div class="row">
@@ -47,11 +47,13 @@
     <div class="page-content" style="padding: 10px; margin-top: 0px;">
     <div class="cards-container" style="width: auto; height: auto; padding: 20px;">
     <div class="heading-section" style="margin-bottom: 5px;">
-        <h4 style="color: #E2E3DE;"><span style="color: #e8bd4b;">C</span>ategory :
-            <span v-if="currentType == 'Anoter'"> Other</span> 
-            <span v-else-if="currentType !== ''"> {{ currentType }} </span> 
-            <span v-else> All</span>
-        </h4>
+        <div style="background-color: #27292a; padding: 10px; border-radius: 10px;">
+            <h4 style="color: #E2E3DE; margin-bottom: 0px;"><span style="color: #e8bd4b;">C</span>ategory :
+                <span v-if="currentType == 'Anoter'"> Other</span> 
+                <span v-else-if="currentType !== ''"> {{ currentType }} </span> 
+                <span v-else> All</span>
+            </h4>
+        </div>
     </div>
 
     <div class="row">
@@ -61,15 +63,18 @@
                 <img :src="getImagePath(cardItem.img_card_news)" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title topic" type="button" @click="NewsPage(cardItem._id)" >{{ cardItem.topic }}</h5>
-                        <p style="color: aliceblue;" >
-                            Update : {{ cardItem.uploadedAt.slice(0, 10) }}
-                        </p>
                     <div>
-                    <span style="text-align: left; color: aliceblue; display: inline-block; vertical-align: middle;">
-                        Description : {{ cardItem.description }}
-                    </span>
+                        <span style="color: aliceblue;">
+                            Category : <span style="color: #A0A0A0;">{{ cardItem.type }}</span> 
+                        </span>
+                        <span style="text-align: left; color: aliceblue; display: inline-block; vertical-align: middle;">
+                            Description : <span style="color: #A0A0A0;">{{ cardItem.description }}</span>
+                        </span>
                     </div> 
                 </div>
+                <p style="color: #A0A0A0; margin-left: 15px;" >
+                    Upload : {{ cardItem.uploadedAt.slice(0, 10) }}
+                </p>
             </div>
         </template>
         </template>
@@ -329,26 +334,10 @@ export default {
     color: #e8bd4b;
     }
 
-.el-carousel__item h3 {
-  display: flex;
-  color: #ddd;
-  opacity: 0.75;
-  line-height: 300px;
-  margin: 0;
-}
 
-.el-carousel__item:nth-child(2n) {
-  background-color: #99a9bf;
-}
-
-.el-carousel__item:nth-child(2n + 1) {
-  background-color: #d3dce6;
-}
-
-.carousel-item-container {
-  position: relative;
-  overflow: hidden;
-}
+.carousel-item-caption:hover {
+    backdrop-filter: blur(10px); 
+  }
 
 .card-img-top {
   width: 100%;
@@ -361,7 +350,6 @@ export default {
   left: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.5);
-  color: #fff;
   padding: 10px;
   text-align: center;
 }

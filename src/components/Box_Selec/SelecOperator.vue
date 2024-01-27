@@ -60,7 +60,9 @@ import '../../assets/css/owl.css';
                 this.$router.push({ name: 'Module', params: { operators: operatorId , box: BoxId , modules:0 , mod:0} });
             },
             getImagePath(imageFileName) {
-                // ใช้ require ในการโหลดรูปภาพ
+                if(imageFileName ==''||imageFileName==null){
+                    return require('@/assets/images/portrait/undefined.jpg');
+                }
                 return require(`@/assets/images/portrait/${imageFileName}`);
             },
             goToBox() {

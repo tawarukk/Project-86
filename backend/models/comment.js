@@ -11,6 +11,9 @@ let commentSchema = new Schema({
     user_name_comment:{
         type: String
     },
+    user_code_comment:{
+        type: String
+    },
     user_img_comment:{
         type: String
     },

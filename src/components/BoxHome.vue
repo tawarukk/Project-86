@@ -1,7 +1,7 @@
 <template>
-  <el-backtop :right="25" :bottom="70" />
+  <!-- <el-backtop :right="25" :bottom="70" /> -->
 
-  <button @click="openPopup" class="open-popup-button">Link</button>
+  <button @click="openPopup" class="open-popup-button">Arknights ?</button>
   <PopupPage v-if="showPopup" @close-popup="closePopup" />
 
   <div class="container">
@@ -14,7 +14,7 @@
                     <h6 style="font-size: 20px;"> {{ MainData.descriptions }}</h6>
                     <h4><div>Event Now : </div> {{ MainData.topic }} </h4>
                     <div class="main-button">
-                      <a :href="MainData.link_page">Browse Now</a>
+                      <a :href="MainData.link_page">See More Event</a>
                     </div>
                   </div>
                 </div>
@@ -26,7 +26,7 @@
                     <div class="col-md-6 pe-3 px-0 ">
                       <div class="card" style="border: 3px solid #1f2122;">
                         <div class="card-header" >
-                          <h5 style="color:#E2E3DE ;"> <i class="fa-solid fa-hourglass-start" style="color: #e8bd4b;"></i> : กิจกรรมจะ <span style="color: #e8bd4b;"> เริ่มต้น </span> ในอีก :</h5>
+                          <h5 style="color:#E2E3DE ;"> <i class="fa-solid fa-hourglass-start" style="color: #e8bd4b;"></i> : Event will <span style="color: #e8bd4b;"> begin </span> in :</h5>
                         </div>
                         <div class="card-body" style="background-color: #27292a; border-radius: 10px;">
                           <h4 style="color: #e8bd4b;"> {{ countdown }} </h4>
@@ -37,7 +37,7 @@
                     <div class="col-md-6 pe-0 px-3">
                       <div class="card" style="border: 3px solid #1f2122;">
                         <div class="card-header">
-                          <h5 style="color: #E2E3DE;">: กิจกรรมจะ<span style="color: #FF9999;"> สิ้นสุด </span>ในอีก : <i class="fa-solid fa-hourglass-start fa-rotate-180" style="color: #FF9999"></i></h5>
+                          <h5 style="color: #E2E3DE;">: Event will <span style="color: #FF9999;"> end </span>  in : <i class="fa-solid fa-hourglass-start fa-rotate-180" style="color: #FF9999"></i></h5>
                         </div>
                         <div class="card-body" style="background-color: #27292a; border-radius: 10px;">
                           <h4 style="color: #FF9999;"> {{ countdownEnd }} </h4>
@@ -56,24 +56,22 @@
                   <div class="header-text">
                     <h6 style="font-size: 20px;">{{NewsData.descriptions}}</h6>
                     <h4 style=""> {{ NewsData.topic}} </h4>
-                    <div class="main-button">
-                      <a :href="NewsData.link_page">Browse Now</a>
+                    <div class="main-button main-button-be">
+                      <a :href="NewsData.link_page" class="button">See More News</a>
                     </div>
                   </div>
                 </div>
               </div>
           </div>
-        </div>
-
-        <div class="page-content">
-          <div class="main-banner" :style="{ 'background-image': `url(${CreatorImage})` }">
+        
+          <div class="main-banner mt-3" :style="{ 'background-image': `url(${CreatorImage})` }">
               <div class="row">
                 <div class="col-lg-7">
                   <div class="header-text">
                     <h6 style="font-size: 20px;">{{CreatorData.descriptions}}</h6>
                     <h4 style=""> {{ CreatorData.topic}} </h4>
-                    <div class="main-button">
-                      <a :href="CreatorData.link_page">Browse Now</a>
+                    <div class="main-button main-button-yt">
+                      <a :href="CreatorData.link_page" class="button">See More News</a>
                     </div>
                   </div>
                 </div>
@@ -89,7 +87,7 @@
                   <div class="header-text">
                     <h4 style=""> {{ FactoryData.topic}} </h4>
                     <div class="main-button">
-                      <a :href="FactoryData.link_page">Browse Now</a>
+                      <a :href="FactoryData.link_page">Go to Factory Room</a>
                     </div>
                   </div>
                 </div>
@@ -102,8 +100,8 @@
                 <div class="col-lg-7">
                   <div class="header-text">
                     <h4 style=""> {{ TradingData.topic}} </h4>
-                    <div class="main-button">
-                      <a :href="TradingData.link_page">Browse Now</a>
+                    <div class="main-button main-button-be">
+                      <a :href="TradingData.link_page">Go to Trading Post Room</a>
                     </div>
                   </div>
                 </div>
@@ -115,9 +113,9 @@
           <div class="row">
               <div class="col-lg-7">
                   <div class="header-text">
-                      <h4 style="color: white;">{{ ReceptionData.topic }}</h4>
-                      <div class="main-button">
-                          <a :href="ReceptionData.link_page" style="color: white;">Browse Now</a>
+                      <h4>{{ ReceptionData.topic }}</h4>
+                      <div class="main-button main-button-yt">
+                          <a :href="ReceptionData.link_page">Go to Recerption Room</a>
                       </div>
                   </div>
               </div>
@@ -165,7 +163,7 @@
       showPopup: true,
 
       countdown: '',
-      countdownEnd:'ยังไม่ถึงเวลาเริ่มกิจกรรม',
+      countdownEnd:"It's not yet time to start the Event.",
         error: '',
         days: 0,
         hours: 0,
@@ -228,7 +226,7 @@
 
             if (timeDiff <= 0) {
               this.error = startDate
-                this.countdown = "กิจกรรม กำลังดำเนินอยู่"
+                this.countdown = "Event is in progress"
               this.startCountdownEnd();
             } else {
               const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
@@ -236,7 +234,7 @@
               const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
               const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
 
-              this.countdown = `${days} วัน : ${hours} ชั่วโมง : ${minutes} นาที : ${seconds} วินาที`;
+              this.countdown = `${days} day : ${hours} hour : ${minutes} minute : ${seconds} second`;
 
                       if (timeDiff > 0) {
                 requestAnimationFrame(() => this.calculateCountdown(timerData));
@@ -258,15 +256,15 @@
 
             if (timeDiffEnd <= 0) {
               this.error = startEndDate
-              this.countdown = "รอพบกับกิจกรรมต่อไปน้ะ"
-              this.countdownEnd = "Event นี้ได้สิ้นสุดไปแล้ว"
+              this.countdown = "Get ready to meet a new Event soon."
+              this.countdownEnd = "This event has already ended."
             } else {
               const daysEnd = Math.floor(timeDiffEnd / (1000 * 60 * 60 * 24));
               const hoursEnd = Math.floor((timeDiffEnd % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
               const minutesEnd = Math.floor((timeDiffEnd % (1000 * 60 * 60)) / (1000 * 60));
               const secondsEnd = Math.floor((timeDiffEnd % (1000 * 60)) / 1000);
 
-              this.countdownEnd = `${daysEnd} วัน : ${hoursEnd} ชั่วโมง : ${minutesEnd} นาที : ${secondsEnd} วินาที`;
+              this.countdownEnd = `${daysEnd} day : ${hoursEnd} hour : ${minutesEnd} minute : ${secondsEnd} second`;
 
               if (timeDiffEnd > 0) {
                 requestAnimationFrame(() => this.calculateCountdownEnd(timerEndData));
@@ -371,15 +369,29 @@
 </script>
 
 <style scoped>
+  .header-text {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .header-text:hover {
+    backdrop-filter: blur(10px); 
+  }
+
+  h6, h4 {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* เพิ่มเงาให้กับตัวหนังสือ */
+  }
+
 .open-popup-button {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  padding: 10px;
-  background-color: #fff;
-  color: #007BFF;
-  border: none;
-  border-radius: 100px;
+  bottom: 22px;
+  right: 2px;
+  padding: 8px;
+  background-color: #1f2122;
+  color: #e8bd4b;
+  border-radius: 20px;
+  border: 2px solid #e8bd4b;
   cursor: pointer;
 }
   .card {
@@ -387,9 +399,9 @@
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* จัดให้ตรงกลางในทิศทางแนวตั้ง */
-  align-items: center; /* จัดให้ตรงกลางในทิศทางแนวนอน */
-  text-align: center; /* จัดให้ตัวหนังสืออยู่ตรงกลาง */
+  justify-content: center; 
+  align-items: center;
+  text-align: center;
   background-color: #1f2122;
 }
 
@@ -401,6 +413,7 @@
 .main-banner{
   min-height: 0px;
   border: 3px solid #1f2122;
+  padding: 60px 30px;
 }
 
 .gradient-overlay {
@@ -413,5 +426,23 @@
     height: 100%;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent); /* Adjust the gradient as needed */
     pointer-events: none; /* Ensures that the overlay does not interfere with the content */
+
+}
+
+.main-button-be a {
+  color: #fff;
+  background-color: #4b9ce8;
+}
+.main-button-be a:hover {
+  color: #4b9ce8;
+  background-color: #fff;
+}
+.main-button-yt a {
+  color: #fff;
+  background-color: #FF9999;
+}
+.main-button-yt a:hover {
+  color: #FF9999;
+  background-color: #fff;
 }
 </style>

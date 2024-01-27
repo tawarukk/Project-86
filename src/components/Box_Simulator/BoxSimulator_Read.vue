@@ -12,11 +12,11 @@
                     content="สามารถนำรหัส Simulator ไปบันทึกได้ในหน้า Profile"
                   >
                   <template #reference>
-                  <div v-if="simulatorsTopic.position=='Factory'" class="cards-container col-5" style="background-color: #e8bd4b; color: #1f2122;" @click="copyToClipboard(simulatorsTopic._id)" type="button">
-                    {{ simulatorsTopic.position }} Room : {{ simulatorsTopic.Name_product && simulatorsTopic.Name_product.slice(0, 8) }}
+                  <div v-if="simulatorsTopic.position=='Factory'" class="cards-container" style="background-color: #e8bd4b; color: #1f2122; width: 535px;" @click="copyToClipboard(simulatorsTopic._id)" type="button">
+                    {{ simulatorsTopic.position }} Room : {{ simulatorsTopic.Name_product && simulatorsTopic.Name_product.slice(0, -4) }}
                   </div>
                   <div v-else class="cards-container col-5" style="background-color: #4b9ce8; color: #1f2122;" @click="copyToClipboard(simulatorsTopic._id)" type="button">
-                    {{ simulatorsTopic.position }} Room : {{ simulatorsTopic.Name_product && simulatorsTopic.Name_product.slice(0, 8) }}
+                    {{ simulatorsTopic.position }} Room : {{ simulatorsTopic.Name_product && simulatorsTopic.Name_product.slice(0, -4) }}
                   </div>
                   </template>
                 </el-popover>
@@ -24,46 +24,51 @@
                   <strong>Position : </strong> {{ simulatorsTopic.position }}
                 </div>
                 <div class="cards-container col-2">
-                  <strong>จำนวนการแนะนำ : </strong> {{ simulatorsTopic.Share_count }}
+                  <strong>Share : </strong> {{ simulatorsTopic.Share_count }}
                 </div>
                 <div class="cards-container" style="width: 270px; height: 55px;">
-                  <strong>จำนวนการเข้าชม : </strong> {{ simulatorsTopic.view_count }}
+                  <strong>View : </strong> {{ simulatorsTopic.view_count }}
                 </div>
         </div>
 
         <div class="d-flex flex-row">
-              <div class="cards-container" v-for="(operator, index) in simulatorsTopic.operator" :key="`operator_${index}`">
+              <div class="cards-container" v-for="(operator, index) in simulatorsTopic.operator" :key="`operator_${index}`" style="border: 2px solid #E2E3DE;">
                 <img :src="getImageOperator(operator.operator_save_a)" class="img-fluid" :alt="'Operator A ' + index">
-                <p class="text-center mt-2">Operator A</p>
+                <p class="text-center mt-2">{{operator.operator_save_a.slice(0, -4)}}</p>
               </div>
-              <div class="cards-container" v-for="(operator, index) in simulatorsTopic.operator" :key="`operator_${index}`">
+              <div class="cards-container" v-for="(operator, index) in simulatorsTopic.operator" :key="`operator_${index}`" style="border: 2px solid #E2E3DE;">
                 <img :src="getImageOperator(operator.operator_save_b)" class="img-fluid" :alt="'Operator B ' + index">
-                <p class="text-center mt-2">Operator B</p>
+                <p class="text-center mt-2">{{operator.operator_save_b.slice(0, -4)}}</p>
               </div>
-              <div class="cards-container" v-for="(operator, index) in simulatorsTopic.operator" :key="`operator_${index}`">
+              <div class="cards-container" v-for="(operator, index) in simulatorsTopic.operator" :key="`operator_${index}`" style="border: 2px solid #E2E3DE;">
                 <img :src="getImageOperator(operator.operator_save_c)" class="img-fluid" :alt="'Operator C ' + index">
-                <p class="text-center mt-2">Operator C</p>
+                <p class="text-center mt-2">{{operator.operator_save_c.slice(0, -4)}}</p>
               </div>
 
                 
-                <div class="cards-container" style="width: 150px;">
+                <div class="cards-container" style="width: 150px;" >
                   <img :src="getImageProduct(simulatorsTopic.Name_product)" class="img-fluid" alt="Operator C">
-                  <p class="text-center mt-2">Time : {{ Math.floor(simulatorsTopic.Time_Remaining / 60) }} ชั่วโมง : {{ Math.floor(simulatorsTopic.Time_Remaining % 60) }} นาที : {{ Math.round((simulatorsTopic.Time_Remaining % 1) * 60) }} วินาที</p>
+                  <p class="text-center mt-2">Time : <br> {{ Math.floor(simulatorsTopic.Time_Remaining / 60) }} ชั่วโมง : {{ Math.floor(simulatorsTopic.Time_Remaining % 60) }} นาที : {{ Math.round((simulatorsTopic.Time_Remaining % 1) * 60) }} วินาที</p>
                 </div>
                 <div class="cards-container">
                   <template v-for="(comment, index) in simulatorsTopic.comment" :key="`comment_${index}`">
                     <div class="box-card" v-if="index === currentCommentIndex">
-                      <div class="cards-container status">
+                      <div class="row">
+                      <div class="cards-container status text-center" style="margin-left: 17px; width: 400px;">
                         <span>{{ comment.user }}</span> 
-                        <div @click.prevent="deleteComment(comment._id)" class="btn text-center" v-if="comment.user == this.userName || this.userRole=='admin' || this.userRole=='superadmin'" style="color: crimson;"> ลบ  </div>
+                      </div>
+                      <div class="cards-container status text-center" style="width: 90px;">
+                        <div @click.prevent="deleteComment(comment._id)" v-if="comment.user == this.userName || this.userRole=='admin' || this.userRole=='superadmin'" style="color: #FF9999;"> ลบ  </div>
+                      </div>
                       </div>
                       <div class="cards-container status" style="height: 100px;">
-                        <span>{{ comment.comment_member }}</span>
+                        <span v-if="comment.comment_member!=''" style="margin-left: 20px;"> : {{ comment.comment_member }}</span>
+                        <span v-else style="margin-left: 20px;"> : ไม่มีคำแนะนำพิเศษ</span>
                       </div>
                     </div>
                   </template>
                   <div class="row">
-                    <div class="cards-container status text-center" style="width: 245px; margin-left: 15px;" type="button" @click="showPreviousComment">
+                    <div class="cards-container status text-center" style="width: 245px; margin-left: 17px;" type="button" @click="showPreviousComment">
                         คำแนะนำก่อนหน้า
                     </div>
                     <div class="cards-container status text-center" style="width: 245px;" type="button" @click="showNextComment">
@@ -76,13 +81,13 @@
               <div class="row">
                 <div class="cards-container" style="color: #E2E3DE; margin-left: 16px; width: 600px;">
                   <div class="demo-rate-block">
-                    <span class="demonstration">Color for different levels </span>
+                    <span class="demonstration">Rate it Level : </span>
                     <el-rate v-model="value" :colors="colors" @change="updateRate" />
                   </div>
                 </div>
                 <div class="cards-container" style="color: #E2E3DE; width: 600px;">
                 <div class="demo-rate-block">
-                  <div class="demonstration mt-1"> ถูกสร้างครั้งแรกเมื่อ : <span> {{ simulatorsTopic.uploadedAt }} </span> </div>
+                  <div class="demonstration mt-1"> Was first created when : <span> {{ simulatorsTopic.uploadedAt }} </span> </div>
                 </div>
                 </div>
               </div>

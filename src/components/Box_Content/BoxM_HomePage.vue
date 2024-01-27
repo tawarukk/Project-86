@@ -22,7 +22,7 @@
                             type="datetimerange"
                             start-placeholder="Start date"
                             end-placeholder="End date"
-                            format="YYYY-MM-DD HH:mm:ss"
+                            format="YYYY-MM-DD "
                             date-format="YYYY/MM/DD ddd"
                             time-format="A hh:mm:ss"
                         />

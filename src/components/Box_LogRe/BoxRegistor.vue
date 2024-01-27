@@ -19,11 +19,11 @@
                             <div class=""> <h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-pk">R</span>egister</h1> </div>
                                 <div class="form-group">
                                     <label for="name_member" style="color: #A0A0A0;">Username </label> <span style="font-size: 15px; color: #FF9999;">(*จำเป็นต้องระบุ)</span>
-                                    <input type="text" class="form-control mt-1" id="name_member" v-model="userData.name_member" required>
+                                    <input type="text" class="form-control mt-1" id="name_member"  placeholder="[ไม่อนุญาตให้ใช้ช่องว่างและอักขระพิเศษ]" v-model="userData.name_member" required>
                                 </div>
                                 <div class="form-group mt-1">
                                     <label for="email_member" style="color: #A0A0A0;">Email</label> <span style="font-size: 15px; color: #FF9999;">(*จำเป็นต้องระบุ)</span>
-                                    <input type="email" class="form-control mt-1" id="email_member" v-model="userData.email_member" required>
+                                    <input type="email" class="form-control mt-1" id="email_member"  placeholder="[ไม่อนุญาตให้ใช้ช่องว่างและอักขระพิเศษ]" v-model="userData.email_member" required>
                                 </div>
                                 <div class="form-group mt-1">
                                     <label for="code_member" style="color: #A0A0A0;">Code</label> <span style="font-size: 15px; color: #666;">(*ไม่จำเป็นต้องระบุ)</span>
@@ -31,11 +31,11 @@
                                 </div>
                                 <div class="form-group mt-1">
                                     <label for="password_member" style="color: #A0A0A0;">Password</label> <span style="font-size: 15px; color: #FF9999;">(*จำเป็นต้องระบุ)</span>
-                                    <input type="password" class="form-control my-1" id="password_member" pattern=".{6,14}" placeholder="รหัสผ่านควรมีความยาว 6-14 ตัวอักษร" v-model="userData.password_member" required>
+                                    <input type="password" class="form-control my-1" id="password_member" pattern=".{6,14}" placeholder="รหัสผ่านควรมีความยาว 6-14 ตัวอักษร [ไม่อนุญาตให้ใช้ช่องว่างและอักขระพิเศษ]" v-model="userData.password_member" required>
                                 </div>
                                 <div class="form-group mt-1">
                                     <label for="confirmPassword" style="color: #A0A0A0;">Confirm Password</label> <span style="font-size: 15px; color: #FF9999;">(*จำเป็นต้องระบุ)</span>
-                                    <input type="password" class="form-control my-1" id="confirmPassword" v-model="userData.confirmPassword" required>
+                                    <input type="password" class="form-control my-1" id="confirmPassword" placeholder="กรุณายืนยันรหัสผ่านอีกครั้ง" v-model="userData.confirmPassword" required>
                                 </div>
                                 <button type="submit" class="btn mt-1" style="background-color: #FF9999; width: 300px; color: aliceblue; ">สมัครสมาชิก</button>
                             </form>
@@ -91,12 +91,12 @@ methods: {
     },
     async registerUser() {
         if (this.userData.name_member.includes(' ')) {
-            Swal.fire("ชื่อผู้ใช้ไม่สามารถมีช่องว่าง", "กรุณาลองใหม่อีกครั้ง", "error");
+            Swal.fire("ชื่อผู้ใช้ไม่สามารถมีช่องว่างหรืออักษรพิเศษ", "กรุณาลองใหม่อีกครั้ง", "error");
             return;
         }
 
         if (this.userData.password_member.includes(' ')) {
-            Swal.fire("รหัสผ่านไม่สามารถมีช่องว่าง", "กรุณาลองใหม่อีกครั้ง", "error");
+            Swal.fire("รหัสผ่านไม่สามารถมีช่องว่างหรืออักษรพิเศษ", "กรุณาลองใหม่อีกครั้ง", "error");
             return;
         }
 

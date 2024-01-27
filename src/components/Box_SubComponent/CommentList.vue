@@ -2,16 +2,13 @@
   <div class="container">
     <div class="page-content" style="padding: 10px;">
       <div class="row">
-        <div class="cards-container col-6" style="margin-left: 20px;">
+        <div class="cards-container col-8" style="margin-left: 20px;">
           <h6>Comments</h6>
         </div>
         <div class="cards-container type" type="button" @click="sortByDate" :class="{ 'active': sortOrder === 'asc' }">
         Date
         <i v-if="sortOrder === 'asc'" class="fa-solid fa-chevron-down"></i>
         <i v-if="sortOrder === 'desc'" class="fa-solid fa-chevron-up"></i>
-        </div>
-        <div class="cards-container type">
-          Report
         </div>
         <div class="cards-container type" @click="created()" type="button">
           Reset
@@ -25,10 +22,10 @@
         <li v-for="(comment, index) in filteredComments" :key="index">
           <div class="comment-container" >
             <div class="row">
-            <div v-if="comment.user_id == this.userID" class="user  text-center" style="width: 600px; color: #e8bd4b;">{{ comment.user_name_comment }}</div>
-            <div v-else class="user  text-center" style="width: 600px; height: auto;">{{ comment.user_name_comment }}</div>
-            <div @click.prevent="EditComment(comment._id)" class="user btn text-center" v-if="comment.user_id == this.userID"> แก้ไข  </div>
-            <div @click.prevent="deleteComment(comment._id)" class="user btn text-center" v-if="comment.user_id == this.userID || this.userRole=='admin' || this.userRole=='superadmin'"> ลบ  </div>
+            <div v-if="comment.user_id == this.userID" class="user  text-center" style="width: 800px; color: #e8bd4b;">{{ comment.user_name_comment }} #{{ comment.user_code_comment }}</div>
+            <div v-else class="user  text-center" style="width: 800px; height: auto;">{{ comment.user_name_comment }} #{{ comment.user_code_comment }}</div>
+            <div @click.prevent="EditComment(comment._id)" class="user btn btn-yt text-center" v-if="comment.user_id == this.userID" style="color: #e8bd4b;"> แก้ไข  </div>
+            <div @click.prevent="deleteComment(comment._id)" class="user btn btn-pk text-center" v-if="comment.user_id == this.userID || this.userRole=='admin' || this.userRole=='superadmin'" style="color: #FF9999;"> ลบ  </div>
             </div>
 
             <el-form :model="commentBeingEdited" v-if="editMode && comment._id === commentBeingEdited._id" @submit.prevent="submitEdit">
@@ -214,7 +211,7 @@ export default {
   color: #fff;
   width: 180px;
   margin: 5px;
-  margin-right: 15px;
+  margin-right: 10px;
   padding: 10px;
   border-radius: 10px;
 }
@@ -224,9 +221,13 @@ export default {
   color: #1f2122;
 }
 
-.btn:hover {
-  background-color: #e8bd4b;
-  color: #1f2122;
+.btn-yt:hover {
+  background-color: #E2E3DE;
+  color: #FF9999;
+}
+.btn-pk:hover {
+  background-color: #E2E3DE;
+  color: #e8bd4b;
 }
 
 .comment-content {
