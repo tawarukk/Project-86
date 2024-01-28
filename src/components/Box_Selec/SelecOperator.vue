@@ -16,7 +16,11 @@
                                 <img :src="getImagePath(operator.img_portrait_oper)" @click="goToBoxModule(operator._id,BoxId)" alt="Operator Portrait">
                             </template>
                             </el-popover>
-                            {{ operator.name_oper}}
+                            <div v-if="operator.tier_oper =='6'" style="color: #e8a44b;">{{ operator.name_oper}}</div>
+                            <div v-else-if="operator.tier_oper =='5'" style="color: #e8bd4b;">{{ operator.name_oper}}</div>
+                            <div v-else-if="operator.tier_oper =='4'" style="color: #FF9999;">{{ operator.name_oper}}</div>
+                            <div v-else-if="operator.tier_oper =='3'" style="color: #4b9ce8;">{{ operator.name_oper}}</div>
+                            <div v-else>{{ operator.name_oper}}</div>
                         </div>
                     </template>    
                 </div>
@@ -42,7 +46,13 @@ import '../../assets/css/owl.css';
             console.log('box found:', this.BoxId)
             axios.get('http://localhost:4000/api_operator')
                 .then(response => {
-                    this.operators = response.data;
+                    this.operators = response.data.sort((a, b) => {
+                    
+                        if (b.tier_oper !== a.tier_oper) {
+                            return b.tier_oper - a.tier_oper;
+                        }
+                        return a.name_oper.localeCompare(b.name_oper);
+                    });
                 })
                 .catch(error => {
                     console.log(error);

@@ -1,22 +1,24 @@
 <template>
   <div class="Module">
-  <!-- <div class="Module" :style="{ backgroundImage: 'url(' + rule + ')' }"> -->
     <NavBar/>
     <BoxModule/>
+    <FooterMain/>
   </div>
 </template>
   
 <script>
 import  NavBar  from '@/components/Box_SubComponent/NavMain'
-//import  MongodbAdd from '@/components/MongoDB.vue'
 import  BoxModule from '@/components/BoxModule.vue'
+import  FooterMain from '@/components/Box_SubComponent/FooterMain'
+
+
 
 
 export default {
   name: 'MolduleView',
   components: {
     NavBar,
-    //MongodbAdd
+    FooterMain,
     BoxModule
   },
   data() {

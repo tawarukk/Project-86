@@ -2,16 +2,20 @@
 <div class="Selec_M">  
 <NavBar/>
 <SeMod/>
+<FooterMain/>
 </div>
 </template>
 
 <script>
 import  SeMod from '@/components/Box_Selec/SelecModule.vue'
 import  NavBar  from '@/components/Box_SubComponent/NavMain'
+import  FooterMain from '@/components/Box_SubComponent/FooterMain'
+
 export default {
     components: {
         SeMod,
-        NavBar 
+        NavBar,
+        FooterMain
     }
 }
 </script>

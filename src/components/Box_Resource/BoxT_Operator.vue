@@ -17,12 +17,12 @@
                         <tr>
                             <th>No.</th>
                             <th>Name</th>
-                            <th>skill_i</th>
-                            <th>skill_ii</th>
-                            <th>descriptions</th>
+                            <th>Skill_i</th>
+                            <th>Skill_ii</th>
+                            <th>Descriptions</th>
                             <th>Cart</th>
                             <th>Portrait</th>
-                            <th>Available_content</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -68,12 +68,12 @@
                                     <label class="form-check-label" :for="'availableSwitch' + index">{{ operators.available_content  ? 'แสดง' : 'ซ่อน' }}</label>
                                 </div>
                             </td>
-                            <td>
+                            <td class="action-column">
                             <router-link :to="{name: 'edit_operator', params: {id: operators._id}}" class="btn button">
                                 Edit
                             </router-link>
-                            <button @click.prevent="deleteOperator(operators._id)" class="btn button-black">
-                                Del
+                            <button @click.prevent="deleteOperator(operators._id)" class="btn button" style="background-color: #27292a; color: aliceblue;">
+                                Delete
                             </button>
                             </td>
                         </tr>
@@ -170,8 +170,11 @@
         let apiURL = 'http://localhost:4000/api_operator';
         axios.get(apiURL)
             .then(res => {
-                this.Operator = res.data;
-                this.originalOperators = [...res.data];
+                this.Operator = res.data.map(operator => ({
+                    ...operator,
+                    available_content: operator.available_content === "1", // แปลงเป็น boolean
+                }));
+                this.originalOperators = [...this.Operator];
             })
             .catch(error => {
                 console.log(error);
@@ -241,21 +244,11 @@
         margin-bottom: 10px;
     }
     .button{
+    width: 100px;
     background: #e8bd4b;
-    margin-right: 10px;
-    padding: 8px;
+    margin: 5px;
     color:#1f2122;
     }
-    .button-black{
-        background: #1f2122;
-        color:#666;
-    }
-
-    .button-mid{
-        background: #FF9999;
-        color:#1f2122;
-    }
-
     .addData{
         background-color: #e8bd4b;
         color: #1f2122;
@@ -264,10 +257,10 @@
         font-size: 20px; 
         font-weight: bold;
     }
-
-    .color-pk {
-        color: #FF9999;
+    .action-column {
+        width: 100px;
     }
+
     .color-yt {
         color: #e8bd4b;
     }

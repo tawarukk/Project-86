@@ -4,7 +4,6 @@
         <BoxProfile/>
         <SaveSlot/>
         <FooterMain/>
-        
     </div>
 </template>
 
@@ -23,7 +22,6 @@ export default {
         SaveSlot,
         BoxProfile,
         FooterMain,
-        
         }
 }
 </script>

@@ -11,7 +11,7 @@
                     </el-breadcrumb>
                 </div>
 
-            <div style="font-size: 19px; font-weight: bold; display: flex; justify-content: center; align-items: center;"><h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-pk">T</span>able <span class="color-pk">P</span>rofile [<span class="color-pk">I</span>MG] </h1> </div>
+            <div style="font-size: 19px; font-weight: bold; display: flex; justify-content: center; align-items: center;"><h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-pk">T</span>able <span class="color-pk">M</span>anual [<span class="color-pk">L</span>ink] </h1> </div>
             <div v-if="userRole=='superadmin'" class="addData mb-3 mt-3" type="button" @click="ManualPage()" style="display: flex; justify-content: center; align-items: center;"> เพิ่มข้อมูล Manual [Link]</div>
 
             <div class=" mb-3" style="display: flex; justify-content: flex-end;">
@@ -25,9 +25,9 @@
                         <tr>
                             <th>No.</th>
                             <th>ID_Manual ปัจจุบัน</th>
-                            <th>description</th>
-                            <th>posision</th>
-                            <th>tier</th>
+                            <th>Description</th>
+                            <th>Posision</th>
+                            <th>Tier</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -42,6 +42,9 @@
                             <router-link :to="{name: 'edit_ManualLink', params: {id: manual._id}}" class="btn button">
                                 เปลี่ยน ID
                             </router-link>
+                            <button v-if="userRole=='superadmin'" @click.prevent="deleteManual(manual._id)" class="btn button" style="background-color: #27292a; color: aliceblue;">
+                                ลบข้อมูล
+                            </button>
                             </td>
                         </tr>
                     </tbody>
@@ -59,6 +62,7 @@
     import '../../assets/css/owl.css'; 
     import axios from'axios';
     import jwt_decode from 'jwt-decode';
+    import Swal from 'sweetalert2';
 
     export default {
         name: 'TableManualBox',
@@ -122,6 +126,22 @@
         } else {
             this.searchManual(this.searchKeyword);
         }
+        },
+        deleteManual(id) {
+            let apiURL = `http://localhost:4000/api_manual/delete-manual/${id}`;
+            let indexOfArrayItem = this.ManualData.findIndex(i => i._id === id);
+
+            if (window.confirm("Do you really want to delete?")) {
+                axios.delete(apiURL).then(() => {
+                    this.ManualData.splice(indexOfArrayItem, 1);
+                    Swal.fire("Deleted!", "Manual deleted successfully.", "success");
+                }).catch(error => {
+                    console.log(error)
+                    Swal.fire("Error!", "An error occurred while deleting the Manual.", "error");
+                    })
+                } else {
+                    Swal.fire("Cancel!", "An error occurred while deleting the Manual.", "cancel");
+                }
         },
         },
         mounted() {

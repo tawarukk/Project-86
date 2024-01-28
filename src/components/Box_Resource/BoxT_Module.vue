@@ -21,7 +21,7 @@
                           <th>Descriptions</th>
                           <th>Operator</th>
                           <th>Operator_id</th>
-                          <th>Available_content</th>
+                          <th>Status</th>
                           <th>Action</th>
                       </tr>
                     </thead>
@@ -50,11 +50,11 @@
                                     <label class="form-check-label" :for="'availableSwitch' + index">{{ modules.available_content  ? 'แสดง' : 'ซ่อน' }}</label>
                                 </div>
                         </td>
-                        <td>
+                        <td class="action-column">
                           <router-link :to="{name: 'edit_module', params: {id: modules._id}}" class="btn button">
                             Edit
                           </router-link>
-                          <button @click.prevent="deleteModule(modules._id)" class="btn button-black">
+                          <button @click.prevent="deleteModule(modules._id)" class="btn button" style="background-color: #27292a; color: aliceblue;">
                             Delete
                           </button>
                         </td>
@@ -144,8 +144,11 @@
         let apiURL = 'http://localhost:4000/api_module';
         axios.get(apiURL)
             .then(res => {
-                this.Module = res.data;
-                this.originalModule = [...res.data];
+                this.Module = res.data.map(module => ({
+                    ...module,
+                    available_content: module.available_content === "1", 
+                }));
+                this.originalModule = [...this.Module];
             })
             .catch(error => {
                 console.log(error);
@@ -209,17 +212,16 @@
   .btn {
     margin-right: 10px; /* กำหนดระยะห่างระหว่างปุ่ม */
   }
-  .button{
-  background: #e8bd4b;
-  margin-right: 10px;
-  padding: 8px;
-  color:#1f2122;
-}
-  .button-black{
-    background: #1f2122;
-    color:#666;
-  }
+    .button{
+    width: 100px;
+    background: #e8bd4b;
+    margin: 5px;
+    color:#1f2122;
+    }
 
+    .action-column {
+        width: 100px;
+    }
   .addData{
     background-color: #e8bd4b;
     color: #1f2122;
@@ -227,10 +229,6 @@
     padding: 8px;
     font-size: 20px; 
     font-weight: bold;
-}
-
-.color-pk {
-    color: #FF9999;
 }
 .color-yt {
     color: #e8bd4b;

@@ -19,15 +19,15 @@
                             <div class=""> <h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-yt">E</span>dit <span class="color-yt">M</span>odule</h1> </div>
                                 <div class="form-group">
                                     <label for="name_mod" style="color: #A0A0A0;">Name Module :</label> <span style="font-size: 15px; color: #e8bd4b;">(*จำเป็นต้องระบุ)</span>
-                                    <input type="text" class="form-control mt-1" id="name_mod" v-model="Module.name_mod" required>
+                                    <input type="text" class="form-control mt-1" id="name_mod" placeholder="[ชื่อ หรือ รหัส โมดูล]"  v-model="Module.name_mod" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="descriptions" style="color: #A0A0A0;">Descriptions :</label> <span style="font-size: 15px; color: #e8bd4b;">(ระบุภายหลังได้)</span>
-                                    <input type="text" class="form-control mt-1" id="descriptions" v-model="Module.descriptions" required>
+                                    <label for="descriptions" style="color: #A0A0A0;">Descriptions :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
+                                    <input type="text" class="form-control mt-1" id="descriptions" placeholder="[คำอธิบาย สำหรับโมดูล]"  v-model="Module.descriptions">
                                 </div>
                                 <div class="form-group mt-1">
                                     <label for="effect_mod" style="color: #A0A0A0;">Effect Module :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
-                                    <input type="text" class="form-control mt-1" id="effect_mod" v-model="Module.effect_mod">
+                                    <input type="text" class="form-control mt-1" id="effect_mod" placeholder="[ความสามารถของโมดูล]"  v-model="Module.effect_mod">
                                 </div>
                                 <div class="form-group mt-1">
                                     <label for="operator_mod" style="color: #A0A0A0;">Name Operator :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
@@ -65,7 +65,7 @@
                                     <label for="bonut_atkspd_mod" style="color: #A0A0A0;">Bonut Atkspd :</label> 
                                     <input type="number" class="form-control mt-1" id="bonut_atkspd_mod" v-model="Module.bonut_atkspd_mod" required>
                                 </div>
-                                <button type="submit" class="btn mt-2 mb-2" style="background-color: #e8bd4b; width: 300px; color: #27292a; ">อัพเดทข้อมูล</button>
+                                <button type="submit" class="btn mt-2 mb-2" style="background-color: #e8bd4b; width: 300px; color: #27292a; ">บันทึกการแก้ไขข้อมูล</button>
                                 <button class="btn mt-2 mb-2" @click="tablepage()" style="background-color: #666; width: 300px; color: #27292a; ">ยกเลิกการแก้ไขข้อมูล</button>
                             </form>
                             </div>

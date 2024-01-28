@@ -19,12 +19,12 @@
                             <div class=""> <h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-pk">C</span>reate <span class="color-pk">S</span>kill</h1> </div>
                                 <div class="form-group">
                                     <label for="name_skill" style="color: #A0A0A0;">Name Skill :</label> <span style="font-size: 15px; color: #FF9999;">(*จำเป็นต้องระบุ)</span>
-                                    <input type="text" class="form-control mt-1" id="name_skill" v-model="SkillData.name_skill" required>
+                                    <input type="text" class="form-control mt-1" id="name_skill" placeholder="[ชื่อ สกิล]" v-model="SkillData.name_skill" required>
                                 </div>
                                 <div class="form-group mt-1">
                                     <label for="position_skill" style="color: #A0A0A0;">position_skill :</label>
                                     <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
-                                    <select class="form-select mt-1" id="position_skill" v-model="SkillData.position_skill" style="background-color: #666">
+                                    <select class="form-select mt-1" id="position_skill"  v-model="SkillData.position_skill" style="background-color: #666">
                                         <option value="Factory">Factory</option>
                                         <option value="TradingPost">TradingPost</option>
                                     </select>
@@ -42,20 +42,20 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="effect_skill" style="color: #A0A0A0;">Effect skill :</label> <span style="font-size: 15px; color: #FF9999;">(*จำเป็นต้องระบุ)</span>
-                                    <input type="text" class="form-control mt-1" id="effect_skill" v-model="SkillData.effect_skill" required>
+                                    <input type="text" class="form-control mt-1" id="effect_skill" placeholder="[ความสามารถของสกิล]" v-model="SkillData.effect_skill" required>
                                 </div>
-                                <div class="form-group mt-1" style="width: 350px;">
-                                    <span style="color: #FF9999;"><i class="fa-regular fa-file"></i></span> <label for="morale_consumed" style="color: #A0A0A0;">morale_consumed </label> 
+                                <div class="form-group mt-1" style="width: 440px;">
+                                    <span style="color: #FF9999;"><i class="fa-regular fa-file"></i></span> <label for="morale_consumed" style="color: #A0A0A0;">morale_consumed <span style="font-size: 15px; color: #666;">(ทศนิยม2ตำแหน่ง ไม่เกิน 1.00)</span></label> 
                                     <input type="number" class="form-control mt-1" id="morale_consumed" v-model="SkillData.morale_consumed" required>
-                                    <span style="color: #4b9ce8;"><i class="fa-regular fa-file"></i></span> <label for="order_efficiency" style="color: #A0A0A0;">order_efficiency </label> 
+                                    <span style="color: #4b9ce8;"><i class="fa-regular fa-file"></i></span> <label for="order_efficiency" style="color: #A0A0A0;">order_efficiency<span style="font-size: 15px; color: #666;">(ทศนิยม2ตำแหน่ง ไม่เกิน 1.00)</span> </label> 
                                     <input type="number" class="form-control mt-1" id="order_efficiency" v-model="SkillData.order_efficiency" required>
-                                    <span style="color: #4b9ce8;"><i class="fa-regular fa-file"></i></span> <label for="capacity" style="color: #A0A0A0;">capacity </label> 
+                                    <span style="color: #4b9ce8;"><i class="fa-regular fa-file"></i></span> <label for="capacity" style="color: #A0A0A0;">capacity <span style="font-size: 15px; color: #666;">(จำนวนเต็ม)</span> </label> 
                                     <input type="number" class="form-control mt-1" id="capacity" v-model="SkillData.capacity" required>
-                                    <span style="color: #e8bd4b;"><i class="fa-regular fa-file"></i></span> <label for="productivity" style="color: #A0A0A0;">productivity </label> 
+                                    <span style="color: #e8bd4b;"><i class="fa-regular fa-file"></i></span> <label for="productivity" style="color: #A0A0A0;">productivity <span style="font-size: 15px; color: #666;">(ทศนิยม2ตำแหน่ง ไม่เกิน 1.00)</span> </label> 
                                     <input type="number" class="form-control mt-1" id="productivity" v-model="SkillData.productivity" required>
                                 </div>
-                                <button type="submit" class="btn mt-2 mb-2" style="background-color: #FF9999; width: 300px; color: #27292a; ">อัพโหลดข้อมูล</button>
-                                <button class="btn mt-2 mb-2" @click="tablepage()" style="background-color: #666; width: 300px; color: #27292a; ">ยกเลิกการอัพโหลดข้อมูล</button>
+                                <button type="submit" class="btn mt-2 mb-2" style="background-color: #FF9999; width: 300px; color: #27292a; ">เพิ่มข้อมูล</button>
+                                <button class="btn mt-2 mb-2" @click="tablepage()" style="background-color: #666; width: 300px; color: #27292a; ">ยกเลิกการเพิ่มข้อมูล</button>
                             </form>
                             </div>
                         </div>

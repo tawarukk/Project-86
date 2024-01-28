@@ -67,4 +67,24 @@ skillRoute.put('/update-skill/:id', async (req, res, next) => {
         next(error);
     }
 });
+
+skillRoute.put('/update-available-status/:id', async (req, res, next) => {
+    try {
+        const existingSkill = await skillModel.findById(req.params.id);
+
+        if (existingSkill) {
+
+            existingSkill.available_content = req.body.available_content;
+
+            const updatedSkill = await existingSkill.save();
+
+            res.json(updatedSkill);
+            console.log('Available status updated successfully');
+        } else {
+            res.status(404).json({ message: 'Creator not found' });
+        }
+    } catch (error) {
+        next(error);
+    }
+});
 module.exports = skillRoute;

@@ -19,15 +19,15 @@
                             <div class=""> <h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-be">E</span>dit <span class="color-be">P</span>roduct</h1> </div>
                                 <div class="form-group">
                                     <label for="name_product" style="color: #A0A0A0;">Name Product :</label> <span style="font-size: 15px; color: #4b9ce8;">(*จำเป็นต้องระบุ)</span>
-                                    <input type="text" class="form-control mt-1" id="name_product" v-model="Product.name_product" required>
+                                    <input type="text" class="form-control mt-1" id="name_product" placeholder="[ชื่อ สินค้า]" v-model="Product.name_product" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="descriptions" style="color: #A0A0A0;">Name Product :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
-                                    <input type="text" class="form-control mt-1" id="descriptions" v-model="Product.descriptions" required>
+                                    <input type="text" class="form-control mt-1" id="descriptions" placeholder="[คำอธิบาย สินค้า]" v-model="Product.descriptions">
                                 </div>
                                 <div class="form-group mt-1" >
-                                    <label for="time_product" style="color: #A0A0A0;">Time Product :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
-                                    <input type="number" class="form-control mt-1" id="time_product" v-model="Product.time_product" required>
+                                    <label for="time_product" style="color: #A0A0A0;">Time Product :</label> <span style="font-size: 15px; color: #4b9ce8;">(*จำเป็นต้องระบุ)</span>
+                                    <input type="number" class="form-control mt-1" id="time_product" placeholder="[เวลาการผลิต (นาที)]" v-model="Product.time_product" required>
                                 </div>    
                                 <div class="form-group mt-1">
                                     <label for="type_product" style="color: #A0A0A0;">Type product :</label>
@@ -39,7 +39,7 @@
                                         <option value="Chips">Chips</option>
                                     </select>
                                 </div>
-                                <button type="submit" class="btn mt-2 mb-2" style="background-color: #4b9ce8; width: 300px; color: #27292a; ">อัพโหลดข้อมูล</button>
+                                <button type="submit" class="btn mt-2 mb-2" style="background-color: #4b9ce8; width: 300px; color: #27292a; ">บันทึกการแก้ไขข้อมูล</button>
                                 <button class="btn mt-2 mb-2" @click="tablepage()" style="background-color: #666; width: 300px; color: #27292a; ">ยกเลิกการแก้ไขข้อมูล</button>
                             </form>
                             </div>

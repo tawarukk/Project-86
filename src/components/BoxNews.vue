@@ -37,7 +37,7 @@
     </div>
     </div>
     <div class="page-content" style="padding: 10px; text-align: center; width: 220px; margin: 10px;">
-        <div class="type" type="button"  @click="filterByType()">
+        <div class="type" type="button"  @click="filterByType('')">
             Reset
         </div>
     </div>
@@ -108,15 +108,19 @@ import axios from 'axios';
 export default {
     name: 'BoxNews',
     created() {
-            this.fetchNews();
-            axios.get('http://localhost:4000/api_news')
-                .then(response => {
-                    this.News = response.data;
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        },
+    this.fetchNews();
+    axios.get('http://localhost:4000/api_news')
+            .then(response => {
+                this.News = response.data
+                    .filter(item => item.available_con == '1')
+                    .filter(item => item.type != 'manual')
+                    .sort((a, b) => new Date(b.uploadedAt) - new Date(a.uploadedAt));
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    },
+
     watch: {
         searchKeyword(newKeyword) {
         this.searchNews(newKeyword);
@@ -183,17 +187,21 @@ export default {
         }
         this.News = filteredNews;
         },
-    fetchNews() {
+        fetchNews() {
         let apiURL = 'http://localhost:4000/api_news';
         axios.get(apiURL)
             .then(res => {
-                this.News = res.data;
-                this.originalNews = [...res.data];
+                this.News = res.data
+                    .filter(item => item.available_con == '1')
+                    .filter(item => item.type != 'manual')
+                    .sort((a, b) => new Date(b.uploadedAt) - new Date(a.uploadedAt));
+
+                this.originalNews = [...this.News];
             })
             .catch(error => {
                 console.log(error);
             });
-        },
+    },
     randomNews() {
     const randomIndex = Math.floor(Math.random() * this.News.length);
     

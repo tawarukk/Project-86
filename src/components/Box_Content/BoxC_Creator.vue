@@ -16,13 +16,13 @@
                 <div> <h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-yt">C</span>reate <span class="color-yt">C</span>reator</h1> </div>
 
                 <div class="form-group">
-                    <label for="name_con" style="color: #A0A0A0;">Name Creator :</label> <span style="font-size: 15px; color: #e8bd4b;">(*required)</span>
-                    <input type="text" class="form-control mt-1" id="name_con" v-model="CreatorData.name_con" required>
+                    <label for="name_con" style="color: #A0A0A0;">Name Creator :</label> <span style="font-size: 15px; color: #e8bd4b;">(*จำเป็นต้องระบุ)</span>
+                    <input type="text" class="form-control mt-1" id="name_con" v-model="CreatorData.name_con" placeholder="[ชื่อ คอนเทนต์ครีเอเตอร์]" required>
                 </div>
 
                 <div v-for="(type, index) in CreatorData.type_con" :key="index">
                 <div class="form-group">
-                    <label v-if="index == 0" for="type_content mt-1" style="color: #A0A0A0; display: block; margin-bottom: 5px;">Type of Content :</label>
+                    <label v-if="index == 0" for="type_content mt-1" style="color: #A0A0A0; display: block; margin-bottom: 5px;">Type of Content : <span style="font-size: 15px; color: #666;">ชนิด คอนเทนต์ (ระบุภายหลังได้)</span></label> 
                     <div class="mt-1" style="display: flex; align-items: center;">
                     <!-- <span style="font-size: 15px; color: #666;">{{ index + 1 }}</span> -->
                     <select type="text" class="form-control" v-model="CreatorData.type_con[index]" style="flex: 1; background-color: #666; border-color: #27292a;">
@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 </div>
-                <button type="button" @click="addType" class="btn mt-2 mb-1" style="background-color: #e8bd4b; width: 300px; color: #27292a;">เพิ่มข้อมูล Type</button>
+                <button type="button" @click="addType" class="btn mt-2 mb-1" style="background-color: #e8bd4b; width: 300px; color: #27292a;">เพิ่มชนิด คอนเทนต์</button>
 
                 <div class="form-group">
                     <div class="mt-1" style="display: flex; align-items: center;">
@@ -44,11 +44,11 @@
                         <div type="text" class="socialMedia mt-1" style="background-color:#3b5998;"> Facebook </div>
                     </div>
                     <div class="form-group" style="margin-left: 5px">
-                        <label for="Facebook" style="color: #A0A0A0;">Social Platform :</label>
+                        <label for="Facebook" style="color: #A0A0A0;">Social Platform : <span style="font-size: 15px; color: #666;">ชื่อช่อง (ระบุภายหลังได้)</span></label>
                         <input type="text" class="form-control mt-1"  id="Facebook" v-model="CreatorData.socialMedia.Facebook" style="background-color: #666">
                     </div>
                     <div class="form-group" style="margin-left: 5px;">
-                        <label for="F_link" style="color: #A0A0A0;">Platform Link :</label> 
+                        <label for="F_link" style="color: #A0A0A0;">Platform Link : <span style="font-size: 15px; color: #666;">ลิ้งค์ (ระบุภายหลังได้)</span></label> 
                         <input type="text" class="form-control mt-1"  id="F_link" v-model="CreatorData.socialMedia.F_link">   
                     </div>
                     </div>
@@ -111,14 +111,14 @@
                 </div>
                 
                 <div class="form-group mt-1">
-                    <label for="survey_con" style="color: #A0A0A0;">Survey Status :</label> <span style="font-size: 15px; color: #666;">(optional)</span>
+                    <label for="survey_con" style="color: #A0A0A0;">สถานะการอนุมัติ :</label><span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
                     <select class="form-control mt-1" id="survey_con" v-model="CreatorData.survey_con" style="background-color: #666; border-color: #27292a;">
                     <option value="0">ยังไม่ได้ตรวจสอบ/รับทราบแต่ยังไม่ได้ตรวจสอบ</option>
                     <option value="1">ตรวจสอบแล้ว</option>
                     </select>
                 </div>
-                    <button type="submit" class="btn mt-2 mb-2" style="background-color: #e8bd4b; width: 300px; color: #27292a; ">อัพโหลดข้อมูล</button>
-                    <button class="btn mt-2 mb-2" @click="tablepage()" style="background-color: #666; width: 300px; color: #27292a; ">ยกเลิกการอัพโหลดข้อมูล</button>
+                    <button type="submit" class="btn mt-2 mb-2" style="background-color: #e8bd4b; width: 300px; color: #27292a; ">เพิ่มข้อมูล</button>
+                    <button class="btn mt-2 mb-2" @click="tablepage()" style="background-color: #666; width: 300px; color: #27292a; ">ยกเลิกการเพิ่มข้อมูล</button>
                 </form>
             </div>
             </div>

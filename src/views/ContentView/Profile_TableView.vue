@@ -2,14 +2,14 @@
     <div class="Profile_T">
         <NavBarMain/>
         <TableProfileBox/>
-        <CreateProfile/>
+        
     </div>
 </template>
 
 <script>
 import NavBarMain from "@/components/Box_SubComponent/NavSup.vue"
 import TableProfileBox from "@/components/Box_Content/BoxT_Profile.vue"
-import CreateProfile from "@/components/Box_Content/BoxC_Profile.vue"
+
 
 
 export default {
@@ -17,7 +17,7 @@ export default {
     components: {
         NavBarMain,
         TableProfileBox,
-        CreateProfile
+        
         }
 }
 </script>

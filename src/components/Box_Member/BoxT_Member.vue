@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-12">
         <div class="page-content" style="background-color: #1f2122;">
-            <div class="cards-container col-6" style="background-color: #27292a;">
+            <div class="cards-container col-6" style="background-color: #E2E3DE;">
                     <el-breadcrumb separator="/">
                         <el-breadcrumb-item :to="{ path: '/Member_T' }">Member [User]</el-breadcrumb-item>
                         <el-breadcrumb-item v-if="this.userRole=='superadmin' " :to="{ path: '/Admin_T' }">Member [Admin]</el-breadcrumb-item>
@@ -25,10 +25,10 @@
                         <tr>
                             <th>No.</th>
                             <th>Name</th>
-                            <th>email</th>
-                            <th>tier_member</th>
-                            <th>role_member</th>
-                            <th>available_member</th>
+                            <th>Email</th>
+                            <th>Tier</th>
+                            <th>Role</th>
+                            <th>Status</th>
                             <th>สมัครสมาชิกเมื่อ</th>
                             <th>Action</th>
                         </tr>
@@ -152,8 +152,11 @@
         let apiURL = 'http://localhost:4000/api_member';
         axios.get(apiURL)
             .then(res => {
-                this.Member = res.data;
-                this.originalMember = [...res.data];
+                this.Member = res.data.map(member => ({
+                    ...member,
+                    available_member: member.available_member === "1", 
+                }));
+                this.originalMember = [...this.Member];
             })
             .catch(error => {
                 console.log(error);

@@ -19,15 +19,15 @@
                             <div class=""> <h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-yt">C</span>reate <span class="color-yt">O</span>perator</h1> </div>
                                 <div class="form-group">
                                     <label for="name_oper" style="color: #A0A0A0;">Name Operator :</label> <span style="font-size: 15px; color: #e8bd4b;">(*จำเป็นต้องระบุ)</span>
-                                    <input type="text" class="form-control mt-1" id="name_oper" v-model="OperatorData.name_oper" required>
+                                    <input type="text" class="form-control mt-1" id="name_oper" placeholder="[ชื่อ โอเปอเรเตอร์]" v-model="OperatorData.name_oper" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="tier_oper" style="color: #A0A0A0;">Tier Operato :</label> <span style="font-size: 15px; color: #e8bd4b;">(*จำเป็นต้องระบุ)</span>
-                                    <input type="text" class="form-control mt-1" id="tier_oper" v-model="OperatorData.tier_oper" required>
+                                    <input type="text" class="form-control mt-1" id="tier_oper" placeholder="[ระดับ โอเปอเรเตอร์ ตั้งแต่ 1 ถึง 6]" v-model="OperatorData.tier_oper" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="descriptions" style="color: #A0A0A0;">Descriptions :</label> <span style="font-size: 15px; color: #e8bd4b;">(ระบุภายหลังได้)</span>
-                                    <input type="text" class="form-control mt-1" id="descriptions" v-model="OperatorData.descriptions" required>
+                                    <label for="descriptions" style="color: #A0A0A0;">Descriptions :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
+                                    <input type="text" class="form-control mt-1" id="descriptions" placeholder="[คำอธิบาย โอเปอเรเตอร์]" v-model="OperatorData.descriptions">
                                 </div>
                                 <div class="form-group mt-1">
                                     <label for="skill_i" style="color: #A0A0A0;">Skill ii :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
@@ -53,6 +53,7 @@
                                         <option value="TradingPost">TradingPost</option>
                                     </select>
                                 </div>
+                                <div class="mt-2" style="color: #A0A0A0;">Status Operator <span style="font-size: 15px; color: #e8bd4b;">(*จำเป็นต้องระบุ)</span> </div> 
                                 <div class="form-group mt-1" style="width: 350px;">
                                     <label for="maxhp_oper" style="color: #A0A0A0;">Max HP :</label>
                                     <input type="number" class="form-control mt-1" id="maxhp_oper" v-model="OperatorData.maxhp_oper" required>
@@ -69,7 +70,7 @@
                                     <label for="block_count_oper" style="color: #A0A0A0;">Block Count :</label> 
                                     <input type="number" class="form-control mt-1" id="block_count_oper" v-model="OperatorData.block_count_oper" required>
                                 </div>
-                                <button type="submit" class="btn mt-2 mb-2" style="background-color: #e8bd4b; width: 300px; color: #27292a; ">เพิ่มข้อมูลข้อมูล</button>
+                                <button type="submit" class="btn mt-2 mb-2" style="background-color: #e8bd4b; width: 300px; color: #27292a; ">เพิ่มข้อมูล</button>
                                 <button class="btn mt-2 mb-2" @click="tablepage()" style="background-color: #666; width: 300px; color: #27292a; ">ยกเลิกการเพิ่มข้อมูล</button>
                             </form>
                             </div>

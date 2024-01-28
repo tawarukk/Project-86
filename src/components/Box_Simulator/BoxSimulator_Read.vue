@@ -32,21 +32,21 @@
         </div>
 
         <div class="d-flex flex-row">
-              <div class="cards-container" v-for="(operator, index) in simulatorsTopic.operator" :key="`operator_${index}`" style="border: 2px solid #E2E3DE;">
+              <div class="cards-container" v-for="(operator, index) in simulatorsTopic.operator" :key="`operator_${index}`" style="border: 2px solid #666;">
                 <img :src="getImageOperator(operator.operator_save_a)" class="img-fluid" :alt="'Operator A ' + index">
                 <p class="text-center mt-2">{{operator.operator_save_a.slice(0, -4)}}</p>
               </div>
-              <div class="cards-container" v-for="(operator, index) in simulatorsTopic.operator" :key="`operator_${index}`" style="border: 2px solid #E2E3DE;">
+              <div class="cards-container" v-for="(operator, index) in simulatorsTopic.operator" :key="`operator_${index}`" style="border: 2px solid #666;">
                 <img :src="getImageOperator(operator.operator_save_b)" class="img-fluid" :alt="'Operator B ' + index">
                 <p class="text-center mt-2">{{operator.operator_save_b.slice(0, -4)}}</p>
               </div>
-              <div class="cards-container" v-for="(operator, index) in simulatorsTopic.operator" :key="`operator_${index}`" style="border: 2px solid #E2E3DE;">
+              <div class="cards-container" v-for="(operator, index) in simulatorsTopic.operator" :key="`operator_${index}`" style="border: 2px solid #666;">
                 <img :src="getImageOperator(operator.operator_save_c)" class="img-fluid" :alt="'Operator C ' + index">
                 <p class="text-center mt-2">{{operator.operator_save_c.slice(0, -4)}}</p>
               </div>
 
                 
-                <div class="cards-container" style="width: 150px;" >
+                <div class="cards-container" style="width: 150px; border: 2px solid #666;">
                   <img :src="getImageProduct(simulatorsTopic.Name_product)" class="img-fluid" alt="Operator C">
                   <p class="text-center mt-2">Time : <br> {{ Math.floor(simulatorsTopic.Time_Remaining / 60) }} ชั่วโมง : {{ Math.floor(simulatorsTopic.Time_Remaining % 60) }} นาที : {{ Math.round((simulatorsTopic.Time_Remaining % 1) * 60) }} วินาที</p>
                 </div>

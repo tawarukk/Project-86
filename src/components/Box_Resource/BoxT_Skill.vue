@@ -16,10 +16,10 @@
                         <thead class="border">
                         <tr>
                             <th>No.</th>
-                            <th>name_skill</th>
-                            <th>position_skill</th>
-                            <th>condition_skill</th>
-                            <th>available_content</th>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Condition</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -31,13 +31,17 @@
                             <td v-else-if="skills.position_skill == 'All'"> <span style="color: #FF9999;">{{skills.position_skill}} </span></td>
                             <td v-else><span style="color: #e8bd4b;">{{skills.position_skill}} </span></td>
                             <td>{{ skills.condition_skill }}</td>
-                            <td v-if="skills.available_content == 1">available</td>
-                            <td v-else>unavailable</td>
-                            <td>
+                            <td style="width: 140px;">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" :id="'availableSwitch' + index" v-model="skills.available_content" @change="updateAvailableStatus(skills._id, skills.available_content )">
+                                    <label class="form-check-label" :for="'availableSwitch' + index">{{ skills.available_content  ? 'แสดง' : 'ซ่อน' }}</label>
+                                </div>
+                            </td>
+                            <td class="action-column">
                             <router-link :to="{name: 'edit_skill', params: {id: skills._id}}" class="btn button">
                                 Edit
                             </router-link>
-                            <button @click.prevent="deleteSkill(skills._id)" class="btn button-black">
+                            <button @click.prevent="deleteSkill(skills._id)" class="btn button" style="background-color: #27292a; color: aliceblue;">
                                 Delete
                             </button>
                             </td>
@@ -58,6 +62,7 @@
         import '../../assets/css/owl.css'; 
         import axios from'axios';
         import Swal from 'sweetalert2';
+        import { ElNotification } from 'element-plus'
 
     export default {
         name: 'TableSkillBox',
@@ -72,7 +77,10 @@
         this.fetchSkill();
         let apiURL='http://localhost:4000/api_skill';
         axios.get(apiURL).then(res =>{
-            this.Skill= res.data
+            this.Skill = res.data.map(skill => ({
+                    ...skill,
+                    available_content: skill.available_content === "1", 
+                }));
         }).catch(error =>{
             console.log(error)
         })
@@ -123,8 +131,11 @@
         let apiURL = 'http://localhost:4000/api_skill';
         axios.get(apiURL)
             .then(res => {
-                this.Skill = res.data;
-                this.originalSkill = [...res.data];
+                this.Skill = res.data.map(skill => ({
+                    ...skill,
+                    available_content: skill.available_content === "1", 
+                }));
+                this.originalSkill = [...this.Skill];
             })
             .catch(error => {
                 console.log(error);
@@ -136,7 +147,23 @@
         } else {
             this.searchSkill(this.searchKeyword);
         }
-        }
+        },
+        updateAvailableStatus(id, newStatus) {
+        const statusToSend = newStatus ? "1" : "0";
+
+        let apiURL = `http://localhost:4000/api_skill/update-available-status/${id}`;
+        axios.put(apiURL, { available_content: statusToSend })
+            .then(() => {
+                ElNotification({
+                title: 'สถานะมีการเปลี่ยนแปลง',
+                message:  'สถานะของข้อมูลได้รับการเปลี่ยนแปลงแล้ว'
+            })
+            })
+            .catch(error => {
+                console.log(error);
+                Swal.fire("Error!", "An error occurred while updating the available status.", "error");
+            });
+        },
         }
         }
     </script>
@@ -167,14 +194,14 @@
         margin-right: 10px; /* กำหนดระยะห่างระหว่างปุ่ม */
     }
     .button{
+    width: 100px;
     background: #FF9999;
-    margin-right: 10px;
-    padding: 8px;
+    margin: 5px;
     color:#1f2122;
     }
-    .button-black{
-        background: #1f2122;
-        color:#666;
+
+    .action-column {
+        width: 250px;
     }
 
     .addData{
@@ -188,11 +215,5 @@
 
     .color-pk {
         color: #FF9999;
-    }
-    .color-yt {
-        color: #e8bd4b;
-    }
-    .color-be {
-        color: #4b9ce8;
     }
     </style>

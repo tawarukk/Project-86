@@ -13,19 +13,19 @@
                 <form @submit.prevent="EditHomepage" style="font-size: 19px; font-weight: bold; display: flex; flex-direction: column; justify-content: center; align-items: center;">
                         <div class="mb-2"> <h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-yt">E</span>dit <span class="color-yt">H</span>omepage [<span class="color-yt">D</span>escriptions] </h1> </div>
                         <div class="form-group">
-                            <label for="topic" style="color: #A0A0A0;">Description :</label> <span style="font-size: 15px; color: #666;"></span>
+                            <label for="topic" style="color: #A0A0A0;">Topic :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
                             <input type="text" class="form-control mt-1" id="topic" v-model="Homepage.topic">
                         </div>
                         <div class="form-group">
-                            <label for="descriptions" style="color: #A0A0A0;">Description :</label> <span style="font-size: 15px; color: #666;"></span>
+                            <label for="descriptions" style="color: #A0A0A0;">Description :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
                             <input type="text" class="form-control mt-1" id="descriptions" v-model="Homepage.descriptions">
                         </div>
                         <div class="form-group">
-                            <label for="link_page" style="color: #A0A0A0;">Description :</label> <span style="font-size: 15px; color: #666;"></span>
+                            <label for="link_page" style="color: #A0A0A0;">Link :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
                             <input type="text" class="form-control mt-1" id="link_page" v-model="Homepage.link_page">
                         </div>
-                        <button type="submit" class="btn mt-2 mb-2" style="background-color: #e8bd4b; width: 300px; color: #27292a; ">อัพโหลดข้อมูล</button>
-                        <button class="btn mt-2 mb-2" @click="tablepage()" style="background-color: #666; width: 300px; color: #27292a; ">ยกเลิกการอัพโหลดข้อมูล</button>
+                        <button type="submit" class="btn mt-2 mb-2" style="background-color: #e8bd4b; width: 300px; color: #27292a; ">บันทึกการแก้ไขข้อมูล</button>
+                        <button class="btn mt-2 mb-2" @click="tablepage()" style="background-color: #666; width: 300px; color: #27292a; ">ยกเลิกการแก้ไขข้อมูล</button>
                     </form>
                 </div>
             </div>

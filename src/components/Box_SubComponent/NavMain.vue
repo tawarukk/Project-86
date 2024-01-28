@@ -11,11 +11,21 @@
                     </a>
                     
                     <div class="search-input">
-                        <form id="search" action="#">
-                            <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
+                    <form @submit.prevent="searchNews" id="search" action="#">
+                        <div class="search-results-container">
+                            <input v-model="searchKeyword" @input="searchNews" type="text" placeholder="Search for News" class="search-results"/>
                             <i class="fa fa-search"></i>
-                        </form>
-                    </div>
+                            <div v-if="searchResults.length > 0" class="search-result">
+                                <ul>
+                                    <li v-for="result in searchResults" :key="result._id" class="search-result-button" @click="NewsPage(result._id)" type="button">
+                                        {{ result.topic }} 
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
                     <!-- //class="active" -->
                     <ul class="nav">
                         <li><router-link to="/"><span style="color: #E2E3DE;">Home</span></router-link></li>
@@ -62,10 +72,25 @@
       userRole:'user',
       userIMG:'',
       code:'',
+      NewsData: [],
+      searchKeyword: '',
+      originalNewsData:'',
+      searchResults: [],
     };
     },
-    created(){
+    created() {
+    let apiURL = 'http://localhost:4000/api_news';
+    axios.get(apiURL)
+        .then(res => {
+            this.NewsData = res.data
+                .filter(item => item.available_con === '1')
+                .sort((a, b) => new Date(b.uploadedAt) - new Date(a.uploadedAt));
 
+            this.originalNewsData = [...this.NewsData];
+        })
+        .catch(error => {
+            console.log(error);
+        });
     },
     methods: {
         logout(){
@@ -95,6 +120,32 @@
             }
             return require(`@/assets/images/Profile/${imageFileName}`);
         },
+        searchNews() {
+    if (this.originalNewsData && this.searchKeyword.trim() !== '') {
+        this.searchResults = this.originalNewsData.filter(news =>
+            news.topic.toLowerCase().includes(this.searchKeyword.toLowerCase())
+        );
+    } else {
+        this.searchResults = [];
+    }
+    },
+    NewsPage(News){
+
+    let apiURL = `http://localhost:4000/api_news/update-view/${News}`;
+    axios.put(apiURL)
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+
+    this.$router.push({
+            name: 'NewsRead',
+            params: { id: News }
+        });
+
+}
     },
     mounted() {
     const token = localStorage.getItem('token');
@@ -134,6 +185,35 @@
     display: block;
 }
 
+.search-result{
+    width: 100%;
+    max-width: 350px; 
+    background-color: #E2E3DE; 
+    color: #27292a;
+    border: solid #27292a;
+    border-radius: 20px;
+    padding: 10px;
+    margin-top: 10px;
+    overflow-y: auto; /* เพิ่มการเลื่อนแนวแกน Y */
+    max-height: 200px;
+}
+
+.search-result-button{
+    width: 100%;
+    max-width: 350px; 
+    background-color: #E2E3DE; 
+    color: #27292a;
+    border: solid #27292a;
+    border-radius: 20px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.search-result-button:hover{
+    background-color: #27292a; 
+    color: #E2E3DE;
+    text-decoration: underline;
+}
 </style>
 
 

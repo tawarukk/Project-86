@@ -3,6 +3,7 @@
         <NavBarMain/>
         <Profile/>
         <WorkMain/>
+        <FooterMain/>
     </div>
 </template>
 
@@ -10,6 +11,8 @@
 import NavBarMain from "@/components/Box_SubComponent/NavSup.vue"
 import Profile from "@/components/BoxProfile.vue"
 import WorkMain from "@/components/Box_SubComponent/WorkMain.vue"
+import  FooterMain from '@/components/Box_SubComponent/FooterMain'
+
 
 
 export default {
@@ -17,7 +20,8 @@ export default {
     components: {
         NavBarMain,
         Profile,
-        WorkMain
+        WorkMain,
+        FooterMain
         }
 }
 </script>

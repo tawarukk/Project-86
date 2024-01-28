@@ -24,12 +24,12 @@
                 <table class="table table-striped">
                     <thead class="border">
                         <tr>
-                            <th>img_card_news</th>
+                            <th>Image Topic</th>
                             <th>No.</th>
                             <th>Type</th>
                             <th>Name</th>
-                            <th>description</th>
-                            <th>Available_content</th>
+                            <th>Description</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -158,8 +158,11 @@
         let apiURL = 'http://localhost:4000/api_news';
         axios.get(apiURL)
             .then(res => {
-                this.NewsData = res.data;
-                this.originalNewsData = [...res.data];
+                this.NewsData = res.data.map(news => ({
+                    ...news,
+                    available_con: news.available_con === "1", // แปลงเป็น boolean
+                }));
+                this.originalNewsData = [...this.NewsData];
             })
             .catch(error => {
                 console.log(error);

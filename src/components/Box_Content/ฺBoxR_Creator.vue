@@ -20,8 +20,8 @@
 
                                 <div class="form-group">
                                     <label for="name_con" style="color: #A0A0A0;">Name Creator :</label> 
-                                    <span style="font-size: 15px; color: #e8bd4b;">(*required)</span>
-                                    <input type="text" class="form-control mt-1" id="name_con" v-model="CreatorData.name_con" required>
+                                    <span style="font-size: 15px; color: #e8bd4b;"> (*required)</span>
+                                    <input type="text" class="form-control mt-1" id="name_con" v-model="CreatorData.name_con" placeholder="[ใส่ชื่อช่องหรือ บุคคลที่ต้องการแนะนำ]" required>
                                 </div>
                                 <button type="submit" class="btn mt-2 mb-2" style="background-color: #e8bd4b; width: 300px; color: #27292a;">Recommend</button>
                                 <button class="btn mt-2 mb-2" @click="Creatorpage" style="background-color: #666; width: 300px; color: #27292a;">Cancel</button>

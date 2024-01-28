@@ -6,13 +6,13 @@
             <div class="page-content" style="background-color: #1f2122;">
                 <div class="cards-container col-6" style="background-color: #27292a; width: auto; height: auto;">
                 <form @submit.prevent="uploadCart_img" style="font-size: 19px; font-weight: bold; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                        <div class=""> <h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-yt">U</span>pload <span class="color-yt">P</span>icture <span class="color-yt">C</span>ard </h1> </div>
+                        <div class=""> <h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-yt">U</span>pload <span class="color-yt">I</span>mage <span class="color-yt">C</span>ard </h1> </div>
                         <div class="form-group">
-                            <label for="img_cart_oper" style="color: #A0A0A0;">ขณะนี้กำลังอัพโหลด Cart :</label> <span style="font-size: 15px; color: #666;"></span>
+                            <label for="img_cart_oper" style="color: #A0A0A0;">ขณะนี้กำลังอัพโหลดรูป Cart :</label> <span style="font-size: 15px; color: #666;"></span>
                             <input type="text" class="form-control mt-1" id="img_cart_oper" v-model="Operator.img_cart_oper" readonly>
                         </div>
                         <div class="form-group mt-1">
-                            <label for="img_cart_oper" style="color: #A0A0A0;">Upload Image Cart :</label> <span style="font-size: 15px; color: #666;">กรุณาตั้งชื่อไฟล์ โดยที่ตัวอักษรแรกเป็นตัวพิมพ์ใหญ่</span>
+                            <label for="img_cart_oper" style="color: #A0A0A0;">Upload Image Cart :</label> <span style="font-size: 15px; color: #666;">ขนาดไฟล์ต้องไม่เกิน 500 KB</span>
                             <input type="file" class="form-control" id="img_cart_oper" name="img_cart_oper" ref="Card" required>
                         </div>
                         <button type="submit" class="btn mt-2 mb-2" style="background-color: #e8bd4b; width: 300px; color: #27292a; ">อัพโหลดข้อมูล</button>
@@ -28,11 +28,11 @@
                 <form @submit.prevent="uploadPortrait_img" style="font-size: 19px; font-weight: bold; display: flex; flex-direction: column; justify-content: center; align-items: center;">
                         <div class="mb-3"> <h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-yt">U</span>pload <span class="color-yt">P</span>icture <span class="color-yt">P</span>ortrait </h1> </div>
                         <div class="form-group">
-                            <label for="img_portrait_oper" style="color: #A0A0A0;">ขณะนี้กำลังอัพโหลดรูปของ Portrait :</label> <span style="font-size: 15px; color: #666;"></span>
+                            <label for="img_portrait_oper" style="color: #A0A0A0;">ขณะนี้กำลังอัพโหลดรูป Portrait :</label> <span style="font-size: 15px; color: #666;"></span>
                             <input type="text" class="form-control mt-1" id="img_portrait_oper" v-model="Operator.img_portrait_oper">
                         </div>
                         <div class="form-group mt-1">
-                            <label for="img_portrait_oper" style="color: #A0A0A0;">Upload Image Portrait :</label> <span style="font-size: 15px; color: #666;">กรุณาตั้งชื่อไฟล์ โดยที่ตัวอักษรแรกเป็นตัวพิมพ์เล็ก</span>
+                            <label for="img_portrait_oper" style="color: #A0A0A0;">Upload Image Portrait :</label> <span style="font-size: 15px; color: #666;">ขนาดไฟล์ต้องไม่เกิน 500 KB</span>
                             <input type="file" class="form-control" id="img_portrait_oper" name="img_portrait_oper" ref="file" required>
                         </div>
                         <button type="submit" class="btn mt-2 mb-2" style="background-color: #e8bd4b; width: 300px; color: #27292a; ">อัพโหลดข้อมูล</button>

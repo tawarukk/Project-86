@@ -42,20 +42,20 @@
 
               </div>
               <div class="d-flex flex-row">
-                <div class="cards-container" style="border: 2px solid #E2E3DE;">
+                <div class="cards-container" style="border: 2px solid #666;">
                   <img :src="getImageOperator(simulator.operator[0].operator_save_a)" class="img-fluid" alt="Operator A">
                   <p class="text-center mt-2">{{simulator.operator[0].operator_save_a.slice(0, -4)}}</p>
                 </div>
-                <div class="cards-container" style="border: 2px solid #E2E3DE;">
+                <div class="cards-container" style="border: 2px solid #666;">
                   <img :src="getImageOperator(simulator.operator[0].operator_save_b)" class="img-fluid" alt="Operator B">
                   <p class="text-center mt-2">{{simulator.operator[0].operator_save_b.slice(0, -4)}}</p>
                 </div>
-                <div class="cards-container" style="border: 2px solid #E2E3DE;">
+                <div class="cards-container" style="border: 2px solid #666;">
                   <img :src="getImageOperator(simulator.operator[0].operator_save_c)" class="img-fluid" alt="Operator C">
                   <p class="text-center mt-2">{{simulator.operator[0].operator_save_c.slice(0, -4)}}</p>
                 </div>
                 <div class="cards-container"></div>
-                <div class="cards-container" style="border: 2px solid #E2E3DE;">
+                <div class="cards-container" style="border: 2px solid #666;">
                   <img :src="getImageProduct(simulator.Name_product)" class="img-fluid" alt="Operator C">
                   <p class="text-center mt-2">{{simulator.Name_product.slice(0, -4)}}</p>
                 </div>
@@ -103,20 +103,20 @@
 
               </div>
               <div class="d-flex flex-row">
-                <div class="cards-container" style="border: 2px solid #E2E3DE;">
+                <div class="cards-container" style="border: 2px solid #666;">
                   <img :src="getImageOperator(simulator.operator[0].operator_save_a)" class="img-fluid" alt="Operator A">
                   <p class="text-center mt-2">{{ simulator.operator[0].operator_save_a.slice(0, -4) }}</p>
                 </div>
-                <div class="cards-container" style="border: 2px solid #E2E3DE;">
+                <div class="cards-container" style="border: 2px solid #666;">
                   <img :src="getImageOperator(simulator.operator[0].operator_save_b)" class="img-fluid" alt="Operator B">
                   <p class="text-center mt-2">{{ simulator.operator[0].operator_save_b.slice(0, -4) }}</p>
                 </div>
-                <div class="cards-container" style="border: 2px solid #E2E3DE;">
+                <div class="cards-container" style="border: 2px solid #666;">
                   <img :src="getImageOperator(simulator.operator[0].operator_save_c)" class="img-fluid" alt="Operator C">
                   <p class="text-center mt-2">{{ simulator.operator[0].operator_save_c.slice(0, -4) }}</p>
                 </div>
                 <div class="cards-container"></div>
-                <div class="cards-container" style="border: 2px solid #E2E3DE;">
+                <div class="cards-container" style="border: 2px solid #666;">
                   <img :src="getImageProduct(simulator.Name_product)" class="img-fluid" alt="Operator C">
                   <p class="text-center mt-2">{{ simulator.Name_product.slice(0, -4) }}</p>
                 </div>

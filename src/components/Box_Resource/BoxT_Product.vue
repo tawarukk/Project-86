@@ -16,12 +16,12 @@
                     <thead class="border">
                       <tr>
                           <th>ID</th>
-                          <th>name_product</th>
-                          <th>time_product</th>
-                          <th>type_product</th>
-                          <th>descriptions</th>
-                          <th>img</th>
-                          <th>available_content</th>
+                          <th>Name</th>
+                          <th>Time [minute]</th>
+                          <th>Type</th>
+                          <th>Descriptions</th>
+                          <th>IMG</th>
+                          <th>Status</th>
                           <th>Action</th>
                       </tr>
                     </thead>
@@ -49,11 +49,11 @@
                                     <label class="form-check-label" :for="'availableSwitch' + index">{{ products.available_content  ? 'แสดง' : 'ซ่อน' }}</label>
                                 </div>
                         </td>
-                        <td>
+                        <td class="action-column">
                           <router-link :to="{name: 'edit_product', params: {id: products._id}}" class="btn button">
                             Edit
                           </router-link>
-                          <button @click.prevent="deleteProduct(products._id)" class="btn button-black">
+                          <button @click.prevent="deleteProduct(products._id)" class="btn button" style="background-color: #27292a; color: aliceblue;">
                             Delete
                           </button>
                         </td>
@@ -142,8 +142,11 @@
         let apiURL = 'http://localhost:4000/api_product';
         axios.get(apiURL)
             .then(res => {
-                this.Product = res.data;
-                this.originalProduct = [...res.data];
+              this.Product = res.data.map(product => ({
+                    ...product,
+                    available_content: product.available_content === "1", 
+                }));
+                this.originalProduct = [...this.Product];
             })
             .catch(error => {
                 console.log(error);
@@ -206,16 +209,16 @@
   .btn {
     margin-right: 10px; /* กำหนดระยะห่างระหว่างปุ่ม */
   }
-  .button{
-  background: #4b9ce8;
-  margin-right: 10px;
-  padding: 8px;
-  color:#1f2122;
-}
-  .button-black{
-    background: #1f2122;
-    color:#666;
-  }
+.button{
+    width: 100px;
+    background: #4b9ce8;
+    margin: 5px;
+    color:#1f2122;
+    }
+
+    .action-column {
+        width: 100px;
+    }
 
   .addData{
     background-color: #4b9ce8;

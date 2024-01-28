@@ -76,10 +76,10 @@
                     <thead class="" >
                         <tr>
                             <th>Name</th>
-                            <th>IMG</th>
-                            <th>topic</th>
-                            <th>descriptions</th>
-                            <th>link_page</th>
+                            <th>Image</th>
+                            <th>Topic</th>
+                            <th>Descriptions</th>
+                            <th>Link_page</th>
                             <th>Action</th>
                         </tr>
                     </thead>

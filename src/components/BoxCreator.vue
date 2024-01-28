@@ -24,7 +24,7 @@
     </div>
     </div>
     <div class="page-content" style="padding: 10px; text-align: center; width: 220px; margin: 10px;">
-        <div class="type" type="button"  @click="filterByType()">
+        <div class="type" type="button"  @click="filterByType('')">
             Reset
         </div>
     </div>
@@ -369,15 +369,18 @@ import axios from 'axios';
 export default {
     name: 'BoxCreator',
     created() {
-            this.fetchCreator();
-            axios.get('http://localhost:4000/api_creator')
-                .then(response => {
-                    this.Creator = response.data;
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        },
+    this.fetchCreator();
+    axios.get('http://localhost:4000/api_creator')
+        .then(response => {
+            // กรองข้อมูลที่มีเงื่อนไข available_con เท่ากับ '1' และเรียงลำดับตาม uploadedAt
+            this.Creator = response.data
+                .sort((a, b) => new Date(b.uploadedAt) - new Date(a.uploadedAt));
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    },
+
     watch: {
         searchKeyword(newKeyword) {
         this.searchCreator(newKeyword);
@@ -445,16 +448,19 @@ export default {
         }
         this.Creator = filteredCreator;
         },
-    fetchCreator() {
-        let apiURL = 'http://localhost:4000/api_creator';
-        axios.get(apiURL)
-            .then(res => {
-                this.Creator = res.data;
-                this.originalCreator = [...res.data];
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        fetchCreator() {
+            let apiURL = 'http://localhost:4000/api_creator';
+            axios.get(apiURL)
+                .then(res => {
+                    this.Creator = res.data
+                        
+                        .sort((a, b) => new Date(b.uploadedAt) - new Date(a.uploadedAt));
+
+                    this.originalCreator = [...this.Creator];
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         },
     randomCreator() {
 

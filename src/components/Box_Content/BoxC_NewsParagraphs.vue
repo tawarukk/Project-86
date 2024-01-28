@@ -18,16 +18,16 @@
                 </div>
                 <div class="form-group">
                   <label for="heading" style="color: #A0A0A0;">Heading:</label>
-                  <span style="font-size: 15px; color: #666;"></span>
+                  <span style="font-size: 15px; color: #e8bd4b;"> (*จำเป็นต้องระบุ)</span>
                   <input type="text" class="form-control mt-1" id="heading" v-model="ParagraphsData.paragraphs.heading"  required>
                 </div>
                 <div class="form-group">
                   <label for="content" style="color: #A0A0A0;">Content:</label>
-                  <span style="font-size: 15px; color: #666;"></span>
+                  <span style="font-size: 15px; color: #666;"> (ระบุภายหลังได้)</span>
                   <input type="text" class="form-control mt-1" id="content" v-model="ParagraphsData.paragraphs.content">
                 </div>
-                <button type="submit" class="btn mt-2 mb-2" style="background-color: #4b9ce8; width: 300px; color: #27292a;">อัพโหลดข้อมูล</button>
-                <button class="btn mt-2 mb-2" @click="tablepage()" style="background-color: #666; width: 300px; color: #27292a; ">ยกเลิกการอัพโหลดข้อมูล</button>
+                <button type="submit" class="btn mt-2 mb-2" style="background-color: #4b9ce8; width: 300px; color: #27292a;">เพิ่มข้อมูล</button>
+                <button class="btn mt-2 mb-2" @click="tablepage()" style="background-color: #666; width: 300px; color: #27292a; ">ยกเลิกการเพิ่มข้อมูล</button>
               </form>
             </div>
           </div>

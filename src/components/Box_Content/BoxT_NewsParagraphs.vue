@@ -20,11 +20,10 @@
                 <table class="table table-striped">
                     <thead class="border">
                         <tr>
-                            <th>image</th>
+                            <th>Image Paragraphs</th>
                             <th>No.</th>
-                            <th>heading</th>
-                            <th>content</th>
-                            <th>Available_content</th>
+                            <th>Heading</th>
+                            <th>Content</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -45,8 +44,8 @@
                                 <td>{{ index + 1 }}</td>
                                 <td>{{ paragraph.heading }}</td>
                                 <td>{{ paragraph.content }}</td>
-                                <td v-if="paragraph.status == 1">available</td>
-                                <td v-else>unavailable</td>
+                                <!-- <td v-if="paragraph.status == 1">available</td>
+                                <td v-else>unavailable</td> -->
                                 <td class="action-column">
                                     <router-link :to="{ name: 'edit_NewsParagraphs', params: { ...$route.params, id: ParagraphsData._id, ParagraphsID: paragraph._id }}" class="btn button">
                                         แก้ไขข้อมูล

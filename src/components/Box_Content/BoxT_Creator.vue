@@ -17,10 +17,10 @@
                         <tr>
                             <th>No.</th>
                             <th>Name</th>
-                            <th>recommend</th>
-                            <th>img_card_con</th>
-                            <th>survey_con</th>
-                            <th>Available_content</th>
+                            <th>Recommend [ครั้ง]</th>
+                            <th>Image</th>
+                            <th>Status [ตรวจสอบ]</th>
+                            <th>Status [การใช้งาน]</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -42,13 +42,13 @@
                                 </div>
                             </router-link>
                             </td>
-                            <td style="width: 140px;">
+                            <td style="width: 170px;">
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" :id="'surveySwitch' + index" v-model="creators.survey_con" @change="updateSurveyStatus(creators._id, creators.survey_con)">
                                 <label class="form-check-label" :for="'surveySwitch' + index">{{ creators.survey_con ? 'อนุมัติ' : 'ยังไม่อนุมัติ' }}</label>
                             </div>
                             </td>
-                            <td style="width: 140px;">
+                            <td style="width: 170px;">
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" type="checkbox" :id="'availableSwitch' + index" v-model="creators.available_con" @change="updateAvailableStatus(creators._id, creators.available_con)">
                                     <label class="form-check-label" :for="'availableSwitch' + index">{{ creators.available_con ? 'แสดง' : 'ซ่อน' }}</label>
@@ -156,8 +156,12 @@
         let apiURL = 'http://localhost:4000/api_creator';
         axios.get(apiURL)
             .then(res => {
-                this.Creator = res.data;
-                this.originalCreator = [...res.data];
+                this.Creator = res.data.map(creator => ({
+                    ...creator,
+                    survey_con: creator.survey_con === "1", // แปลงเป็น boolean
+                    available_con: creator.available_con === "1", // แปลงเป็น boolean
+                }));
+                this.originalCreator = [...this.Creator];
             })
             .catch(error => {
                 console.log(error);

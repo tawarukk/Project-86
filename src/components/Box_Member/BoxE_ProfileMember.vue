@@ -3,7 +3,7 @@
         <div class="row">
         <div class="col-lg-12">
             <div class="page-content" style="background-color: #1f2122;">
-                <div class="cards-container col-6" style="background-color: #27292a;">
+                <div class="cards-container col-6" style="background-color: #E2E3DE;">
                     <el-breadcrumb separator="/">
                         <el-breadcrumb-item :to="{ path: '/Profile' }">Tablepage</el-breadcrumb-item>
                         <el-breadcrumb-item >Edit_Profile {{ MemberData.name_member }}</el-breadcrumb-item>
@@ -40,7 +40,7 @@
                             <option v-if="userRole == 'superadmin'" value="Member_Admin">Member_Admin</option> -->
                         </select>
                     </div>
-                    <button type="submit" class="btn mt-2 mb-2" style="background-color: #FF9999; width: 300px; color: #27292a; ">แก้ไขข้อมูล</button>
+                    <button type="submit" class="btn mt-2 mb-2" style="background-color: #FF9999; width: 300px; color: #27292a; ">บันทึกการแก้ไขข้อมูล</button>
                     <button class="btn mt-2 mb-2" @click="tablepage()" style="background-color: #666; width: 300px; color: #27292a; ">ยกเลิกการแก้ไขข้อมูล</button>
                 </form>
             </div>
@@ -76,6 +76,26 @@ created() {
     },
 methods: {
     async editMember() {
+
+        if (this.MemberData.name_member.includes(' ')) {
+            Swal.fire("ชื่อผู้ใช้ไม่สามารถมีช่องว่าง", "กรุณาลองใหม่อีกครั้ง", "error");
+            return;
+        }
+
+        if (this.MemberData.password_member.includes(' ')) {
+            Swal.fire("รหัสผ่านไม่สามารถมีช่องว่าง", "กรุณาลองใหม่อีกครั้ง", "error");
+            return;
+        }
+
+        if (/\s/.test(this.MemberData.name_member) || /[^\w\d]/.test(this.userData.name_member)) {
+            Swal.fire("ชื่อผู้ใช้ไม่สามารถมีช่องว่างหรืออักษรพิเศษ", "กรุณาลองใหม่อีกครั้ง", "error");
+            return;
+        }
+
+        if (/\s/.test(this.MemberData.password_member) || /[^\w\d]/.test(this.userData.password_member)) {
+            Swal.fire("รหัสผ่านไม่สามารถมีช่องว่างหรืออักษรพิเศษ", "กรุณาลองใหม่อีกครั้ง", "error");
+            return;
+        }
 
     try {   
             let apiURL = `http://localhost:4000/api_member/update-member/${this.$route.params.id}`;

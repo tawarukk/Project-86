@@ -3,7 +3,7 @@
         <div class="row">
         <div class="col-lg-12">
             <div class="page-content" style="background-color: #1f2122;">
-                <div class="cards-container col-6" style="background-color: #27292a;">
+                <div class="cards-container col-6" style="background-color: #E2E3DE;">
                     <el-breadcrumb separator="/">
                         <el-breadcrumb-item :to="{ path: '/Member_T' }">Tablepage</el-breadcrumb-item>
                         <el-breadcrumb-item >Create_Member {{ MemberData.name_member }}</el-breadcrumb-item>
@@ -25,14 +25,14 @@
                     </div>
                     <div class="form-group mt-1">
                         <label for="code_member" style="color: #A0A0A0;">Code</label> <span style="font-size: 15px; color: #666;">(*ไม่จำเป็นต้องระบุ)</span>
-                        <input type="text" class="form-control mt-1" id="code_member" pattern="[0-9]{4}" placeholder="ถ้าหากไม่ต้องการระบุ กรุณาพิมพ์ 0000" v-model="MemberData.code_member" required>
+                        <input type="text" class="form-control mt-1" id="code_member" pattern="[0-9]{4}" placeholder="ถ้าหากไม่ต้องการระบุ กรุณาพิมพ์ 0000" v-model="MemberData.code_member">
                     </div>
                     <div class="form-group mt-1">
                         <label for="password_member" style="color: #A0A0A0;">Password</label> <span style="font-size: 15px; color: #FF9999;">(*จำเป็นต้องระบุ)</span>
                         <input type="password" class="form-control my-1" id="password_member" pattern=".{6,14}" placeholder="รหัสผ่านควรมีความยาว 6-14 ตัวอักษร" v-model="MemberData.password_member" required>
                     </div>
                     <div class="form-group mt-1">
-                        <label for="tier_member" style="color: #A0A0A0;">Member tier :</label> <span style="font-size: 15px; color: #666;">(optional)</span>
+                        <label for="tier_member" style="color: #A0A0A0;">Member tier :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
                         <select class="form-control mt-1" id="tier_member" v-model="MemberData.tier_member" style="background-color: #666; border-color: #27292a;">
                             <option value="beginner">beginner</option>
                             <option value="intermediate">intermediate</option>
@@ -45,7 +45,7 @@
                         </select>
                     </div>
                     <div v-if="userRole=='superadmin'"  class="form-group mt-1">
-                        <label for="role_member" style="color: #A0A0A0;">Member Role :</label> <span style="font-size: 15px; color: #666;">(optional)</span>
+                        <label for="role_member" style="color: #A0A0A0;">Member Role :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
                         <select class="form-control mt-1" id="role_member" v-model="MemberData.role_member" style="background-color: #666; border-color: #27292a;">
                             <option value="user">user</option>
                             <option value="admin">admin</option>
@@ -53,7 +53,7 @@
                         </select>
                     </div>
 
-                    <button type="submit" class="btn mt-2 mb-2" style="background-color: #FF9999; width: 300px; color: #27292a; ">แก้ไขข้อมูล</button>
+                    <button type="submit" class="btn mt-2 mb-2" style="background-color: #FF9999; width: 300px; color: #27292a; ">บันทึกการแก้ไขข้อมูล</button>
                     <button class="btn mt-2 mb-2" @click="tablepage()" style="background-color: #666; width: 300px; color: #27292a; ">ยกเลิกการแก้ไขข้อมูล</button>
                 </form>
             </div>

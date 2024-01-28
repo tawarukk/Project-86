@@ -136,8 +136,11 @@
         let apiURL = 'http://localhost:4000/api_profile';
         axios.get(apiURL)
             .then(res => {
-                this.ProfileData = res.data;
-                this.originalProfileData = [...res.data];
+                this.ProfileData = res.data.map(profile => ({
+                    ...profile,
+                    available_con: profile.available_con === "1", // แปลงเป็น boolean
+                }));
+                this.originalProfileData = [...this.ProfileData];
             })
             .catch(error => {
                 console.log(error);

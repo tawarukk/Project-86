@@ -11,13 +11,13 @@
                 </div>
                 <div class="cards-container col-6" style="background-color: #27292a; width: auto; height: auto;">
                 <form @submit.prevent="uploadTopic_img" style="font-size: 19px; font-weight: bold; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                        <div class=""> <h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-be">U</span>pload <span class="color-be">P</span>icture [<span class="color-be">T</span>opic]</h1> </div>
+                        <div class=""> <h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-be">U</span>pload <span class="color-be">I</span>mage [<span class="color-be">T</span>opic]</h1> </div>
                         <div class="form-group">
-                            <label for="img_card_con" style="color: #A0A0A0;">ขณะนี้กำลังอัพโหลด Image Creator :</label> <span style="font-size: 15px; color: #666;"></span>
+                            <label for="img_card_con" style="color: #A0A0A0;">ขณะนี้กำลังอัพโหลด Image Topic :</label> <span style="font-size: 15px; color: #666;"></span>
                             <input type="text" class="form-control mt-1" id="img_card_con" v-model="Topic.topic" readonly>
                         </div>
                         <div class="form-group mt-1">
-                            <label for="img_card_con" style="color: #A0A0A0;">Upload Image Creator :</label> <span style="font-size: 15px; color: #666;">อัพโหลดแยกกรณีแก้ไขรูปภาพ</span>
+                            <label for="img_card_con" style="color: #A0A0A0;">Upload Image Topic :</label> <span style="font-size: 15px; color: #666;">ขนาดไฟล์ต้องไม่เกิน 500 KB</span>
                             <input type="file" class="form-control" id="img_card_con" name="img_card_con" ref="file" required>
                         </div>
                         <button type="submit" class="btn mt-2 mb-2" style="background-color: #4b9ce8; width: 300px; color: #27292a; ">อัพโหลดข้อมูล</button>
