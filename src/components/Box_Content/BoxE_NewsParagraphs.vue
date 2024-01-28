@@ -26,7 +26,7 @@
                   <span style="font-size: 15px; color: #666;"> (ระบุภายหลังได้)</span>
                   <input type="text" class="form-control mt-1" id="content" v-model="NewsParagraphs.paragraphs.content">
                 </div>
-                <button type="submit" class="btn mt-2 mb-2" style="background-color: #4b9ce8; width: 300px; color: #27292a;">บันมึกการแก้ไขข้อมูล</button>
+                <button type="submit" class="btn mt-2 mb-2" style="background-color: #4b9ce8; width: 300px; color: #27292a;">บันทึกการแก้ไขข้อมูล</button>
                 <button class="btn mt-2 mb-2" @click="tablepage()" style="background-color: #666; width: 300px; color: #27292a; ">ยกเลิกการแก้ไขข้อมูล</button>
               </form>
             </div>

@@ -83,7 +83,7 @@
                             content="สามารถปรับระดับ ตามความเหมาะสมได้ที่ Profile [Tier]"
                         >
                           <template #reference>
-                          <div class="white-circle modal-lg" type="button" @click="getmanualAPI(usertier,'Factory')"> Treading Post ใช้งานอย่างไร <i class="fa-solid fa-question"></i></div>
+                          <div class="white-circle modal-lg" type="button" @click="getmanualAPI(usertier,'Treading')"> Treading Post ใช้งานอย่างไร <i class="fa-solid fa-question"></i></div>
                           </template>
                         </el-popover>
                     </span>
@@ -231,7 +231,7 @@
                             content="สามารถปรับระดับ ตามความเหมาะสมได้ที่ Profile [Tier]"
                         >
                           <template #reference>
-                          <div class="white-circle modal-lg" type="button" @click="getmanualAPI(usertier,'Factory')"> Treading Post ใช้งานอย่างไร <i class="fa-solid fa-question"></i></div>
+                          <div class="white-circle modal-lg" type="button" @click="getmanualAPI(usertier,'Treading')"> Treading Post ใช้งานอย่างไร <i class="fa-solid fa-question"></i></div>
                           </template>
                         </el-popover>
                     </span>

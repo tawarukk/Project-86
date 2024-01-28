@@ -100,12 +100,12 @@ methods: {
             return;
         }
 
-        if (/\s/.test(this.MemberData.name_member) || /[^\w\d]/.test(this.userData.name_member)) {
+        if (/\s/.test(this.MemberData.name_member) || /[^\w\d]/.test(this.MemberData.name_member)) {
             Swal.fire("ชื่อผู้ใช้ไม่สามารถมีช่องว่างหรืออักษรพิเศษ", "กรุณาลองใหม่อีกครั้ง", "error");
             return;
         }
 
-        if (/\s/.test(this.MemberData.password_member) || /[^\w\d]/.test(this.userData.password_member)) {
+        if (/\s/.test(this.MemberData.password_member) || /[^\w\d]/.test(this.MemberData.password_member)) {
             Swal.fire("รหัสผ่านไม่สามารถมีช่องว่างหรืออักษรพิเศษ", "กรุณาลองใหม่อีกครั้ง", "error");
             return;
         }

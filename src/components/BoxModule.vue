@@ -12,7 +12,7 @@
                             content="สามารถปรับระดับ ตามความเหมาะสมได้ที่ Profile [Tier]"
                         >
                     <template #reference>
-                <div class="white-circle" @click="getmanualAPI(usertier,'Factory')" type="button"><i class="fa-solid fa-question"></i></div>
+                <div class="white-circle" @click="getmanualAPI(usertier,'Module')" type="button"><i class="fa-solid fa-question"></i></div>
                     </template>
                 </el-popover>
             </div>
@@ -269,7 +269,7 @@ export default{
             this.openNewsReadPage(this.ManualData[0].manual_id);
         }).catch(error => {
             console.log(error);
-            Swal.fire("ฮั่นแน่", "สมัครสมาชิกก่อนเดี๋ยวให้อ่านคู่มือ", "error");
+            Swal.fire("ยังไม่พร้อมให้บริการ", "สมัครสมาชิกก่อนเดี๋ยวให้อ่านคู่มือ", "error");
         });
     },
     goToSelectOperator(box) {

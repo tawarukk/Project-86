@@ -122,7 +122,7 @@
         </div>
       </div>
 
-      <div class="page-content" style="color: #E2E3DE; padding: 10px; border: solid #666;"> 
+      <div class="page-content" style="color: #E2E3DE; padding: 10px; border: solid #27292a; background-color: #1f2122;"> 
           <div style="margin-left: 20px;">
           <h4> <span style="color: #e8bd4b;"><i class="fa-solid fa-scroll"></i></span> About : Box of Rhoeds <span style="color: #666;">Island</span> </h4>
             | เว็บไซต์นี้เป็นส่วนหนึ่งของชุมชนที่รวมตัวกันเพื่อนำเสนอข้อมูลที่เป็นประโยชน์และแบ่งปันความรู้เกี่ยวกับเกม <span style="color: #e8bd4b;">Arknights</span> โดยไม่มีวัตถุประสงค์ทางการค้า หรือ แสวงหาผลกำไรใดๆ
