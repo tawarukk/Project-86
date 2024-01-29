@@ -26,7 +26,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .Management {
   width: 100%;
     min-height: 100vh;
@@ -40,5 +40,4 @@ export default {
       #1f2122 100% 
     );
 }
-
 </style>

@@ -177,7 +177,6 @@
     display: none;
     position: absolute;
     min-width: 111px;
-    z-index: 1;
 }
 
 /* สไลด์เมื่อ hover บน dropdown หรือ click ที่ปุ่ม dropdown */
@@ -196,6 +195,8 @@
     margin-top: 10px;
     overflow-y: auto; /* เพิ่มการเลื่อนแนวแกน Y */
     max-height: 200px;
+    z-index: 10000;
+    position: relative; /* เพิ่มบรรทัดนี้ */
 }
 
 .search-result-button{

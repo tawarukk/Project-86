@@ -12,14 +12,24 @@
                             content="สามารถปรับระดับ ตามความเหมาะสมได้ที่ Profile [Tier]"
                         >
                     <template #reference>
-                <div class="white-circle" @click="getmanualAPI(usertier,'Module')" type="button"><i class="fa-solid fa-question"></i></div>
+                        <div class="white-circle" @click="getmanualAPI(usertier,'Module')" type="button"><i class="fa-solid fa-question"></i></div>
                     </template>
                 </el-popover>
             </div>
             
 
             <div class="row mb-3 d-flex">
-                <div class="col-sm card-character" @click="resetValues"><img :src="rule" style="border-radius: 10px;" /></div>
+                <el-popover
+                            placement="left"
+                            title="Reset All [ข้อมูล Operator และ Module]"
+                            :width="350"
+                            trigger="hover"
+                            content="ยินดีด้วยคุณหาปุ่มลับเจอ คิดว่าน้ะ กดเพื่อเริ่มการ Simulator ใหม่ทั้งหมด"
+                        >
+                    <template #reference>
+                        <div class="col-sm card-character" @click="resetValues" type="button"><img :src="rule" style="border-radius: 10px;" /></div>
+                    </template>
+                </el-popover>
                 <i class="col-sm card-character" type="button" @click="resetModule('box_1'), goToSelectOperator('box_1')"><img :src="getImagePath(Card_i)" style="border-radius: 10px;" /><span v-if="!hasImage"><i class="fas fa-plus"></i></span></i>
                 <i class="col-sm card-character" type="button" @click="resetModule('box_2'), goToSelectOperator('box_2')"><img :src="getImagePath(Card_ii)" style="border-radius: 10px;" /><span v-if="!hasImage"><i class="fas fa-plus"></i></span></i>
                 <i class="col-sm card-character" type="button" @click="resetModule('box_3'), goToSelectOperator('box_3')"><img :src="getImagePath(Card_iii)" style="border-radius: 10px;" /><span v-if="!hasImage"><i class="fas fa-plus"></i></span></i>
@@ -282,7 +292,7 @@ export default{
     if (operator_id !== null) {
     this.$router.push({ name: 'Selec_M', params: { operators_id: operator_id , mod: mod } });
     } else {
-        Swal.fire("กรุณาเลือก OPERATOR <br> ก่อนน้ะจร๊ะ 0[]0!", "อย่าตกใจ! <br> คุณแค่ต้องกดเลือก Operator ก่อนเลือก Module เพียงเท่านั้น", "error");
+        Swal.fire("กรุณาเลือก OPERATOR", "กรุณาต้องกดเลือก Operator ก่อนที่จะเลือก Module", "error");
     }
         },
     compareOperators() {
@@ -660,8 +670,6 @@ export default{
                 }
             });
             Swal.fire("เรียบร้อย!", "Reset successfully.", "success");
-            } else {
-            Swal.fire("Cancel!", ". . .", "error");
             }
         });
         },
@@ -699,8 +707,6 @@ export default{
                 }
             });
             Swal.fire("เรียบร้อย!", "Reset successfully.", "success");
-            } else {
-            Swal.fire("Cancel!", ". . .", "error");
             }
         });
         },

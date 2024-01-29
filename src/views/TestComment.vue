@@ -1,8 +1,8 @@
-<template>
+<!-- <template>
     <div>
       <NavBar/>
     </div>
-    <!-- <CLink/> -->
+    
       <SelecProfile/>
 
   <div class="demo-datetime-picker">
@@ -25,23 +25,36 @@
         {{ countdown }}
   </div>
 
-  <HomePage/>
+  <HomePage/> -->
   
+  <template>
+    <div>
+      <h2>News Summary</h2>
+      <div>Total News: {{ totalNews }}</div>
+      <div>News Added This Month: {{ newsAddedThisMonth }}</div>
+      <div>Active News (available_con == '1'): {{ activeNewsCount }}</div>
+      <div>Inactive News (available_con == '0'): {{ inactiveNewsCount }}</div>
+      <div>News Types:</div>
+      <ul>
+        <li v-for="(count, type) in newsTypeCounts" :key="type">{{ type }}: {{ count }}</li>
+      </ul>
+      <div>Total Views: {{ totalViews }}</div>
+    </div>
   </template>
   
   <script>
   import axios from 'axios';
-  import  NavBar  from '@/components/Box_SubComponent/NavMain';
-  import SelecProfile from '@/components/Box_Selec/SelecProfile.vue';
-  import HomePage from '@/components/Box_Content/BoxM_HomePage.vue'
+  // import  NavBar  from '@/components/Box_SubComponent/NavMain';
+  // import SelecProfile from '@/components/Box_Selec/SelecProfile.vue';
+  // import HomePage from '@/components/Box_Content/BoxM_HomePage.vue'
   
   
   export default {
     
     components: {
-      NavBar,
-      SelecProfile,
-      HomePage,
+      // NavBar,
+      // SelecProfile,
+      // HomePage,
       // CLink
     },
     data() {
@@ -54,8 +67,19 @@
         hours: 0,
         minutes: 0,
         seconds: 0,
+        newsList: []
       };
     },
+    created() {
+    let apiURL = 'http://localhost:4000/api_news';
+    axios.get(apiURL)
+      .then(response => {
+        this.newsList = response.data;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  },
     methods: {
       addComment(newComment) {
         this.comments.push(newComment);
@@ -118,7 +142,33 @@
         }
     },
     computed: {
-    
+    totalNews() {
+      return this.newsList.length;
+    },
+    newsAddedThisMonth() {
+      const thisMonth = new Date().getMonth();
+      return this.newsList.filter(news => new Date(news.uploadedAt.$date).getMonth() === thisMonth).length;
+    },
+    activeNewsCount() {
+      return this.newsList.filter(news => news.available_con === '1').length;
+    },
+    inactiveNewsCount() {
+      return this.newsList.filter(news => news.available_con === '0').length;
+    },
+    newsTypeCounts() {
+      const typeCounts = {};
+      this.newsList.forEach(news => {
+        if (typeCounts[news.type]) {
+          typeCounts[news.type]++;
+        } else {
+          typeCounts[news.type] = 1;
+        }
+      });
+      return typeCounts;
+    },
+    totalViews() {
+      return this.newsList.reduce((total, news) => total + news.view_count, 0);
+    }
     },
   };
 </script>

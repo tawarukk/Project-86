@@ -109,7 +109,7 @@
                     + {{Order_positioni_i}}
                   </span>
                   <span class="col-1 card-status result re re-status mb-1" style="background-color: #18ACFE; color: #1f2122;">
-                    + {{ this.Order_efficiency_i_a + this.Order_efficiency_ii_a + this.Order_efficiency_i_b + this.Order_efficiency_ii_b+ this.Order_efficiency_i_c + this.Order_efficiency_ii_c}}
+                    + {{ (this.Order_efficiency_i_a + this.Order_efficiency_ii_a + this.Order_efficiency_i_b + this.Order_efficiency_ii_b+ this.Order_efficiency_i_c + this.Order_efficiency_ii_c).toFixed(2)}}
                   </span>
 
                   <div class="text mb-1">
@@ -146,7 +146,7 @@
                     <div type="button" @click="CalRemaining_Time" class="col-12 bottom mb-2" style="background-color: #666; color: #1f2122;">
                       Calculate Production Time
                     </div>
-                    <div class="col-12 bottom mb-2" style="background-color: #1f2122;">
+                    <div class="col-12 bottom mb-2" @click="resetSimulatorBoxI" style="background-color: #1f2122;" type="button">
                       Clear data
                     </div>
                     <div class="col-12 bottom mb-2"  type="button" @click="CalRemaining_Time,shareSimulator('slot_1')"  style="background-color: #18ACFE; color: #1f2122;">
@@ -257,7 +257,7 @@
                     + {{ Order_positioni_ii }}
                   </span>
                   <span class="col-1 card-status result re re-status mb-1" style="background-color: #18ACFE; color: #1f2122;">
-                    + {{ this.Order_efficiency_i_d + this.Order_efficiency_ii_d + this.Order_efficiency_i_e + this.Order_efficiency_ii_e+ this.Order_efficiency_i_f + this.Order_efficiency_ii_f}}
+                    + {{ (this.Order_efficiency_i_d + this.Order_efficiency_ii_d + this.Order_efficiency_i_e + this.Order_efficiency_ii_e+ this.Order_efficiency_i_f + this.Order_efficiency_ii_f).toFixed(2)}}
                   </span>
 
                   <div class="text mb-1">
@@ -294,7 +294,7 @@
                     <div type="button" @click="CalRemaining_Time" class="col-12 bottom mb-2" style="background-color: #666; color: #1f2122;">
                       Calculate Production Time
                     </div>
-                    <div class="col-12 bottom mb-2" style="background-color: #1f2122;">
+                    <div class="col-12 bottom mb-2" @click="resetSimulatorBoxII" style="background-color: #1f2122;" type="button">
                       Clear data
                     </div>
                     <div class="col-12 bottom mb-2"  type="button" @click="CalRemaining_Time,shareSimulator('slot_2')"  style="background-color: #18ACFE; color: #1f2122;">
@@ -1142,8 +1142,48 @@ export default {
             });
             }
             
-        },
-        getmanualAPI(usertier, posision) {
+    },
+    resetSimulatorBoxI() {
+    Swal.fire({
+        title: 'ยืนยันการล้างข้อมูล Simulator[1]?',
+        text: 'การดำเนินการนี้จะล้างข้อมูล Operator ใน Simulator[1]',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'ยืนยัน',
+        cancelButtonText: 'ยกเลิก'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            this.resetSimulator('box_11');
+            this.resetSimulator('box_12');
+            this.resetSimulator('box_13');
+            Swal.fire('รีเซ็ตเสร็จสมบูรณ์', '', 'success').then(() => {
+                // รีเฟรชหน้าเว็บหลังจากรีเซ็ตเสร็จสมบูรณ์
+                window.location.reload();
+            });
+        }
+    });
+    },
+    resetSimulatorBoxII() {
+    Swal.fire({
+        title: 'ยืนยันการล้างข้อมูล Simulator[2]?',
+        text: 'การดำเนินการนี้จะล้างข้อมูล Operator ใน Simulator[2]',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'ยืนยัน',
+        cancelButtonText: 'ยกเลิก'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            this.resetSimulator('box_21');
+            this.resetSimulator('box_22');
+            this.resetSimulator('box_23');
+            Swal.fire('รีเซ็ตเสร็จสมบูรณ์', '', 'success').then(() => {
+                // รีเฟรชหน้าเว็บหลังจากรีเซ็ตเสร็จสมบูรณ์
+                window.location.reload();
+            });
+        }
+    });
+    },
+    getmanualAPI(usertier, posision) {
         let apiURL = 'http://localhost:4000/api_manual';
             axios.get(apiURL).then(res => {
             this.ManualData = res.data.filter(item => item.m_posision === posision && item.m_tier === usertier);

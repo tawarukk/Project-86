@@ -323,6 +323,11 @@ const routes = [
     name: "Table_ManualLink",
     component: () => import(/* webpackChunkName: "about" */ '../views/ContentView/MemberLink_TableView.vue'),
   },
+  {
+    path: "/Report",
+    name: "Report",
+    component: () => import(/* webpackChunkName: "about" */ '../views/ReportView.vue'),
+  },
   { path: '/:catchAll(.*)', component: NotFound }
 ]
 

@@ -111,7 +111,7 @@
                     + {{ Productivity_position_i }}
                   </span>
                   <span class="col-1 card-status result re re-status mb-1" style="background-color: #e8bd4b; color: #1f2122;">
-                    + {{   this.Remaining_Time_sum.toFixed(2) }}
+                    + {{ this.Remaining_Time_sum.toFixed(2) }}
                   </span>
 
                   <div class="text mb-1">
@@ -173,7 +173,7 @@
                     <div type="button" @click="CalRemaining_Time" class="col-12 bottom mb-2" style="background-color: #666; color: #1f2122;">
                       Calculate Production Time
                     </div>
-                    <div class="col-12 bottom mb-2" style="background-color: #1f2122;">
+                    <div class="col-12 bottom mb-2" @click="resetSimulatorBoxI" type="button" style="background-color: #1f2122;">
                       Clear data
                     </div>
                     <div class="col-12 bottom mb-2"  type="button" @click="CalRemaining_Time,shareSimulator('slot_1')"  style="background-color: #e8bd4b; color: #1f2122;">
@@ -285,7 +285,7 @@
                     + {{ Productivity_position_ii }}
                   </span>
                   <span class="col-1 card-status result re re-status mb-1" style="background-color: #e8bd4b; color: #1f2122;">
-                    + {{   this.Remaining_Time_sum_ii.toFixed(2) }}
+                    + {{ this.Remaining_Time_sum_ii.toFixed(2) }}
                   </span>
 
                   <div class="text mb-1">
@@ -346,7 +346,7 @@
                     <div type="button" @click="CalRemaining_Time" class="col-12 bottom mb-2" style="background-color: #666; color: #1f2122;">
                       Calculate Production Time
                     </div>
-                    <div class="col-12 bottom mb-2" style="background-color: #1f2122;">
+                    <div class="col-12 bottom mb-2" @click="resetSimulatorBoxII" style="background-color: #1f2122;" type="button">
                       Clear data
                     </div>
                     <div class="col-12 bottom mb-2"  type="button" @click="CalRemaining_Time,shareSimulator('slot_2')"  style="background-color: #e8bd4b; color: #1f2122;">
@@ -670,18 +670,14 @@ export default {
             });
     }
     },
-
-
     goToSelectOperator(position,box) {
        // ไปยังหน้า SelectOperator
     this.$router.push({ name: 'Selec_OS', params: {position: position , box: box } });
     },
-
     goToSelectProduct(box) {
        // ไปยังหน้า SelectOperator
       this.$router.push({ name: 'Selec_P', params: { box: box } });
     },
-
     getImagePath(imageFileName) {
             if (imageFileName !== null) {
                 const imageFileNamee = imageFileName.replace('./', '');
@@ -691,7 +687,6 @@ export default {
                 this.hasImage = false; // กำหนดให้ hasImage เป็น false เมื่อไม่มีรูปภาพ
             }
     },
-
     getImagePathProduct(imageFileName) {
             if (imageFileName !== null) {
                 const imageFileNamee = imageFileName.replace('./', '');
@@ -701,7 +696,6 @@ export default {
                 this.hasImage = false; // กำหนดให้ hasImage เป็น false เมื่อไม่มีรูปภาพ
             }
     },
-
     compareOperators() {
     const operator = this.Operators_sel.find(Op => Op._id === this.operatorId);
     const box = this.BoxId;
@@ -735,7 +729,6 @@ export default {
       }
     }
     },
-
     compareProduct() {
     const product = this.Product_sel.find(Pro => Pro._id === this.ProductID);
     const box = this.BoxId;
@@ -759,7 +752,6 @@ export default {
       }
     }
     },
-
     compareSkill(operator) {
     const skill = this.Skill_sel.find(Sk => Sk.name_skill === operator.skill_i);
     const skill_ii = this.Skill_sel.find(Sk => Sk.name_skill === operator.skill_ii);
@@ -841,11 +833,9 @@ export default {
     }
     }
     },
-
     saveValues(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
     },
-
     loadValuesFromStorage() {
     
     const savedCard_i_a = localStorage.getItem('Card_i_a')
@@ -1045,7 +1035,6 @@ export default {
     this.CalRemaining_Time();
 
     },
-
     CalRemaining_Time(){
       if (this.Card_i_a !== null && this.Card_i_b !== null && this.Card_i_c !== null ) {
       this.Productivity_position_i = 0.03;
@@ -1100,7 +1089,6 @@ export default {
     this.Remaining_Time_def_ii = this.Product_time_ii - this.Remaining_Time_aa;
 
     },
-
     resetSimulator(box){
       const attributes = [
     'Card_i', 'Card_ii','operator_i','NameSkill_i', 'NameSkill_ii','Morale_consumed_i', 'Morale_consumed_ii','Productivity_i', 'Productivity_ii',
@@ -1155,6 +1143,46 @@ export default {
             });
             }
             
+    },
+    resetSimulatorBoxI() {
+    Swal.fire({
+        title: 'ยืนยันการล้างข้อมูล Simulator[1]?',
+        text: 'การดำเนินการนี้จะล้างข้อมูล Operator ใน Simulator[1]',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'ยืนยัน',
+        cancelButtonText: 'ยกเลิก'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            this.resetSimulator('box_11');
+            this.resetSimulator('box_12');
+            this.resetSimulator('box_13');
+            Swal.fire('รีเซ็ตเสร็จสมบูรณ์', '', 'success').then(() => {
+                // รีเฟรชหน้าเว็บหลังจากรีเซ็ตเสร็จสมบูรณ์
+                window.location.reload();
+            });
+        }
+    });
+    },
+    resetSimulatorBoxII() {
+    Swal.fire({
+        title: 'ยืนยันการล้างข้อมูล Simulator[2]?',
+        text: 'การดำเนินการนี้จะล้างข้อมูล Operator ใน Simulator[2]',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'ยืนยัน',
+        cancelButtonText: 'ยกเลิก'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            this.resetSimulator('box_21');
+            this.resetSimulator('box_22');
+            this.resetSimulator('box_23');
+            Swal.fire('รีเซ็ตเสร็จสมบูรณ์', '', 'success').then(() => {
+                // รีเฟรชหน้าเว็บหลังจากรีเซ็ตเสร็จสมบูรณ์
+                window.location.reload();
+            });
+        }
+    });
     },
     getmanualAPI(usertier, posision) {
         let apiURL = 'http://localhost:4000/api_manual';
