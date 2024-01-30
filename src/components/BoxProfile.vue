@@ -1,6 +1,10 @@
 <template>
     <div class="container">
         <div class="page-content">
+            <div class="row">
+                <div class="cards-container mb-1" style="padding: 10px; border-radius: 10px; background-color: #1f2122;"><h5>Profile</h5></div>
+            </div>
+
             <div class="avatar-container row">
             <el-tooltip
             class="box-item"
@@ -44,7 +48,7 @@
             </div>
             <div class="avatar-container row mt-1">
                 <router-link :to="{name: 'edit_Profile', params: {id: userid}}" class="col-9">
-                    <div class="cards-container" style="background-color: #e8bd4b; padding: 3px; color: #27292a; border-radius: 5px;"> 
+                    <div class="cards-container " style="background-color: #e8bd4b; padding: 3px; color: #27292a; border-radius: 5px;"> 
                         แก้ไขโปรไฟล์
                     </div>
                 </router-link>
@@ -210,7 +214,7 @@ mounted() {
   color: #E2E3DE;
   font-size: medium;
   padding: 20px;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 .user-container{

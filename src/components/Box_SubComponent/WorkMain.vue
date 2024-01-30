@@ -2,10 +2,13 @@
     <div class="container">
         <div class="page-content">
             <div class="row">
+                <div class="row">
+                    <div class="cards-container mb-1" style="padding: 10px; border-radius: 10px; background-color: #1f2122;"><h5>Management</h5></div>
+                </div>
                 <div class="cards-container col-3">
                     งานที่ต้องรับผิดชอบ / สิทธิ์ในการเข้าถึง : 
                 </div>
-                <div v-if="userRole == 'admin' || userRole == 'superadmin'" class="col-9">
+                <div v-if="userRole == 'admin' || userRole == 'superadmin'" style="width: 100%; max-width: 933px;">
                     <div v-if="userRole == 'admin'" class="cards-container mt-2">
                         Operator / Module / skill / Product
                     </div>
@@ -67,12 +70,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .cards-container {
   background-color: #1f2122; 
   color: #E2E3DE;
   font-size: medium;
   padding: 10px;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 </style>

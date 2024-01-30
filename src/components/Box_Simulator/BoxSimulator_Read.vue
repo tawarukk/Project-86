@@ -147,7 +147,13 @@ export default {
       showPreviousComment() {
         this.currentCommentIndex = (this.currentCommentIndex - 1 + this.simulatorsTopic.comment.length) % this.simulatorsTopic.comment.length;
       },
-      updateRate() {
+  updateRate() {
+
+    if(this.userName == '' || this.userName == null){
+        Swal.fire("ฮั่นแน่", "สมัครสมาชิกก่อนเดี๋ยวให้โหวดน้ะ", "error");
+        return 0;
+      }
+
   const simulatorId = this.$route.params.id;
   const apiUrl = `http://localhost:4000/api_simulator/update-rate/${simulatorId}`;
   axios.put(apiUrl, { rate: this.value }, { headers: { 'Content-Type': 'application/json' } })

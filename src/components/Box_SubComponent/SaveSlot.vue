@@ -2,7 +2,7 @@
     <div class="container">
       <div class="page-content">
         <router-link :to="{name: 'create_save'}">
-            <div class="cards-container col-6 mb-2" style="background-color: #E2E3DE; color:#27292a ; border-radius: 10px;">
+            <div class="cards-container col-6" style="background-color: #E2E3DE; color:#27292a ; border-radius: 10px;">
                 บันทึกรูปแบบ Simulator [สามารถคัดลอก ID Simulator ได้ที่ Reception Room]
             </div>
         </router-link>
