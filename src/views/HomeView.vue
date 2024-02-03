@@ -3,7 +3,6 @@
   <nav-bar/>
   <BoxHome/>
   <FooterMain/>
-  
   </div>
 </template>
 

@@ -1,8 +1,9 @@
 <template>
     <div class="Management">
         <NavBarMain/>
-        <Profile/>
         <WorkMain/>
+        <Profile/>
+        
         <FooterMain/>
     </div>
 </template>
