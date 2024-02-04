@@ -72,9 +72,18 @@
                         </span>
                     </div> 
                 </div>
-                <p style="color: #A0A0A0; margin-left: 15px;" >
-                    Upload : {{ cardItem.uploadedAt.slice(0, 10) }}
-                </p>
+                
+                <div style="display: flex; justify-content: space-between;">
+                    <span style="color: #A0A0A0; margin-left: 15px">
+                        Upload : {{ cardItem.uploadedAt.slice(0, 10) }}
+                    </span>
+                    <span style="color: aliceblue; margin-right: 15px">
+                        View : {{ cardItem.view_count }}
+                    </span>
+                </div>
+
+                
+
             </div>
         </template>
         </template>
