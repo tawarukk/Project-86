@@ -27,7 +27,8 @@ import jwt_decode from 'jwt-decode';
         newComment: '',
         userIMG:'',
         userName:'',
-        userCode:''
+        userCode:'',
+        Count_Comment:0
       };
     },
     methods: {
@@ -58,12 +59,23 @@ import jwt_decode from 'jwt-decode';
             });
 
             console.log('Comment added successfully:', response.data);
-            this.$router.go(0);
-            // เคลียร์ค่าหลังจากที่ Comment ถูกเพิ่ม
-            this.newComment = '';
+            Swal.fire({
+            title: 'ได้รับความคิดเห็นของคุณแล้ว',
+            text: 'ขอบคุณที่มีส่วนร่วมกับเว็ปไซต์ของเรา',
+            icon: 'success',
+            showCancelButton: true,
+            confirmButtonText: 'รับทราบ',
+            cancelButtonText: 'รับทราบแต่เป็นสีเทา',
+            }).then((result) => {
+                if (result.value) {
+                    this.$router.go(0);
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    this.$router.go(0);
+                }
+            });
+            
         } catch (error) {
             console.error('Error adding comment:', error);
-            // ทำอย่างไรกับข้อผิดพลาด เช่น แสดงข้อความแจ้งเตือนหรือทำการบันทึกข้อผิดพลาดใน Console
         }
     } else {
         Swal.fire("แก! ไม่มีสิทธิ์", "กรุณาล็อกอินก่อน Comment", "warning");

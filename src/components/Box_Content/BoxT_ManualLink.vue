@@ -24,9 +24,9 @@
                     <thead class="border">
                         <tr>
                             <th>No.</th>
-                            <th>ID_Manual ปัจจุบัน</th>
+                            <th>ID_Manual [Now]</th>
                             <th>Description</th>
-                            <th>Posision</th>
+                            <th>Position</th>
                             <th>Tier</th>
                             <th>Action</th>
                         </tr>

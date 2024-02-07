@@ -14,7 +14,7 @@
                         <div class="mb-2"> <h1 style="font-size: 60px; color: white; margin-left: 20px; margin-top: 20px;"><span class="color-yt">C</span>reate <span class="color-yt">P</span>rofile [<span class="color-yt">I</span>MG] </h1> </div>
                         <div class="form-group">
                             <label for="descriptions" style="color: #A0A0A0;">Description :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
-                            <input type="text" class="form-control mt-1" id="descriptions" v-model="ProfileData.descriptions" placeholder="[คำอธิบายรูปโปรไฟล์]">
+                            <textarea type="text" class="form-control mt-1" id="descriptions" v-model="ProfileData.descriptions" placeholder="[คำอธิบายรูปโปรไฟล์]"> </textarea>
                         </div>
                         <div class="form-group">
                             <label for="available_con" style="color: #A0A0A0;">สถานะการใช้งาน :</label>
@@ -105,7 +105,7 @@ try {
     width: 600px;
 }
 
-input {
+input, textarea {
     background-color: #666;
     border: #27292a;
     color: #A0A0A0;

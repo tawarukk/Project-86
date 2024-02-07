@@ -23,7 +23,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="descriptions" style="color: #A0A0A0;">Descriptions :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
-                                    <input type="text" class="form-control mt-1" id="descriptions" placeholder="[คำอธิบาย สินค้า]"  v-model="ProductData.descriptions">
+                                    <textarea type="text" class="form-control mt-1" id="descriptions" placeholder="[คำอธิบาย สินค้า]"  v-model="ProductData.descriptions"></textarea>
                                 </div>
                                 <div class="form-group mt-1" >
                                     <label for="time_product" style="color: #A0A0A0;">Time Product :</label> <span style="font-size: 15px; color: #4b9ce8;">(*จำเป็นต้องระบุ)</span>
@@ -167,11 +167,10 @@ input {
     color: #A0A0A0;
 }
 
-.color-pk {
-    color: #FF9999;
-}
-.color-yt {
-    color: #e8bd4b;
+textarea{
+    background-color: #666;
+    border: #27292a;
+    color: #A0A0A0;
 }
 .color-be {
     color: #4b9ce8;

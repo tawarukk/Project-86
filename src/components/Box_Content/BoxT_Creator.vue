@@ -92,16 +92,26 @@
         created() {
             this.fetchCreator();
             let apiURL = 'http://localhost:4000/api_creator';
-            axios.get(apiURL).then(res => {
-                this.Creator = res.data.map(creator => ({
-                    ...creator,
-                    survey_con: creator.survey_con === "1", // แปลงเป็น boolean
-                    available_con: creator.available_con === "1", // แปลงเป็น boolean
-                }));
-            }).catch(error => {
-                console.log(error);
-            });
+            axios.get(apiURL)
+                .then(res => {
+                    this.Creator = res.data.map(creator => ({
+                        ...creator,
+                        survey_con: creator.survey_con === "1", // แปลงเป็น boolean
+                        available_con: creator.available_con === "1", // แปลงเป็น boolean
+                    }));
+
+                    // เรียงข้อมูลตามชื่อ name_con
+                    this.Creator.sort((a, b) => {
+                        if (a.name_con < b.name_con) return -1;
+                        if (a.name_con > b.name_con) return 1;
+                        return 0;
+                    });
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         },
+
 
         
         watch: {
@@ -161,6 +171,13 @@
                     survey_con: creator.survey_con === "1", // แปลงเป็น boolean
                     available_con: creator.available_con === "1", // แปลงเป็น boolean
                 }));
+
+                this.Creator.sort((a, b) => {
+                        if (a.name_con < b.name_con) return -1;
+                        if (a.name_con > b.name_con) return 1;
+                        return 0;
+                    });
+                    
                 this.originalCreator = [...this.Creator];
             })
             .catch(error => {

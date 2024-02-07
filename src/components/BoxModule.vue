@@ -274,10 +274,10 @@ export default{
     };
     },
     methods: {
-        openNewsReadPage(link) {
+    openNewsReadPage(link) {
             this.$router.push({ name: 'NewsRead', params: { id: link } });
-        },
-        getmanualAPI(usertier, posision) {
+    },
+    getmanualAPI(usertier, posision) {
         let apiURL = 'http://localhost:4000/api_manual';
             axios.get(apiURL).then(res => {
             this.ManualData = res.data.filter(item => item.m_posision === posision && item.m_tier === usertier);

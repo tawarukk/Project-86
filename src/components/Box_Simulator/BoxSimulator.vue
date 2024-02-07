@@ -600,7 +600,7 @@ export default {
         axios.post('http://localhost:4000/api_simulator/create-simulator', data)
             .then(response => {
                 console.log('Successfully created simulator:', response.data);
-                const action = response.data.Share_count == 0 ? 'Share' : 'Update';
+                const action = response.data.Share_count == 1 ? 'Share' : 'Update';
                 if(action == 'Share'){
                     Swal.fire({
                       icon: 'success',
@@ -645,7 +645,7 @@ export default {
 
         axios.post('http://localhost:4000/api_simulator/create-simulator', data)
             .then(response => {
-                const action = response.data.Share_count == 0 ? 'Share' : 'Update';
+                const action = response.data.Share_count == 1 ? 'Share' : 'Update';
                 if(action == 'Share'){
                     Swal.fire({
                       icon: 'success',
@@ -1146,8 +1146,8 @@ export default {
     },
     resetSimulatorBoxI() {
     Swal.fire({
-        title: 'ยืนยันการล้างข้อมูล Simulator[1]?',
-        text: 'การดำเนินการนี้จะล้างข้อมูล Operator ใน Simulator[1]',
+        title: 'ยืนยันการล้างข้อมูล Factory Room [1]?',
+        text: 'การดำเนินการนี้จะล้างข้อมูล Operator ใน Factory Room [1]',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'ยืนยัน',
@@ -1166,8 +1166,8 @@ export default {
     },
     resetSimulatorBoxII() {
     Swal.fire({
-        title: 'ยืนยันการล้างข้อมูล Simulator[2]?',
-        text: 'การดำเนินการนี้จะล้างข้อมูล Operator ใน Simulator[2]',
+        title: 'ยืนยันการล้างข้อมูล Factory Room [2]?',
+        text: 'การดำเนินการนี้จะล้างข้อมูล Operator ใน Factory Room [2]',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'ยืนยัน',

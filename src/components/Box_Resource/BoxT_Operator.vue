@@ -111,6 +111,12 @@
                     ...operator,
                     available_content: operator.available_content === "1", // แปลงเป็น boolean
                 }));
+
+            this.Operator.sort((a, b) => {
+                if (a.name_oper < b.name_oper) return -1;
+                if (a.name_oper > b.name_oper) return 1;
+                return 0;
+            });
         }).catch(error =>{
             console.log(error)
         })
@@ -174,6 +180,11 @@
                     ...operator,
                     available_content: operator.available_content === "1", // แปลงเป็น boolean
                 }));
+                this.Operator.sort((a, b) => {
+                    if (a.name_oper < b.name_oper) return -1;
+                    if (a.name_oper > b.name_oper) return 1;
+                    return 0;
+                });
                 this.originalOperators = [...this.Operator];
             })
             .catch(error => {

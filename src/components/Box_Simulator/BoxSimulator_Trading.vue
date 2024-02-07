@@ -18,7 +18,7 @@
                 <div class="row">
                   <!-- แถวบน -->
                   <div class="col-12 card-status name mb-3" style="color: #1f2122;">
-                    Treading Post Room <i class="fa-solid fa-dice-one"></i>
+                    Treading Post <i class="fa-solid fa-dice-one"></i>
                   </div>
                   <el-tooltip class="box-item"
                     effect="dark"
@@ -77,7 +77,7 @@
                     <span class="col-1 card-status result re-status rule mb-2">
                       <el-popover
                             placement="top"
-                            title="คู่มือแนะนำการใช้งานระบบ Factory Room "
+                            title="คู่มือแนะนำการใช้งานระบบ Treading Post"
                             :width="350"
                             trigger="hover"
                             content="สามารถปรับระดับ ตามความเหมาะสมได้ที่ Profile [Tier]"
@@ -166,7 +166,7 @@
                 <div class="row">
                   <!-- แถวบน -->
                   <div class="col-12 card-status name mb-3" style="color: #1f2122;">
-                    Treading Post Room <i class="fa-solid fa-dice-two"></i>
+                    Treading Post <i class="fa-solid fa-dice-two"></i>
                   </div>
                   <el-tooltip class="box-item"
                     effect="dark"
@@ -225,7 +225,7 @@
                     <span class="col-1 card-status result re-status rule mb-2">
                       <el-popover
                             placement="top"
-                            title="คู่มือแนะนำการใช้งานระบบ Factory Room "
+                            title="คู่มือแนะนำการใช้งานระบบ Treading Post "
                             :width="350"
                             trigger="hover"
                             content="สามารถปรับระดับ ตามความเหมาะสมได้ที่ Profile [Tier]"
@@ -539,7 +539,7 @@ export default {
         axios.post('http://localhost:4000/api_simulator/create-simulator', data)
             .then(response => {
                 console.log('Successfully created simulator:', response.data);
-                const action = response.data.Share_count == 0 ? 'Share' : 'Update';
+                const action = response.data.Share_count == 1 ? 'Share' : 'Update';
                 if(action == 'Share'){
                     Swal.fire({
                       icon: 'success',
@@ -584,7 +584,7 @@ export default {
 
         axios.post('http://localhost:4000/api_simulator/create-simulator', data)
             .then(response => {
-                const action = response.data.Share_count == 0 ? 'Share' : 'Update';
+                const action = response.data.Share_count == 1 ? 'Share' : 'Update';
                 if(action == 'Share'){
                     Swal.fire({
                       icon: 'success',
@@ -1145,8 +1145,8 @@ export default {
     },
     resetSimulatorBoxI() {
     Swal.fire({
-        title: 'ยืนยันการล้างข้อมูล Simulator[1]?',
-        text: 'การดำเนินการนี้จะล้างข้อมูล Operator ใน Simulator[1]',
+        title: 'ยืนยันการล้างข้อมูล Treading Post [1]?',
+        text: 'การดำเนินการนี้จะล้างข้อมูล Operator ใน Treading Post[1]',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'ยืนยัน',
@@ -1166,7 +1166,7 @@ export default {
     resetSimulatorBoxII() {
     Swal.fire({
         title: 'ยืนยันการล้างข้อมูล Simulator[2]?',
-        text: 'การดำเนินการนี้จะล้างข้อมูล Operator ใน Simulator[2]',
+        text: 'การดำเนินการนี้จะล้างข้อมูล Operator ใน Treading Post[2]',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'ยืนยัน',

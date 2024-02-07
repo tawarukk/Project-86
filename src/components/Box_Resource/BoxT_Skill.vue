@@ -81,6 +81,11 @@
                     ...skill,
                     available_content: skill.available_content === "1", 
                 }));
+            this.Skill.sort((a, b) => {
+                if (a.name_skill < b.name_skill) return -1;
+                if (a.name_skill > b.name_skill) return 1;
+                return 0;
+            });    
         }).catch(error =>{
             console.log(error)
         })
@@ -135,6 +140,11 @@
                     ...skill,
                     available_content: skill.available_content === "1", 
                 }));
+                this.Skill.sort((a, b) => {
+                    if (a.name_skill < b.name_skill) return -1;
+                    if (a.name_skill > b.name_skill) return 1;
+                    return 0;
+                });  
                 this.originalSkill = [...this.Skill];
             })
             .catch(error => {

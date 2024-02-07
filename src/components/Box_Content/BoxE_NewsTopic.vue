@@ -18,7 +18,7 @@
                         </div>
                         <div class="form-group">
                             <label for="description" style="color: #A0A0A0;">Description :</label> <span style="font-size: 15px; color: #666;"> (ระบุภายหลังได้)</span>
-                            <input type="text" class="form-control mt-1" id="description" v-model="NewsTopic.description">
+                            <textarea type="text" class="form-control mt-1" id="description" v-model="NewsTopic.description"> </textarea>
                         </div>
                         <div class="form-group">
                             <label for="type" style="color: #A0A0A0;">Type content :</label>
@@ -27,7 +27,7 @@
                                 <option value="News">News</option>
                                 <option value="Announce">Announce</option>
                                 <option value="Information">Information</option>
-                                <option value="Anoter">Anoter</option>
+                                <option value="Anoter">Other</option>
                                 <option value="manual">Manual</option>
                             </select>
                         </div>
@@ -103,7 +103,11 @@ export default {
 .form-group{
     width: 600px;
 }
-
+textarea{
+    background-color: #666;
+    border: #27292a;
+    color: #A0A0A0;
+}
 input {
     background-color: #666;
     border: #27292a;

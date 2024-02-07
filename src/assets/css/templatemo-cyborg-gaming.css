@@ -6,6 +6,12 @@ reset
 --------------------------------------------- 
 */
 
+textarea{
+  background-color: #666;
+    border: #27292a;
+    color: #A0A0A0;
+}
+
 .clearfix:after {
   content: ".";
   display: block;
