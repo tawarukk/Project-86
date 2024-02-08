@@ -1,23 +1,26 @@
 <template>
     <div class="container">
-        <div class="page-content">
+        <div class="page-content" style="border-radius: 10px;">
+          <div class="page-header">
+            <h1>Module Dashboard <i class="fa-solid fa-toolbox" style="color: #FF9999;"></i></h1>
+          </div>
         <div class="page-content mt-2" style="background-color: #1f2122; padding: 15px; border-radius: 10px;">
             <div class="dashboard">
             <div class="summary">
                 <div class="summary-item">
-                <h2>Total Modules</h2>
+                <h2>Total Modules <br><i class="fa-solid fa-toolbox" style="color: #FF9999;"></i></h2>
                 <p>{{ totalModules }}</p>
                 </div>
                 <div class="summary-item">
-                <h2>Modules Added This Month</h2>
+                <h2>Modules Added This Month <br><i class="fa-solid fa-calendar-days" style="color: #99ffcc;"></i></h2>
                 <p>{{ modulesAddedThisMonth }}</p>
                 </div>
                 <div class="summary-item">
-                <h2>Active Modules Count</h2>
+                <h2>Active Modules Count <br><i class="fa-regular fa-circle-check" style="color: dodgerblue;"></i></h2>
                 <p>{{ activeModulesCount }}</p>
                 </div>
                 <div class="summary-item">
-                <h2>Inactive Modules Count</h2>
+                <h2>Inactive Modules Count <br><i class="fa-regular fa-circle-xmark" style="color: orange;"></i></h2>
                 <p>{{ inactiveModulesCount }}</p>
                 </div>
             </div>
@@ -63,6 +66,10 @@
   </script>
 
 <style scoped>
+  .dashboard i{
+    font-size:xx-large;
+    margin-top:10px
+  }
   .dashboard {
     max-width: 800px;
     margin: 0 auto;
@@ -87,6 +94,10 @@
   .summary-item h2 {
     font-size: 20px;
     margin-bottom: 10px;
+  }
+  .summary-item p {
+    font-size: 20px;
+    color: #E2E3DE;
   }
   
   .cards-container {

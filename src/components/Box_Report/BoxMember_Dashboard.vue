@@ -1,41 +1,42 @@
 <template>
     <div class="container">
-      <!-- Header -->
+      <div class="page-content" style="border-radius: 10px;">
+      
       <div class="page-header">
-        <h1>Member Dashboard</h1>
+        <h1>Member Dashboard <i class="fa-solid fa-address-card" style="color: #4b9ce8;"></i></h1>
       </div>
   
-      <!-- Member Summary -->
       <div class="page-content mt-2" style="background-color: #1f2122; padding: 15px; border-radius: 10px;">
         <div class="dashboard">
           <div class="summary">
             <div class="summary-item">
-              <h2>Total Members</h2>
+              <h2>Total Members <br><i class="fa-regular fa-circle-user" style="color: #FF9999;"></i></h2>
               <p>{{ totalMembers }}</p>
             </div>
             <div class="summary-item">
-              <h2>Members Added This Month</h2>
+              <h2>Members Added This Month <br><i class="fa-solid fa-calendar-days" style="color: #99ffcc;"></i></h2>
               <p>{{ membersAddedThisMonth }}</p>
             </div>
             <div class="summary-item">
-              <h2>Active Members Count</h2>
+              <h2>Active Members Count <br><i class="fa-regular fa-circle-check" style="color: dodgerblue;"></i></h2>
               <p>{{ activeMembersCount }}</p>
             </div>
             <div class="summary-item">
-              <h2>Inactive Members Count</h2>
+              <h2>Inactive Members Count <br><i class="fa-regular fa-circle-xmark" style="color: orange;"></i></h2>
               <p>{{ inactiveMembersCount }}</p>
             </div>
           </div>
         </div>
       </div>
 
-    <div class="page-content mt-2" style="background-color: #1f2122; padding: 15px; border-radius: 10px;">
-        <div class="charts" style="display: flex; flex-direction: row;">
-            <canvas id="tierChart" style="flex: 1; max-width: 550px; max-height: 500px;"></canvas>
-            <canvas id="roleChart" style="flex: 1; max-width: 550px; max-height: 500px; margin-left: 70px;"></canvas>
-        </div>
-    </div>
+      <div class="page-content mt-2" style="background-color: #1f2122; padding: 15px; border-radius: 10px;">
+          <div class="charts" style="display: flex; flex-direction: row;">
+              <canvas id="tierChart" style="flex: 1; max-width: 550px; max-height: 500px;"></canvas>
+              <canvas id="roleChart" style="flex: 1; max-width: 550px; max-height: 500px; margin-left: 70px;"></canvas>
+          </div>
+      </div>
 
+      </div>
     </div>
   </template>
   
@@ -103,8 +104,22 @@
                 datasets: [{
                     label: 'Member Count',
                     data: Object.values(this.rolesData),
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: [
+                      'rgba(232, 189, 75, 0.2)',
+                      'rgba(75, 156, 232, 0.2)',
+                      'rgba(255, 153, 153, 0.2)',
+                      'rgba(117, 71, 232, 0.2)',
+                      'rgba(232, 75, 117, 0.2)',
+                      'rgba(153, 255, 204, 0.2)',
+                    ],
+                    borderColor: [
+                      'rgba(232, 189, 75, 1)',
+                      'rgba(75, 156, 232, 1)',
+                      'rgba(255, 153, 153, 1)',
+                      'rgba(117, 71, 232, 1)',
+                      'rgba(232, 75, 117, 1)',
+                      'rgba(153, 255, 204, 1)',
+                    ],
                     borderWidth: 1
                 }]
                 },
@@ -126,8 +141,22 @@
             datasets: [{
                 label: 'Member Count',
                 data: Object.values(this.tiersData),
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
+                backgroundColor: [
+                  'rgba(232, 189, 75, 0.2)',
+                  'rgba(75, 156, 232, 0.2)',
+                  'rgba(255, 153, 153, 0.2)',
+                  'rgba(117, 71, 232, 0.2)',
+                  'rgba(232, 75, 117, 0.2)',
+                  'rgba(153, 255, 204, 0.2)',
+                ],
+                borderColor: [
+                  'rgba(232, 189, 75, 1)',
+                  'rgba(75, 156, 232, 1)',
+                  'rgba(255, 153, 153, 1)',
+                  'rgba(117, 71, 232, 1)',
+                  'rgba(232, 75, 117, 1)',
+                  'rgba(153, 255, 204, 1)',
+                ],
                 borderWidth: 1
             }]
             },
@@ -145,6 +174,10 @@
   </script>
 
 <style scoped>
+.dashboard i{
+    font-size:xx-large;
+    margin-top:10px
+  }
 .dashboard {
   max-width: 800px;
   margin: 0 auto;
@@ -170,7 +203,11 @@
   font-size: 20px;
   margin-bottom: 10px;
 }
-
+.summary-item p {
+    font-size: 20px;
+    color: #E2E3DE;
+  }
+  
 .cards-container {
 background-color: #E2E3DE; 
 color: #27292a;

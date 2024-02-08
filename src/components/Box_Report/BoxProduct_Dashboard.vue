@@ -1,23 +1,26 @@
 <template>
     <div class="container">
     <div class="page-content" style="border-radius: 10px;">
+      <div class="page-header">
+        <h1>Product Dashboard <i class="fa-solid fa-boxes-stacked" style="color: #FF9999;"></i></h1>
+      </div>
         <div class="page-content mt-2" style="background-color: #1f2122; padding: 15px; border-radius: 10px;">
             <div class="dashboard">
             <div class="summary">
                 <div class="summary-item">
-                <h2>Total Products</h2>
+                <h2>Total Products <br><i class="fa-solid fa-box" style="color: #FF9999;"></i></h2>
                 <p>{{ totalProducts }}</p>
                 </div>
                 <div class="summary-item">
-                <h2>Products This Month</h2>
+                <h2>Added This Month <br><i class="fa-solid fa-calendar-days" style="color: #99ffcc;"></i></h2>
                 <p>{{ productsAddedThisMonth }}</p>
                 </div>
                 <div class="summary-item">
-                <h2>Active Products Count</h2>
+                <h2>Active Products Count <br><i class="fa-regular fa-circle-check" style="color: dodgerblue;"></i></h2>
                 <p>{{ activeProductsCount }}</p>
                 </div>
                 <div class="summary-item">
-                <h2>Inactive Products Count</h2>
+                <h2>Inactive Products Count <br><i class="fa-regular fa-circle-xmark" style="color: orange;"></i></h2>
                 <p>{{ inactiveProductsCount }}</p>
                 </div>
             </div>
@@ -84,23 +87,21 @@
             datasets: [{
               label: 'Product Count',
               data: Object.values(this.typesData),
-              backgroundColor:  [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(255, 99, 132, 0.2)'
+              backgroundColor: [
+                'rgba(232, 189, 75, 0.2)',
+                'rgba(75, 156, 232, 0.2)',
+                'rgba(255, 153, 153, 0.2)',
+                'rgba(117, 71, 232, 0.2)',
+                'rgba(232, 75, 117, 0.2)',
+                'rgba(153, 255, 204, 0.2)',
               ],
               borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-                'rgba(255, 99, 132, 1)'
+                'rgba(232, 189, 75, 1)',
+                'rgba(75, 156, 232, 1)',
+                'rgba(255, 153, 153, 1)',
+                'rgba(117, 71, 232, 1)',
+                'rgba(232, 75, 117, 1)',
+                'rgba(153, 255, 204, 1)',
               ],
               borderWidth: 1
             }]
@@ -119,6 +120,10 @@
   </script>
 
 <style scoped>
+  .dashboard i{
+    font-size:xx-large;
+    margin-top:10px
+  }
   .dashboard {
     max-width: 800px;
     margin: 0 auto;
@@ -143,6 +148,10 @@
   .summary-item h2 {
     font-size: 20px;
     margin-bottom: 10px;
+  }
+  .summary-item p {
+    font-size: 20px;
+    color: #E2E3DE;
   }
   
   .cards-container {

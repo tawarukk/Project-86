@@ -42,7 +42,7 @@
                             <a href="javascript:void(0);" class="dropbtn"><span style="color:#e8bd4b;">{{ userName }} <span v-if="code != ''">#{{ code }}</span></span> <img :src="getImagePath_Profile(userIMG)" class="card-img-top" alt="..."></a>
                             <div class="dropdown-content">
                                 <a class="drop-last mt-2" href="/Management">Profile</a>
-                                <a v-if = "userRole == 'superadmin' && userRole != '' && userRole != null" class="drop-last mt-2" href="/Report">Report</a>
+                                <a v-if = "userRole == 'superadmin' && userRole != '' && userRole != null" class="drop-last mt-2" href="/Dashboard">Dashboard</a>
                                 <a class="drop-last mt-2" type="button" @click="logout()">logout</a>
                             </div>
                         </li>

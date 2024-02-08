@@ -1,28 +1,33 @@
 <template>
     <div class="container">
-      <!-- Profile Summary -->
+      <div class="page-content" style="border-radius: 10px;">
+      <div class="page-header">
+        <h1>Profile [IMG] Dashboard <i class="fa-regular fa-address-card" style="color: #4b9ce8;"></i></h1>
+      </div>
+
       <div class="page-content mt-2" style="background-color: #1f2122; padding: 15px; border-radius: 10px;">
         <div class="dashboard">
           <div class="summary">
             <div class="summary-item">
-              <h2>Total Profiles</h2>
+              <h2>Total Profiles <br><i class="fa-regular fa-circle-user" style="color: #FF9999;"></i></h2>
               <p>{{ totalProfiles }}</p>
             </div>
             <div class="summary-item">
-              <h2>Profiles Added This Month</h2>
+              <h2>Profiles Added This Month <br><i class="fa-solid fa-calendar-days" style="color: #99ffcc;"></i></h2>
               <p>{{ profilesAddedThisMonth }}</p>
             </div>
             <div class="summary-item">
-              <h2>Active Profiles Count</h2>
+              <h2>Active Profiles Count <br><i class="fa-regular fa-circle-check" style="color: dodgerblue;"></i></h2>
               <p>{{ activeProfilesCount }}</p>
             </div>
             <div class="summary-item">
-              <h2>Inactive Profiles Count</h2>
+              <h2>Inactive Profiles Count <br><i class="fa-regular fa-circle-xmark" style="color: orange;"></i></h2>
               <p>{{ inactiveProfilesCount }}</p>
             </div>
           </div>
         </div>
       </div>
+    </div>
     </div>
   </template>
   
@@ -70,6 +75,9 @@
   
 
 <style scoped>
+i{
+    font-size:xx-large
+  }
 .dashboard {
   max-width: 800px;
   margin: 0 auto;
@@ -95,7 +103,11 @@
   font-size: 20px;
   margin-bottom: 10px;
 }
-
+.summary-item p {
+    font-size: 20px;
+    color: #E2E3DE;
+  }
+  
 .cards-container {
 background-color: #E2E3DE; 
 color: #27292a;

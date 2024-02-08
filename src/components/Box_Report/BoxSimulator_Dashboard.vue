@@ -1,31 +1,34 @@
 <template>
   <div class="container">
     <div class="page-content" style="border-radius: 10px;">
+      <div class="page-header">
+          <h1>Simulator Dashboard <i class="fa-solid fa-object-group" style="color: #e8bd4b;"></i></h1>
+      </div>
       <div class="page-content mt-2" style="background-color: #1f2122; padding: 15px; border-radius: 10px;">
         <div class="dashboard">
           <div class="summary">
             <div class="summary-item">
-              <h2>Total Simulators</h2>
-              <p>{{ totalSimulators }}</p>
+              <h2>Total Simulators <br><i class="fa-solid fa-object-group" style="color: #99ffcc;"></i></h2>
+              <p>{{ totalSimulators }} </p>
             </div>
             <div class="summary-item">
-              <h2>Factory</h2>
+              <h2>Factory <br><i class="fa-solid fa-dolly" style="color: #e8bd4b;"></i></h2>
               <p>{{ factorySimulatorsCount }}</p>
             </div>
             <div class="summary-item">
-              <h2>Trading</h2>
+              <h2>Trading <br><i class="fa-solid fa-dolly" style="color: dodgerblue;"></i></h2>
               <p>{{ tradingSimulatorsCount }}</p>
             </div>
             <div class="summary-item">
-              <h2>Most Repeated</h2>
-              <p>{{ mostRepeatedProduct }}</p>
+              <h2>Most Repeated <br><i class="fa-solid fa-star" style="color: #FF9999;"></i></h2>
+              <p>{{ mostRepeatedProduct }}</p> 
             </div>
             <div class="summary-item">
-              <h2>Total Comments</h2>
+              <h2>Total Comments <br><i class="fa-solid fa-comments" style="color: #FF9999;"></i></h2>
               <p>{{ totalComments }}</p>
             </div>
             <div class="summary-item">
-              <h2>Total Views</h2>
+              <h2>Total Views <br><i class="fa-solid fa-eye" style="color: #FF9999;"></i></h2>
               <p>{{ totalViewsFromSimulators }}</p>
             </div>
           </div>
@@ -101,13 +104,21 @@ export default {
             label: 'Simulators Count',
             data: [this.factorySimulatorsCount, this.tradingSimulatorsCount],
             backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-            ],
-            borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-            ],
+                'rgba(232, 189, 75, 0.2)',
+                'rgba(75, 156, 232, 0.2)',
+                'rgba(255, 153, 153, 0.2)',
+                'rgba(117, 71, 232, 0.2)',
+                'rgba(232, 75, 117, 0.2)',
+                'rgba(153, 255, 204, 0.2)',
+              ],
+              borderColor: [
+                'rgba(232, 189, 75, 1)',
+                'rgba(75, 156, 232, 1)',
+                'rgba(255, 153, 153, 1)',
+                'rgba(117, 71, 232, 1)',
+                'rgba(232, 75, 117, 1)',
+                'rgba(153, 255, 204, 1)',
+              ],
             borderWidth: 1
           }]
         },
@@ -125,6 +136,10 @@ export default {
 </script>
 
 <style scoped>
+  .dashboard i{
+      font-size:x-large;
+      margin-top: 10px;
+    }
   .dashboard {
     max-width: 800px;
     margin: 0 auto;
@@ -150,6 +165,10 @@ export default {
     font-size: 20px;
     margin-bottom: 10px;
   }
+  .summary-item p {
+    font-size: 20px;
+    color: #E2E3DE;
+  }
   
   .cards-container {
   background-color: #E2E3DE; 
@@ -162,7 +181,7 @@ export default {
 
   .charts{
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
+    max-width: 500px;
     margin: 0 auto;
     text-align: center;
   }
