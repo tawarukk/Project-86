@@ -328,6 +328,11 @@ const routes = [
     name: "Report",
     component: () => import(/* webpackChunkName: "about" */ '../views/ReportView.vue'),
   },
+  {
+    path: "/Dashboard",
+    name: "Dashboard",
+    component: () => import(/* webpackChunkName: "about" */ '../views/DashBoardView.vue'),
+  },
   { path: '/:catchAll(.*)', component: NotFound }
 ]
 

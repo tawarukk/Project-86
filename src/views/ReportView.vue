@@ -15,9 +15,6 @@ import  BoxReportResource from'@/components/Box_Report/BoxResource_Report.vue'
 import  BoxReportMember from'@/components/Box_Report/BoxMember_Report.vue'
 import  FooterMain from '@/components/Box_SubComponent/FooterMain'
 
-
-
-
 export default {
     name: 'ReportView',
         components: {

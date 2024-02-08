@@ -116,16 +116,19 @@
                     this.userCode = response.data.code_member
                     this.usertier = response.data.tier_member;
                     this.userRole = response.data.role_member;
+                    // console.log(this.userRole)
                     if(this.userRole=='user'){
-        this.$router.push('/');
-    }
+                        this.$router.push('/');
+                    }
                 }
             })
             .catch(error => {
                 console.error('เกิดข้อผิดพลาดในการดึงข้อมูลผู้ใช้:', error);
             });
     }
-    
+    else{
+        this.$router.push('/');
+    }
     },
 };
 </script>

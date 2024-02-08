@@ -72,9 +72,9 @@ export default {
         };
     },
     created() {
-      this.GetDataNews();
-      this.GetDataSimulator();
-      this.GetDataCreator();
+        this.GetDataNews();
+        this.GetDataSimulator();
+        this.GetDataCreator();
     },
     methods:{
         GetDataNews(){
