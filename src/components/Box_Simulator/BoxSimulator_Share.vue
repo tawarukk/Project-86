@@ -11,7 +11,7 @@
         <ul>
 
           <div class="mb-3" style="display: flex; justify-content: flex-end; margin-left: 5px;">
-                <input type="text" class="form-control" v-model="searchKeyword" placeholder="ค้นหา Simulator [สามารถใส่ ชนิดของห้อง หรือ ชนิดของสินค้า เพื่อกรองรูปแบบ Simulator]" @input="onInputDelete">
+                <input type="text" class="form-control" v-model="searchKeyword" placeholder="ค้นหา : Position [ชนิดของห้อง] / Product [ชนิดของสินค้า]" @input="onInputDelete">
           </div>
           
           <li v-for="simulator in filteredItems" :key="simulator._id">

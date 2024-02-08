@@ -8,7 +8,7 @@
             type="textarea"
             placeholder="กรอกความคิดเห็น"
           />
-          <button  type="submit" class="btn button">อัพโหลดความคิดเห็น</button>
+          <button  type="submit" class="btn button">แสดงความคิดเห็น</button>
         </form>
       </div>
     </div>
