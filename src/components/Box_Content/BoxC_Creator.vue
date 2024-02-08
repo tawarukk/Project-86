@@ -29,7 +29,7 @@
                         <option value="Gameplay">Gameplay</option>
                         <option value="Story">Story</option>
                         <option value="Live">Live</option>
-                        <option value="Anoter">Anoter</option>
+                        <option value="Anoter">Other</option>
                     </select>
                     <button v-if="index !== 0" class="btn" @click="removeType(index)" style="background-color: #666; color: #27292a; margin-left: 5px;">ยกเลิก</button>
                     </div>
@@ -99,7 +99,7 @@
                 <div class="form-group">
                     <div class="mt-1" style="display: flex; align-items: center;">
                         <div class="form-group" style="width: 230px;">
-                            <div type="text" class="socialMedia mt-1" style="background-color:#e8bd4b;"> Anoter </div>
+                            <div type="text" class="socialMedia mt-1" style="background-color:#e8bd4b;"> Other </div>
                         </div>
                         <div class="form-group" style="margin-left: 5px;">
                             <input type="text" class="form-control mt-1" id="Anoter" v-model="CreatorData.socialMedia.Anoter" style="background-color: #666">
@@ -180,6 +180,24 @@ methods: {
         this.CreatorData.type_con.splice(index, 1);
     },
     async uploadCreator() {
+
+        
+        if (this.CreatorData.socialMedia.F_link && !this.CreatorData.socialMedia.F_link.includes('facebook')) {
+            Swal.fire("รูปแบบไม่ถูกต้อง", "กรุณากรอกลิ้งค์ Facebook ให้ถูกต้อง", "error");
+            return; 
+        }
+        if (this.CreatorData.socialMedia.Y_link && !this.CreatorData.socialMedia.Y_link.includes('youtube')) {
+            Swal.fire("รูปแบบไม่ถูกต้อง", "กรุณากรอกลิ้งค์ Youtube ให้ถูกต้อง", "error");
+            return; 
+        }
+        if (this.CreatorData.socialMedia.T_link && !this.CreatorData.socialMedia.T_link.includes('twitter')) {
+            Swal.fire("รูปแบบไม่ถูกต้อง", "กรุณากรอกลิ้งค์ Twitter ให้ถูกต้อง", "error");
+            return; 
+        }
+        if (this.CreatorData.socialMedia.R_link && !this.CreatorData.socialMedia.R_link.includes('reddit')) {
+            Swal.fire("รูปแบบไม่ถูกต้อง", "กรุณากรอกลิ้งค์ Reddit ให้ถูกต้อง", "error");
+            return; 
+        }
 
     try {   
         const apiURL = '/api_creator/create-creator';

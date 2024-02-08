@@ -28,7 +28,7 @@
                         <option value="Gameplay">Gameplay</option>
                         <option value="Story">Story</option>
                         <option value="Live">Live</option>
-                        <option value="Anoter">Anoter</option>
+                        <option value="Anoter">Other</option>
                     </select>
                     <button v-if="index !== 0" class="btn" @click="removeType(index)" style="background-color: #666; color: #27292a; margin-left: 5px;">ยกเลิก</button>
                     </div>
@@ -168,6 +168,24 @@ methods: {
         this.CreatorData.type_con.splice(index, 1);
     },
     EditCreator() {
+
+            if (this.CreatorData.socialMedia.F_link && !this.CreatorData.socialMedia.F_link.includes('facebook')) {
+                Swal.fire("รูปแบบไม่ถูกต้อง", "กรุณากรอกลิ้งค์ Facebook ให้ถูกต้อง", "error");
+                return; 
+            }
+            if (this.CreatorData.socialMedia.Y_link && !this.CreatorData.socialMedia.Y_link.includes('youtube')) {
+                Swal.fire("รูปแบบไม่ถูกต้อง", "กรุณากรอกลิ้งค์ Youtube ให้ถูกต้อง", "error");
+                return; 
+            }
+            if (this.CreatorData.socialMedia.T_link && !this.CreatorData.socialMedia.T_link.includes('twitter')) {
+                Swal.fire("รูปแบบไม่ถูกต้อง", "กรุณากรอกลิ้งค์ Twitter ให้ถูกต้อง", "error");
+                return; 
+            }
+            if (this.CreatorData.socialMedia.R_link && !this.CreatorData.socialMedia.R_link.includes('reddit')) {
+                Swal.fire("รูปแบบไม่ถูกต้อง", "กรุณากรอกลิ้งค์ Reddit ให้ถูกต้อง", "error");
+                return; 
+            }
+            
             let apiURL = `http://localhost:4000/api_creator/update-creator/${this.$route.params.id}`;
             axios.put(apiURL, this.CreatorData).then((res) => {
                 console.log(res);

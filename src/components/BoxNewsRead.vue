@@ -32,7 +32,7 @@
           <div v-if="paragraph.heading != ''" class="cards-container heading" style="background-color: #27292a;">
             {{ paragraph.heading }}
           </div>
-          <div class="cards-container content" style="background-color: #27292a;">
+          <div v-if="paragraph.heading != ''" class="cards-container content" style="background-color: #27292a;">
             {{ paragraph.content  }}
           </div>
         </div>

@@ -91,9 +91,14 @@
       let apiURL='http://localhost:4000/api_module';
       axios.get(apiURL).then(res =>{
         this.Module = res.data.map(module => ({
-                    ...module,
-                    available_content: module.available_content === "1", 
-                }));
+          ...module,
+          available_content: module.available_content === "1", 
+        }));
+        this.Module.sort((a, b) => {
+                if (a.name_mod < b.name_mod) return -1;
+                if (a.name_mod > b.name_mod) return 1;
+                return 0;
+            });
       }).catch(error =>{
         console.log(error)
       })
@@ -148,6 +153,11 @@
                     ...module,
                     available_content: module.available_content === "1", 
                 }));
+                this.Module.sort((a, b) => {
+                  if (a.name_mod < b.name_mod) return -1;
+                  if (a.name_mod > b.name_mod) return 1;
+                  return 0;
+                });
                 this.originalModule = [...this.Module];
             })
             .catch(error => {

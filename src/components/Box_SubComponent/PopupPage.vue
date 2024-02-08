@@ -5,7 +5,7 @@
         <h4 style="">.</h4>
         <div class="row mt-2">
           <div class="col-5" style="margin-left: 120px; text-align: left;">
-            <p style="color: black; font-size: medium;">Arknights เป็นเกมแนวแอ็กชั่น Tower Defense ที่นำเสนอโลกแห่งความหลากหลายทางวัฒนธรรมและเทคโนโลยีสู่มือถือของคุณ!</p>
+            <p style="color: black; font-size: medium;"> <span style="font-weight: bold; font-size:x-large">Arknights</span> เป็นเกมแนวแอ็กชั่น Tower Defense ที่นำเสนอโลกแห่งความหลากหลายทางวัฒนธรรมและเทคโนโลยีสู่มือถือของคุณ!</p>
             <p style="font-size:15px; margin-top: 10px;">ด้วยกราฟิกที่สวยงาม, ตัวละครที่มีดีไซน์ที่น่าประทับใจและเป็นเอกลักษณ์ ซึ่งไม่เพียงแต่เสนอความสนุกและความท้าทายในการป้องกันฐาน, แต่ยังเสนอเรื่องราวที่ซับซ้อนและน่าติดตามที่จะทำให้คุณหลงใหล.<br> เตรียมตัวเข้าสู่โลกTerraที่รอคุณค้นพบ! ใน Arknights.</p>
           </div>
           <div class="col-5" style="margin-left: 50px;">

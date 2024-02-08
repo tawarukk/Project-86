@@ -27,7 +27,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="descriptions" style="color: #A0A0A0;">Descriptions :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
-                                    <input type="text" class="form-control mt-1" id="descriptions" placeholder="[คำอธิบาย โอเปอเรเตอร์]" v-model="Operator.descriptions" required>
+                                    <textarea type="text" class="form-control mt-1" id="descriptions" placeholder="[คำอธิบาย โอเปอเรเตอร์]" v-model="Operator.descriptions" required></textarea>
                                 </div>
                                 <div class="form-group mt-1">
                                     <label for="skill_i" style="color: #A0A0A0;">Skill ii :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
@@ -183,15 +183,15 @@ input {
     color: #A0A0A0;
 }
 
-.color-pk {
-    color: #FF9999;
-}
+
 .color-yt {
     color: #e8bd4b;
 }
-.color-be {
-    color: #4b9ce8;
-}
 
+textarea{
+    background-color: #666;
+    border: #27292a;
+    color: #A0A0A0;
+}
 
 </style>

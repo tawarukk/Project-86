@@ -15,7 +15,7 @@
             <div class="addData mb-3 mt-3" type="button" @click="createPage()" style="display: flex; justify-content: center; align-items: center;"> เพิ่มข้อมูล Member [User]</div>
 
             <div class=" mb-3" style="display: flex; justify-content: flex-end;">
-                <input type="text" class="form-control" v-model="searchKeyword" placeholder="ค้นหา Member []" @input="onInputDelete">
+                <input type="text" class="form-control" v-model="searchKeyword" placeholder="ค้นหา Member [User]" @input="onInputDelete">
             </div>
 
             <div class="row">
@@ -29,7 +29,7 @@
                             <th>Tier</th>
                             <th>Role</th>
                             <th>Status</th>
-                            <th>สมัครสมาชิกเมื่อ</th>
+                            <th>Registered</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -93,7 +93,12 @@
             this.Member = res.data.map(member => ({
                     ...member,
                     available_member: member.available_member === "1", 
-                }));
+            }));
+            this.Member.sort((a, b) => {
+                if (a.name_member < b.name_member) return -1;
+                if (a.name_member > b.name_member) return 1;
+                return 0;
+            }); 
         }).catch(error =>{
             console.log(error)
         })
@@ -156,6 +161,11 @@
                     ...member,
                     available_member: member.available_member === "1", 
                 }));
+                this.Member.sort((a, b) => {
+                if (a.name_member < b.name_member) return -1;
+                if (a.name_member > b.name_member) return 1;
+                return 0;
+            }); 
                 this.originalMember = [...this.Member];
             })
             .catch(error => {

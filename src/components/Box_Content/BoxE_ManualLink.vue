@@ -21,7 +21,7 @@
                             <input type="text" class="form-control mt-1" id="descriptions" v-model="ManualData.m_descriptions">
                         </div>
                         <div  v-if="this.userRole == 'superadmin'" class="form-group mt-1">
-                        <label for="m_posision" style="color: #A0A0A0;">Posision :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
+                        <label for="m_posision" style="color: #A0A0A0;">Position :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
                         <select class="form-control mt-1" id="m_posision" v-model="ManualData.m_posision" style="background-color: #666; border-color: #27292a;">
                             <option value="Factory">Factory</option>
                             <option value="Treading">Treading</option>

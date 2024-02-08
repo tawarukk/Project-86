@@ -18,7 +18,7 @@
                         </div>
                         <div class="form-group">
                             <label for="descriptions" style="color: #A0A0A0;">Description :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
-                            <input type="text" class="form-control mt-1" id="descriptions" v-model="Homepage.descriptions">
+                            <textarea type="text" class="form-control mt-1" id="descriptions" v-model="Homepage.descriptions"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="link_page" style="color: #A0A0A0;">Link :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
@@ -80,6 +80,12 @@ export default {
 
 .form-group{
     width: 600px;
+}
+
+textarea{
+    background-color: #666;
+    border: #27292a;
+    color: #A0A0A0;
 }
 
 input {

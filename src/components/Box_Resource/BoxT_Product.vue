@@ -90,9 +90,14 @@
       let apiURL='http://localhost:4000/api_product';
       axios.get(apiURL).then(res =>{
         this.Product = res.data.map(product => ({
-                    ...product,
-                    available_content: product.available_content === "1", 
-                }));
+            ...product,
+            available_content: product.available_content === "1", 
+          }));
+          this.Product.sort((a, b) => {
+            if (a.name_product < b.name_product) return -1;
+            if (a.name_product > b.name_product) return 1;
+            return 0;
+          });    
       }).catch(error =>{
         console.log(error)
       })
@@ -132,7 +137,7 @@
         filteredProduct = this.originalProduct.filter((product) => {
             return (
               product.name_product.toLowerCase().includes(lowerKeyword) ||
-              product.type_product.toLowerCase().includes(lowerKeyword)
+              product.type_product.toLowerCase().includes(lowerKeyword) 
             );
         });
         }
@@ -146,6 +151,11 @@
                     ...product,
                     available_content: product.available_content === "1", 
                 }));
+                this.Product.sort((a, b) => {
+                  if (a.name_product < b.name_product) return -1;
+                  if (a.name_product > b.name_product) return 1;
+                  return 0;
+                });   
                 this.originalProduct = [...this.Product];
             })
             .catch(error => {

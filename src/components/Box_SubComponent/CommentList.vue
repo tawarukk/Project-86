@@ -22,8 +22,9 @@
         <li v-for="(comment, index) in filteredComments" :key="index">
           <div class="comment-container" >
             <div class="row">
-            <div v-if="comment.user_id == this.userID" class="user  text-center" style="width: 800px; color: #e8bd4b;">{{ comment.user_name_comment }} #{{ comment.user_code_comment }}</div>
-            <div v-else class="user  text-center" style="width: 800px; height: auto;">{{ comment.user_name_comment }} #{{ comment.user_code_comment }}</div>
+            <div v-if="comment.user_id == this.userID" class="user  text-center" style="width: 400px; color: #e8bd4b;">{{ comment.user_name_comment }} #{{ comment.user_code_comment }}</div>
+            <div v-else class="user  text-center" style="width: 400px; height: auto;">{{ comment.user_name_comment }} #{{ comment.user_code_comment }}</div>
+            <div class="user  text-center" style="width: 400px; height: auto;">{{ comment.uploadedAt.slice(0, 10) }}</div>
             <div @click.prevent="EditComment(comment._id)" class="user btn btn-yt text-center" v-if="comment.user_id == this.userID" style="color: #e8bd4b;"> แก้ไข  </div>
             <div @click.prevent="deleteComment(comment._id)" class="user btn btn-pk text-center" v-if="comment.user_id == this.userID || this.userRole=='admin' || this.userRole=='superadmin'" style="color: #FF9999;"> ลบ  </div>
             </div>

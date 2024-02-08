@@ -139,7 +139,7 @@
     width: 600px;
 }
 
-input {
+input, textarea {
     background-color: #666;
     border: #27292a;
     color: #A0A0A0;

@@ -23,7 +23,7 @@
                                 </div>
                                 <div class="form-group mt-1">
                                     <label for="descriptions" style="color: #A0A0A0;">Descriptions :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
-                                    <input type="text" class="form-control mt-1" id="descriptions" placeholder="[คำอธิบาย สำหรับโมดูล]" v-model="ModuleData.descriptions">
+                                    <textarea type="text" class="form-control mt-1" id="descriptions" placeholder="[คำอธิบาย สำหรับโมดูล]" v-model="ModuleData.descriptions"></textarea>
                                 </div>
                                 <div class="form-group mt-1">
                                     <label for="effect_mod" style="color: #A0A0A0;">Effect Module :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
@@ -216,9 +216,10 @@ input {
     border: #27292a;
     color: #A0A0A0;
 }
-
-.color-pk {
-    color: #FF9999;
+textarea{
+    background-color: #666;
+    border: #27292a;
+    color: #A0A0A0;
 }
 .color-yt {
     color: #e8bd4b;

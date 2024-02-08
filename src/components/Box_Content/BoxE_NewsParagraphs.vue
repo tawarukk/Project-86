@@ -120,7 +120,11 @@ input {
     border: #27292a;
     color: #A0A0A0;
 }
-
+textarea{
+    background-color: #666;
+    border: #27292a;
+    color: #A0A0A0;
+}
 .color-be {
     color: #4b9ce8;
 }
