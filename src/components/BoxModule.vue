@@ -17,7 +17,6 @@
                 </el-popover>
             </div>
             
-
             <div class="row mb-3 d-flex">
                 <el-popover
                             placement="left"
@@ -121,6 +120,7 @@ import jwt_decode from 'jwt-decode';
 export default{
     name: 'BoxModule',
     created() {
+        localStorage.setItem('position', 'module');
         this.operatorId = this.$route.params.operators;
         this.BoxId = this.$route.params.box; 
         this.ModuleId = this.$route.params.modules;
@@ -533,7 +533,7 @@ export default{
             cancelButtonText: 'No'
         }).then((result) => {
             if (result.isConfirmed) {
-            const attributes = ['Card_Mod','MaxHp_Mod','Attack_Mod','Defence_Mod','Resistant_Mod','Redeploy_Mod','Cost_Mod','block_Mod','bonut_Mod','Effect_Mod','Name_Mod'];
+            const attributes = ['Card_Mod','MaxHp_Mod','Attack_Mod','Defence_Mod','Resistant_Mod','Redeploy_Mod','Cost_Mod','block_Mod','bonut_Mod','Effect_Mod','Name_Mod','Module_Operator'];
 
             attributes.forEach(attribute => {
                 for (let i = 1; i <= 4; i++) {
@@ -563,8 +563,9 @@ export default{
         },
     resetModule(box){
             const attributes = ['Card','MaxHp', 'Attack', 'Defence', 'Resistant', 'Redeploy', 'Cost', 'block', 'bonut', 'Operator_Module'
-            , 'Card_Mod','MaxHp_Mod','Attack_Mod','Defence_Mod','Resistant_Mod','Redeploy_Mod','Cost_Mod','block_Mod','bonut_Mod','Effect_Mod','Name_Mod'];
+            , 'Card_Mod','MaxHp_Mod','Attack_Mod','Defence_Mod','Resistant_Mod','Redeploy_Mod','Cost_Mod','block_Mod','bonut_Mod','Effect_Mod','Name_Mod','Module_Operator'];
             if (box === 'box_1') {
+                console.log('bug01')
                 attributes.forEach(attribute => {
                 for (let i = 1; i <= 4; i++) {
                 const key = `${attribute}_i`;

@@ -359,11 +359,12 @@
     mounted(){
       this.startCountdown();
       const isPopupClosed = localStorage.getItem('popupClosed');
-    if (isPopupClosed) {
-      this.showPopup = false;
-    }
+      if (isPopupClosed) {
+        this.showPopup = false;
+      }
     },
     async created() {
+      localStorage.setItem('position', 'home');
       await this.getDataMain();
       await this.getNewsData();
       await this.getCreatorData();
@@ -372,7 +373,8 @@
       await this.getReceptionData();
       this.startCountdown();
       // this.startCountdownEnd();
-    }
+      
+    },
     
 }
 </script>

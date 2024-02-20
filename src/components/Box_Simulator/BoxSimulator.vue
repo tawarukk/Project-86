@@ -376,6 +376,7 @@ import jwt_decode from 'jwt-decode';
 export default {
   name: 'BoxSimulator',
   created() {
+    localStorage.setItem('position', 'simulator_F');
     this.operatorId = this.$route.params.operators;
     this.BoxId = this.$route.params.box; 
     this.ProductID = this.$route.params.product;

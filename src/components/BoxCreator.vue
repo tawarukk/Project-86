@@ -369,6 +369,7 @@ import axios from 'axios';
 export default {
     name: 'BoxCreator',
     created() {
+    localStorage.setItem('position', 'creator');
     this.fetchCreator();
     axios.get('http://localhost:4000/api_creator')
         .then(response => {
