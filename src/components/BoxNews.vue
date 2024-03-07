@@ -117,6 +117,7 @@ import axios from 'axios';
 export default {
     name: 'BoxNews',
     created() {
+    localStorage.setItem('position', 'news');
     this.fetchNews();
     axios.get('http://localhost:4000/api_news')
             .then(response => {
@@ -252,7 +253,7 @@ export default {
     filteredNews() {
       return this.News.filter(cardItem => cardItem.available_con !== '0');
     }
-    },
+    }
 }
 </script>
 

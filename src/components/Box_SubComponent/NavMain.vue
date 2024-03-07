@@ -28,11 +28,29 @@
 
                     <!-- //class="active" -->
                     <ul class="nav">
-                        <li><router-link to="/"><span style="color: #E2E3DE;">Home</span></router-link></li>
-                        <li><router-link to="/news">News</router-link></li>
-                        <li><router-link to="/creator">creator</router-link></li>
-                        <li><router-link to="/Module/:operators/:box/:modules/:mod">Module</router-link></li>
-                        <li><router-link to="/Simulator/Factory/:operators/:box/:product">Simulator</router-link></li>
+                        <li><router-link to="/">
+                            <span v-if="position=='home'" class="menu-on">Home</span>
+                            <span v-else class="menu-off">Home</span>
+                        </router-link></li>
+                        <li><router-link to="/news">
+                            <span v-if="position=='news'" class="menu-on">News</span>
+                            <span v-else class="menu-off">News</span>
+                        </router-link></li>
+                        <li><router-link to="/creator">
+                            <span v-if="position=='creator'" class="menu-on">creator</span>
+                            <span v-else class="menu-off">creator</span>
+                        </router-link></li>
+                        <li><router-link to="/Module/:operators/:box/:modules/:mod">
+                            <span v-if="position=='module'" class="menu-on">Module</span>
+                            <span v-else class="menu-off">Module</span>
+                        </router-link></li>
+                        <li><router-link to="/Simulator/Factory/:operators/:box/:product">
+                            <span v-if="position=='simulator_F'" class="menu-on" style="background-color: #e8bd4b; color: #27292a;">Simulator</span>
+                            <span v-else-if="position=='simulator_T'" class="menu-on" style="background-color: #4b9ce8; color: #27292a;">Simulator</span>
+                            <span v-else-if="position=='simulator_S'" class="menu-on" style="background-color: #FF9999; color: #27292a;">Simulator</span>
+                            <span v-else-if="position=='simulator_R'" class="menu-on" style="color: #FF9999;">Simulator</span>
+                            <span v-else class="menu-off">Simulator</span>
+                        </router-link></li>
                         <li class="dropdown">
                             <a href="javascript:void(0);" class="dropbtn"><span style="color:#e8bd4b;">{{ userName }} <span v-if="code != ''">#{{ code }}</span></span> <img :src="getImagePath_Profile(userIMG)" class="card-img-top" alt="..."></a>
                             <div class="dropdown-content" href="/Profile">
@@ -76,6 +94,7 @@
       searchKeyword: '',
       originalNewsData:'',
       searchResults: [],
+      position: ''
     };
     },
     created() {
@@ -148,6 +167,7 @@
 }
     },
     mounted() {
+    this.position = localStorage.getItem('position');
     const token = localStorage.getItem('token');
     if (token) {
         const decoded = jwt_decode(token);
@@ -172,6 +192,11 @@
 </script>
  
 <style scoped>
+.header-area .main-nav .nav li{
+    
+    padding-left: 0px; 
+    padding-right: 0px;
+}
 /* ซ่อน dropdown content เริ่มต้น */
 .dropdown-content {
     display: none;
@@ -214,6 +239,26 @@
     background-color: #27292a; 
     color: #E2E3DE;
     text-decoration: underline;
+}
+
+.menu-off{
+    color: #27292a; 
+    background-color: #E2E3DE; 
+    padding: 5px; 
+    border-radius: 5px; 
+    border: solid #27292a;
+}
+
+.menu-off:hover{
+    color: #e8bd4b; 
+    background-color: #27292a; 
+}
+.menu-on{
+    color: #e8bd4b; 
+    background-color: #27292a; 
+    padding: 5px; 
+    border-radius: 5px; 
+    border: solid #27292a;
 }
 </style>
 

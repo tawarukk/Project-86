@@ -117,6 +117,7 @@ export default {
     },
 
   created() {
+      localStorage.setItem('position', 'simulator_R');
       let apiURL = `http://localhost:4000/api_simulator/edit-simulator/${this.$route.params.id}`;
         axios.get(apiURL).then((res) => {
             this.simulatorsTopic = res.data

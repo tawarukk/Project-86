@@ -175,6 +175,9 @@
         originalsimulatorsData: [],
       };
     },
+    created(){
+      localStorage.setItem('position', 'simulator_S');
+    },
     mounted() {
       // เมื่อ component ถูก mount ให้ดึงข้อมูลจาก API
       this.fetchSimulatorData();

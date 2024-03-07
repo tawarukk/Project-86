@@ -56,6 +56,7 @@ export default {
         }
     },
     created() {
+      localStorage.setItem('position', 'news');
       let apiURL = `http://localhost:4000/api_news/edit-news/${this.$route.params.id}`;
         axios.get(apiURL).then((res) => {
             this.NewsTopic = res.data
