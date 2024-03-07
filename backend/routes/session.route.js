@@ -15,6 +15,7 @@ sessionRoute.route('/').get((req, res, next) => {
 
 sessionRoute.route('/login').post(async (req, res, next) => {
     const { name_member, password_member } = req.body;    
+    console.log(next)
     // ตรวจสอบการเข้าสู่ระบบของผู้ใช้ที่มีชื่อผู้ใช้และรหัสผ่านตรงกันในฐานข้อมูล
     sessionModel.findOne({ name_member, password_member })
     .then(user => {
