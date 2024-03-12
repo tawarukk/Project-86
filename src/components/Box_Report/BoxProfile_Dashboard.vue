@@ -9,19 +9,19 @@
         <div class="dashboard">
           <div class="summary">
             <div class="summary-item">
-              <h2>Total Profiles <br><i class="fa-regular fa-circle-user" style="color: #FF9999;"></i></h2>
+              <h2>Total<br><i class="fa-regular fa-circle-user" style="color: #FF9999;"></i></h2>
               <p>{{ totalProfiles }}</p>
             </div>
             <div class="summary-item">
-              <h2>Profiles Added This Month <br><i class="fa-solid fa-calendar-days" style="color: #99ffcc;"></i></h2>
+              <h2>This Month <br><i class="fa-solid fa-calendar-days" style="color: #99ffcc;"></i></h2>
               <p>{{ profilesAddedThisMonth }}</p>
             </div>
             <div class="summary-item">
-              <h2>Active Profiles Count <br><i class="fa-regular fa-circle-check" style="color: dodgerblue;"></i></h2>
+              <h2>Active<br><i class="fa-regular fa-circle-check" style="color: dodgerblue;"></i></h2>
               <p>{{ activeProfilesCount }}</p>
             </div>
             <div class="summary-item">
-              <h2>Inactive Profiles Count <br><i class="fa-regular fa-circle-xmark" style="color: orange;"></i></h2>
+              <h2>Inactive<br><i class="fa-regular fa-circle-xmark" style="color: orange;"></i></h2>
               <p>{{ inactiveProfilesCount }}</p>
             </div>
           </div>

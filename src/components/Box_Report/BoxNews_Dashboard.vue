@@ -8,23 +8,23 @@
           <div class="dashboard">
             <div class="summary">
               <div class="summary-item">
-                <h2>Total News : <br><i class="fa-solid fa-newspaper" style="color: #FF9999;"></i></h2>
+                <h2>Total<br><i class="fa-solid fa-newspaper" style="color: #FF9999;"></i></h2>
                 <p>{{ totalNews }}</p>
               </div>
               <div class="summary-item">
-                <h2>Added This Month : <br><i class="fa-solid fa-calendar-days" style="color: #99ffcc;"></i></h2>
+                <h2>This Month<br><i class="fa-solid fa-calendar-days" style="color: #99ffcc;"></i></h2>
                 <p>{{ newsAddedThisMonth }}</p>
               </div>
               <div class="summary-item">
-                <h2>Total News Views : <br><i class="fa-solid fa-eye" style="color: #e8bd4b ;"></i></h2>
+                <h2>Total Views<br><i class="fa-solid fa-eye" style="color: #e8bd4b ;"></i></h2>
                 <p>{{ totalViews }}</p>
               </div>
               <div class="summary-item">
-                <h2>Active News Count <br><i class="fa-regular fa-circle-check" style="color: dodgerblue;"></i></h2>
+                <h2>Active<br><i class="fa-regular fa-circle-check" style="color: dodgerblue;"></i></h2>
                 <p>{{ activeNewsCount }}</p>
               </div>
               <div class="summary-item">
-                <h2>Inactive News Count <br><i class="fa-regular fa-circle-xmark" style="color: orange;"></i></h2>
+                <h2>Inactive<br><i class="fa-regular fa-circle-xmark" style="color: orange;"></i></h2>
                 <p>{{ inactiveNewsCount }}</p>
               </div>
             </div>

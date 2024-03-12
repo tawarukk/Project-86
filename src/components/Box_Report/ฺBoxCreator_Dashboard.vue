@@ -7,27 +7,27 @@
     <div class="page-content mt-2" style="background-color: #1f2122; padding: 15px; border-radius: 10px;">
       <div class="summary">
         <div class="summary-item">
-          <h2>Total Creators <i class="fa-solid fa-icons" style="color: #FF9999;"></i></h2>
+          <h2>Total<i class="fa-solid fa-icons" style="color: #FF9999;"></i></h2>
           <p>{{ totalCreators }} </p>
         </div>
         <div class="summary-item">
-          <h2>Creators Added This Month <i class="fa-solid fa-calendar-days" style="color: #99ffcc;"></i></h2>
+          <h2>This Month <i class="fa-solid fa-calendar-days" style="color: #99ffcc;"></i></h2>
           <p>{{ creatorsAddedThisMonth }}</p>
         </div>
         <div class="summary-item"> 
-          <h2>Approved Creators Count <i class="fa-solid fa-square-check" style="color: #7547e8 ;"></i></h2>
+          <h2>Approved<i class="fa-solid fa-square-check" style="color: #7547e8 ;"></i></h2>
           <p>{{ approvedCreatorsCount }}</p>
         </div>
         <div class="summary-item">
-          <h2>Not Approved Creators Count <i class="fa-solid fa-square-xmark" style="color: #e8bd4b ;"></i></h2>
+          <h2>Not Approved<i class="fa-solid fa-square-xmark" style="color: #e8bd4b ;"></i></h2>
           <p>{{ notApprovedCreatorsCount }}</p>
         </div>
         <div class="summary-item">
-          <h2>Active Creators Count <i class="fa-regular fa-circle-check" style="color: dodgerblue;"></i></h2>
+          <h2>Active<i class="fa-regular fa-circle-check" style="color: dodgerblue;"></i></h2>
           <p>{{ activeCreatorsCount }}</p>
         </div>
         <div class="summary-item">
-          <h2>Inactive Creators Count <i class="fa-regular fa-circle-xmark" style="color: orange;"></i></h2>
+          <h2>Inactive<i class="fa-regular fa-circle-xmark" style="color: orange;"></i></h2>
           <p>{{ inactiveCreatorsCount }}</p>
         </div>
       </div>

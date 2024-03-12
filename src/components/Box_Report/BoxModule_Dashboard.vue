@@ -8,19 +8,19 @@
             <div class="dashboard">
             <div class="summary">
                 <div class="summary-item">
-                <h2>Total Modules <br><i class="fa-solid fa-toolbox" style="color: #FF9999;"></i></h2>
+                <h2>Total<br><i class="fa-solid fa-toolbox" style="color: #FF9999;"></i></h2>
                 <p>{{ totalModules }}</p>
                 </div>
                 <div class="summary-item">
-                <h2>Modules Added This Month <br><i class="fa-solid fa-calendar-days" style="color: #99ffcc;"></i></h2>
+                <h2>This Month <br><i class="fa-solid fa-calendar-days" style="color: #99ffcc;"></i></h2>
                 <p>{{ modulesAddedThisMonth }}</p>
                 </div>
                 <div class="summary-item">
-                <h2>Active Modules Count <br><i class="fa-regular fa-circle-check" style="color: dodgerblue;"></i></h2>
+                <h2>Active<br><i class="fa-regular fa-circle-check" style="color: dodgerblue;"></i></h2>
                 <p>{{ activeModulesCount }}</p>
                 </div>
                 <div class="summary-item">
-                <h2>Inactive Modules Count <br><i class="fa-regular fa-circle-xmark" style="color: orange;"></i></h2>
+                <h2>Inactive<br><i class="fa-regular fa-circle-xmark" style="color: orange;"></i></h2>
                 <p>{{ inactiveModulesCount }}</p>
                 </div>
             </div>

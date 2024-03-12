@@ -26,7 +26,7 @@
         <div class="type" type="button" @click="filterByType('Information')">
             Information
         </div>
-        <div class="type" type="button" @click="filterByType('Anoter')">
+        <div class="type" type="button" @click="filterByType('Other')">
             Other
         </div>
         <div class="type" type="button" @click="sortByDate" :class="{ 'active': sortOrder === 'asc' }">
@@ -49,7 +49,7 @@
     <div class="heading-section" style="margin-bottom: 5px;">
         <div style="background-color: #27292a; padding: 10px; border-radius: 10px;">
             <h4 style="color: #E2E3DE; margin-bottom: 0px;"><span style="color: #e8bd4b;">C</span>ategory :
-                <span v-if="currentType == 'Anoter'"> Other</span> 
+                <span v-if="currentType == 'Other'"> Other</span> 
                 <span v-else-if="currentType !== ''"> {{ currentType }} </span> 
                 <span v-else> All</span>
             </h4>

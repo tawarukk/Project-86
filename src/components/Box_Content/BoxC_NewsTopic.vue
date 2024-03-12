@@ -27,7 +27,7 @@
                                 <option value="News">News</option>
                                 <option value="Announce">Announce</option>
                                 <option value="Information">Information</option>
-                                <option value="Anoter">Other</option>
+                                <option value="Other">Other</option>
                                 <option value="manual">Manual</option>
                             </select>
                         </div>

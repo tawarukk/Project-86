@@ -29,7 +29,7 @@
                         <option value="Gameplay">Gameplay</option>
                         <option value="Story">Story</option>
                         <option value="Live">Live</option>
-                        <option value="Anoter">Other</option>
+                        <option value="Other">Other</option>
                     </select>
                     <button v-if="index !== 0" class="btn" @click="removeType(index)" style="background-color: #666; color: #27292a; margin-left: 5px;">ยกเลิก</button>
                     </div>
@@ -102,7 +102,7 @@
                             <div type="text" class="socialMedia mt-1" style="background-color:#e8bd4b;"> Other </div>
                         </div>
                         <div class="form-group" style="margin-left: 5px;">
-                            <input type="text" class="form-control mt-1" id="Anoter" v-model="CreatorData.socialMedia.Anoter" style="background-color: #666">
+                            <input type="text" class="form-control mt-1" id="Other" v-model="CreatorData.socialMedia.Other" style="background-color: #666">
                         </div>
                         <div class="form-group" style="margin-left: 5px;">
                             <input type="text" class="form-control mt-1" id="A_link" v-model="CreatorData.socialMedia.A_link">   
@@ -151,7 +151,7 @@ export default {
         T_link: '',
         Raddit: '',
         R_link: '',
-        Anoter: '',
+        Other: '',
         A_link: '',
         },
         survey_con:'',
@@ -219,7 +219,7 @@ methods: {
             T_link: '',
             Raddit: '',
             R_link: '',
-            Anoter: '',
+            Other: '',
             A_link: '',
             },
             survey_con:'',

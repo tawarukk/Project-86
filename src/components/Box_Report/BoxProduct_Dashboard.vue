@@ -8,19 +8,19 @@
             <div class="dashboard">
             <div class="summary">
                 <div class="summary-item">
-                <h2>Total Products <br><i class="fa-solid fa-box" style="color: #FF9999;"></i></h2>
+                <h2>Total<br><i class="fa-solid fa-box" style="color: #FF9999;"></i></h2>
                 <p>{{ totalProducts }}</p>
                 </div>
                 <div class="summary-item">
-                <h2>Added This Month <br><i class="fa-solid fa-calendar-days" style="color: #99ffcc;"></i></h2>
+                <h2>This Month<br><i class="fa-solid fa-calendar-days" style="color: #99ffcc;"></i></h2>
                 <p>{{ productsAddedThisMonth }}</p>
                 </div>
                 <div class="summary-item">
-                <h2>Active Products Count <br><i class="fa-regular fa-circle-check" style="color: dodgerblue;"></i></h2>
+                <h2>Active<br><i class="fa-regular fa-circle-check" style="color: dodgerblue;"></i></h2>
                 <p>{{ activeProductsCount }}</p>
                 </div>
                 <div class="summary-item">
-                <h2>Inactive Products Count <br><i class="fa-regular fa-circle-xmark" style="color: orange;"></i></h2>
+                <h2>Inactive<br><i class="fa-regular fa-circle-xmark" style="color: orange;"></i></h2>
                 <p>{{ inactiveProductsCount }}</p>
                 </div>
             </div>

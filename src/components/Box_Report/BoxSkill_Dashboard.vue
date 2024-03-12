@@ -8,19 +8,19 @@
                 <div class="dashboard">
                 <div class="summary">
                     <div class="summary-item">
-                    <h2>Total Skills <br><i class="fa-solid fa-book-bookmark" style="color: #FF9999;"></i></h2>
+                    <h2>Total<br><i class="fa-solid fa-book-bookmark" style="color: #FF9999;"></i></h2>
                     <p>{{ totalSkills }}</p>
                     </div>
                     <div class="summary-item">
-                    <h2>Skills Added This Month <br><i class="fa-solid fa-calendar-days" style="color: #99ffcc;"></i></h2>
+                    <h2>This Month <br><i class="fa-solid fa-calendar-days" style="color: #99ffcc;"></i></h2>
                     <p>{{ skillsAddedThisMonth }}</p>
                     </div>
                     <div class="summary-item">
-                    <h2>Active Skills Count <br><i class="fa-regular fa-circle-check" style="color: dodgerblue;"></i></h2>
+                    <h2>Active<br><i class="fa-regular fa-circle-check" style="color: dodgerblue;"></i></h2>
                     <p>{{ activeSkillsCount }}</p>
                     </div>
                     <div class="summary-item">
-                    <h2>Inactive Skills Count <br><i class="fa-regular fa-circle-xmark" style="color: orange;"></i></h2>
+                    <h2>Inactive<br><i class="fa-regular fa-circle-xmark" style="color: orange;"></i></h2>
                     <p>{{ inactiveSkillsCount }}</p>
                     </div>
                 </div>

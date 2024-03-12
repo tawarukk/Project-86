@@ -8,7 +8,7 @@
         <div class="dashboard">
           <div class="summary">
             <div class="summary-item">
-              <h2>Total Simulators <br><i class="fa-solid fa-object-group" style="color: #99ffcc;"></i></h2>
+              <h2>Total <br><i class="fa-solid fa-object-group" style="color: #99ffcc;"></i></h2>
               <p>{{ totalSimulators }} </p>
             </div>
             <div class="summary-item">

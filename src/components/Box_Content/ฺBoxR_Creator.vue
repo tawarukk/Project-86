@@ -59,7 +59,7 @@ export default {
                 T_link: '',
                 Raddit: '',
                 R_link: '',
-                Anoter: '',
+                Other: '',
                 A_link: '',
                 },
             },
@@ -121,7 +121,7 @@ export default {
                     T_link: '',
                     Raddit: '',
                     R_link: '',
-                    Anoter: '',
+                    Other: '',
                     A_link: '',
                     },
                 };

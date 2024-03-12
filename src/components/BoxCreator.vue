@@ -13,7 +13,7 @@
         <div class="type" type="button" @click="filterByType('Live')">
             Live
         </div>
-        <div class="type" type="button" @click="filterByType('Anoter')">
+        <div class="type" type="button" @click="filterByType('Other')">
             Other
         </div>
         <div class="type" type="button" @click="sortByDate" :class="{ 'active': sortOrder === 'asc' }">
@@ -36,7 +36,7 @@
     <div class="heading-section" style="margin-bottom: 5px;">
         <div style="background-color: #27292a; padding: 10px; border-radius: 10px;">
             <h4 style="color: #E2E3DE; margin-bottom: 0px;"><span style="color: #e8bd4b;">C</span>ategory : 
-                <span v-if="currentType == 'Anoter'"> Other</span> 
+                <span v-if="currentType == 'Other'"> Other</span> 
                 <span v-else-if="currentType !== ''"> {{ currentType }} </span> 
                 <span v-else> All</span>
             </h4>
@@ -97,7 +97,7 @@
                             :content="'Category: Other'"
                             placement="top"
                         >
-            <span v-if="Category=='Anoter'" style="margin-left: 10px;"><i class="fa-solid fa-circle-info"></i></span>
+            <span v-if="Category=='Other'" style="margin-left: 10px;"><i class="fa-solid fa-circle-info"></i></span>
             </el-tooltip>
         </span><br>
         <div style="text-align: left; color: #E2E3DE; display: inline-block; vertical-align: middle;">
@@ -144,10 +144,10 @@
             </el-tooltip>
 
             <el-tooltip
-            v-if="cardItem.socialMedia.Anoter !== ''"
+            v-if="cardItem.socialMedia.Other !== ''"
             class="box-item"
             effect="dark"
-            :content="'Platform: ' + cardItem.socialMedia.Anoter"
+            :content="'Platform: ' + cardItem.socialMedia.Other"
             placement="bottom"
             >
             <a :href="cardItem.socialMedia.A_link"  class="btn" style="color: #e8bd4b;"><i class="fa-solid fa-circle-info"></i></a>
@@ -222,7 +222,7 @@
                             :content="'Category: Other'"
                             placement="top"
                         >
-                            <span v-if="Category=='Anoter'" style="margin-left: 10px;"><i class="fa-solid fa-circle-info"></i></span>
+                            <span v-if="Category=='Other'" style="margin-left: 10px;"><i class="fa-solid fa-circle-info"></i></span>
                         </el-tooltip>
                         </span><br>
                         <span style="text-align: left; color: #E2E3DE; display: inline-block; vertical-align: middle;">
@@ -266,10 +266,10 @@
                             <a :href="selectCreator.socialMedia.R_link" class="btn" style="color: #FF5700;"><i class="fa-brands fa-square-reddit"></i></a>
                         </el-tooltip>
                         <el-tooltip
-                            v-if="selectCreator.socialMedia.Anoter !== ''"
+                            v-if="selectCreator.socialMedia.Other !== ''"
                             class="box-item"
                             effect="dark"
-                            :content="'Platform: ' + selectCreator.socialMedia.Anoter"
+                            :content="'Platform: ' + selectCreator.socialMedia.Other"
                             placement="bottom"
                         >
                             <a :href="selectCreator.socialMedia.A_link" class="btn" style="color: #e8bd4b;"><i class="fa-solid fa-circle-info"></i></a>
@@ -319,7 +319,7 @@
                 </div>
                 </div>
             </div>
-                <div class="Random" type="button" style=";" @click="randomCreator()">Random Creator</div>
+                <div class="Random" type="button" style="" @click="randomCreator()">Random Creator</div>
             </div>
             <div class="container" style="width: 930px;">
                 <div class="cards-container" style="width: 900px; height: 370px; overflow-y: auto;">
