@@ -132,13 +132,13 @@ export default {
   methods:{
     getImageOperator(imageFileName) {
       if (imageFileName==undefined || imageFileName=='' || imageFileName == null){
-                return require('@/assets/images/portrait/undefined.jpg');
+                return require('@/assets/images/portrait/undefined.png');
             }
           return require(`@/assets/images/portrait/${imageFileName}`);
       },
       getImageProduct(imageFileName){
         if (imageFileName==undefined || imageFileName=='' || imageFileName == null){
-                return require('@/assets/images/portrait/undefined.jpg');
+                return require('@/assets/images/product/undefined.jpg');
             }
         return require(`@/assets/images/product/${imageFileName}`);
       },

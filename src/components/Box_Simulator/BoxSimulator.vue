@@ -1185,10 +1185,10 @@ export default {
         }
     });
     },
-    getmanualAPI(usertier, posision) {
+    getmanualAPI(usertier, position) {
         let apiURL = 'http://localhost:4000/api_manual';
             axios.get(apiURL).then(res => {
-            this.ManualData = res.data.filter(item => item.m_posision === posision && item.m_tier === usertier);
+            this.ManualData = res.data.filter(item => item.m_position === position && item.m_tier === usertier);
             this.openNewsReadPage(this.ManualData[0].manual_id);
         }).catch(error => {
             console.log(error);

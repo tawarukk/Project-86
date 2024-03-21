@@ -14,7 +14,7 @@
               <p>{{ totalMembers }}</p>
             </div>
             <div class="summary-item">
-              <h2>This Month<br><i class="fa-solid fa-calendar-days" style="color: #99ffcc;"></i></h2>
+              <h2>Added This Month<br><i class="fa-solid fa-calendar-days" style="color: #99ffcc;"></i></h2>
               <p>{{ membersAddedThisMonth }}</p>
             </div>
             <div class="summary-item">
@@ -124,11 +124,15 @@
                 }]
                 },
                 options: {
-                scales: {
-                    y: {
-                    beginAtZero: true
-                    }
-                }
+                  plugins: {
+                      title: {
+                          display: true,
+                          text: 'Member Role Information',
+                          font: {
+                              size: 18
+                          }
+                      }
+                  },
                 }
             });
             },
@@ -161,12 +165,16 @@
             }]
             },
             options: {
-            scales: {
-                y: {
-                beginAtZero: true
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Member Tier Information',
+                    font: {
+                        size: 18
+                    }
                 }
-            }
-            }
+            },
+          }
         });
         },
     }

@@ -21,8 +21,8 @@
                             <input type="text" class="form-control mt-1" id="descriptions" v-model="ManualData.m_descriptions">
                         </div>
                         <div class="form-group mt-1">
-                        <label for="m_posision" style="color: #A0A0A0;">Position :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
-                        <select class="form-control mt-1" id="m_posision" v-model="ManualData.m_posision" style="background-color: #666; border-color: #27292a;">
+                        <label for="m_position" style="color: #A0A0A0;">Position :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
+                        <select class="form-control mt-1" id="m_position" v-model="ManualData.m_position" style="background-color: #666; border-color: #27292a;">
                             <option value="Factory">Factory</option>
                             <option value="Treading">Treading</option>
                             <option value="Module">Module</option>
@@ -59,7 +59,7 @@ export default{
             ManualData: {
             manual_id: '',
             m_descriptions: '',
-            m_posision: 'a',
+            m_position: 'a',
             m_tier: '',
             available_con: '0',
         }
@@ -76,7 +76,7 @@ try {
             this.ManualData = {
                 manual_id: '',
             m_descriptions: '',
-            m_posision: '',
+            m_position: '',
             m_tier: '',
             available_con: '0',
             };

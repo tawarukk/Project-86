@@ -13,7 +13,7 @@
               <p>{{ totalProfiles }}</p>
             </div>
             <div class="summary-item">
-              <h2>This Month <br><i class="fa-solid fa-calendar-days" style="color: #99ffcc;"></i></h2>
+              <h2>Added This Month <br><i class="fa-solid fa-calendar-days" style="color: #99ffcc;"></i></h2>
               <p>{{ profilesAddedThisMonth }}</p>
             </div>
             <div class="summary-item">

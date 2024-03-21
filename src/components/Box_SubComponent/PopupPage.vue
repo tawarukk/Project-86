@@ -6,10 +6,12 @@
         <div class="row mt-2">
           <div class="col-5" style="margin-left: 120px; text-align: left;">
             <p style="color: black; font-size: medium;"> <span style="font-weight: bold; font-size:x-large">Arknights</span> เป็นเกมแนวแอ็กชั่น Tower Defense ที่นำเสนอโลกแห่งความหลากหลายทางวัฒนธรรมและเทคโนโลยีสู่มือถือของคุณ!</p>
-            <p style="font-size:15px; margin-top: 10px;">ด้วยกราฟิกที่สวยงาม, ตัวละครที่มีดีไซน์ที่น่าประทับใจและเป็นเอกลักษณ์ ซึ่งไม่เพียงแต่เสนอความสนุกและความท้าทายในการป้องกันฐาน, แต่ยังเสนอเรื่องราวที่ซับซ้อนและน่าติดตามที่จะทำให้คุณหลงใหล.<br> เตรียมตัวเข้าสู่โลกTerraที่รอคุณค้นพบ! ใน Arknights.</p>
+            <p style="font-size:15px; margin-top: 10px;">• ด้วยกราฟิกที่สวยงาม ตัวละครที่มีดีไซน์ที่น่าประทับใจและเป็นเอกลักษณ์ ซึ่งไม่เพียงแต่เสนอความสนุกและความท้าทายในการป้องกันฐาน,
+              <br>• แต่ยังเสนอเรื่องราวที่ซับซ้อนและน่าติดตามที่จะทำให้คุณหลงใหลด้วยการเดินทางไปพร้อมกับเมืองเคลื่อนที่อย่าง <span style="color: black">Rhodes Island</span> ที่จะออกเดินทางไปยังทวีปต่างๆ การค้นพบความลับของโลก <span style="color: black">Terra</span> การพจญภัยอีกมากกมาย
+              <br>• เตรียมตัวเข้าสู่โลก <span style="color: black">Terra</span> ที่รอคุณค้นพบ! ใน <span style="color: black">Arknights!</span></p>
           </div>
           <div class="col-5" style="margin-left: 50px;">
-            <el-carousel height="200px">
+            <el-carousel height="240px">
               <el-carousel-item v-for="item in Popup" :key="item">
                 <img :src="getImagePath(item.img_Popup)" class="card-img-top" alt="...">
               </el-carousel-item>
@@ -23,7 +25,7 @@
             <img src="@/assets/images/Popup/android.png" alt="Download on Play Store" style="width: 30px;"> Download on Play Store
           </a>
           <a href="https://apps.apple.com/us/app/arknights/id1464872022" target="_blank" >
-            <img src="@/assets/images/Popup/apple.png" alt="Download on App Store" style="width: 30px;"> Download on App Stor
+            <img src="@/assets/images/Popup/apple.png" alt="Download on App Store" style="width: 30px;"> Download on App Store
           </a>
         </div>
       </div>

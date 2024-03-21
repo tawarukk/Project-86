@@ -36,7 +36,7 @@
                             <td>{{ index + 1 }}</td>
                             <td>{{ manual.manual_id}} </td>
                             <td>{{ manual.m_descriptions}} </td>
-                            <td>{{ manual.m_posision}} </td>
+                            <td>{{ manual.m_position}} </td>
                             <td>{{ manual.m_tier}} </td>
                             <td class="action-column">
                             <router-link :to="{name: 'edit_ManualLink', params: {id: manual._id}}" class="btn button">

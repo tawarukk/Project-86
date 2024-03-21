@@ -70,7 +70,7 @@
                     <h6 style="font-size: 20px;">{{CreatorData.descriptions}}</h6>
                     <h4 style=""> {{ CreatorData.topic}} </h4>
                     <div class="main-button main-button-yt">
-                      <a :href="CreatorData.link_page" class="button">See More News</a>
+                      <a :href="CreatorData.link_page" class="button">See More Creator</a>
                     </div>
                   </div>
                 </div>

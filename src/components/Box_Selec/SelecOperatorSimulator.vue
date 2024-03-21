@@ -20,11 +20,27 @@
                         </el-popover>
                         </div>
                     </template>
+                    <div class="col-2 mb-3 mt-3">
+                        <el-popover
+                            placement="bottom"
+                            title="ไม่ต้องการเลือก Operator"
+                            :width="250"
+                            trigger="hover"
+                            content="เปลี่ยนเป็นช่องเปล่า"
+                        >
+                        <template #reference>
+                                <div class="card-status" type="button">
+                                    <img :src="getImagePath('undefined.png')" @click="goToBox()" alt="Operator Portrait">
+                                Don't Choose
+                                </div>
+                        </template>
+                        </el-popover>
+                    </div>
                 </div>
             
             <div class="row justify-content-center">
                 <div class="col-6 card-status" type="button" @click="goToBox()">
-                ไม่เลือก :C
+                    กลับไปหน้า Simulator
                 </div>
             </div>
         </div>

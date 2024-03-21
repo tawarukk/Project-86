@@ -372,14 +372,14 @@ export default {
     localStorage.setItem('position', 'creator');
     this.fetchCreator();
     axios.get('http://localhost:4000/api_creator')
-        .then(response => {
-            // กรองข้อมูลที่มีเงื่อนไข available_con เท่ากับ '1' และเรียงลำดับตาม uploadedAt
-            this.Creator = response.data
-                .sort((a, b) => new Date(b.uploadedAt) - new Date(a.uploadedAt));
-        })
-        .catch(error => {
-            console.log(error);
-        });
+    .then(response => {
+        // กรองข้อมูลที่มีเงื่อนไข available_con เท่ากับ '1' และเรียงลำดับตาม uploadedAt จากเก่าไปใหม่
+        this.Creator = response.data
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    })
+    .catch(error => {
+        console.log(error);
+    });
     },
 
     watch: {
@@ -395,7 +395,7 @@ export default {
         currentPage: 1, // หน้าปัจจุบัน
         Creator: [] ,
         currentType: '',
-        sortOrder: 'asc',
+        sortOrder: 'desc',
         searchKeyword: '' ,
         originalCreator: [],
         selectCreator: null,
@@ -450,19 +450,20 @@ export default {
         this.Creator = filteredCreator;
         },
         fetchCreator() {
-            let apiURL = 'http://localhost:4000/api_creator';
-            axios.get(apiURL)
-                .then(res => {
-                    this.Creator = res.data
-                        
-                        .sort((a, b) => new Date(b.uploadedAt) - new Date(a.uploadedAt));
+    let apiURL = 'http://localhost:4000/api_creator';
+    axios.get(apiURL)
+        .then(res => {
+            this.Creator = res.data
+                .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)); 
+            // กำหนดค่า originalCreator ใหม่หลังจากการเรียงลำดับข้อมูล
+            this.originalCreator = [...this.Creator];
+        })
+        .catch(error => {
+            console.log(error);
+        });
+},
 
-                    this.originalCreator = [...this.Creator];
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        },
+
     randomCreator() {
 
     let validIndices = [];
@@ -492,14 +493,17 @@ export default {
     computed: {
         paginatedItems() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
+    let endIndex = startIndex + this.itemsPerPage;
 
     const filteredItems = this.currentType
-    ? this.Creator.filter(item => item.type_con.includes(this.currentType))
-    : this.Creator;
+        ? this.Creator.filter(item => item.type_con.includes(this.currentType))
+        : this.Creator;
+
+    endIndex = Math.min(endIndex, filteredItems.length);
 
     return filteredItems.slice(startIndex, endIndex);
-    },
+},
+
     filteredItems() {
             // ตรวจสอบเงื่อนไขแล้วคืนค่า array ที่ถูกกรอง
             return this.paginatedItems.filter(cardItem => cardItem.available_con !== '0');
@@ -510,6 +514,11 @@ export default {
 
 
 <style scoped>
+
+.card-img-top{
+    height: auto;
+    max-height: 165px;
+}
 .cards-container {
     background-color: #1f2122;
     margin: 5px;

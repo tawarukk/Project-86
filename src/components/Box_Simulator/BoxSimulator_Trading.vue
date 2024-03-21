@@ -410,12 +410,12 @@ export default {
       Card_Trad_product_i: null,
       Card_Trad_product_ii: null,
 
-      Card_Trad_i_a: null,
-      Card_Trad_i_b: null,
-      Card_Trad_i_c: null,
-      Card_Trad_i_d: null,
-      Card_Trad_i_e: null,
-      Card_Trad_i_f: null,
+      Card_Trad_i_a: '',
+      Card_Trad_i_b: '',
+      Card_Trad_i_c: '',
+      Card_Trad_i_d: '',
+      Card_Trad_i_e: '',
+      Card_Trad_i_f: '',
 
       NameTradSkill_i_a: null,
       NameTradSkill_ii_a: null,
@@ -1184,10 +1184,10 @@ export default {
         }
     });
     },
-    getmanualAPI(usertier, posision) {
+    getmanualAPI(usertier, position) {
         let apiURL = 'http://localhost:4000/api_manual';
             axios.get(apiURL).then(res => {
-            this.ManualData = res.data.filter(item => item.m_posision === posision && item.m_tier === usertier);
+            this.ManualData = res.data.filter(item => item.m_position === position && item.m_tier === usertier);
             this.openNewsReadPage(this.ManualData[0].manual_id);
         }).catch(error => {
             console.log(error);

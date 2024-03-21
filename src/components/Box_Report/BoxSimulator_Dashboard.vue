@@ -123,11 +123,15 @@ export default {
           }]
         },
         options: {
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Share Simulator Information',
+                    font: {
+                        size: 18
+                    }
+                }
+            },
         }
       });
     },

@@ -12,7 +12,7 @@
                     <p>{{ totalSkills }}</p>
                     </div>
                     <div class="summary-item">
-                    <h2>This Month <br><i class="fa-solid fa-calendar-days" style="color: #99ffcc;"></i></h2>
+                    <h2>Added This Month <br><i class="fa-solid fa-calendar-days" style="color: #99ffcc;"></i></h2>
                     <p>{{ skillsAddedThisMonth }}</p>
                     </div>
                     <div class="summary-item">
@@ -121,12 +121,16 @@
             }]
           },
           options: {
-            scales: {
-              y: {
-                beginAtZero: true
-              }
-            }
-          }
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Product Creation Capabilities',
+                    font: {
+                        size: 18
+                    }
+                }
+            },
+        }
         });
       },
       renderPositionsChart() {
@@ -158,12 +162,16 @@
             }]
           },
           options: {
-            scales: {
-              y: {
-                beginAtZero: true
-              }
-            }
-          }
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Position Information',
+                    font: {
+                        size: 18
+                    }
+                }
+            },
+        }
         });
       }
     }

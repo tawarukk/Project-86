@@ -12,7 +12,7 @@
             <p>{{ totalOperators }}</p>
           </div>
           <div class="summary-item">
-            <h2>This Month <br><i class="fa-solid fa-calendar-days" style="color: #99ffcc;"></i></h2>
+            <h2>Added This Month <br><i class="fa-solid fa-calendar-days" style="color: #99ffcc;"></i></h2>
             <p>{{ operatorsAddedThisMonth }}</p>
           </div>
           <div class="summary-item">
@@ -119,11 +119,15 @@ export default {
           }]
         },
         options: {
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Opsition Operator',
+                    font: {
+                        size: 18
+                    }
+                }
+            },
         }
       });
     },
@@ -156,11 +160,30 @@ export default {
           }]
         },
         options: {
-          scales: {
-            y: {
-              beginAtZero: true
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'All Operator Information',
+                    font: {
+                        size: 18
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Number'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Operator level'
+                    }
+                }
             }
-          }
         }
       });
     }

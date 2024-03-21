@@ -12,7 +12,7 @@
                 <p>{{ totalNews }}</p>
               </div>
               <div class="summary-item">
-                <h2>This Month<br><i class="fa-solid fa-calendar-days" style="color: #99ffcc;"></i></h2>
+                <h2>Added This Month<br><i class="fa-solid fa-calendar-days" style="color: #99ffcc;"></i></h2>
                 <p>{{ newsAddedThisMonth }}</p>
               </div>
               <div class="summary-item">
@@ -116,12 +116,31 @@
             }]
           },
           options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'News Type Distribution Information',
+                    font: {
+                        size: 18
+                    }
+                }
+            },
             scales: {
-              y: {
-                beginAtZero: true
-              }
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Number'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Category News'
+                    }
+                }
             }
-          }
+        }
         });
       },
     }

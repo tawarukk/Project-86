@@ -22,11 +22,25 @@
                             <div v-else-if="operator.tier_oper =='3'" style="color: #4b9ce8;">{{ operator.name_oper}}</div>
                             <div v-else>{{ operator.name_oper}}</div>
                         </div>
-                    </template>    
+                    </template> 
+                    <div class="mb-3 card-status" style="width: 150px; font-size: medium;" type="button" > 
+                            <el-popover
+                                placement="bottom"
+                                title="ไม่ต้องการเลือก Operator"
+                                :width="250"
+                                trigger="hover"
+                                content="เปลี่ยนเป็นช่องเปล่า"
+                            >
+                            <template #reference>
+                                <img :src="getImagePath('undefined.png')" @click="goToBox()" alt="Operator Portrait">
+                            </template>
+                            </el-popover>
+                            Don't Choose
+                    </div>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-6 card-status" type="button" @click="goToBox()">
-                    ไม่เลือก :C
+                        กลับไปหน้า Simulator
                     </div>
                 </div>
             </div>
@@ -71,7 +85,7 @@ import '../../assets/css/owl.css';
             },
             getImagePath(imageFileName) {
                 if(imageFileName ==''||imageFileName==null){
-                    return require('@/assets/images/portrait/undefined.jpg');
+                    return require('@/assets/images/portrait/undefined.png');
                 }
                 return require(`@/assets/images/portrait/${imageFileName}`);
             },

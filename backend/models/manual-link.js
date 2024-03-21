@@ -8,7 +8,7 @@ let manualLinkSchema = new Schema({
     m_descriptions: {
         type: String
     },
-    m_posision: {
+    m_position: {
         type: String
     },
     m_tier:{
