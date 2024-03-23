@@ -3,10 +3,12 @@ const Schema = mongoose.Schema;
 
 let simulatorSchema = new Schema({
     product_id: {
-        type: String
+        type: String,
+        default: ""
     },
     Name_product:{
-        type: String
+        type: String,
+        default: ""
     },
     position: {
         type: String
@@ -37,13 +39,16 @@ let simulatorSchema = new Schema({
     },
     operator: [{
         operator_save_a: {
-            type: String
+            type: String,
+            default: ""
         },
         operator_save_b: {
-            type: String
+            type: String,
+            default: ""
         },
         operator_save_c: {
-            type: String
+            type: String,
+            default: ""
         },
     }],
     comment: [{

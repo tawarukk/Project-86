@@ -22,7 +22,7 @@
                                     <input type="text" class="form-control mt-1" id="name_oper" placeholder="[ชื่อ โอเปอเรเตอร์]" v-model="OperatorData.name_oper" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="tier_oper" style="color: #A0A0A0;">Tier Operato :</label> <span style="font-size: 15px; color: #e8bd4b;">(*จำเป็นต้องระบุ)</span>
+                                    <label for="tier_oper" style="color: #A0A0A0;">Tier Operator :</label> <span style="font-size: 15px; color: #e8bd4b;">(*จำเป็นต้องระบุ)</span>
                                     <input type="text" class="form-control mt-1" id="tier_oper" placeholder="[ระดับ โอเปอเรเตอร์ ตั้งแต่ 1 ถึง 6]" v-model="OperatorData.tier_oper" required>
                                 </div>
                                 <div class="form-group">
@@ -30,7 +30,7 @@
                                     <textarea type="text" class="form-control mt-1" id="descriptions" placeholder="[คำอธิบาย โอเปอเรเตอร์]" v-model="OperatorData.descriptions"> </textarea>
                                 </div>
                                 <div class="form-group mt-1">
-                                    <label for="skill_i" style="color: #A0A0A0;">Skill ii :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
+                                    <label for="skill_i" style="color: #A0A0A0;">Skill i :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
                                     <select class="form-select mt-1" id="skill_i" v-model="OperatorData.skill_i" style="background-color: #666">
                                         <template v-for="skills in Skill" :key="skills._id">
                                             <option :value="skills.name_skill">{{skills.name_skill}}</option>
@@ -59,7 +59,7 @@
                                     <input type="number" class="form-control mt-1" id="maxhp_oper" v-model="OperatorData.maxhp_oper" required>
                                     <label for="attack_oper" style="color: #A0A0A0;">Attack :</label> 
                                     <input type="number" class="form-control mt-1" id="attack_oper" v-model="OperatorData.attack_oper" required>
-                                    <label for="defent_oper" style="color: #A0A0A0;">Defent :</label> 
+                                    <label for="defent_oper" style="color: #A0A0A0;">Defend  :</label> 
                                     <input type="number" class="form-control mt-1" id="defent_oper" v-model="OperatorData.defent_oper" required>
                                     <label for="resis_oper" style="color: #A0A0A0;">Resistant :</label> 
                                     <input type="number" class="form-control mt-1" id="resis_oper" v-model="OperatorData.resis_oper" required>
