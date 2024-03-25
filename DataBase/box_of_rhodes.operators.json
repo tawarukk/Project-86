@@ -1,0 +1,325 @@
+[{
+  "_id": {
+    "$oid": "64e7616bb61077e1f6e7d522"
+  },
+  "name_oper": "Amiya",
+  "tier_oper": "5",
+  "maxhp_oper": 1480,
+  "attack_oper": 612,
+  "defent_oper": 121,
+  "resis_oper": 20,
+  "redeploy_oper": 70,
+  "deploy_cost_oper": 20,
+  "block_count_oper": 1,
+  "bonut_atkspd_oper": 0,
+  "img_cart_oper": "Amiya.png",
+  "available_content": "1",
+  "img_portrait_oper": "amiya.png",
+  "skill_i": "Standardization_A",
+  "skill_ii": "unidentified",
+  "position": "ControlCenter",
+  "uploadedAt": {
+    "$date": "2023-10-28T19:38:07.851Z"
+  },
+  "descriptions": "รายละเอียด รอคำอธิบาย 1"
+},
+{
+  "_id": {
+    "$oid": "64e764f0b61077e1f6e7d524"
+  },
+  "name_oper": "Saga",
+  "tier_oper": "6",
+  "maxhp_oper": 2205,
+  "attack_oper": 530,
+  "defent_oper": 372,
+  "resis_oper": 0,
+  "redeploy_oper": 70,
+  "deploy_cost_oper": 14,
+  "block_count_oper": 2,
+  "bonut_atkspd_oper": 0,
+  "img_cart_oper": "Saga.png",
+  "available_content": "1",
+  "img_portrait_oper": "saga.png",
+  "skill_i": "CombatGuidanceVidio_B",
+  "skill_ii": "unidentified",
+  "position": "Factory",
+  "descriptions": "รายละเอียด รอคำอธิบาย 2",
+  "uploadedAt": {
+    "$date": "2024-01-23T09:50:56.200Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "64edde74b0a8cbc5b1539a32"
+  },
+  "name_oper": "Siege",
+  "tier_oper": "6",
+  "maxhp_oper": 2251,
+  "attack_oper": 515,
+  "defent_oper": 384,
+  "resis_oper": 0,
+  "redeploy_oper": 70,
+  "deploy_cost_oper": 14,
+  "block_count_oper": 2,
+  "bonut_atkspd_oper": 0,
+  "img_cart_oper": "Siege.png",
+  "available_content": "1",
+  "img_portrait_oper": "siege.png",
+  "skill_i": "unidentified",
+  "skill_ii": "unidentified",
+  "position": "Factory",
+  "descriptions": "รายละเอียด รอคำอธิบาย 3",
+  "uploadedAt": {
+    "$date": "2024-01-23T09:51:02.668Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "64edded1b0a8cbc5b1539a33"
+  },
+  "name_oper": "Asbest",
+  "tier_oper": "5",
+  "maxhp_oper": 3135,
+  "attack_oper": 633,
+  "defent_oper": 555,
+  "resis_oper": 15,
+  "redeploy_oper": 70,
+  "deploy_cost_oper": 25,
+  "block_count_oper": 3,
+  "bonut_atkspd_oper": 0,
+  "img_cart_oper": "Asbestos.png",
+  "available_content": "1",
+  "img_portrait_oper": "asbest.png",
+  "skill_i": "Standardization_A",
+  "skill_ii": "unidentified",
+  "position": "Factory",
+  "descriptions": "รายละเอียด รอคำอธิบาย 5",
+  "uploadedAt": {
+    "$date": "2024-01-23T09:51:08.887Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "64eddf66b0a8cbc5b1539a35"
+  },
+  "name_oper": "Jaye",
+  "tier_oper": "4",
+  "maxhp_oper": 2284,
+  "attack_oper": 674,
+  "defent_oper": 378,
+  "resis_oper": 0,
+  "redeploy_oper": 25,
+  "deploy_cost_oper": 7,
+  "block_count_oper": 1,
+  "bonut_atkspd_oper": 0,
+  "img_cart_oper": "Jaye.png",
+  "available_content": "1",
+  "img_portrait_oper": "jaye.png",
+  "skill_i": "OrderDistribution_B",
+  "skill_ii": "unidentified",
+  "position": "TradingPost",
+  "descriptions": "รายละเอียด รอคำอธิบาย 6",
+  "uploadedAt": {
+    "$date": "2024-01-23T09:51:16.117Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "64eddfc1b0a8cbc5b1539a36"
+  },
+  "name_oper": "Jessica",
+  "tier_oper": "4",
+  "maxhp_oper": 1320,
+  "attack_oper": 475,
+  "defent_oper": 154,
+  "resis_oper": 0,
+  "redeploy_oper": 70,
+  "deploy_cost_oper": 12,
+  "block_count_oper": 1,
+  "bonut_atkspd_oper": 0,
+  "img_cart_oper": "Jessica.png",
+  "available_content": "1",
+  "img_portrait_oper": "jessica.png",
+  "skill_i": "Standardization_C",
+  "skill_ii": "unidentified",
+  "position": "Factory",
+  "descriptions": "รายละเอียด รอคำอธิบาย 7",
+  "uploadedAt": {
+    "$date": "2024-01-23T09:51:25.945Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "64eee37ef8a939e4b864ee7a"
+  },
+  "name_oper": "Mlynar",
+  "tier_oper": "6",
+  "maxhp_oper": 3906,
+  "attack_oper": 355,
+  "defent_oper": 502,
+  "resis_oper": 15,
+  "redeploy_oper": 70,
+  "deploy_cost_oper": 12,
+  "block_count_oper": 3,
+  "bonut_atkspd_oper": 0,
+  "img_cart_oper": "Mlynar.png",
+  "available_content": "1",
+  "img_portrait_oper": "mlynar.png",
+  "skill_i": "unidentified",
+  "skill_ii": "unidentified",
+  "position": "ControlCenter",
+  "descriptions": "รายละเอียด รอคำอธิบาย 8",
+  "uploadedAt": {
+    "$date": "2024-01-23T09:51:34.261Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "64f6d4471260738688cd37fe"
+  },
+  "name_oper": "Yato",
+  "tier_oper": "2",
+  "maxhp_oper": 1030,
+  "attack_oper": 232,
+  "defent_oper": 192,
+  "resis_oper": 0,
+  "redeploy_oper": 70,
+  "deploy_cost_oper": 7,
+  "block_count_oper": 2,
+  "bonut_atkspd_oper": 0,
+  "img_cart_oper": "Yato.png",
+  "available_content": "1",
+  "img_portrait_oper": "yato.png",
+  "skill_i": "Standardization_B",
+  "skill_ii": "unidentified",
+  "position": "Factory",
+  "descriptions": "รายละเอียด รอคำอธิบาย 9",
+  "uploadedAt": {
+    "$date": "2024-01-23T09:51:43.714Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "64f6d4f21260738688cd37ff"
+  },
+  "name_oper": "Noir-Corne",
+  "tier_oper": "2",
+  "maxhp_oper": 1670,
+  "attack_oper": 240,
+  "defent_oper": 315,
+  "resis_oper": 0,
+  "redeploy_oper": 70,
+  "deploy_cost_oper": 14,
+  "block_count_oper": 3,
+  "bonut_atkspd_oper": 0,
+  "img_cart_oper": "Noir-Corne.png",
+  "available_content": "1",
+  "img_portrait_oper": "noir-corne.png",
+  "skill_i": "PreciousMetals_Test",
+  "skill_ii": "OriginiumMaterials_Test",
+  "position": "TradingPost",
+  "descriptions": "รายละเอียด รอคำอธิบาย 10",
+  "uploadedAt": {
+    "$date": "2024-01-23T09:51:52.579Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "64f6d5d01260738688cd3800"
+  },
+  "name_oper": "Fang",
+  "tier_oper": "3",
+  "maxhp_oper": 1325,
+  "attack_oper": 325,
+  "defent_oper": 260,
+  "resis_oper": 0,
+  "redeploy_oper": 70,
+  "deploy_cost_oper": 11,
+  "block_count_oper": 2,
+  "bonut_atkspd_oper": 0,
+  "img_cart_oper": "Fang.png",
+  "available_content": "1",
+  "img_portrait_oper": "fang.png",
+  "skill_i": "OrderDistribution_A",
+  "skill_ii": "unidentified",
+  "position": "TradingPost",
+  "descriptions": "รายละเอียด รอคำอธิบาย 11",
+  "uploadedAt": {
+    "$date": "2024-01-23T09:52:00.295Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "64f6d6571260738688cd3801"
+  },
+  "name_oper": "Vanilla",
+  "tier_oper": "3",
+  "maxhp_oper": 1270,
+  "attack_oper": 355,
+  "defent_oper": 240,
+  "resis_oper": 0,
+  "redeploy_oper": 70,
+  "deploy_cost_oper": 11,
+  "block_count_oper": 2,
+  "bonut_atkspd_oper": 0,
+  "img_cart_oper": "Vanilla.png",
+  "available_content": "1",
+  "img_portrait_oper": "vanilla.png",
+  "skill_i": "OrderDistribution_C",
+  "skill_ii": "unidentified",
+  "position": "TradingPost",
+  "descriptions": "รายละเอียด รอคำอธิบาย 12",
+  "uploadedAt": {
+    "$date": "2024-01-23T09:52:09.086Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "64f6d6c61260738688cd3802"
+  },
+  "name_oper": "Thermal-EX",
+  "tier_oper": "1",
+  "maxhp_oper": 1443,
+  "attack_oper": 260,
+  "defent_oper": 443,
+  "resis_oper": 50,
+  "redeploy_oper": 200,
+  "deploy_cost_oper": 3,
+  "block_count_oper": 0,
+  "bonut_atkspd_oper": 0,
+  "img_cart_oper": "Thermal-EX.png",
+  "available_content": "1",
+  "img_portrait_oper": "thermal-EX.png",
+  "skill_i": "unidentified",
+  "skill_ii": "unidentified",
+  "position": "PowerPlant",
+  "descriptions": "รายละเอียด รอคำอธิบาย 13",
+  "uploadedAt": {
+    "$date": "2024-01-23T09:52:16.693Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "653f1c175517dc2009bb1a0d"
+  },
+  "name_oper": "Roberta",
+  "tier_oper": "4",
+  "maxhp_oper": 100,
+  "attack_oper": 200,
+  "defent_oper": 300,
+  "resis_oper": 400,
+  "redeploy_oper": 500,
+  "deploy_cost_oper": 600,
+  "block_count_oper": 700,
+  "img_portrait_oper": "roberta.png",
+  "img_cart_oper": "Roberta_E1.png",
+  "available_content": "1",
+  "position": "Factory",
+  "skill_i": "testskill_roberta",
+  "skill_ii": "unidentified",
+  "uploadedAt": {
+    "$date": "2023-10-30T02:59:35.150Z"
+  },
+  "__v": 0,
+  "descriptions": "รายละเอียด รอคำอธิบาย 14"
+}]

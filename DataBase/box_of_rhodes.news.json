@@ -1,0 +1,526 @@
+[{
+  "_id": {
+    "$oid": "65a2a3f5527ca6fb707b12c2"
+  },
+  "topic": "NewTopic Test 03 Edit",
+  "description": "NewTopic Test 03 E",
+  "img_card_news": "65a2a3f552.jpg",
+  "paragraphs": [
+    {
+      "heading": "TestNews01",
+      "image": "65a2a3f552.jpg",
+      "content": "content  02",
+      "_id": {
+        "$oid": "65a2a3f5527ca6fb707b12c3"
+      }
+    }
+  ],
+  "available_con": "1",
+  "uploadedAt": {
+    "$date": "2024-01-13T14:53:41.839Z"
+  },
+  "__v": 4,
+  "type": "News",
+  "view_count": 14
+},
+{
+  "_id": {
+    "$oid": "65a2a42d527ca6fb707b12d1"
+  },
+  "topic": "NewTopic Test 04",
+  "description": "NewTopic Test 04",
+  "img_card_news": "NewTopic Test 04.jpg",
+  "paragraphs": [
+    {
+      "heading": "Paragraphs",
+      "image": "65a2a42d52.jpg",
+      "content": "content ",
+      "_id": {
+        "$oid": "65a2a42d527ca6fb707b12d2"
+      }
+    },
+    {
+      "heading": "Paragraphs",
+      "image": "Paragraphs.jpg",
+      "content": "content ",
+      "_id": {
+        "$oid": "65a2a4d3527ca6fb707b12f4"
+      }
+    },
+    {
+      "heading": "Paragraphs 02",
+      "image": "Paragraphs 02.jpg",
+      "content": "content  02",
+      "_id": {
+        "$oid": "65a2a503527ca6fb707b12fc"
+      }
+    },
+    {
+      "heading": "Paragraphs 022",
+      "content": "content  02",
+      "_id": {
+        "$oid": "65a2a609527ca6fb707b1354"
+      }
+    }
+  ],
+  "available_con": "1",
+  "uploadedAt": {
+    "$date": "2024-01-13T14:54:37.586Z"
+  },
+  "__v": 5,
+  "type": "Announce",
+  "view_count": 11
+},
+{
+  "_id": {
+    "$oid": "65a2daac5087b300d1da908e"
+  },
+  "topic": "NewTopic Test Last",
+  "description": "NewTopic Test Last NewTopic Test Last",
+  "img_card_news": "NewTopic Test Last.jpg",
+  "paragraphs": [
+    {
+      "heading": "Edit 01",
+      "image": "Edit 01.jpg",
+      "content": "แก้ไข 1",
+      "_id": {
+        "$oid": "65a2daac5087b300d1da908f"
+      }
+    },
+    {
+      "heading": "11111",
+      "image": "65a2dcac5dd5649026825c5a.jpg",
+      "content": "11111",
+      "status": "1",
+      "_id": {
+        "$oid": "65a2dcac5dd5649026825c5a"
+      }
+    },
+    {
+      "heading": "22222",
+      "image": "65a2dce65d.jpg",
+      "content": "22222",
+      "status": "1",
+      "_id": {
+        "$oid": "65a2dce65dd5649026825c6b"
+      }
+    }
+  ],
+  "available_con": "1",
+  "uploadedAt": {
+    "$date": "2024-01-13T18:47:08.646Z"
+  },
+  "__v": 5,
+  "type": "Information",
+  "view_count": 6
+},
+{
+  "_id": {
+    "$oid": "65a3acfd1a8f264843cf9cb8"
+  },
+  "topic": "NewTopic Test 05",
+  "description": "NewTopic Test 05 NewTopic Test 05 NewTopic Test 05",
+  "img_card_news": "65a3acfd1a.jpg",
+  "type": "Anoter",
+  "paragraphs": [
+    {
+      "heading": "Paragraphs",
+      "image": "65a3acfd1a.jpg",
+      "content": "TestNews01",
+      "status": "1",
+      "_id": {
+        "$oid": "65a3acfd1a8f264843cf9cb9"
+      }
+    }
+  ],
+  "available_con": "1",
+  "uploadedAt": {
+    "$date": "2024-01-14T09:44:29.533Z"
+  },
+  "__v": 0,
+  "view_count": 8
+},
+{
+  "_id": {
+    "$oid": "65a3ad161a8f264843cf9cbb"
+  },
+  "topic": "NewTopic Test 06",
+  "description": "NewTopic Test 05 NewTopic Test 06 NewTopic Test 07",
+  "img_card_news": "65a3ad161a.jpg",
+  "type": "Announce",
+  "paragraphs": [
+    {
+      "heading": "aaaa",
+      "image": "65a3ad161a.jpg",
+      "content": "2222",
+      "status": "1",
+      "_id": {
+        "$oid": "65a3ad161a8f264843cf9cbc"
+      }
+    }
+  ],
+  "available_con": "1",
+  "uploadedAt": {
+    "$date": "2024-01-14T09:44:54.595Z"
+  },
+  "__v": 0,
+  "view_count": 0
+},
+{
+  "_id": {
+    "$oid": "65a3ad521a8f264843cf9d83"
+  },
+  "topic": "NewTopic Test 07 Edit",
+  "description": "NewTopic Test 07 Edit",
+  "img_card_news": "65a3ad521a.jpg",
+  "type": "News",
+  "paragraphs": [
+    {
+      "heading": "",
+      "image": "",
+      "content": "",
+      "status": "1",
+      "_id": {
+        "$oid": "65a3ad521a8f264843cf9d84"
+      }
+    }
+  ],
+  "available_con": "1",
+  "uploadedAt": {
+    "$date": "2024-01-14T09:45:54.257Z"
+  },
+  "__v": 0,
+  "view_count": 1
+},
+{
+  "_id": {
+    "$oid": "65a7afe27bb9d86b69a9e491"
+  },
+  "topic": "Test View edit",
+  "description": "Test View",
+  "img_card_news": "65a7afe27b.jpg",
+  "type": "News",
+  "view_count": 5,
+  "paragraphs": [
+    {
+      "heading": "",
+      "image": "",
+      "content": "",
+      "status": "1",
+      "_id": {
+        "$oid": "65a7afe27bb9d86b69a9e492"
+      }
+    }
+  ],
+  "available_con": "1",
+  "uploadedAt": {
+    "$date": "2024-01-17T10:45:54.360Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65a935927eb2a14757b3e715"
+  },
+  "topic": "คู่มือ FactoryRoom สำหรับ ผู้เล่นระดับ Beginner  ",
+  "description": "ยินดีต้อนรับผู้เล่นใหม่ สู่เกม Arknights โดยคู่มือฉบับนี้จะเป็นการแนะนำให้รู้จักกับระบบเบื่องต้นของห้อง Factory Room เมื่อพร้อมแล้วเรามาเริ่มที่หัวข้อแรกกันเลย!",
+  "img_card_news": "65a935927e.jpg",
+  "type": "manual",
+  "tier": "beginner",
+  "about": "all",
+  "view_count": 1,
+  "paragraphs": [
+    {
+      "heading": "1. Factory Room คืออะไรและ มีไว้ทำอะไร",
+      "image": "65a935927e.jpg",
+      "content": "Factory Room เป็น 1 ในห้องที่ผู้เล่นสามารถสร้างได้ ซึ่งลักษณะของห้องจะมีสีเหลืองเป็นหลัก โดยสามารถสร้างได้สูงสุดจำนวน 6ห้อง [มากกว่านั้นไฟจะไม่พอ] \nหรือจะไม่สร้างเลยก็ได้ ขึ้นอยู่กับการวางแผนและความต้องการของผู้เล่นคนนั้นๆ \n[แนะนำให้มีไว้ 3 ห้องกำลังพอดี]",
+      "status": "1",
+      "_id": {
+        "$oid": "65a935927eb2a14757b3e716"
+      }
+    },
+    {
+      "heading": "1. Factory Room คืออะไรและ มีไว้ทำอะไร [ต่อ]",
+      "image": "65b66b45ec.jpg",
+      "content": "กลับมาที่คำถามที่ว่า แล้วห้องนี้มีไว้ทำอะไร \nคำตอบคือ : ห้องนี้มีไว้ผลิตทรัพยากรและสินค้า ที่ช่วยให้ Operator ของผู้เล่นเติบโตได้ไวขึ้น โดยสิ่งที่สามารถผลิตได้จะมี 4 หมวดหมู่คือ \n1. Battle Records [สินค้าประเภทเพิ่มเลเวล] \n2. Precious Metals [สินค้าประเภทแลกเปลี่ยน] \n3.Chips [สินค้าประเภทเลื่อนขั้น] \n4.Originium Materials [สินค้าประเภทแลกเปลี่ยน]",
+      "status": "1",
+      "_id": {
+        "$oid": "65b66b45ec6ce7a77be82aff"
+      }
+    },
+    {
+      "heading": "1.1 Product หรือ สินค้า ที่ต้องใช้ Material ในการผลิต",
+      "image": "65b66ed1ec.jpg",
+      "content": "โดยปกติแล้วสินค้าที่ต้องใช้ Material ในการผลิต จะมีอยู่ 2 หมวดหมู่ คือ Chips [Chips ฟาร์มได้จากด่าน และ Catalyst หาได้จากร้านค้าแต้มแดง]และ Originium Materials [ผลิตได้จาก Material ตามด่านหรือกิจกรรม และ LMD]",
+      "status": "1",
+      "_id": {
+        "$oid": "65b66ed1ec6ce7a77be82b2a"
+      }
+    },
+    {
+      "heading": "1.2 Product หรือ สินค้า ที่ไม่ต้องใช้ Material ในการผลิต",
+      "image": "65b6709aec.jpg",
+      "content": "นอกจากนั้นยังมีสินค้า ที่ไม่ต้องใช้ Material ในการผลิต อีก 2 หมวดหมู่คือ 1.Battle Records และ 2.Precious Metals ซึ่งสามารถผลิตได้ฟรี[แลกกับระยะเวลาในการผลิต] ซึ่ง 2 หมวดนี้เป็นที่นิยมในการผลิต และ แนะนำอย่างยิ่งสำหรับผู้เล่นใหม่ที่ต้องการทรัพยากรมาใช้สำหรับพัฒนา Operator มาใช้ในการผ่านด่านที่ท้าทายยิ่งขึ้น",
+      "status": "1",
+      "_id": {
+        "$oid": "65b6709aec6ce7a77be82b65"
+      }
+    },
+    {
+      "heading": "2. สกิลที่ส่งผลให้ Factory Room สามารถผลิตได้มีประสิทธิภาพยิ่งขึ้น",
+      "image": "65b67262ec.jpg",
+      "content": "จะสังเกตุได้ว่า เรามามารถเพิ่ม Operator เข้าไปประจำการที่ห้องได้ สูงสุด 3 คนต่อ 1 ห้อง ซึ่ง Operator เหล่านี้จะมีความสามารถเฉพาะตัวขึ้นอยู่กับตัวละครซึ่งจะส่งผลในแต่ละห้องแตกต่างกันไป สำหรับของห้อง Factory Room จะสังเกตุได้จากสีของสกิลที่มีลักษณธเป็นสีเหลือง โดยส่วนมากสกิลเหล่านี้ จะช่วยในการลดระยะเวลาในการผลิต , เพิ่มจำนวนสูงสุดที่สามารถผลิตได้ , ลดความเหนื่อยล้าของคนอื่นๆในห้อง ทำให้สามารถทำงานได้นานขึ้น และสกิลอื่นๆที่มีเงื่อนไขพิเศษอีกมากมาย",
+      "status": "1",
+      "_id": {
+        "$oid": "65b67262ec6ce7a77be82b94"
+      }
+    },
+    {
+      "heading": "3. เวลาในการเก็บสินค้าที่ผลิต",
+      "image": "65b67421ec.jpg",
+      "content": "เมื่อครบเวลาที่กำหนด เราสินค้าที่เราสั่งผลิตไป ส่งเกตุได้จาก สัญลักษ์บริเวณมุมขวาบนของห้อง ซึ่งเราสามารถปล่อยไว้ได้เพราะสินค้าจะไม่หายไปเมื่อเราไม่ได้เก็บ แต่สินค้าจะหยุดผลิต เมื่อผลิตตามที่เราสั่งครบแล้วหรือ จำนวนสินค้าเต็ม สังเกตได้จากค่า Capacity ดังนั้นเพื่อที่จะใช้งานให้เต็มประสิทธิภาพอย่าลืมเข้าไปกดรับเป็นประจำน้ะ [เวลาแนะนำในการเก็บ :  18.00 น.  ของทุกวัน(เวลารีเซิร์ฟ)]",
+      "status": "1",
+      "_id": {
+        "$oid": "65b67421ec6ce7a77be82bcb"
+      }
+    },
+    {
+      "heading": "Tips : ขยันใช้แต้ม Dronrs เป็นประจำ!",
+      "image": "65b675e2ec.jpg",
+      "content": "รู้หรือไม่ เราสามารถใช้แต้ม Dronrs เพื่อข้ามเวลาการผลิตได้ฟรี! โดยในแต่ละวันเราสามารถใช้แต้ม Dronrsได้ฟรี โดยเมื่อใช้แล้ว Dronrs จะหมดไปแต่จะเพิ่มขึ้นเองจากการทำงานของห้อง Power Plant[ห้องเขียวที่สร้างไว้] โดยผู้เล่นส่วนมากมักจะลืมหรือละเลยปล่อยให้แต้ม Dronrsเต็มและไม่ได้ใช้งาน หรือใช้งานเฉพาะตอนที่ต้องการเร่งเวลาการผลิต Chips เพียงเท่านั้น ดังนั้นอย่าลืมใช้แต้มDronrsด้วยน้ะ!",
+      "status": "1",
+      "_id": {
+        "$oid": "65b675e2ec6ce7a77be82c22"
+      }
+    }
+  ],
+  "available_con": "1",
+  "uploadedAt": {
+    "$date": "2024-01-18T14:28:34.903Z"
+  },
+  "__v": 6
+},
+{
+  "_id": {
+    "$oid": "65af6f600db748f9554316e7"
+  },
+  "topic": "คู่มือ FactoryRoom สำหรับ ผู้เล่นระดับ Intermediate",
+  "description": "คู่มือ FactoryRoom",
+  "img_card_news": "65af6f600d.jpg",
+  "type": "manual",
+  "tier": "intermediate",
+  "about": "all",
+  "view_count": 0,
+  "paragraphs": [
+    {
+      "heading": "",
+      "image": "",
+      "content": "",
+      "status": "1",
+      "_id": {
+        "$oid": "65af6f600db748f9554316e8"
+      }
+    }
+  ],
+  "available_con": "0",
+  "uploadedAt": {
+    "$date": "2024-01-23T07:48:48.753Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65af6f800db748f9554316ea"
+  },
+  "topic": "คู่มือ FactoryRoom สำหรับ ผู้เล่นระดับ Advanced",
+  "description": "คู่มือ FactoryRoom ",
+  "img_card_news": "65af6f800d.jpg",
+  "type": "manual",
+  "tier": "Advanced",
+  "about": "all",
+  "view_count": 0,
+  "paragraphs": [
+    {
+      "heading": "",
+      "image": "",
+      "content": "",
+      "status": "1",
+      "_id": {
+        "$oid": "65af6f800db748f9554316eb"
+      }
+    }
+  ],
+  "available_con": "0",
+  "uploadedAt": {
+    "$date": "2024-01-23T07:49:20.112Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65b647b2c564a3fb72c730f9"
+  },
+  "topic": "คู่มือ Module สำหรับ ผู้เล่นระดับ Beginner",
+  "description": "คู่มือ Module Beginner",
+  "img_card_news": "65b647b2c5.jpg",
+  "type": "manual",
+  "tier": "beginner",
+  "about": "สอนใช้ Module",
+  "view_count": 0,
+  "paragraphs": [
+    {
+      "heading": "",
+      "image": "",
+      "content": "",
+      "status": "1",
+      "_id": {
+        "$oid": "65b647b2c564a3fb72c730fa"
+      }
+    }
+  ],
+  "available_con": "0",
+  "uploadedAt": {
+    "$date": "2024-01-28T12:25:22.748Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65b6786dec6ce7a77be82e1a"
+  },
+  "topic": "คู่มือ Module สำหรับ ผู้เล่นระดับ Intermediate",
+  "description": "คู่มือ Module Intermediate",
+  "img_card_news": "65b6786dec.jpg",
+  "type": "manual",
+  "tier": "intermediate",
+  "about": "Module",
+  "view_count": 0,
+  "paragraphs": [
+    {
+      "heading": "",
+      "image": "",
+      "content": "",
+      "status": "1",
+      "_id": {
+        "$oid": "65b6786dec6ce7a77be82e1b"
+      }
+    }
+  ],
+  "available_con": "0",
+  "uploadedAt": {
+    "$date": "2024-01-28T15:53:17.033Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65b6789eec6ce7a77be82e1d"
+  },
+  "topic": "คู่มือ Module สำหรับ ผู้เล่นระดับ Advanced",
+  "description": "คู่มือ Module Advanced",
+  "img_card_news": "65b6789eec.jpg",
+  "type": "manual",
+  "tier": "Advanced",
+  "about": "Module Advanced",
+  "view_count": 1,
+  "paragraphs": [
+    {
+      "heading": "",
+      "image": "",
+      "content": "",
+      "status": "1",
+      "_id": {
+        "$oid": "65b6789eec6ce7a77be82e1e"
+      }
+    }
+  ],
+  "available_con": "0",
+  "uploadedAt": {
+    "$date": "2024-01-28T15:54:06.079Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65b67a99ec6ce7a77be832f6"
+  },
+  "topic": "คู่มือ Treading สำหรับ ผู้เล่นระดับ Beginner",
+  "description": "คู่มือ Treading Beginner",
+  "img_card_news": "65b67a99ec.jpg",
+  "type": "manual",
+  "tier": "beginner",
+  "about": "all",
+  "view_count": 0,
+  "paragraphs": [
+    {
+      "heading": "",
+      "image": "",
+      "content": "",
+      "status": "1",
+      "_id": {
+        "$oid": "65b67a99ec6ce7a77be832f7"
+      }
+    }
+  ],
+  "available_con": "0",
+  "uploadedAt": {
+    "$date": "2024-01-28T16:02:33.442Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65b67ac8ec6ce7a77be8332f"
+  },
+  "topic": "คู่มือ Treading สำหรับ ผู้เล่นระดับ Intermediate",
+  "description": "คู่มือ Treading Intermediate",
+  "img_card_news": "65b67ac8ec.jpg",
+  "type": "manual",
+  "tier": "intermediate",
+  "about": "all",
+  "view_count": 0,
+  "paragraphs": [
+    {
+      "heading": "",
+      "image": "",
+      "content": "",
+      "status": "1",
+      "_id": {
+        "$oid": "65b67ac8ec6ce7a77be83330"
+      }
+    }
+  ],
+  "available_con": "0",
+  "uploadedAt": {
+    "$date": "2024-01-28T16:03:20.352Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65b67af4ec6ce7a77be83332"
+  },
+  "topic": "คู่มือ Treading สำหรับ ผู้เล่นระดับ Advanced",
+  "description": "คู่มือ Treading Advanced",
+  "img_card_news": "65b67af4ec.jpg",
+  "type": "manual",
+  "tier": "Advanced",
+  "about": "all",
+  "view_count": 0,
+  "paragraphs": [
+    {
+      "heading": "",
+      "image": "",
+      "content": "",
+      "status": "1",
+      "_id": {
+        "$oid": "65b67af4ec6ce7a77be83333"
+      }
+    }
+  ],
+  "available_con": "0",
+  "uploadedAt": {
+    "$date": "2024-01-28T16:04:04.169Z"
+  },
+  "__v": 0
+}]

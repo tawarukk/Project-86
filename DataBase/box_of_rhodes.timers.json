@@ -1,0 +1,24 @@
+[{
+  "_id": {
+    "$oid": "65a7c77e051c1172a3d9b8c0"
+  },
+  "startDate": {
+    "$date": "2024-01-26T17:00:00.000Z"
+  },
+  "endDate": {
+    "$date": "2024-01-27T17:00:00.000Z"
+  },
+  "comments": "Pre-StartEvent"
+},
+{
+  "_id": {
+    "$oid": "65aa90c551ba153cd0ab4c1f"
+  },
+  "startDate": {
+    "$date": "2024-01-31T17:00:00.000Z"
+  },
+  "endDate": {
+    "$date": "2024-02-01T17:00:00.000Z"
+  },
+  "comments": "Pre-EndEvent"
+}]

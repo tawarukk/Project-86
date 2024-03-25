@@ -1,0 +1,118 @@
+[{
+  "_id": {
+    "$oid": "653bae3ece0d398b17f70cb3"
+  },
+  "name_member": "Admintest",
+  "email_member": "admin@admin.com",
+  "password_member": "111111",
+  "code_member": "0000",
+  "tier_member": "intermediate",
+  "role_member": "admin",
+  "available_member": "0",
+  "uploadedAt": {
+    "$date": "2023-10-27T12:34:06.395Z"
+  },
+  "__v": 0,
+  "img_member": "Ancient_Forge_profile.jpg"
+},
+{
+  "_id": {
+    "$oid": "653bb3fece0d398b17f70cc2"
+  },
+  "name_member": "Superadmin",
+  "email_member": "Super@Super.ca.th.gang",
+  "password_member": "000000",
+  "code_member": "2354",
+  "tier_member": "beginner",
+  "role_member": "superadmin",
+  "available_member": "1",
+  "uploadedAt": {
+    "$date": "2023-10-27T12:58:38.741Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653e4a78c74a92192bb5ee3b"
+  },
+  "name_member": "member",
+  "email_member": "member@member.com",
+  "password_member": "000000",
+  "code_member": "0000",
+  "tier_member": "beginner",
+  "role_member": "user",
+  "available_member": "1",
+  "uploadedAt": {
+    "$date": "2023-10-29T12:05:12.578Z"
+  },
+  "__v": 0,
+  "img_member": "No_Overtime_profile.jpg"
+},
+{
+  "_id": {
+    "$oid": "653f25655517dc2009bb1a76"
+  },
+  "name_member": "Gang",
+  "email_member": "Gang@gang.com",
+  "password_member": "123456",
+  "code_member": "0000",
+  "tier_member": "intermediate",
+  "role_member": "user",
+  "available_member": "1",
+  "uploadedAt": {
+    "$date": "2023-10-30T03:39:17.334Z"
+  },
+  "__v": 0,
+  "img_member": "Desert_Money_profile.jpg"
+},
+{
+  "_id": {
+    "$oid": "65a5ea159f429a7e6bf477f2"
+  },
+  "name_member": "MAMAFAKA",
+  "email_member": "MAMAFA@gmail.com",
+  "password_member": "Ga053646055",
+  "code_member": "4040",
+  "img_member": "Director27s_Approval_profile.jpg",
+  "tier_member": "beginner",
+  "role_member": "superadmin",
+  "available_member": "1",
+  "uploadedAt": {
+    "$date": "2024-01-16T02:29:41.016Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65b14c9a49baaad2a6680b7a"
+  },
+  "name_member": "TestMemberHack",
+  "email_member": "TestMemberHack@hack.com",
+  "password_member": "111111",
+  "code_member": "8900",
+  "img_member": "",
+  "tier_member": "beginner",
+  "role_member": "user",
+  "available_member": "0",
+  "uploadedAt": {
+    "$date": "2024-01-24T17:44:58.853Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65b52790f7c75351b4939b06"
+  },
+  "name_member": "UserData",
+  "email_member": "UserData@gamil.com",
+  "password_member": "111111",
+  "code_member": "0000",
+  "img_member": "",
+  "tier_member": "Advanced",
+  "role_member": "user",
+  "available_member": "1",
+  "uploadedAt": {
+    "$date": "2024-01-27T15:56:00.120Z"
+  },
+  "__v": 0
+}]

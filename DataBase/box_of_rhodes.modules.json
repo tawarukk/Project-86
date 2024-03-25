@@ -1,0 +1,140 @@
+[{
+  "_id": {
+    "$oid": "64f4abf60c23c839ce0ed6e7"
+  },
+  "name_mod": "SOL-X",
+  "effect_mod": "Increases all Vanguard Operators' ATK and DEF by 10% (+2%) ,and additionally increases this unit's ATK and DEF by 8%",
+  "maxhp_mod": 100,
+  "attack_mod": 75,
+  "defent_mod": 50,
+  "resis_mod": 0,
+  "redeploy_mod": 0,
+  "deploy_cost_mod": 0,
+  "block_count_mod": 0,
+  "bonut_atkspd_mod": 0,
+  "img_cart_mod": "SOL-X.png",
+  "available_content": "1",
+  "operator_mod": "Siege",
+  "operator_mod_id": "64edde74b0a8cbc5b1539a32",
+  "uploadedAt": {
+    "$date": "2023-10-27T21:33:08.153Z"
+  },
+  "descriptions": "รายละเอียด Module รอคำอธิบาย 6"
+},
+{
+  "_id": {
+    "$oid": "64f61201a0eb7d8724fbbb0b"
+  },
+  "name_mod": "SOL-Y",
+  "effect_mod": "The first Deployment Cost -4",
+  "maxhp_mod": 260,
+  "attack_mod": 75,
+  "defent_mod": 0,
+  "resis_mod": 0,
+  "redeploy_mod": 0,
+  "deploy_cost_mod": 0,
+  "block_count_mod": 1,
+  "bonut_atkspd_mod": 0,
+  "img_cart_mod": "SOL-Y.png",
+  "available_content": "1",
+  "operator_mod": "Siege",
+  "operator_mod_id": "64edde74b0a8cbc5b1539a32",
+  "descriptions": "รายละเอียด Module รอคำอธิบาย 1",
+  "uploadedAt": {
+    "$date": "2024-01-23T10:13:41.087Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "64f759b631aef99b58dff27e"
+  },
+  "name_mod": "Original",
+  "effect_mod": " >._",
+  "maxhp_mod": 0,
+  "attack_mod": 0,
+  "defent_mod": 0,
+  "resis_mod": 0,
+  "redeploy_mod": 0,
+  "deploy_cost_mod": 0,
+  "block_count_mod": 0,
+  "bonut_atkspd_mod": 0,
+  "img_cart_mod": "Original.png",
+  "available_content": "1",
+  "operator_mod": "",
+  "operator_mod_id": "",
+  "descriptions": "รายละเอียด Module รอคำอธิบาย 2",
+  "uploadedAt": {
+    "$date": "2024-01-23T10:13:56.761Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "64f784d5735ed6fe765ea119"
+  },
+  "name_mod": "CCR-Y",
+  "effect_mod": "Gain 1 SP when normal attacks hit an elite or leader enemy.",
+  "maxhp_mod": 0,
+  "attack_mod": 50,
+  "defent_mod": 50,
+  "resis_mod": 0,
+  "redeploy_mod": 10,
+  "deploy_cost_mod": 10,
+  "block_count_mod": 0,
+  "bonut_atkspd_mod": 0,
+  "img_cart_mod": "CCR-Y.png",
+  "available_content": "1",
+  "operator_mod": "Amiya",
+  "operator_mod_id": "64e7616bb61077e1f6e7d522",
+  "uploadedAt": {
+    "$date": "2023-10-29T12:28:48.115Z"
+  },
+  "descriptions": "รายละเอียด Module รอคำอธิบาย 3"
+},
+{
+  "_id": {
+    "$oid": "653f20785517dc2009bb1a25"
+  },
+  "name_mod": "OXP",
+  "effect_mod": "Test_Effect",
+  "maxhp_mod": 100,
+  "attack_mod": 200,
+  "defent_mod": 300,
+  "resis_mod": 400,
+  "redeploy_mod": 500,
+  "deploy_cost_mod": 600,
+  "block_count_mod": 700,
+  "bonut_atkspd_mod": 800,
+  "img_cart_mod": "OXP.png",
+  "operator_mod": "Roberta",
+  "operator_mod_id": "653f1c175517dc2009bb1a0d",
+  "uploadedAt": {
+    "$date": "2023-10-30T03:18:16.593Z"
+  },
+  "__v": 0,
+  "descriptions": "รายละเอียด Module รอคำอธิบาย 4",
+  "available_content": "1"
+},
+{
+  "_id": {
+    "$oid": "6576bde258dbe2449c5329b5"
+  },
+  "name_mod": "TestM",
+  "effect_mod": "1111",
+  "maxhp_mod": 345,
+  "attack_mod": 0,
+  "defent_mod": 0,
+  "resis_mod": 0,
+  "redeploy_mod": 0,
+  "deploy_cost_mod": 0,
+  "block_count_mod": 0,
+  "bonut_atkspd_mod": 0,
+  "img_cart_mod": "TestM.png",
+  "operator_mod": "aaaa",
+  "operator_mod_id": "43534543",
+  "uploadedAt": {
+    "$date": "2023-12-11T07:44:34.672Z"
+  },
+  "__v": 0,
+  "descriptions": "รายละเอียด Module รอคำอธิบาย 6",
+  "available_content": "1"
+}]
