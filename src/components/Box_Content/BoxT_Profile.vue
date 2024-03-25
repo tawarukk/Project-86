@@ -15,10 +15,10 @@
                 <table class="table table-striped">
                     <thead class="border">
                         <tr>
-                            <th>img_card_news</th>
+                            <th>img_Profile</th>
                             <th>No.</th>
                             <th>description</th>
-                            <th>Available_content</th>
+                            <th>status</th>
                             <th>Action</th>
                         </tr>
                         </thead>
