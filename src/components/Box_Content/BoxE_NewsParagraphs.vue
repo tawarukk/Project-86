@@ -4,10 +4,10 @@
         <div class="col-lg-12">
           <div class="page-content" style="background-color: #1f2122;">
             <div class="cards-container col-6" style="background-color: #E2E3DE;">
-                    <el-breadcrumb separator="/">
-                        <el-breadcrumb-item :to="{ path: '/Creator_T' }">Table_[Paragraphs]</el-breadcrumb-item>
-                        <el-breadcrumb-item>Edit_News & Manual [Paragraphs] : {{ NewsParagraphs.paragraphs.heading }}</el-breadcrumb-item>
-                    </el-breadcrumb>
+                <el-breadcrumb separator="/">
+                  <el-breadcrumb-item :to="{ path: '/Creator_T' }">Table_[Paragraphs]</el-breadcrumb-item>
+                  <el-breadcrumb-item>Edit_News & Manual [Paragraphs] : {{ NewsParagraphs.paragraphs.heading }}</el-breadcrumb-item>
+                </el-breadcrumb>
             </div>
             <div class="cards-container col-6" style="background-color: #27292a; width: auto; height: auto;">
               <form @submit.prevent="EditNewsParagraphs" style="font-size: 19px; font-weight: bold; display: flex; flex-direction: column; justify-content: center; align-items: center;">
