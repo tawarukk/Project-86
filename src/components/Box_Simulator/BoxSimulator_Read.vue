@@ -87,7 +87,7 @@
                 </div>
                 <div class="cards-container" style="color: #E2E3DE; width: 600px;">
                 <div class="demo-rate-block">
-                  <div class="demonstration mt-1"> Was first created when : <span> {{ simulatorsTopic.uploadedAt }} </span> </div>
+                  <div class="demonstration mt-1"> Was first created when : <span>{{ formattedUploadedAt }}</span> </div>
                 </div>
                 </div>
               </div>
@@ -209,12 +209,19 @@ export default {
               message:  'สามารถนำไปบันทึกที่ Profileได้'
             })
         },
+        formatDate(dateString) {
+      const date = new Date(dateString);
+      return date.toISOString().slice(0, -14);
+      }
 
   },
   computed: {
     currentComment() {
       return this.simulatorsTopic.comment[this.currentCommentIndex] || {};
     },
+    formattedUploadedAt() {
+      return this.simulatorsTopic.uploadedAt ? this.formatDate(this.simulatorsTopic.uploadedAt) : '';
+    }
   },
 
   mounted() {

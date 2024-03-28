@@ -1,0 +1,156 @@
+[{
+  "_id": {
+    "$oid": "6513121850115c24bac82588"
+  },
+  "name_product": "Drill Battle Record",
+  "time_product": 45,
+  "type_product": "BattleRecord",
+  "img_portrait_product": "Drill.png",
+  "descriptions": "รายละเอียด Product รอคำอธิบาย 1",
+  "uploadedAt": {
+    "$date": "2024-01-23T10:26:21.011Z"
+  },
+  "available_content": "1"
+},
+{
+  "_id": {
+    "$oid": "651314a050115c24bac82589"
+  },
+  "name_product": "Frontline Battle Record",
+  "time_product": 80,
+  "type_product": "BattleRecord",
+  "img_portrait_product": "Frontline.png",
+  "descriptions": "รายละเอียด Product รอคำอธิบาย 2",
+  "uploadedAt": {
+    "$date": "2024-01-23T10:20:33.365Z"
+  },
+  "available_content": "1"
+},
+{
+  "_id": {
+    "$oid": "651314e750115c24bac8258a"
+  },
+  "name_product": "Tactical Battle Record",
+  "time_product": 180,
+  "type_product": "BattleRecord",
+  "img_portrait_product": "Tactical.png",
+  "descriptions": "รายละเอียด Product รอคำอธิบาย 3",
+  "uploadedAt": {
+    "$date": "2024-01-23T10:26:39.553Z"
+  },
+  "available_content": "1"
+},
+{
+  "_id": {
+    "$oid": "6513151e50115c24bac8258b"
+  },
+  "name_product": "Pure Gold",
+  "time_product": 72,
+  "type_product": "PreciousMetals",
+  "img_portrait_product": "PureGold.png",
+  "descriptions": "รายละเอียด Product รอคำอธิบาย 4",
+  "uploadedAt": {
+    "$date": "2024-01-23T10:26:47.552Z"
+  },
+  "available_content": "1"
+},
+{
+  "_id": {
+    "$oid": "651315bd50115c24bac8258d"
+  },
+  "name_product": "Vanguard Dualchip",
+  "time_product": 60,
+  "type_product": "Chips",
+  "img_portrait_product": "Vanguard.png",
+  "descriptions": "รายละเอียด Product รอคำอธิบาย 5",
+  "uploadedAt": {
+    "$date": "2024-01-23T10:26:59.647Z"
+  },
+  "available_content": "1"
+},
+{
+  "_id": {
+    "$oid": "6513160f50115c24bac8258e"
+  },
+  "name_product": "Defender Dualchip",
+  "time_product": 60,
+  "type_product": "Chips",
+  "img_portrait_product": "Defender.png",
+  "descriptions": "รายละเอียด Product รอคำอธิบาย 6",
+  "uploadedAt": {
+    "$date": "2024-01-23T10:27:05.855Z"
+  },
+  "available_content": "1"
+},
+{
+  "_id": {
+    "$oid": "6513164d50115c24bac8258f"
+  },
+  "name_product": "Guard Dualchip",
+  "time_product": 60,
+  "type_product": "Chips",
+  "img_portrait_product": "Guard.png",
+  "descriptions": "รายละเอียด Product รอคำอธิบาย 7",
+  "uploadedAt": {
+    "$date": "2024-01-23T10:27:12.070Z"
+  },
+  "available_content": "1"
+},
+{
+  "_id": {
+    "$oid": "6513167550115c24bac82590"
+  },
+  "name_product": "Sniper Dualchip",
+  "time_product": 60,
+  "type_product": "Chips",
+  "img_portrait_product": "Sniper.png",
+  "descriptions": "รายละเอียด Product รอคำอธิบาย 8",
+  "uploadedAt": {
+    "$date": "2024-01-23T10:27:20.120Z"
+  },
+  "available_content": "1"
+},
+{
+  "_id": {
+    "$oid": "6513171350115c24bac82592"
+  },
+  "name_product": "Originium Shard",
+  "time_product": 60,
+  "type_product": "OriginiumMaterials",
+  "img_portrait_product": "Originium.png",
+  "descriptions": "รายละเอียด Product รอคำอธิบาย 9",
+  "uploadedAt": {
+    "$date": "2024-01-23T10:27:27.296Z"
+  },
+  "available_content": "1"
+},
+{
+  "_id": {
+    "$oid": "653f24715517dc2009bb1a67"
+  },
+  "name_product": "Specialist Dualchip",
+  "time_product": 60,
+  "type_product": "Chips",
+  "img_portrait_product": "Specialist.png",
+  "available_content": "1",
+  "uploadedAt": {
+    "$date": "2023-10-30T03:35:13.692Z"
+  },
+  "__v": 0,
+  "descriptions": "รายละเอียด Product รอคำอธิบาย 10"
+},
+{
+  "_id": {
+    "$oid": "6576cfaa58dbe2449c532a37"
+  },
+  "name_product": "TestM",
+  "time_product": 20,
+  "type_product": "BattleRecord",
+  "img_portrait_product": "TestM.png",
+  "available_content": "1",
+  "uploadedAt": {
+    "$date": "2023-12-11T09:00:26.233Z"
+  },
+  "__v": 0,
+  "descriptions": "รายละเอียด Product รอคำอธิบาย 11"
+}]

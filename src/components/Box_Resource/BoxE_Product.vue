@@ -22,7 +22,7 @@
                                     <input type="text" class="form-control mt-1" id="name_product" placeholder="[ชื่อ สินค้า]" v-model="Product.name_product" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="descriptions" style="color: #A0A0A0;">Name Product :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
+                                    <label for="descriptions" style="color: #A0A0A0;">Descriptions :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
                                     <textarea type="text" class="form-control mt-1" id="descriptions" placeholder="[คำอธิบาย สินค้า]" v-model="Product.descriptions"></textarea>
                                 </div>
                                 <div class="form-group mt-1" >

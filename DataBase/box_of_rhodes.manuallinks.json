@@ -1,0 +1,126 @@
+[{
+  "_id": {
+    "$oid": "65af6da30db748f95543164a"
+  },
+  "manual_id": "65a935927eb2a14757b3e715",
+  "m_descriptions": "ID_LINK_FACTORY_Beginner",
+  "m_posision": "Factory",
+  "m_tier": "beginner",
+  "available_con": "0",
+  "uploadedAt": {
+    "$date": "2024-01-23T07:41:23.643Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65af73430db748f95543175c"
+  },
+  "manual_id": "65af6f600db748f9554316e7",
+  "m_descriptions": "ID_LINK_FACTORY_Intermediate",
+  "m_posision": "Factory",
+  "m_tier": "intermediate",
+  "available_con": "0",
+  "uploadedAt": {
+    "$date": "2024-01-23T08:05:23.940Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65af737d0db748f95543175e"
+  },
+  "manual_id": "65af6f800db748f9554316ea",
+  "m_descriptions": "ID_LINK_FACTORY_Advanced",
+  "m_posision": "Factory",
+  "m_tier": "Advanced",
+  "available_con": "0",
+  "uploadedAt": {
+    "$date": "2024-01-23T08:06:21.627Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65b64802c564a3fb72c7314f"
+  },
+  "manual_id": "65b647b2c564a3fb72c730f9",
+  "m_descriptions": "คู่มือ Module ระดับ Beginner",
+  "m_posision": "Module",
+  "m_tier": "beginner",
+  "available_con": "0",
+  "uploadedAt": {
+    "$date": "2024-01-28T12:26:42.039Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65b67944ec6ce7a77be8300c"
+  },
+  "manual_id": "65b6786dec6ce7a77be82e1a",
+  "m_descriptions": "คู่มือ Module สำหรับ ผู้เล่นระดับ Intermediate",
+  "m_posision": "Module",
+  "m_tier": "intermediate",
+  "available_con": "0",
+  "uploadedAt": {
+    "$date": "2024-01-28T15:56:52.196Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65b67956ec6ce7a77be8300e"
+  },
+  "manual_id": "65b6789eec6ce7a77be82e1d",
+  "m_descriptions": "คู่มือ Module สำหรับ ผู้เล่นระดับ Advanced",
+  "m_posision": "Module",
+  "m_tier": "Advanced",
+  "available_con": "0",
+  "uploadedAt": {
+    "$date": "2024-01-28T15:57:10.387Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65b67b5dec6ce7a77be8344e"
+  },
+  "manual_id": "65b67a99ec6ce7a77be832f6",
+  "m_descriptions": "คู่มือ Treading สำหรับ ผู้เล่นระดับ Beginner",
+  "m_posision": "Treading",
+  "m_tier": "beginner",
+  "available_con": "0",
+  "uploadedAt": {
+    "$date": "2024-01-28T16:05:49.025Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65b67b7aec6ce7a77be83450"
+  },
+  "manual_id": "65b67ac8ec6ce7a77be8332f",
+  "m_descriptions": "คู่มือ Treading สำหรับ ผู้เล่นระดับ Intermediate\t",
+  "m_posision": "Treading",
+  "m_tier": "intermediate",
+  "available_con": "0",
+  "uploadedAt": {
+    "$date": "2024-01-28T16:06:18.523Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65b67b92ec6ce7a77be83452"
+  },
+  "manual_id": "65b67af4ec6ce7a77be83332",
+  "m_descriptions": "คู่มือ Treading สำหรับ ผู้เล่นระดับ Advanced\t",
+  "m_posision": "Treading",
+  "m_tier": "Advanced",
+  "available_con": "0",
+  "uploadedAt": {
+    "$date": "2024-01-28T16:06:42.171Z"
+  },
+  "__v": 0
+}]

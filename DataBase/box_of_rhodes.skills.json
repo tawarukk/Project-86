@@ -1,0 +1,222 @@
+[{
+  "_id": {
+    "$oid": "650bbb3ce7fc55aaeb8161ff"
+  },
+  "name_skill": "Standardization_B",
+  "position_skill": "Factory",
+  "morale_consumed": 0,
+  "productivity": 0.25,
+  "capacity": 0,
+  "order_efficiency": 0,
+  "condition_skill": "all",
+  "effect_skill": "When this Operator is assigned to a factory, productivity",
+  "available_content": "1",
+  "uploadedAt": {
+    "$date": "2024-01-28T08:08:03.215Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "650bbe02e7fc55aaeb816200"
+  },
+  "name_skill": "Standardization_A",
+  "position_skill": "Factory",
+  "morale_consumed": 0,
+  "productivity": 0.15,
+  "capacity": 0,
+  "order_efficiency": 0,
+  "condition_skill": "all",
+  "effect_skill": "When this Operator is assigned to a factory, productivity",
+  "available_content": "1",
+  "uploadedAt": {
+    "$date": "2024-01-28T08:08:04.874Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "650bbe1be7fc55aaeb816201"
+  },
+  "name_skill": "CombatGuidanceVidio_B",
+  "position_skill": "Factory",
+  "morale_consumed": 0,
+  "productivity": 0.3,
+  "capacity": 0,
+  "order_efficiency": 0,
+  "condition_skill": "BattleRecord",
+  "effect_skill": "When this Operator is assigned to a factory,\"Battle Record\" productivity",
+  "available_content": "1",
+  "uploadedAt": {
+    "$date": "2024-01-28T08:09:39.304Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "650bbf70e7fc55aaeb816202"
+  },
+  "name_skill": "OrderDistribution_B",
+  "position_skill": "TradingPost",
+  "morale_consumed": 0,
+  "productivity": 0,
+  "capacity": 0,
+  "order_efficiency": 0.3,
+  "condition_skill": "all",
+  "effect_skill": "When this Operator is assigned to a Traging Post, productivity",
+  "available_content": "1",
+  "uploadedAt": {
+    "$date": "2024-01-28T08:09:40.577Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "650bc0bfe7fc55aaeb816203"
+  },
+  "name_skill": "OrderDistribution_A",
+  "position_skill": "TradingPost",
+  "morale_consumed": 0.25,
+  "productivity": 0,
+  "capacity": 0,
+  "order_efficiency": 0.3,
+  "condition_skill": "all",
+  "effect_skill": "When this Operator is assigned to a Traging Post, productivity",
+  "available_content": "1",
+  "uploadedAt": {
+    "$date": "2024-01-28T08:09:41.418Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "650bc13be7fc55aaeb816204"
+  },
+  "name_skill": "ContractLaw",
+  "position_skill": "TradingPost",
+  "morale_consumed": 0.4,
+  "productivity": 0,
+  "capacity": 0,
+  "order_efficiency": 0.25,
+  "condition_skill": "PreciousMetals",
+  "effect_skill": "When this Operator is assigned to a Traging Post,Pure Gold productivity",
+  "available_content": "1",
+  "uploadedAt": {
+    "$date": "2024-01-28T08:09:42.274Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "650bc2e5e7fc55aaeb816206"
+  },
+  "name_skill": "OriginiumWork_B",
+  "position_skill": "Factory",
+  "morale_consumed": 0,
+  "productivity": 0.35,
+  "capacity": 0,
+  "order_efficiency": 0,
+  "condition_skill": "OriginiumMaterials",
+  "effect_skill": "When this Operator is assigned to a factory,Originium productivity",
+  "available_content": "1",
+  "uploadedAt": {
+    "$date": "2024-01-28T08:09:43.173Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65117dfd63b524fc1e65aaa9"
+  },
+  "name_skill": "unidentified",
+  "position_skill": "All",
+  "morale_consumed": 0,
+  "productivity": 0,
+  "capacity": 0,
+  "order_efficiency": 0,
+  "condition_skill": "all",
+  "effect_skill": "Unkonw",
+  "available_content": "1",
+  "uploadedAt": {
+    "$date": "2024-01-28T08:09:44.342Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "651317ff50115c24bac82598"
+  },
+  "name_skill": "Standardization_C",
+  "position_skill": "Factory",
+  "morale_consumed": 0.45,
+  "productivity": 0.45,
+  "capacity": 4,
+  "order_efficiency": 0,
+  "condition_skill": "all",
+  "effect_skill": "When this Operator is assigned to a factory, productivity",
+  "available_content": "1",
+  "uploadedAt": {
+    "$date": "2024-01-28T08:09:45.769Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65300a32a376ec6da5ae65df"
+  },
+  "name_skill": "OrderDistribution_C",
+  "position_skill": "TradingPost",
+  "morale_consumed": 0,
+  "productivity": 0,
+  "capacity": 12,
+  "order_efficiency": 0,
+  "condition_skill": "all",
+  "effect_skill": "When this Operator is assigned to a Traging Post, Capacity",
+  "available_content": "1",
+  "uploadedAt": {
+    "$date": "2024-01-28T08:09:49.603Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65301107a376ec6da5ae65e2"
+  },
+  "name_skill": "OriginiumMaterials_Test",
+  "position_skill": "TradingPost",
+  "morale_consumed": 4,
+  "productivity": 4,
+  "capacity": 4,
+  "order_efficiency": 4,
+  "condition_skill": "OriginiumMaterials",
+  "effect_skill": "When this Operator is assigned to a Traging Post, Capacity",
+  "available_content": "1",
+  "uploadedAt": {
+    "$date": "2024-01-28T08:09:48.441Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65301194a376ec6da5ae65e3"
+  },
+  "name_skill": "PreciousMetals_Test",
+  "position_skill": "TradingPost",
+  "morale_consumed": 2,
+  "productivity": 2,
+  "capacity": 2,
+  "order_efficiency": 2,
+  "condition_skill": "PreciousMetals",
+  "effect_skill": "When this Operator is assigned to a Traging Post, Capacity",
+  "uploadedAt": {
+    "$date": "2023-10-28T14:38:01.916Z"
+  },
+  "available_content": "1"
+},
+{
+  "_id": {
+    "$oid": "653f20e55517dc2009bb1a2a"
+  },
+  "name_skill": "testskill_roberta",
+  "position_skill": "Factory",
+  "morale_consumed": 6,
+  "productivity": 6,
+  "capacity": 0,
+  "order_efficiency": 0,
+  "condition_skill": "all",
+  "effect_skill": "When this Operator is assigned to a factory, productivity test (+0.6)",
+  "available_content": "1",
+  "uploadedAt": {
+    "$date": "2023-10-30T03:20:05.972Z"
+  },
+  "__v": 0
+}]

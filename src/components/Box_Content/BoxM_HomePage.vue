@@ -75,7 +75,7 @@
                     <table class="table table-striped" >
                     <thead class="" >
                         <tr>
-                            <th>Name</th>
+                            <th>No.</th>
                             <th>Image</th>
                             <th>Topic</th>
                             <th>Descriptions</th>
@@ -86,7 +86,7 @@
                     <tbody>
                     <tr v-for="homepage,index in homepagesData" :key="homepage._id">
                             <td>{{ index+1 }}</td>
-                            <td>{{ homepage.homepage_img }}</td>
+                            <td> <img :src="getImagePath(homepage.homepage_img)" class="card-img-top" alt="..."></td>
                             <td>{{ homepage.topic }}</td>
                             <td>{{ homepage.descriptions }}</td>
                             <td>{{ homepage.link_page }}</td>

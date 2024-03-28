@@ -30,7 +30,7 @@
                                     <textarea type="text" class="form-control mt-1" id="descriptions" placeholder="[คำอธิบาย โอเปอเรเตอร์]" v-model="Operator.descriptions" required></textarea>
                                 </div>
                                 <div class="form-group mt-1">
-                                    <label for="skill_i" style="color: #A0A0A0;">Skill ii :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
+                                    <label for="skill_i" style="color: #A0A0A0;">Skill i :</label> <span style="font-size: 15px; color: #666;">(ระบุภายหลังได้)</span>
                                     <select class="form-select mt-1" id="skill_i" v-model="Operator.skill_i" style="background-color: #666">
                                         <template v-for="skills in Skill" :key="skills._id">
                                             <option :value="skills.name_skill">{{skills.name_skill}}</option>

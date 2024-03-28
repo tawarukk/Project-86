@@ -32,6 +32,10 @@ let operatorSchama = new Schema({
     block_count_oper: {
         type: Number
     },
+    bonut_atkspd_oper:{
+        type: Number,
+        default: 0
+    },
     img_portrait_oper: {
         type: String
     },
