@@ -70,10 +70,9 @@
                   <div class="cards-container status" style=""><el-rate
                     v-model="simulator.Rate_cal"
                     disabled
-                    show-score
                     text-color="#ff9900"
-                    score-template="{value} points"
-                  /></div>
+                    text-decoration="underline"
+                  /><span style="border: solid sandybrown; padding: 10px; font-size: 30px;">{{ simulator.Rate_cal.toFixed(1) }}</span></div>
                   <div class="cards-container status" @click="ReadPage(simulator._id)" style="background-color: #E2E3DE; color: #1f2122;" type="button">View details</div>
                 </div>
                 <div class="cards-container"></div>
@@ -134,7 +133,7 @@
                   <div class="cards-container status" style=""><el-rate
                     v-model="simulator.Rate_cal"
                     disabled
-                    show-score
+                    
                     text-color="#ff9900"
                     score-template="{value} points"
                   /></div>

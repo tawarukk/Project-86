@@ -127,7 +127,7 @@
                   </span>
                   </el-tooltip>
                   <div class="text mb-1">
-                    <span style="color: #FF9999;"> Reduce Time </span> / Remaining Time 
+                    <span style="color: #FF9999;"> Reduce Time </span> 
                   </div>
                   <el-tooltip class="box-item"
                     effect="dark"
@@ -135,9 +135,12 @@
                     placement="bottom"
                   >
                   <span class="col-1 card-status result re-status mb-1 ed">
-                    {{ Math.floor(this.Remaining_Time_def / 60) }} : {{ Math.floor(this.Remaining_Time_def % 60) }} : {{ Math.round((this.Remaining_Time_def % 1) * 60) }}
+                    ( - {{ Math.floor(this.Remaining_Time_def / 60) }} : {{ Math.floor(this.Remaining_Time_def % 60) }} : {{ Math.round((this.Remaining_Time_def % 1) * 60) }} )
                   </span>
                   </el-tooltip>
+                  <div class="text mb-1">
+                    <span style="color: #fff;">Remaining Time</span>
+                  </div>
                   <el-tooltip class="box-item"
                     effect="dark"
                     content="เวลาหลังการคำนวณ [ชั่วโมง:นาที:วินาที]"
